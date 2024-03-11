@@ -113,7 +113,7 @@
             android:orientation="horizontal">
 
             <CheckBox
-                android:id="@+id/remember_pass"
+                android:id="@+id/checkbox_remember_pass"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"

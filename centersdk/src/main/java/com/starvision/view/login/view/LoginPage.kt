@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.Editable
 import android.transition.Slide
 import android.transition.TransitionManager
 import android.view.Gravity
@@ -13,14 +14,17 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.starvision.data.AppPreferencesLogin
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageLoginBinding
+import com.starvision.view.luckygamesdk.view.LuckyGamePage
 
 
 class LoginPage : AppCompatActivity() {
     private val binding : PageLoginBinding by lazy { PageLoginBinding.inflate(layoutInflater) }
     private val handler = Handler(Looper.getMainLooper())
     private var callback : OnBackPressedCallback? = null
+    private var appPrefe = AppPreferencesLogin
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,7 +67,24 @@ class LoginPage : AppCompatActivity() {
                 Toast.makeText(this,getString(R.string.text_alert_user_min),Toast.LENGTH_SHORT).show()
             }else if(binding.editPassword.length() <= 6){
                 Toast.makeText(this,getString(R.string.text_alert_password_min), Toast.LENGTH_SHORT).show()
+            }else{
+                if(binding.checkboxRememberPass.isChecked){
+                    appPrefe.setPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_CHECK,true)
+                    appPrefe.setPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_USER,binding.editUsername.toString())
+                    appPrefe.setPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_PASSWORD,binding.editPassword.toString())
+                }else{
+                    appPrefe.setPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_CHECK,false)
+                }
+                //set ไปหน้าต่อไป
+                val luckyGamePage = LuckyGamePage()
+                toggle()
+                setFragment(luckyGamePage)
             }
+        }
+
+        if(appPrefe.getPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_CHECK,true) == true){
+//            binding.editUsername.text = appPrefe.getPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_USER,"")
+//            binding.editPassword.text = appPrefe.getPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_PASSWORD,"")
         }
 
         callback = object : OnBackPressedCallback(true) {
