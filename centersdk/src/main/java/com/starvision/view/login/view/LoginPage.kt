@@ -1,11 +1,13 @@
 package com.starvision.view.login.view
 
-import android.app.AlertDialog
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.transition.Slide
+import android.transition.TransitionManager
+import android.view.Gravity
 import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
@@ -18,6 +20,7 @@ import com.starvision.luckygamesdk.databinding.PageLoginBinding
 class LoginPage : AppCompatActivity() {
     private val binding : PageLoginBinding by lazy { PageLoginBinding.inflate(layoutInflater) }
     private val handler = Handler(Looper.getMainLooper())
+    private var callback : OnBackPressedCallback? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,26 +32,20 @@ class LoginPage : AppCompatActivity() {
             val registerPage = RegisterPage(bm)
             registerPage.setCloseListener(object : RegisterPage.CloseListener{
                 override fun onClose() {
-                    binding.lnTotal.visibility = View.VISIBLE
-                    binding.frameFragment.visibility = View.GONE
-                    binding.frameFragment.removeAllViews()
+                    toggle()
                 }
             })
-            handler.postDelayed({binding.lnTotal.visibility = View.GONE},200)
-            binding.frameFragment.visibility = View.VISIBLE
+            toggle()
             setFragment(registerPage)
         }
         binding.tvForgot.setOnClickListener {
             val forgotPage = ForgotPage(bm)
             forgotPage.setCloseListener(object : ForgotPage.CloseListener{
                 override fun onClose() {
-                    binding.lnTotal.visibility = View.VISIBLE
-                    binding.frameFragment.visibility = View.GONE
-                    binding.frameFragment.removeAllViews()
+                    toggle()
                 }
             })
-            handler.postDelayed({binding.lnTotal.visibility = View.GONE},200)
-            binding.frameFragment.visibility = View.VISIBLE
+            toggle()
             setFragment(forgotPage)
         }
         binding.btnBack.setOnClickListener {
@@ -69,16 +66,16 @@ class LoginPage : AppCompatActivity() {
             }
         }
 
-        val callback = object : OnBackPressedCallback(true) {
+        callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if(binding.frameFragment.visibility == View.VISIBLE){
-                    binding.frameFragment.removeAllViews()
-                    binding.frameFragment.visibility = View.GONE
-                    binding.lnTotal.visibility = View.VISIBLE
+                    toggle()
+                }else{
+                    finish()
                 }
             }
         }
-        this.onBackPressedDispatcher.addCallback(this,callback)
+        this.onBackPressedDispatcher.addCallback(this,callback!!)
 
     }
 
@@ -90,8 +87,25 @@ class LoginPage : AppCompatActivity() {
 
     private fun setFragment (fragment: Fragment) {
         supportFragmentManager.beginTransaction()
-            .setCustomAnimations(androidx.appcompat.R.anim.abc_slide_in_top, androidx.appcompat.R.anim.abc_slide_out_bottom)
             .replace(binding.frameFragment.id, fragment)
             .commit()
+    }
+    private fun toggle() {
+        val transition = Slide(Gravity.BOTTOM)
+        transition.duration = 200
+        transition.addTarget(binding.frameFragment)
+        TransitionManager.beginDelayedTransition(binding.frameFragment, transition)
+        if(binding.frameFragment.visibility == View.VISIBLE){
+            binding.frameFragment.visibility = View.GONE
+            handler.postDelayed({binding.lnTotal.visibility = View.VISIBLE},200)
+        }else{
+            handler.postDelayed({binding.lnTotal.visibility = View.GONE},150)
+            binding.frameFragment.visibility = View.VISIBLE
+        }
+    }
+
+    override fun onDestroy() {
+        callback!!.remove()
+        super.onDestroy()
     }
 }
