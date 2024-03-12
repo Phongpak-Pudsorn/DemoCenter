@@ -11,7 +11,7 @@ import androidx.fragment.app.DialogFragment
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageWebviewPolicyBinding
 
-class WebViewPage : DialogFragment() {
+class WebViewPolicyPage : DialogFragment() {
     private val binding : PageWebviewPolicyBinding by lazy { PageWebviewPolicyBinding.inflate(layoutInflater) }
 
     override fun onCreateView(

@@ -23,7 +23,7 @@ class LuckyGamePage : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        gameAdapter = AdapterGamePage(requireContext())
+        gameAdapter = AdapterGamePage(requireActivity())
         binding.recycleView.layoutManager = GridLayoutManager(requireContext(),3)
         binding.recycleView.adapter = gameAdapter
 

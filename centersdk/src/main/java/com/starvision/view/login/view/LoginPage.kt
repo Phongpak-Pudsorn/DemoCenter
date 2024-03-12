@@ -15,7 +15,6 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.starvision.data.AppPreferencesLogin
-import com.starvision.data.Const
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageLoginBinding
 import com.starvision.view.centerstarvision.view.ProfilePage
@@ -35,6 +34,7 @@ class LoginPage : AppCompatActivity() {
         supportActionBar?.hide()
         val bm = getBitmapFromAsset("logo_starvision.png")
         binding.imgLogo.setImageBitmap(bm)
+        binding.imgLogo.setOnClickListener { ProfilePage().show(supportFragmentManager,"") }
         binding.tvRegister.setOnClickListener {
             val registerPage = RegisterPage(bm)
             registerPage.setCloseListener(object : RegisterPage.CloseListener{
@@ -61,7 +61,7 @@ class LoginPage : AppCompatActivity() {
         binding.tvPolicy.setOnClickListener {
             binding.tvPolicy.isEnabled = false
             handler.postDelayed({ binding.tvPolicy.isEnabled = true },1000)
-            WebViewPage().show(supportFragmentManager,"policy")
+            WebViewPolicyPage().show(supportFragmentManager,"policy")
         }
         binding.cvLogin.setOnClickListener {
             binding.cvLogin.isEnabled = false
@@ -79,7 +79,9 @@ class LoginPage : AppCompatActivity() {
                     appPrefe.setPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_CHECK,false)
                 }
                 //set ไปหน้าต่อไป
-                ProfilePage().show(supportFragmentManager,"")
+                val luckyGamePage = LuckyGamePage()
+                toggle()
+                setFragment(luckyGamePage)
             }
         }
 
