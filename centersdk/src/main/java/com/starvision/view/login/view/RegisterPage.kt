@@ -57,7 +57,7 @@ class RegisterPage(private val bm: Bitmap) : Fragment() {
         binding.tvPolicyRegister.setOnClickListener {
             binding.tvPolicyRegister.isEnabled = false
             handler.postDelayed({ binding.tvPolicyRegister.isEnabled = true },1000)
-            WebViewPage().show(childFragmentManager,"policy")
+            WebViewPolicyPage().show(childFragmentManager,"policy")
         }
 
         binding.btnBack.setOnClickListener {

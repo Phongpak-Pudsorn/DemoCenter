@@ -1,4 +1,4 @@
-package com.starvision.view.luckygamesdk.view
+package com.starvision.view.centerstarvision.view
 
 import android.os.Bundle
 import android.os.PersistableBundle

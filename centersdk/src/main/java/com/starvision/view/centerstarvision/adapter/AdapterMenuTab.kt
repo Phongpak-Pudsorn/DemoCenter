@@ -1,4 +1,4 @@
-package com.starvision.view.luckygamesdk.adapter
+package com.starvision.view.centerstarvision.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
