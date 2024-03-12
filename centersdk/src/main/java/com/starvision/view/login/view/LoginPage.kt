@@ -18,6 +18,7 @@ import com.starvision.data.AppPreferencesLogin
 import com.starvision.data.Const
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageLoginBinding
+import com.starvision.view.centerstarvision.view.ProfilePage
 import com.starvision.view.luckygamesdk.view.LuckyGamePage
 
 
@@ -78,9 +79,7 @@ class LoginPage : AppCompatActivity() {
                     appPrefe.setPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_CHECK,false)
                 }
                 //set ไปหน้าต่อไป
-                val luckyGamePage = LuckyGamePage()
-                toggle()
-                setFragment(luckyGamePage)
+                ProfilePage().show(supportFragmentManager,"")
             }
         }
 
