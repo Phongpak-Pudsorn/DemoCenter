@@ -14,6 +14,7 @@
         <activity android:name="com.starvision.view.login.view.LoginPage"
                   android:label="Login_Page">
         </activity>
+        <activity android:name="com.starvision.view.center.view.MainPage" />
     </application>
 
 </manifest>

@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:background="@drawable/btn_underline_black"
-            android:button="@color/transparent"
+            android:button="@color/white"
             android:gravity="bottom|center"
             android:text="Starvision"
             android:textColor="@color/black"
