@@ -7,11 +7,9 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-		android:layout_gravity="center_vertical|center_horizontal" >
+        android:layout_height="match_parent">
 
 		<FrameLayout
-            android:layout_gravity="center_vertical|center_horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
             
@@ -44,7 +42,7 @@
 		                    android:layout_gravity="right"
 		                    android:orientation="horizontal" >
 		
-		                    <Button
+		                    <ImageView
 		                        android:id="@+id/mBtGoBack"
 		                        android:layout_width="30dp"
 		                        android:layout_height="30dp"
@@ -76,7 +74,7 @@
 		                    android:layout_marginStart="4dp"
 		                    android:orientation="horizontal" >
 		
-		                    <Button
+		                    <ImageView
 		                        android:id="@+id/mBtGoForword"
 		                        android:layout_width="30dp"
 		                        android:layout_height="30dp"
@@ -97,10 +95,10 @@
 		            android:layout_gravity="bottom"
 		            android:orientation="horizontal" >
 		
-		            <Button
+		            <ImageView
 		                android:id="@+id/mBtGoHome"
-		                android:layout_width="30dp"
-		                android:layout_height="25dp"
+		                android:layout_width="40dp"
+		                android:layout_height="35dp"
 		                android:layout_gravity="center_vertical"
 		                android:layout_marginStart="5dp"
 		                android:background="@drawable/selector_bt_home" />
@@ -115,13 +113,14 @@
 		
 		    </FrameLayout>
 
-            <Button
+            <ImageView
                 android:layout_gravity="right|top"
                 android:layout_marginEnd="5dp"
                 android:layout_marginTop="5dp"
                 android:id="@+id/mBtClosePopUp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+				android:visibility="gone"
                 android:background="@drawable/selector_bt_close_dialog_banner_sdk" />
         </FrameLayout>
 

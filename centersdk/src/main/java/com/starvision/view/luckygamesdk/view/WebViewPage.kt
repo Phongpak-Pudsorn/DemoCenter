@@ -3,54 +3,59 @@ package com.starvision.view.luckygamesdk.view
 import android.annotation.SuppressLint
 import android.net.http.SslError
 import android.os.Bundle
-import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.webkit.*
-import android.widget.FrameLayout
-import androidx.fragment.app.DialogFragment
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatActivity
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageWebviewBinding
 
-class WebViewPage(private val link : String) : DialogFragment() {
+class WebViewPage() : AppCompatActivity() {
     private val binding : PageWebviewBinding by lazy { PageWebviewBinding.inflate(layoutInflater) }
+    private var callback : OnBackPressedCallback? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return binding.root
-    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(binding.root)
+        val bundle = intent.extras
+        val link = bundle!!.getString("link")
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val displayMetrics = requireActivity().resources.displayMetrics
-        val popupWidth = displayMetrics.widthPixels
-        val popupHeight = displayMetrics.heightPixels
-        val param = FrameLayout.LayoutParams(popupWidth, popupHeight)
-//        param.gravity = Gravity.CENTER_HORIZONTAL or Gravity.CENTER_VERTICAL
-//        val width = ViewGroup.LayoutParams.MATCH_PARENT
-//        val height = ViewGroup.LayoutParams.MATCH_PARENT
-        dialog!!.window!!.setLayout(popupWidth, popupHeight)
+        callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (binding.mWebView.canGoBack()) {
+                    binding.mWebView.goBack()
+                }else{
+                    finish()
+                }
+            }
+        }
+        this.onBackPressedDispatcher.addCallback(this,callback!!)
+
+        binding.mBtGoForword.setOnClickListener {
+            if (binding.mWebView.canGoForward())
+                binding.mWebView.goForward()
+        }
+        binding.mBtGoBack.setOnClickListener {
+            if (binding.mWebView.canGoBack())
+                binding.mWebView.goBack()
+        }
 
         binding.mWebView.settings.javaScriptEnabled = true
         binding.mWebView.webChromeClient = WebChromeClient()
         binding.mWebView.webViewClient = WebViewClient()
-        binding.mWebView.loadUrl(link)
+        binding.mWebView.loadUrl(link.toString())
         binding.mWebView.webViewClient = CustomWebViewClient()
-        binding.mBtClosePopUp.setOnClickListener {
-            dismiss()
+        binding.mBtGoHome.setOnClickListener {
+            binding.mWebView.loadUrl(link.toString())
         }
-        dialog!!.show()
+
     }
 
     inner class CustomWebViewClient : WebViewClient() {
 
         @SuppressLint("WebViewClientOnReceivedSslError")
         override fun onReceivedSslError(view: WebView, handler: SslErrorHandler, error: SslError) {
-            binding.mWebView.loadData(requireContext().getString(R.string.text_nocon)+" "+getSslErrorMessage(error), "text/html", "UTF-8")
+            binding.mWebView.loadData(getString(R.string.text_nocon)+" "+getSslErrorMessage(error), "text/html", "UTF-8")
         }
 
         private fun getSslErrorMessage(error: SslError): String = when (error.primaryError) {
@@ -65,7 +70,22 @@ class WebViewPage(private val link : String) : DialogFragment() {
 
         override fun onPageFinished(view: WebView?, url: String?) {
             binding.mPbLoad.visibility = View.GONE
+            if (binding.mWebView.canGoForward()) {
+                binding.mBtGoForword.visibility = View.VISIBLE
+            } else {
+                binding.mBtGoForword.visibility = View.INVISIBLE
+            }
+            if (binding.mWebView.canGoBack()) {
+                binding.mBtGoBack.visibility = View.VISIBLE
+            } else {
+                binding.mBtGoBack.visibility = View.INVISIBLE
+            }
             super.onPageFinished(view, url)
         }
+    }
+
+    override fun onDestroy() {
+        callback!!.remove()
+        super.onDestroy()
     }
 }

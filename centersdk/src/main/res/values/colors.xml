@@ -7,6 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="black_light">#151515</color>
+    <color name="black_jang">#66151515</color>
     <color name="black_trin">#00000000</color>
 
     <color name="grey">#59A8A8A8</color>
@@ -17,6 +18,8 @@
     <color name="blue">#0037FF</color>
     <color name="blue_link">#1436DD</color>
     <color name="blue_link_tran">#6A1436DD</color>
+
+    <color name="clam">#0A8CE9</color>
 
     <color name="transparent">#00000000</color>
 

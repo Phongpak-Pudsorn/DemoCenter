@@ -14,6 +14,10 @@
         <activity android:name="com.starvision.view.login.view.LoginPage"
                   android:label="Login_Page">
         </activity>
+        <activity
+            android:name="com.starvision.view.luckygamesdk.view.WebViewPage"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>
