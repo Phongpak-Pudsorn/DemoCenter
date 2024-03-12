@@ -1,8 +1,6 @@
 package com.starvision.view.login.view
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
-import android.content.DialogInterface
 import android.net.http.SslError
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,10 +9,10 @@ import android.view.ViewGroup
 import android.webkit.*
 import androidx.fragment.app.DialogFragment
 import com.starvision.luckygamesdk.R
-import com.starvision.luckygamesdk.databinding.PageWebviewBinding
+import com.starvision.luckygamesdk.databinding.PageWebviewPolicyBinding
 
 class WebViewPage : DialogFragment() {
-    private val binding : PageWebviewBinding by lazy { PageWebviewBinding.inflate(layoutInflater) }
+    private val binding : PageWebviewPolicyBinding by lazy { PageWebviewPolicyBinding.inflate(layoutInflater) }
 
     override fun onCreateView(
         inflater: LayoutInflater,

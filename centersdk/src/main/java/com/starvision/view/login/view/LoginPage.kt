@@ -15,8 +15,10 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.starvision.data.AppPreferencesLogin
+import com.starvision.data.Const
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageLoginBinding
+import com.starvision.view.centerstarvision.view.ProfilePage
 import com.starvision.view.luckygamesdk.view.LuckyGamePage
 
 
@@ -25,6 +27,7 @@ class LoginPage : AppCompatActivity() {
     private val handler = Handler(Looper.getMainLooper())
     private var callback : OnBackPressedCallback? = null
     private var appPrefe = AppPreferencesLogin
+    private val TAG = javaClass.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,21 +73,22 @@ class LoginPage : AppCompatActivity() {
             }else{
                 if(binding.checkboxRememberPass.isChecked){
                     appPrefe.setPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_CHECK,true)
-                    appPrefe.setPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_USER,binding.editUsername.toString())
-                    appPrefe.setPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_PASSWORD,binding.editPassword.toString())
+                    appPrefe.setPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_USER,binding.editUsername.text.toString())
+                    appPrefe.setPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_PASSWORD,binding.editPassword.text.toString())
                 }else{
                     appPrefe.setPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_CHECK,false)
                 }
                 //set ไปหน้าต่อไป
-                val luckyGamePage = LuckyGamePage()
-                toggle()
-                setFragment(luckyGamePage)
+                ProfilePage().show(supportFragmentManager,"")
             }
         }
 
         if(appPrefe.getPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_CHECK,true) == true){
-//            binding.editUsername.text = appPrefe.getPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_USER,"")
-//            binding.editPassword.text = appPrefe.getPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_PASSWORD,"")
+            val user = appPrefe.getPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_USER,"")
+            val password = appPrefe.getPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_PASSWORD,"")
+            binding.editUsername.text = Editable.Factory.getInstance().newEditable(user.toString())
+            binding.editPassword.text = Editable.Factory.getInstance().newEditable(password.toString())
+            binding.checkboxRememberPass.isChecked = true
         }
 
         callback = object : OnBackPressedCallback(true) {

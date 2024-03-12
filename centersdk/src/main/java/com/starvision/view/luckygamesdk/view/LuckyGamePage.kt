@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.starvision.view.luckygamesdk.adapter.AdapterGamePage
-import com.starvision.luckygamesdk.databinding.HomePageBinding
+import com.starvision.luckygamesdk.databinding.LuckyGamePageBinding
 
 class LuckyGamePage : Fragment(){
-    private val binding : HomePageBinding by lazy { HomePageBinding.inflate(layoutInflater) }
+    private val binding : LuckyGamePageBinding by lazy { LuckyGamePageBinding.inflate(layoutInflater) }
     private var gameAdapter : AdapterGamePage? = null
 
     override fun onCreateView(

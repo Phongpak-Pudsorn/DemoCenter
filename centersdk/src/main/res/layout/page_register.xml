@@ -181,7 +181,7 @@
                 android:layout_weight="2"
                 android:gravity="center|start"
                 android:text="@string/privacy_policy"
-                android:textColor="@color/blue_link"
+                android:textColor="@color/blue_text_selector"
                 android:textSize="13sp"
                 android:textStyle="bold" />
 
