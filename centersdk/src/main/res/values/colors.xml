@@ -21,6 +21,9 @@
 
     <color name="clam">#0A8CE9</color>
 
+    <color name="greeny">#99FF99</color>
+    <color name="gray_w1">#FDF5E6</color>
+
     <color name="transparent">#00000000</color>
 
 </resources>

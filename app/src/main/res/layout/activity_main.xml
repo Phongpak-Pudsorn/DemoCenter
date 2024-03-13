@@ -15,9 +15,11 @@
     </FrameLayout>
 
     <LinearLayout
+        android:id="@+id/ln_btn"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_marginBottom="20dp"
         android:gravity="bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,6 +45,30 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:text="CENTER"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/btn_LottoThai"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_center"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:text="LottoThai"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/btn_Goldtoday"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_center"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:text="Goldtoday"
             android:textSize="20sp" />
 
     </LinearLayout>

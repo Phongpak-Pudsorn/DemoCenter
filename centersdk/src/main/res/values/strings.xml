@@ -28,6 +28,12 @@
     <string name="confirm_password">confirm password</string>
     <string name="please_click_to_accept">Please click to accept</string>
 
+    <string name="text_bureau_off">สำนัก : </string>
+    <string name="text_3_off">3 ตัวบน :</string>
+    <string name="text_2_up_off">2 ตัวบน :</string>
+    <string name="text_2_down_off">2 ตัวล่าง :</string>
+    <string name="text_date_off">งวดวันที่ </string>
+
     <string name="text_coin">Coin : </string>
     <string name="news_today">ข่าวประจำวัน</string>
 </resources>

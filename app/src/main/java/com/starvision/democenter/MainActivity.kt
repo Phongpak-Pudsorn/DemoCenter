@@ -3,13 +3,17 @@ package com.starvision.democenter
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.starvision.democenter.databinding.ActivityMainBinding
+import com.starvision.view.center.sub.SubLottothaiPage
 import com.starvision.view.center.view.MainPage
 import com.starvision.view.login.view.LoginPage
 
 class MainActivity : AppCompatActivity() {
     private val binding : ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    private var callback : OnBackPressedCallback? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -36,6 +40,30 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this,LoginPage::class.java)
             startActivity(intent)
         }
+
+        binding.btnLottoThai.setOnClickListener {
+            setFragment(SubLottothaiPage())
+            binding.framelayoutFragment.visibility = View.VISIBLE
+            binding.lnBtn.visibility = View.GONE
+        }
+
+        callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if(binding.framelayoutFragment.visibility == View.VISIBLE){
+                    binding.framelayoutFragment.visibility = View.GONE
+                    binding.lnBtn.visibility = View.VISIBLE
+                }else{
+                    finish()
+                }
+            }
+        }
+        this.onBackPressedDispatcher.addCallback(this,callback!!)
+    }
+
+    private fun setFragment (fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(binding.framelayoutFragment.id, fragment)
+            .commit()
     }
 
 }
