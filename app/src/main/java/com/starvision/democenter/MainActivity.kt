@@ -15,22 +15,27 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
+        //เช็ค Login ถ้า login แล้วให้ขึ้นรูปเขียว
+//    if(Login == true){
+//        binding.imgPerson.setImageDrawable(getDrawable(R.drawable.baseline_person_24_green))
+//    }else{
+//        binding.imgPerson.setImageDrawable(getDrawable(R.drawable.baseline_person_24_black))
+//    }
+
+
         binding.btnCenter.setOnClickListener {
             val intent = Intent(this,MainPage::class.java)
             startActivity(intent)
         }
 
         binding.imgPerson.setOnClickListener {
+            // REAL
+//            val intent = Intent(this,MainPage::class.java)
+//            startActivity(intent)
+            // TEST LOGIN
             val intent = Intent(this,LoginPage::class.java)
             startActivity(intent)
         }
     }
 
-//    private fun setFragment (fragment: Fragment) {
-//        supportFragmentManager.beginTransaction()
-////            .setCustomAnimations(androidx.appcompat.R.anim.abc_slide_in_top,
-////            androidx.appcompat.R.anim.abc_slide_out_bottom)
-//            .replace(binding.framelayoutFragment.id, fragment)
-//            .commit()
-//    }
 }

@@ -1,4 +1,4 @@
-package com.starvision.view.centerstarvision.view
+package com.starvision.view.center.view
 
 import android.os.Bundle
 import android.view.LayoutInflater

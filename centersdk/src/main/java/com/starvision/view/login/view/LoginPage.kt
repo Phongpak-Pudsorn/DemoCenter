@@ -1,5 +1,6 @@
 package com.starvision.view.login.view
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -17,8 +18,7 @@ import androidx.fragment.app.Fragment
 import com.starvision.data.AppPreferencesLogin
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageLoginBinding
-import com.starvision.view.centerstarvision.view.ProfilePage
-import com.starvision.view.luckygamesdk.view.LuckyGamePage
+import com.starvision.view.center.view.MainPage
 
 
 class LoginPage : AppCompatActivity() {
@@ -34,7 +34,6 @@ class LoginPage : AppCompatActivity() {
         supportActionBar?.hide()
         val bm = getBitmapFromAsset("logo_starvision.png")
         binding.imgLogo.setImageBitmap(bm)
-        binding.imgLogo.setOnClickListener { ProfilePage().show(supportFragmentManager,"") }
         binding.tvRegister.setOnClickListener {
             val registerPage = RegisterPage(bm)
             registerPage.setCloseListener(object : RegisterPage.CloseListener{
@@ -79,9 +78,10 @@ class LoginPage : AppCompatActivity() {
                     appPrefe.setPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_CHECK,false)
                 }
                 //set ไปหน้าต่อไป
-                val luckyGamePage = LuckyGamePage()
-                toggle()
-                setFragment(luckyGamePage)
+
+                //รอเซ็ต auto login จาก regis
+                val intent = Intent(this,MainPage::class.java)
+                startActivity(intent)
             }
         }
 

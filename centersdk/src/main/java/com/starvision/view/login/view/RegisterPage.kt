@@ -50,7 +50,7 @@ class RegisterPage(private val bm: Bitmap) : Fragment() {
                 Toast.makeText(requireContext(),getString(R.string.text_alert_policy_uncheck), Toast.LENGTH_SHORT).show()
             }else{
                 // set เหลือส่งเข้าระบบ
-                Toast.makeText(requireContext(),getString(R.string.text_alert_recovery), Toast.LENGTH_SHORT).show()
+
             }
         }
 

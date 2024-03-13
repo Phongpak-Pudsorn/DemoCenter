@@ -22,6 +22,8 @@ class AdapterGamePage(private val mActivity: Activity) : RecyclerView.Adapter<Re
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if(holder is GameViewHolder){
+            //รอดึงข้อมูล จาก api
+
 //            Glide.with(mContext).load("").into(holder.image_game)
 //            holder.name_game.text = ""
             holder.itemView.setOnClickListener {

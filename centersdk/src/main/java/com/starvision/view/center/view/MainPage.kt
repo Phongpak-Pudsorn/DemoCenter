@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.starvision.luckygamesdk.databinding.MainPageBinding
 import com.starvision.view.center.adapter.AdapterMenuTab
@@ -21,6 +20,8 @@ class MainPage: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         supportActionBar?.hide()
+        //ทำเช็ค login
+
         val tabList = mutableListOf<Pair<String,Boolean>>()
         tabList.add(Pair("Stavision",true))
         tabList.add(Pair("Lucky Game",false))
@@ -59,5 +60,6 @@ class MainPage: AppCompatActivity() {
         }
         binding.tvCoinNum.text = "0"
         binding.tvUsername.text = "NoFace"
+        binding.imgProfile.setOnClickListener { ProfilePage().show(supportFragmentManager,"") }
     }
 }
