@@ -22,6 +22,8 @@
             android:background="@drawable/btn_underline_black"
             android:button="@color/white"
             android:gravity="bottom|center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:text="Starvision"
             android:textColor="@color/black"
             android:textSize="22sp"
