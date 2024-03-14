@@ -1,7 +1,7 @@
 package com.starvision.view.center.view
 
 import android.os.Bundle
-import android.util.Log
+
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,7 +13,7 @@ import com.starvision.view.center.adapter.AdapterPager
 import com.starvision.view.center.info.TabInfo
 import com.starvision.view.luckygamesdk.view.LuckyGamePage
 import com.starvision.view.playplay.view.PlayplayPage
-import com.starvision.view.stavisions.view.ImageTestPage
+
 import com.starvision.view.stavisions.view.StarvisionPage
 
 class MainPage: AppCompatActivity() {
@@ -67,13 +67,13 @@ class MainPage: AppCompatActivity() {
         tablist.add(TabInfo("Stavision",false))
         tablist.add(TabInfo("Lucky Game",false))
         tablist.add(TabInfo("Playplay+",false))
-//        tablist.add(TabInfo("imageTest",false))
+
         return tablist
     }
     private fun setFragments(){
         fragments.add(StarvisionPage())
         fragments.add(LuckyGamePage())
         fragments.add(PlayplayPage())
-//        fragments.add(ImageTestPage())
+
     }
 }
