@@ -1,12 +1,14 @@
 package com.starvision.view.stavisions.adapter
 
+import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.starvision.luckygamesdk.databinding.ItemNewsBinding
-import com.starvision.luckygamesdk.databinding.ItemTabsBinding
+import com.starvision.api.WebViewPage
 
-class AdapterStarvision: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdapterStarvision(private val mActivity : Activity) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val VIEW_TYPE_NEWS = 1
     val VIEW_TYPE_BANNER = 2
     class ViewHolder(val newsBinding: ItemNewsBinding):RecyclerView.ViewHolder(newsBinding.root)
@@ -20,6 +22,11 @@ class AdapterStarvision: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is ViewHolder){
             holder.newsBinding.tvTitle.text = "News$position"
+            holder.itemView.setOnClickListener {
+                val intent = Intent(mActivity, WebViewPage::class.java)
+                intent.putExtra("link", "https://www.google.com/")
+                mActivity.startActivity(intent)
+            }
         }
 
     }

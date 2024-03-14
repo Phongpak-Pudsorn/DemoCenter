@@ -54,8 +54,23 @@
     <string name="mid_profile">mid</string>
     <!-- Profile -->
 
+    <!--  ตรวจหวย  -->
+    <string name="check_one">รางวัลที่ 1</string>
+    <string name="check_one_by">รางวัลข้างเคียงรางวัลที่ 1</string>
+    <string name="check_two_end">เลขท้าย 2 ตัว</string>
+    <string name="check_three_end">เลขท้าย 3 ตัว</string>
+    <string name="check_three_end_up">เลขหน้า 3 ตัว</string>
+    <string name="check_two">รางวัลที่ 2</string>
+    <string name="check_three">รางวัลที่ 3</string>
+    <string name="check_four">รางวัลที่ 4</string>
+    <string name="check_five">รางวัลที่ 5</string>
+    <string name="check_help">*ขอให้ท่านตรวจสอบข้อมูลผลสลากที่สมบูรณ์จากสำนักงานสลากกินแบ่งรัฐบาลอีกครั้ง www.glo.or.th</string>
+    <string name="check_tickets">งวดนี้ยังไม่มีข้อมูลใบตรวจรางวัล</string>
+    <string name="check_text">ตรวจหวย งวด</string>
+    <string name="text_web_glo">http://www.glo.or.th/</string>
+    <!--  ตรวจหวย  -->
 
     <string name="news_today">ข่าวประจำวัน</string>
-
+    <string name="text_episode">EP:</string>
 
 </resources>

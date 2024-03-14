@@ -23,7 +23,7 @@ class StarvisionPage:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.rvMain.apply {
-            adapter = AdapterStarvision()
+            adapter = AdapterStarvision(requireActivity())
             layoutManager = LinearLayoutManager(requireActivity(),RecyclerView.VERTICAL,false)
         }
     }

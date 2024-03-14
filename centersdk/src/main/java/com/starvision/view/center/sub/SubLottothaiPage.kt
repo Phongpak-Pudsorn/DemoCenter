@@ -128,8 +128,6 @@ class SubLottothaiPage : Fragment() {
             @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(call: Call<SubLottothaiModels>, response: Response<SubLottothaiModels>) {
                 val getApiLottoOffice = response.body()!!
-//                Log.e(TAG, "getApiLottoOffice : $getApiLottoOffice")
-//                Log.e(TAG,"URL : "+call.request().url())
                 if (getApiLottoOffice.Status == "True"){
                     for(i in getApiLottoOffice.Datarow.indices){
                         val dataRow = getApiLottoOffice.Datarow[i]
@@ -145,26 +143,25 @@ class SubLottothaiPage : Fragment() {
             }
 
             override fun onFailure(call: Call<SubLottothaiModels>, t: Throwable) {
-//                Log.e("OfficeFragment", "Load Api onFailure : $t")
-            }
-        })
-        getApiOffice.getLottoOfficeResult(date).enqueue(object : Callback<SubLottothaiNumberModels> {
-            @SuppressLint("NotifyDataSetChanged")
-            override fun onResponse(call: Call<SubLottothaiNumberModels>, response: Response<SubLottothaiNumberModels>) {
-                val dataResult = response.body()!!
-//                Log.e(TAG,"URL : "+call.request().url())
-                if (dataResult.Status == "True"){
-                    jSonData = Gson().toJson(response.body()!!,SubLottothaiNumberModels::class.java)
-                    binding.mProgressBar.visibility = View.GONE
-                    adapterLottothaiSub!!.notifyDataSetChanged()
-                    binding.reCycleView.scrollToPosition(intlistOff)
-                }
-            }
 
-            override fun onFailure(call: Call<SubLottothaiNumberModels>, t: Throwable) {
-//                Log.e(TAG,"Result Api onFailure")
             }
         })
+//        getApiOffice.getLottoOfficeResult(date).enqueue(object : Callback<SubLottothaiNumberModels> {
+//            @SuppressLint("NotifyDataSetChanged")
+//            override fun onResponse(call: Call<SubLottothaiNumberModels>, response: Response<SubLottothaiNumberModels>) {
+//                val dataResult = response.body()!!
+//                if (dataResult.Status == "True"){
+//                    jSonData = Gson().toJson(response.body()!!,SubLottothaiNumberModels::class.java)
+//                    binding.mProgressBar.visibility = View.GONE
+//                    adapterLottothaiSub!!.notifyDataSetChanged()
+//                    binding.reCycleView.scrollToPosition(intlistOff)
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<SubLottothaiNumberModels>, t: Throwable) {
+//
+//            }
+//        })
     }
 
     private fun ExecuteDataDate() {
@@ -173,8 +170,6 @@ class SubLottothaiPage : Fragment() {
             override fun onResponse(call: Call<SubLottothaiDateModels>, response: Response<SubLottothaiDateModels>) {
                 try {
                     val dataDate = response.body()!!
-//                    Log.e(TAG,"url : "+call.request().url())
-//                    Log.e("OfficeFragment", "dataDate : $dataDate")
                     listDataFd = ArrayList()
                     listDataDate = ArrayList()
                     var dateNew = ""
@@ -189,7 +184,6 @@ class SubLottothaiPage : Fragment() {
                                 val year = date2!!.year + 543 + 1900
                                 val sdfNew = SimpleDateFormat(" dd MMMM $year", Locale("th", "THA"))
                                 dateNew = sdfNew.format(date2)
-//                                Log.e(TAG, "dateNew : $dateNew")
                             } catch (e: ParseException) {
                                 e.printStackTrace()
                             }
@@ -202,7 +196,7 @@ class SubLottothaiPage : Fragment() {
                 }
             }
             override fun onFailure(call: Call<SubLottothaiDateModels>, t: Throwable) {
-//                Log.e(TAG, "Load Api Office Date : onFailure $t")
+
             }
         })
     }

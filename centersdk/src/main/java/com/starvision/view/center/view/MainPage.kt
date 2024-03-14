@@ -13,7 +13,6 @@ import com.starvision.view.center.adapter.AdapterPager
 import com.starvision.view.center.info.TabInfo
 import com.starvision.view.luckygamesdk.view.LuckyGamePage
 import com.starvision.view.playplay.view.PlayplayPage
-import com.starvision.view.stavisions.view.ImageTestPage
 import com.starvision.view.stavisions.view.StarvisionPage
 
 class MainPage: AppCompatActivity() {

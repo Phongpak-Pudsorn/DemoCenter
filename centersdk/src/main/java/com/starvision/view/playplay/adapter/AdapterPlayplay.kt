@@ -1,13 +1,15 @@
 package com.starvision.view.playplay.adapter
 
+import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.starvision.luckygamesdk.databinding.ItemNewsBinding
 import com.starvision.luckygamesdk.databinding.ItemPlayplayBinding
 import com.starvision.luckygamesdk.databinding.ItemPlayplayHeaderBinding
+import com.starvision.api.WebViewPage
 
-class AdapterPlayplay:RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdapterPlayplay(private val mActivity : Activity) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val VIEW_TYPE_HEADER = 1
     val VIEW_TYPE_EPISODE = 2
     override fun getItemViewType(position: Int): Int {
@@ -36,7 +38,17 @@ class AdapterPlayplay:RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         if (holder is ViewHolder){
             holder.epBinding.tvEpisode.text = "$position"
             holder.epBinding.tvDate.text = "3/13/2024"
+            holder.itemView.setOnClickListener {
+                val intent = Intent(mActivity, WebViewPage::class.java)
+                intent.putExtra("link", "https://bit.ly/ppplus_youtube")
+                mActivity.startActivity(intent)
+            }
         }else if (holder is headerHolder){
+            holder.itemView.setOnClickListener {
+                val intent = Intent(mActivity, WebViewPage::class.java)
+                intent.putExtra("link", "https://bit.ly/ppplus_youtube")
+                mActivity.startActivity(intent)
+            }
             holder.headBinding.tvTitle.text = "Dragonball DAIMA"
             holder.headBinding.tvSummary.text = "the last story of Dragon ball that Akira Toriyama left in this world will on air in 2024"
         }

@@ -3,7 +3,9 @@ package com.starvision.view.center.sub.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.core.view.marginBottom
 import androidx.recyclerview.widget.RecyclerView
 import com.starvision.luckygamesdk.R
 import com.starvision.view.center.sub.models.SubLottothaiModels
@@ -13,7 +15,6 @@ class AdapterLottothaiSub(private val listData: ArrayList<SubLottothaiModels>)
     :RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     var string = "  "
     private val TAG = javaClass.simpleName
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_office, parent, false)
@@ -38,10 +39,9 @@ class AdapterLottothaiSub(private val listData: ArrayList<SubLottothaiModels>)
     }
 
     class ViewHolder(var view: View) : RecyclerView.ViewHolder(view) {
-        var item_off = view.findViewById<View>(R.id.item_off) as TextView
-        var item_three = view.findViewById<View>(R.id.item_three) as TextView
-        var item_two_up = view.findViewById<View>(R.id.item_two_up) as TextView
-        var item_two_down = view.findViewById<View>(R.id.item_two_down) as TextView
-
+        var item_off = view.findViewById<TextView>(R.id.item_off)
+        var item_three = view.findViewById<TextView>(R.id.item_three)
+        var item_two_up = view.findViewById<TextView>(R.id.item_two_up)
+        var item_two_down = view.findViewById<TextView>(R.id.item_two_down)
     }
 }

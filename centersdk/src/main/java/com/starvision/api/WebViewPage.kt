@@ -1,4 +1,4 @@
-package com.starvision.view.luckygamesdk.view
+package com.starvision.api
 
 import android.annotation.SuppressLint
 import android.net.http.SslError
@@ -10,16 +10,18 @@ import androidx.appcompat.app.AppCompatActivity
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageWebviewBinding
 
-class WebViewPage() : AppCompatActivity() {
+class WebViewPage : AppCompatActivity() {
     private val binding : PageWebviewBinding by lazy { PageWebviewBinding.inflate(layoutInflater) }
     private var callback : OnBackPressedCallback? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        supportActionBar?.hide()
         val bundle = intent.extras
         val link = bundle!!.getString("link")
 
+        binding.btnBack.setOnClickListener { finish() }
         callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (binding.mWebView.canGoBack()) {
@@ -45,9 +47,7 @@ class WebViewPage() : AppCompatActivity() {
         binding.mWebView.webViewClient = WebViewClient()
         binding.mWebView.loadUrl(link.toString())
         binding.mWebView.webViewClient = CustomWebViewClient()
-        binding.mBtGoHome.setOnClickListener {
-            binding.mWebView.loadUrl(link.toString())
-        }
+        binding.mBtGoHome.setOnClickListener { binding.mWebView.loadUrl(link.toString()) }
 
     }
 

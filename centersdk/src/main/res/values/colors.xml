@@ -20,11 +20,12 @@
     <color name="blue">#0037FF</color>
     <color name="blue_link">#1436DD</color>
     <color name="blue_link_tran">#6A1436DD</color>
-
     <color name="clam">#0A8CE9</color>
-
     <color name="greeny">#99FF99</color>
     <color name="gray_w1">#FDF5E6</color>
+    <color name="bg_orange">#ff9700</color>
+    <color name="bg_orange_">#f2740d</color>
+    <color name="red_trin">#ff4444</color>
 
     <color name="transparent">#00000000</color>
 

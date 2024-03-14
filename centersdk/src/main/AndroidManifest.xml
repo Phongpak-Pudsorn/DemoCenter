@@ -15,7 +15,7 @@
                   android:label="Login_Page">
         </activity>
         <activity android:name="com.starvision.view.center.view.MainPage" />
-        <activity android:name="com.starvision.view.luckygamesdk.view.WebViewPage" />
+        <activity android:name="com.starvision.api.WebViewPage" />
     </application>
 
 </manifest>
