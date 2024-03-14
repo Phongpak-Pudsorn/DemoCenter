@@ -59,14 +59,12 @@ class SubLottothaiPage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         ExecuteDataDate()
+
+        binding.tvNameApp.text = getString(R.string.text_name_app_lottothai)
+
         binding.reCycleView.visibility = View.VISIBLE
-        binding.mProgressBar.visibility = View.GONE
         binding.mLvOffice.isRefreshing = false
-        binding.mLvOffice.setOnChildScrollUpCallback { parent, child ->
-                            Log.e(TAG,"SwipeRefreshLayout parent : $parent")
-                            Log.e(TAG,"SwipeRefreshLayout child : $child")
-            false
-        }
+        binding.mLvOffice.setOnChildScrollUpCallback { parent, child -> false }
         binding.mLvOffice.setOnRefreshListener {
             binding.reCycleView.visibility = View.GONE
             checkRefresh = false
@@ -82,11 +80,10 @@ class SubLottothaiPage : Fragment() {
     }
 
     private fun setClick() {
-        binding.mSpinner.text = listDataDate!![0]
-//        if (chkInternet!!.isOnline) {
-            ExecuteData(listDataFd!![0])
-//        }
-        binding.mSpinner.setOnClickListener { spinnerPopupWindow(binding.mSpinner) }
+//        binding.mSpinner.text = listDataDate!![0]
+        binding.tvRoundLot.text = listDataDate!![0]
+        ExecuteData(listDataFd!![0])
+//        binding.mSpinner.setOnClickListener { spinnerPopupWindow(binding.mSpinner) }
     }
 
     private fun spinnerPopupWindow(anchorView: View) {
@@ -105,21 +102,16 @@ class SubLottothaiPage : Fragment() {
                 positionSpinner = i
 //                if (chkInternet!!.isOnline) {
                     checkRefresh = true
-                    Log.e(TAG,"spinnerPopupWindow isOnline : "+listDataFd!![i])
                     ExecuteData(listDataFd!![i])
 //                }
                 binding.mSpinner.text = listDataDate!![i]
                 popup.dismiss()
             }
         popup.contentView = layout
-
-        // Set content width and height
         popup.height = WindowManager.LayoutParams.MATCH_PARENT
         popup.width = WindowManager.LayoutParams.MATCH_PARENT
-        // Closes the popup window when touch outside of it - when looses focus
         popup.isOutsideTouchable = true
         popup.isFocusable = true
-        // Show anchored to button
         popup.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         popup.showAsDropDown(anchorView)
     }
@@ -136,8 +128,8 @@ class SubLottothaiPage : Fragment() {
             @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(call: Call<SubLottothaiModels>, response: Response<SubLottothaiModels>) {
                 val getApiLottoOffice = response.body()!!
-                Log.e(TAG, "getApiLottoOffice : $getApiLottoOffice")
-                Log.e(TAG,"URL : "+call.request().url())
+//                Log.e(TAG, "getApiLottoOffice : $getApiLottoOffice")
+//                Log.e(TAG,"URL : "+call.request().url())
                 if (getApiLottoOffice.Status == "True"){
                     for(i in getApiLottoOffice.Datarow.indices){
                         val dataRow = getApiLottoOffice.Datarow[i]
@@ -153,14 +145,14 @@ class SubLottothaiPage : Fragment() {
             }
 
             override fun onFailure(call: Call<SubLottothaiModels>, t: Throwable) {
-                Log.e("OfficeFragment", "Load Api onFailure : $t")
+//                Log.e("OfficeFragment", "Load Api onFailure : $t")
             }
         })
         getApiOffice.getLottoOfficeResult(date).enqueue(object : Callback<SubLottothaiNumberModels> {
             @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(call: Call<SubLottothaiNumberModels>, response: Response<SubLottothaiNumberModels>) {
                 val dataResult = response.body()!!
-                Log.e(TAG,"URL : "+call.request().url())
+//                Log.e(TAG,"URL : "+call.request().url())
                 if (dataResult.Status == "True"){
                     jSonData = Gson().toJson(response.body()!!,SubLottothaiNumberModels::class.java)
                     binding.mProgressBar.visibility = View.GONE
@@ -170,7 +162,7 @@ class SubLottothaiPage : Fragment() {
             }
 
             override fun onFailure(call: Call<SubLottothaiNumberModels>, t: Throwable) {
-                Log.e(TAG,"Result Api onFailure")
+//                Log.e(TAG,"Result Api onFailure")
             }
         })
     }
@@ -181,14 +173,14 @@ class SubLottothaiPage : Fragment() {
             override fun onResponse(call: Call<SubLottothaiDateModels>, response: Response<SubLottothaiDateModels>) {
                 try {
                     val dataDate = response.body()!!
-                Log.e(TAG,"url : "+call.request().url())
-                Log.e("OfficeFragment", "dataDate : $dataDate")
+//                    Log.e(TAG,"url : "+call.request().url())
+//                    Log.e("OfficeFragment", "dataDate : $dataDate")
                     listDataFd = ArrayList()
                     listDataDate = ArrayList()
                     var dateNew = ""
                     if (dataDate.Status == "True") {
-                        for (i in dataDate.Datarow.indices) {
-                            val sugDate = dataDate.Datarow[i].suggestdate
+//                        for (i in dataDate.Datarow.indices) {
+                            val sugDate = dataDate.Datarow[0].suggestdate
                             listDataFd?.add(sugDate)
                             try {
                                 val string = sugDate
@@ -197,14 +189,12 @@ class SubLottothaiPage : Fragment() {
                                 val year = date2!!.year + 543 + 1900
                                 val sdfNew = SimpleDateFormat(" dd MMMM $year", Locale("th", "THA"))
                                 dateNew = sdfNew.format(date2)
-                                Log.e(TAG, "dateNew : $dateNew")
+//                                Log.e(TAG, "dateNew : $dateNew")
                             } catch (e: ParseException) {
-                                e.printStackTrace()
-                            } catch (e: java.text.ParseException) {
                                 e.printStackTrace()
                             }
                             listDataDate?.add("  " + resources.getString(R.string.text_date_off) + dateNew)
-                        }
+//                        }
                         setClick()
                     }
                 }catch (e:Exception){
@@ -212,7 +202,7 @@ class SubLottothaiPage : Fragment() {
                 }
             }
             override fun onFailure(call: Call<SubLottothaiDateModels>, t: Throwable) {
-                Log.e(TAG, "Load Api Office Date : onFailure $t")
+//                Log.e(TAG, "Load Api Office Date : onFailure $t")
             }
         })
     }

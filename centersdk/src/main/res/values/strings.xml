@@ -1,8 +1,10 @@
 <resources>
-    <string name="app_name">LuckyGameSDK</string>
+    <!-- WebView -->
     <string name="nameGame">LuckyGame</string>
     <string name="text_nocon">Please Connect Internet</string>
+    <!-- WebView -->
 
+    <!-- Login,Regis,Forgot -->
     <string name="text_alert_user_min">กรุณากรอกชื่อให้ครบ</string>
     <string name="text_alert_email_min">กรุณากรอกอิเมล์ให้ครบ</string>
     <string name="text_alert_policy_uncheck">กรุณายืนยันนโยบายส่วนตัว</string>
@@ -11,7 +13,6 @@
     <string name="text_alert_user_wrong">ชื่อผิด กรุณากรอกใหม่อีกครั้ง</string>
     <string name="text_alert_password_worng">รหัสผิด กรุณากรอกใหม่อีกครั้ง</string>
     <string name="text_alert_recovery">ส่งคำขอรีเซ็ตพาสเวิร์ดแล้ว</string>
-
     <string name="privacy_policy">Privacy Policy</string>
     <string name="by_starvision_team">By StarVision Team</string>
     <string name="register">Register</string>
@@ -27,13 +28,34 @@
     <string name="sent">Sent</string>
     <string name="confirm_password">confirm password</string>
     <string name="please_click_to_accept">Please click to accept</string>
+    <!-- Login,Regis,Forgot -->
 
+    <!-- เลขเด็ดหวยดัง -->
     <string name="text_bureau_off">สำนัก : </string>
     <string name="text_3_off">3 ตัวบน :</string>
     <string name="text_2_up_off">2 ตัวบน :</string>
     <string name="text_2_down_off">2 ตัวล่าง :</string>
     <string name="text_date_off">งวดวันที่ </string>
+    <string name="text_name_app_lottothai">เลขเด็ดหวยดัง</string>
+    <!-- เลขเด็ดหวยดัง -->
 
+    <!-- Profile -->
     <string name="text_coin">Coin : </string>
+    <string name="name_profile">Name :</string>
+    <string name="id_profile">ID :</string>
+    <string name="topup">Topup</string>
+    <string name="e_mail_profile">E-mail :</string>
+    <string name="delete_account_profile">Delete Account</string>
+    <string name="logout_profile">Logout</string>
+    <string name="account_bar_profile">บัญชี</string>
+    <string name="facebook_profile">Facebook</string>
+    <string name="line_profile">Line</string>
+    <string name="google_profile">Google</string>
+    <string name="mid_profile">mid</string>
+    <!-- Profile -->
+
+
     <string name="news_today">ข่าวประจำวัน</string>
+
+
 </resources>

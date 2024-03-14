@@ -15,4 +15,15 @@
     <string name="sent">Sent</string>
     <string name="confirm_password">confirm password</string>
     <string name="please_click_to_accept">Please click to accept</string>
+    <string name="name_profile">Name :</string>
+    <string name="id_profile">ID :</string>
+    <string name="topup">Topup</string>
+    <string name="e_mail_profile">E-mail :</string>
+    <string name="delete_account_profile">Delete Account</string>
+    <string name="logout_profile">Logout</string>
+    <string name="account_bar_profile">บัญชี</string>
+    <string name="facebook_profile">Facebook</string>
+    <string name="line_profile">Line</string>
+    <string name="google_profile">Google</string>
+    <string name="mid_profile">mid</string>
 </resources>
