@@ -36,4 +36,5 @@
 
     <string name="text_coin">Coin : </string>
     <string name="news_today">ข่าวประจำวัน</string>
+    <string name="text_episode">EP:</string>
 </resources>

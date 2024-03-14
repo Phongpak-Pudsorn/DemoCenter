@@ -8,8 +8,9 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.ItemTabsBinding
+import com.starvision.view.center.info.TabInfo
 
-class AdapterMenuTab(val context:Context,val listTab:MutableList<Pair<String,Boolean>>,val onClickListener:tabClickLiatener): RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
+class AdapterMenuTab(val context:Context,val listTab:ArrayList<TabInfo>,val onClickListener:tabClickLiatener): RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
     class ViewHolder(val binding:ItemTabsBinding):RecyclerView.ViewHolder(binding.root)
     interface tabClickLiatener {
         fun onTabClick(position: Int)
@@ -20,6 +21,7 @@ class AdapterMenuTab(val context:Context,val listTab:MutableList<Pair<String,Boo
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = ItemTabsBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        listTab[0].boo = true
         return ViewHolder(view)
     }
 
@@ -28,40 +30,27 @@ class AdapterMenuTab(val context:Context,val listTab:MutableList<Pair<String,Boo
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is ViewHolder) {
-            holder.binding.textType.text = listTab[position].first
+            holder.binding.textType.text = listTab[position].name
             holder.binding.tabMenu.setOnClickListener {
                 clearColor(position)
                 listener?.onTabClick(position)
-//                notifyDataSetChanged()
             }
-            holder.binding.textType.isChecked = listTab[position].second
-            if (listTab[position].second) {
+            holder.binding.textType.isChecked = listTab[position].boo
+            if (listTab[position].boo) {
+                holder.binding.textType.setTextColor(ContextCompat.getColor(context,R.color.black))
                 holder.binding.textType.setBackgroundResource(R.drawable.btn_underline_black)
             } else {
+                holder.binding.textType.setTextColor(ContextCompat.getColor(context,R.color.grey_text))
                 holder.binding.textType.setBackgroundResource(R.color.white)
             }
 
         }
     }
-    private fun clearColor(position: Int) {
-        listTab.clear()
-        when (position) {
-            0 -> {
-                listTab.add(Pair("Stavision",true))
-                listTab.add(Pair("Lucky Game",false))
-                listTab.add(Pair("Playplay+",false))
-            }
-            1 -> {
-                listTab.add(Pair("Stavision",false))
-                listTab.add(Pair("Lucky Game",true))
-                listTab.add(Pair("Playplay+",false))
-            }
-            2 -> {
-                listTab.add(Pair("Stavision",false))
-                listTab.add(Pair("Lucky Game",false))
-                listTab.add(Pair("Playplay+",true))
-            }
+    private fun clearColor(position:Int) {
+        for (i in listTab.indices){
+            listTab[i].boo = false
         }
+        listTab[position].boo = true
         notifyDataSetChanged()
     }
 }
