@@ -51,7 +51,7 @@ class MainPage: AppCompatActivity() {
             }
         })
         binding.menuTab.apply {
-            adapter = AdapterMenuTab(this@MainPage, tablist,object: AdapterMenuTab.tabClickLiatener{
+            adapter = AdapterMenuTab(this@MainPage, tablist,object: AdapterMenuTab.TabClickListener{
                 override fun onTabClick(position: Int) {
                     binding.pager2.setCurrentItem(position,false)
                 }

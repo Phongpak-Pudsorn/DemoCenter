@@ -10,12 +10,12 @@ import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.ItemTabsBinding
 import com.starvision.view.center.info.TabInfo
 
-class AdapterMenuTab(val context:Context,val listTab:ArrayList<TabInfo>,val onClickListener:tabClickLiatener): RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
+class AdapterMenuTab(val context:Context,val listTab:ArrayList<TabInfo>,val onClickListener:TabClickListener): RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
     class ViewHolder(val binding:ItemTabsBinding):RecyclerView.ViewHolder(binding.root)
-    interface tabClickLiatener {
+    interface TabClickListener {
         fun onTabClick(position: Int)
     }
-    var listener : tabClickLiatener? = null
+    var listener : TabClickListener? = null
     init {
         listener = onClickListener
     }
@@ -31,8 +31,9 @@ class AdapterMenuTab(val context:Context,val listTab:ArrayList<TabInfo>,val onCl
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is ViewHolder) {
             holder.binding.textType.text = listTab[position].name
-            holder.binding.tabMenu.setOnClickListener {
-                clearColor(position)
+            holder.binding.textType.setOnClickListener {
+                clearColor()
+                listTab[position].boo = true
                 listener?.onTabClick(position)
             }
             holder.binding.textType.isChecked = listTab[position].boo
@@ -46,11 +47,10 @@ class AdapterMenuTab(val context:Context,val listTab:ArrayList<TabInfo>,val onCl
 
         }
     }
-    private fun clearColor(position:Int) {
+    private fun clearColor() {
         for (i in listTab.indices){
             listTab[i].boo = false
+            notifyDataSetChanged()
         }
-        listTab[position].boo = true
-        notifyDataSetChanged()
     }
 }
