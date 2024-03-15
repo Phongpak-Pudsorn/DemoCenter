@@ -9,8 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.starvision.luckygamesdk.databinding.StarvisionPageBinding
-import com.starvision.view.center.info.TabInfo
-import com.starvision.view.stavisions.adapter.AdapterDots
+import com.starvision.view.stavisions.adapter.AdapterApps
 import com.starvision.view.stavisions.adapter.AdapterImageSlide
 import com.starvision.view.stavisions.adapter.AdapterStarvision
 import com.starvision.view.stavisions.info.BannerInfo
@@ -20,8 +19,8 @@ class StarvisionPage:Fragment() {
     val binding : StarvisionPageBinding by lazy { StarvisionPageBinding.inflate(layoutInflater) }
     var newsList = ArrayList<NewsInfo>()
     var bannerList = ArrayList<BannerInfo>()
-    var dotsAdapter : AdapterDots?=null
     var imageAdapter :AdapterImageSlide?=null
+    var appAdapter :AdapterApps?=null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,11 +33,15 @@ class StarvisionPage:Fragment() {
         super.onViewCreated(view, savedInstanceState)
         newsList = setNews()
         bannerList =setBanner()
-        dotsAdapter = AdapterDots(requireContext(),bannerList)
+        if (bannerList.size>=2) {
+            bannerList.add(0, bannerList[bannerList.size - 1])
+            bannerList.add(bannerList[1])
+        }
         imageAdapter = AdapterImageSlide(requireContext(),bannerList)
+        appAdapter = AdapterApps(requireContext(),bannerList)
         Log.e("newsList",newsList.size.toString())
         binding.rvMain.apply {
-            adapter = AdapterStarvision(requireContext(),newsList, dotsAdapter!!, imageAdapter!!)
+            adapter = AdapterStarvision(requireContext(),newsList, imageAdapter!!, appAdapter!!)
             layoutManager = LinearLayoutManager(requireActivity(),RecyclerView.VERTICAL,false)
         }
     }
@@ -46,7 +49,6 @@ class StarvisionPage:Fragment() {
         newsList.clear()
         newsList.add(NewsInfo("banner","",""))
         newsList.add(NewsInfo("header","",""))
-        newsList.add(NewsInfo("app","",""))
         newsList.add(NewsInfo("1","","News 1"))
         newsList.add(NewsInfo("2","","News 2"))
         newsList.add(NewsInfo("3","","News 3"))
@@ -61,16 +63,12 @@ class StarvisionPage:Fragment() {
     }
     private fun setBanner(): ArrayList<BannerInfo> {
         bannerList.clear()
-        bannerList.add(BannerInfo("1","","News 1"))
+        bannerList.add(BannerInfo("1","","Contentdajukcbnahaefo ijhaeifnjhcoaenj;cvpavopn;anvpianvacdcacacadcacadecacaecacaecae"))
         bannerList.add(BannerInfo("2","","News 2"))
         bannerList.add(BannerInfo("3","","News 3"))
         bannerList.add(BannerInfo("4","","News 4"))
         bannerList.add(BannerInfo("5","","News 5"))
         bannerList.add(BannerInfo("6","","News 6"))
-        bannerList.add(BannerInfo("7","","News 7"))
-        bannerList.add(BannerInfo("8","","News 8"))
-        bannerList.add(BannerInfo("9","","News 9"))
-        bannerList.add(BannerInfo("10","","News 10"))
         return bannerList
     }
 }
