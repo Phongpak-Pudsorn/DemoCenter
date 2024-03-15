@@ -9,15 +9,16 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/imageSlider"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="250dp">
     </androidx.viewpager2.widget.ViewPager2>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/tabDots"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/imageSlider" />
+        app:tabBackground="@drawable/tab_selector"
+        app:tabGravity="center"
+        app:tabIndicatorHeight="0dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/appList"

@@ -11,6 +11,7 @@ object URL {
 
     //ตรวจหวย
     const val lotto_result =  "/getLottoResult/"
+    const val zodiac ="https://goo.gl/dYNb25"
 //    https://lottery.starvision.in.th:9943/+ getLottoResult/+ date + .jsons
 
 }
