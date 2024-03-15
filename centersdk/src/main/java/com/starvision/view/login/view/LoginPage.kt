@@ -1,6 +1,5 @@
 package com.starvision.view.login.view
 
-import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -15,10 +14,24 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.starvision.api.Api
+import com.starvision.api.ApiClient
+import com.starvision.api.URL
+import com.starvision.config.AESHelper
+import com.starvision.config.MD5
 import com.starvision.data.AppPreferencesLogin
+import com.starvision.data.Const
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageLoginBinding
-import com.starvision.view.center.view.MainPage
+import com.starvision.view.login.models.ProfileModels
+import okhttp3.Request
+import okio.Timeout
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.security.Timestamp
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class LoginPage : AppCompatActivity() {
@@ -78,10 +91,29 @@ class LoginPage : AppCompatActivity() {
                     appPrefe.setPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_CHECK,false)
                 }
                 //set ไปหน้าต่อไป
+                val timeStamp : String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+                val idx = AESHelper.encrypt("idx",binding.editUsername.text.toString())
+                val ts =  AESHelper.encrypt("ts", timeStamp)
+                val sign = MD5.CMD5("Starvision|{$idx}|CheckProfile|{$ts}")
+                Const.loge(TAG,"sign : $sign")
+
+                val service  = ApiClient().getBaseLink(URL.BASE_URL_SDK,":80").create(Api::class.java)
+                service .addUser(sign)!!.enqueue(object :  Callback<ProfileModels?> {
+
+                    override fun onResponse(call: Call<ProfileModels?>, response: Response<ProfileModels?>) {
+                        Const.loge(TAG," onResponse : "+call.request().url())
+                        Const.loge(TAG," onResponse response: "+response.body()!!)
+                    }
+
+                    override fun onFailure(call: Call<ProfileModels?>, t: Throwable) {
+                        Const.loge(TAG," onFailure : "+call.request().url())
+                        Const.loge(TAG," onFailure : $t")
+                    }
+                })
 
                 //รอเซ็ต auto login จาก regis
-                val intent = Intent(this,MainPage::class.java)
-                startActivity(intent)
+//                val intent = Intent(this,MainPage::class.java)
+//                startActivity(intent)
             }
         }
 

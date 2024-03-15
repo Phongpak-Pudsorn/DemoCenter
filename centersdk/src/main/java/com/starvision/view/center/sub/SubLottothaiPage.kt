@@ -7,7 +7,6 @@ import android.net.ParseException
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,16 +17,15 @@ import android.widget.PopupWindow
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
 import com.starvision.api.Api
 import com.starvision.api.ApiClient
+import com.starvision.api.URL
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageLottothaiSubBinding
 import com.starvision.view.center.sub.adapter.AdapterLottothaiSub
 import com.starvision.view.center.sub.adapter.AdapterSpinnerCustom
 import com.starvision.view.center.sub.models.SubLottothaiDateModels
 import com.starvision.view.center.sub.models.SubLottothaiModels
-import com.starvision.view.center.sub.models.SubLottothaiNumberModels
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -123,7 +121,7 @@ class SubLottothaiPage : Fragment() {
         listDataRow.clear()
         binding.mProgressBar.visibility = View.VISIBLE
 
-        val getApiOffice = ApiClient().getBaseLink(":9943").create(Api::class.java)
+        val getApiOffice = ApiClient().getBaseLink(URL.BASE_URL_LOTTO,":9943").create(Api::class.java)
         getApiOffice.getLottoOffice(date).enqueue(object : Callback<SubLottothaiModels> {
             @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(call: Call<SubLottothaiModels>, response: Response<SubLottothaiModels>) {
@@ -146,26 +144,10 @@ class SubLottothaiPage : Fragment() {
 
             }
         })
-//        getApiOffice.getLottoOfficeResult(date).enqueue(object : Callback<SubLottothaiNumberModels> {
-//            @SuppressLint("NotifyDataSetChanged")
-//            override fun onResponse(call: Call<SubLottothaiNumberModels>, response: Response<SubLottothaiNumberModels>) {
-//                val dataResult = response.body()!!
-//                if (dataResult.Status == "True"){
-//                    jSonData = Gson().toJson(response.body()!!,SubLottothaiNumberModels::class.java)
-//                    binding.mProgressBar.visibility = View.GONE
-//                    adapterLottothaiSub!!.notifyDataSetChanged()
-//                    binding.reCycleView.scrollToPosition(intlistOff)
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<SubLottothaiNumberModels>, t: Throwable) {
-//
-//            }
-//        })
     }
 
     private fun ExecuteDataDate() {
-        val getApiOfficeDate = ApiClient().getBaseLink(":9943").create(Api::class.java)
+        val getApiOfficeDate = ApiClient().getBaseLink(URL.BASE_URL_LOTTO,":9943").create(Api::class.java)
         getApiOfficeDate.getLottoOfficeDate().enqueue(object : Callback<SubLottothaiDateModels> {
             override fun onResponse(call: Call<SubLottothaiDateModels>, response: Response<SubLottothaiDateModels>) {
                 try {

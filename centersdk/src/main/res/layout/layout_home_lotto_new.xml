@@ -25,12 +25,18 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.7"
                 android:gravity="center"
+                android:padding="2dp"
+                android:textColor="@color/black_light"
+                android:textSize="16sp"
                 android:text="@string/check_one" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:padding="2dp"
+                android:textColor="@color/black_light"
+                android:textSize="16sp"
                 android:gravity="center"
                 android:text="@string/check_two_end" />
         </LinearLayout>
@@ -46,6 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.7"
                 android:gravity="center"
+                android:textColor="@color/black_light"
                 android:text="xxxxxx" />
 
             <TextView
@@ -54,6 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="@color/black_light"
                 android:text="xx" />
         </TableRow>
 
@@ -74,6 +82,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:padding="2dp"
+                    android:textColor="@color/black_light"
+                    android:textSize="16sp"
                     android:text="@string/check_three_end_up" />
 
                 <TextView
@@ -81,6 +92,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:padding="2dp"
+                    android:textColor="@color/black_light"
+                    android:textSize="16sp"
                     android:text="@string/check_three_end" />
             </LinearLayout>
         </LinearLayout>
@@ -96,6 +110,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="@color/black_light"
                 android:text="xxx xxx" />
 
             <TextView
@@ -104,6 +119,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="@color/black_light"
                 android:text="xxx xxx" />
         </TableRow>
 
@@ -118,6 +134,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:padding="2dp"
+                android:textColor="@color/black_light"
+                android:textSize="16sp"
                 android:text="@string/check_one_by" />
         </LinearLayout>
 
@@ -133,6 +152,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:gravity="center"
+                android:textColor="@color/black_light"
                 android:text="xxxxxx xxxxxx" />
         </TableRow>
 
@@ -153,6 +173,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:padding="2dp"
+                    android:textColor="@color/black_light"
+                    android:textSize="16sp"
                     android:text="@string/check_two" />
             </LinearLayout>
 
@@ -168,6 +191,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:gravity="center"
+                    android:textColor="@color/black_light"
                     android:text="xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx" />
             </TableRow>
 
@@ -183,6 +207,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:padding="2dp"
+                    android:textColor="@color/black_light"
+                    android:textSize="16sp"
                     android:text="@string/check_three" />
             </LinearLayout>
 
@@ -198,6 +225,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:gravity="center"
+                    android:textColor="@color/black_light"
                     android:text="xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx" />
             </TableRow>
 
@@ -212,6 +240,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:padding="2dp"
+                    android:textColor="@color/black_light"
+                    android:textSize="16sp"
                     android:text="@string/check_four" />
             </LinearLayout>
 
@@ -227,6 +258,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:gravity="center"
+                    android:textColor="@color/black_light"
                     android:text="xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx" />
             </TableRow>
 
@@ -241,6 +273,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:padding="2dp"
+                    android:textColor="@color/black_light"
+                    android:textSize="16sp"
                     android:text="@string/check_five" />
             </LinearLayout>
 
@@ -256,6 +291,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:gravity="center"
+                    android:textColor="@color/black_light"
                     android:text="xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx" />
             </TableRow>
 

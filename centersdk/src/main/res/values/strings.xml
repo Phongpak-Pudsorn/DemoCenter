@@ -55,6 +55,7 @@
     <!-- Profile -->
 
     <!--  ตรวจหวย  -->
+    <string name="text_name_app_check_lotto">ตรวจหวย</string>
     <string name="check_one">รางวัลที่ 1</string>
     <string name="check_one_by">รางวัลข้างเคียงรางวัลที่ 1</string>
     <string name="check_two_end">เลขท้าย 2 ตัว</string>
@@ -68,6 +69,22 @@
     <string name="check_tickets">งวดนี้ยังไม่มีข้อมูลใบตรวจรางวัล</string>
     <string name="check_text">ตรวจหวย งวด</string>
     <string name="text_web_glo">http://www.glo.or.th/</string>
+    <string name="text_check_incomplete_">ใส่เลขสลาก 6 หลัก</string>
+    <string name="text_check">ตรวจ</string>
+    <string name="sub_check_number_ticket">หมายเลขสลากของคุณ</string>
+    <string name="sub_check_number_result1">ถูกรางวัลที่ 1 </string>
+    <string name="sub_check_number_result1by">ถูกรางวัลข้างเคียงที่ 1 </string>
+    <string name="sub_check_number_result2end">ถูกเลขท้าย 2 ตัว </string>
+    <string name="sub_check_number_result3end">ถูกเลขท้าย 3 ตัว </string>
+    <string name="sub_check_number_result3enddown">ถูกเลขท้าย 3 ตัว </string>
+    <string name="sub_check_number_result3endup">ถูกเลขหน้า 3 ตัว </string>
+    <string name="sub_check_number_result2">ถูกรางวัลที่ 2 </string>
+    <string name="sub_check_number_result3">ถูกรางวัลที่ 3 </string>
+    <string name="sub_check_number_result4">ถูกรางวัลที่ 4 </string>
+    <string name="sub_check_number_result5">ถูกรางวัลที่ 5 </string>
+    <string name="sub_check_number_result_out">ไม่ถูกรางวัล </string>
+    <string name="sub_check_number_pause">รอผลรางวัล </string>
+    <string name="text_check_incomplete">กรุณาใส่หมายเลขสลาก 6 หลัก</string>
     <!--  ตรวจหวย  -->
 
     <string name="news_today">ข่าวประจำวัน</string>

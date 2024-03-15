@@ -24,6 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
+                android:textColor="@color/black_light"
                 android:text="@string/text_bureau_off" />
 
             <TextView
@@ -31,6 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:textColor="@color/black_light"
                 android:text="00000000000" />
         </LinearLayout>
 
@@ -51,6 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:width="90dp"
+                    android:textColor="@color/black_light"
                     android:text="@string/text_3_off" />
 
                 <TextView
@@ -58,6 +61,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
+                    android:textColor="@color/black_light"
                     android:text="000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000" />
             </LinearLayout>
 
@@ -71,6 +75,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:width="90dp"
+                    android:textColor="@color/black_light"
                     android:text="@string/text_2_up_off" />
 
                 <TextView
@@ -78,6 +83,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
+                    android:textColor="@color/black_light"
                     android:text="00 00 00 00" />
             </LinearLayout>
 
@@ -91,6 +97,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:width="90dp"
+                    android:textColor="@color/black_light"
                     android:text="@string/text_2_down_off" />
 
                 <TextView
@@ -98,6 +105,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
+                    android:textColor="@color/black_light"
                     android:text="00 00 00 00 00" />
             </LinearLayout>
         </LinearLayout>

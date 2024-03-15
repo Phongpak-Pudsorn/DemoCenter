@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity() {
         callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if(binding.framelayoutFragment.visibility == View.VISIBLE){
+                    binding.framelayoutFragment.removeAllViews()
                     binding.framelayoutFragment.visibility = View.GONE
                     binding.lnBtn.visibility = View.VISIBLE
                 }else{
