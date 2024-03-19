@@ -20,11 +20,19 @@ import com.starvision.view.stavisions.info.BannerInfo
 import com.starvision.view.stavisions.info.NewsInfo
 import java.util.logging.Handler
 
-class AdapterStarvision(context:Context,val listNews:ArrayList<NewsInfo>,val imageSlide:AdapterImageSlide,val appList:AdapterApps): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdapterStarvision(context:Context, val listNews:ArrayList<NewsInfo>, val bannerList:ArrayList<BannerInfo>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val VIEW_TYPE_NEWS = 1
     val VIEW_TYPE_BANNER = 2
     val VIEW_TYPE_NEWS_HEADER = 3
+    var imageAdapter : AdapterImageSlide?=null
+    var appAdapter : AdapterApps?=null
+    var dotAdapter : AdapterDots?=null
     val handler = android.os.Handler(Looper.getMainLooper())
+    init {
+        imageAdapter = AdapterImageSlide(bannerList)
+        appAdapter = AdapterApps(bannerList)
+        dotAdapter = AdapterDots(1,bannerList)
+    }
     class BannerHolder(val bannerBinding: PageBannerAppsBinding):RecyclerView.ViewHolder(bannerBinding.root)
     class NewsHolder(val newsBinding: ItemNewsBinding):RecyclerView.ViewHolder(newsBinding.root)
     class HeaderHolder(val headerBinding: ItemNewsHeaderBinding):RecyclerView.ViewHolder(headerBinding.root)
@@ -56,11 +64,20 @@ class AdapterStarvision(context:Context,val listNews:ArrayList<NewsInfo>,val ima
         if (holder is HeaderHolder){
 
         }else if (holder is BannerHolder){
-            holder.bannerBinding.imageSlider.adapter = imageSlide
-            TabLayoutMediator(holder.bannerBinding.tabLayout,holder.bannerBinding.imageSlider){ tab, position ->
-                //Some implementation
-            }.attach()
-            val runnable = Runnable { holder.bannerBinding.imageSlider.setCurrentItem(holder.bannerBinding.imageSlider.currentItem+1,true) }
+            holder.bannerBinding.imageSlider.adapter = imageAdapter
+//            TabLayoutMediator(holder.bannerBinding.tabLayout,holder.bannerBinding.imageSlider){ tab, position ->
+//                //Some implementation
+//            }.attach()
+            val runnable = Runnable {
+                holder.bannerBinding.imageSlider.setCurrentItem(
+                    holder.bannerBinding.imageSlider.currentItem + 1,
+                    true
+                )
+            }
+            holder.bannerBinding.dotTab.apply {
+                adapter = dotAdapter
+                layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL,false)
+            }
             holder.bannerBinding.imageSlider.setCurrentItem(1, false)
             handler.postDelayed(runnable, 3000)
             holder.bannerBinding.imageSlider.registerOnPageChangeCallback(object :
@@ -85,8 +102,8 @@ class AdapterStarvision(context:Context,val listNews:ArrayList<NewsInfo>,val ima
                         return
                     }
                     when (position) {
-                        0 ->  holder.bannerBinding.imageSlider.setCurrentItem(imageSlide.itemCount - 2, false)
-                        imageSlide.itemCount - 1 ->  holder.bannerBinding.imageSlider.setCurrentItem(1, false)
+                        0 ->  holder.bannerBinding.imageSlider.setCurrentItem(imageAdapter!!.itemCount - 2, false)
+                        imageAdapter!!.itemCount - 1 ->  holder.bannerBinding.imageSlider.setCurrentItem(1, false)
                     }
                 }
 
@@ -96,11 +113,16 @@ class AdapterStarvision(context:Context,val listNews:ArrayList<NewsInfo>,val ima
 //                    if (position < (holder.bannerBinding.imageSlider.adapter?.itemCount ?: 0)) {
                     handler.removeCallbacks(runnable)
                     handler.postDelayed(runnable, 3000)
+                    dotAdapter = AdapterDots(holder.bannerBinding.imageSlider.currentItem,bannerList)
+                    holder.bannerBinding.dotTab.apply {
+                        adapter = dotAdapter
+                        layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL,false)
+                    }
 //                    }
                 }
                 })
             holder.bannerBinding.appList.apply {
-                adapter = appList
+                adapter = appAdapter
                 layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL,false)
             }
         }else if (holder is NewsHolder){

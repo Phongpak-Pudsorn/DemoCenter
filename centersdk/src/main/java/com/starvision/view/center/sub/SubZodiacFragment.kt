@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment
 import com.starvision.api.URL
 import com.starvision.luckygamesdk.databinding.PageZodiacSubBinding
 
-class SubZodiacPage:Fragment() {
+class SubZodiacFragment:Fragment() {
     var loading = true
     val binding:PageZodiacSubBinding by lazy { PageZodiacSubBinding.inflate(layoutInflater) }
     override fun onCreateView(

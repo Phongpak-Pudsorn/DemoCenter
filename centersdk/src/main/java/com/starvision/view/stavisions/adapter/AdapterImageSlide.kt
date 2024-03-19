@@ -9,7 +9,7 @@ import com.starvision.luckygamesdk.databinding.ItemAppsBinding
 import com.starvision.luckygamesdk.databinding.ItemNewsBinding
 import com.starvision.view.stavisions.info.BannerInfo
 
-class AdapterImageSlide(context: Context,val bannerList:ArrayList<BannerInfo>):RecyclerView.Adapter<AdapterImageSlide.ImageHolder>(){
+class AdapterImageSlide(val bannerList:ArrayList<BannerInfo>):RecyclerView.Adapter<AdapterImageSlide.ImageHolder>(){
     class ImageHolder(val imgBinding:ItemAppsBannerBinding):RecyclerView.ViewHolder(imgBinding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageHolder {

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.starvision.luckygamesdk.databinding.ItemAppsBinding
 import com.starvision.view.stavisions.info.BannerInfo
 
-class AdapterApps(context: Context, val list:ArrayList<BannerInfo>): RecyclerView.Adapter<AdapterApps.AppsHolder>() {
+class AdapterApps(val list:ArrayList<BannerInfo>): RecyclerView.Adapter<AdapterApps.AppsHolder>() {
 
     class AppsHolder(val appsBinding: ItemAppsBinding):RecyclerView.ViewHolder(appsBinding.root)
 

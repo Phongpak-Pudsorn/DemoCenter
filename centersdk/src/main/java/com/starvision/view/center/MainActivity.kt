@@ -1,4 +1,4 @@
-package com.starvision.view.center.view
+package com.starvision.view.center
 
 import android.os.Bundle
 
@@ -11,12 +11,13 @@ import com.starvision.luckygamesdk.databinding.MainPageBinding
 import com.starvision.view.center.adapter.AdapterMenuTab
 import com.starvision.view.center.adapter.AdapterPager
 import com.starvision.view.center.info.TabInfo
+import com.starvision.view.stavisions.StarvisionFragment
 import com.starvision.view.luckygamesdk.view.LuckyGamePage
-import com.starvision.view.playplay.view.PlayplayPage
+import com.starvision.view.playplay.PlayplayFragment
 
-import com.starvision.view.stavisions.view.StarvisionPage
 
-class MainPage: AppCompatActivity() {
+
+class MainActivity: AppCompatActivity() {
     private val binding: MainPageBinding by lazy { MainPageBinding.inflate(layoutInflater) }
     var tablist = ArrayList<TabInfo>()
     var fragments = ArrayList<Fragment>()
@@ -51,12 +52,12 @@ class MainPage: AppCompatActivity() {
             }
         })
         binding.menuTab.apply {
-            adapter = AdapterMenuTab(this@MainPage, tablist,object: AdapterMenuTab.TabClickListener{
+            adapter = AdapterMenuTab(this@MainActivity, tablist,object: AdapterMenuTab.TabClickListener{
                 override fun onTabClick(position: Int) {
                     binding.pager2.setCurrentItem(position,false)
                 }
             })
-            layoutManager = LinearLayoutManager(this@MainPage,RecyclerView.HORIZONTAL,false)
+            layoutManager = LinearLayoutManager(this@MainActivity,RecyclerView.HORIZONTAL,false)
         }
         binding.tvCoinNum.text = "0"
         binding.tvUsername.text = "NoFace"
@@ -71,9 +72,9 @@ class MainPage: AppCompatActivity() {
         return tablist
     }
     private fun setFragments(){
-        fragments.add(StarvisionPage())
+        fragments.add(StarvisionFragment())
         fragments.add(LuckyGamePage())
-        fragments.add(PlayplayPage())
+        fragments.add(PlayplayFragment())
 
     }
 }

@@ -10,8 +10,8 @@ import com.starvision.democenter.databinding.ActivityMainBinding
 import com.starvision.view.center.sub.SubGoldToDayPage
 import com.starvision.view.center.sub.SubLottothaiPage
 import com.starvision.view.center.sub.SubSmileLottoPage
-import com.starvision.view.center.sub.SubZodiacPage
-import com.starvision.view.center.view.MainPage
+import com.starvision.view.center.sub.SubZodiacFragment
+import com.starvision.view.center.MainActivity
 import com.starvision.view.login.view.LoginPage
 
 class MainActivity : AppCompatActivity() {
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.btnCenter.setOnClickListener {
-            val intent = Intent(this,MainPage::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
             binding.lnBtn.visibility = View.GONE
         }
         binding.btnZodiac.setOnClickListener {
-            setFragment(SubZodiacPage())
+            setFragment(SubZodiacFragment())
             binding.framelayoutFragment.visibility = View.VISIBLE
             binding.lnBtn.visibility = View.GONE
         }
