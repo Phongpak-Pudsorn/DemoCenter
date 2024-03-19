@@ -1,18 +1,25 @@
 package com.starvision.view.login.view
 
+import android.Manifest
+import android.content.Context
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.telephony.TelephonyManager
 import android.text.Editable
 import android.transition.Slide
 import android.transition.TransitionManager
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.starvision.api.Api
 import com.starvision.api.ApiClient
@@ -23,14 +30,10 @@ import com.starvision.data.AppPreferencesLogin
 import com.starvision.data.Const
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageLoginBinding
-import com.starvision.view.login.models.ProfileModels
-import okhttp3.Request
-import okio.Timeout
+import com.starvision.view.login.models.LoginModels
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.security.Timestamp
-import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -40,11 +43,26 @@ class LoginPage : AppCompatActivity() {
     private var callback : OnBackPressedCallback? = null
     private var appPrefe = AppPreferencesLogin
     private val TAG = javaClass.simpleName
+    private val REQUEST_CODE = 101
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         supportActionBar?.hide()
+
+        val telephonyManager = getSystemService(TELEPHONY_SERVICE) as TelephonyManager
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            // if permissions are not provided we are requesting for permissions.
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_PHONE_STATE), REQUEST_CODE)
+        }
+
+        // in the below line, we are setting our imei to our text view.
+        val imei = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            telephonyManager.imei
+        } else {
+            telephonyManager.deviceId
+        }
+
         val bm = getBitmapFromAsset("logo_starvision.png")
         binding.imgLogo.setImageBitmap(bm)
         binding.tvRegister.setOnClickListener {
@@ -78,9 +96,9 @@ class LoginPage : AppCompatActivity() {
         binding.cvLogin.setOnClickListener {
             binding.cvLogin.isEnabled = false
             handler.postDelayed({ binding.cvLogin.isEnabled = true },1000)
-            if(binding.editUsername.length() <= 6){
+            if(binding.editUsername.length() < 6){
                 Toast.makeText(this,getString(R.string.text_alert_user_min),Toast.LENGTH_SHORT).show()
-            }else if(binding.editPassword.length() <= 6){
+            }else if(binding.editPassword.length() < 6){
                 Toast.makeText(this,getString(R.string.text_alert_password_min), Toast.LENGTH_SHORT).show()
             }else{
                 if(binding.checkboxRememberPass.isChecked){
@@ -90,22 +108,34 @@ class LoginPage : AppCompatActivity() {
                 }else{
                     appPrefe.setPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_CHECK,false)
                 }
-                //set ไปหน้าต่อไป
-                val timeStamp : String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-                val idx = AESHelper.encrypt("idx",binding.editUsername.text.toString())
-                val ts =  AESHelper.encrypt("ts", timeStamp)
-                val sign = MD5.CMD5("Starvision|{$idx}|CheckProfile|{$ts}")
+
+                val password = AESHelper.encrypt(binding.editUsername.text.toString(),Const.AES_KEY)
+                val imei = imei
+                val platform = "Android "+Build.VERSION.SDK_INT
+                val model = getDeviceName()
+                val ChannelId = "StarVision"
+                val phonenumber = ""
+                val acc_name = binding.editUsername.text
+                val account_type = "s1"
+                val sign = MD5.CMD5("password|{$password}|imei|{$imei}|platform|{$platform}|model|{$model}|ChannelId|{$ChannelId}|phonenumber|{$phonenumber}" +
+                        "|acc_name|{$acc_name}|account_type|{$account_type}")
+
                 Const.loge(TAG,"sign : $sign")
+                Const.loge(TAG,"password : $password")
+                Const.loge(TAG,"imei : $imei")
+                Const.loge(TAG,"platform : $platform")
+                Const.loge(TAG,"model : $model")
+                Const.loge(TAG,"acc_name : $acc_name")
 
-                val service  = ApiClient().getBaseLink(URL.BASE_URL_SDK,":80").create(Api::class.java)
-                service .addUser(sign)!!.enqueue(object :  Callback<ProfileModels?> {
 
-                    override fun onResponse(call: Call<ProfileModels?>, response: Response<ProfileModels?>) {
+                val services = ApiClient().getBaseLink(URL.BASE_URL_SDK,":443").create(Api::class.java)
+                services.getLogin(sign)!!.enqueue(object : Callback<LoginModels?> {
+                    override fun onResponse(call: Call<LoginModels?>, response: Response<LoginModels?>) {
                         Const.loge(TAG," onResponse : "+call.request().url())
                         Const.loge(TAG," onResponse response: "+response.body()!!)
                     }
 
-                    override fun onFailure(call: Call<ProfileModels?>, t: Throwable) {
+                    override fun onFailure(call: Call<LoginModels?>, t: Throwable) {
                         Const.loge(TAG," onFailure : "+call.request().url())
                         Const.loge(TAG," onFailure : $t")
                     }
@@ -167,4 +197,44 @@ class LoginPage : AppCompatActivity() {
         callback!!.remove()
         super.onDestroy()
     }
+    private fun getDeviceName(): String {
+        val manufacturer = Build.MANUFACTURER
+        val model = Build.MODEL
+        return if (model.lowercase(Locale.getDefault())
+                .startsWith(manufacturer.lowercase(Locale.getDefault()))
+        ) {
+            capitalize(model)
+        } else {
+            capitalize(manufacturer) + " " + model
+        }
+    }
+
+
+    private fun capitalize(s: String?): String {
+        if (s == null || s.isEmpty()) {
+            return ""
+        }
+        val first = s[0]
+        return if (Character.isUpperCase(first)) {
+            s
+        } else {
+            first.uppercaseChar().toString() + s.substring(1)
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (requestCode == REQUEST_CODE) {
+            // in the below line, we are checking if permission is granted.
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // if permissions are granted we are displaying below toast message.
+                Toast.makeText(this, "Permission granted.", Toast.LENGTH_SHORT).show()
+            } else {
+                // in the below line, we are displaying toast message if permissions are not granted.
+                Toast.makeText(this, "Permission denied.", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
 }

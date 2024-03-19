@@ -7,6 +7,7 @@ import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.starvision.democenter.databinding.ActivityMainBinding
+import com.starvision.view.center.sub.SubGoldToDayPage
 import com.starvision.view.center.sub.SubLottothaiPage
 import com.starvision.view.center.sub.SubSmileLottoPage
 import com.starvision.view.center.sub.SubZodiacPage
@@ -48,9 +49,13 @@ class MainActivity : AppCompatActivity() {
             binding.framelayoutFragment.visibility = View.VISIBLE
             binding.lnBtn.visibility = View.GONE
         }
-
         binding.btnLottoCalendar.setOnClickListener {
             setFragment(SubSmileLottoPage())
+            binding.framelayoutFragment.visibility = View.VISIBLE
+            binding.lnBtn.visibility = View.GONE
+        }
+        binding.btnGoldtoday.setOnClickListener {
+            setFragment(SubGoldToDayPage())
             binding.framelayoutFragment.visibility = View.VISIBLE
             binding.lnBtn.visibility = View.GONE
         }

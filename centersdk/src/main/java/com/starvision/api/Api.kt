@@ -1,8 +1,9 @@
 package com.starvision.api
 
 
+import com.starvision.view.center.models.ProfileModels
 import com.starvision.view.center.sub.models.*
-import com.starvision.view.login.models.ProfileModels
+import com.starvision.view.login.models.LoginModels
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -17,6 +18,9 @@ interface Api {
     @GET(URL.lotto_office_date)
     fun getLottoOfficeDate() : Call<SubLottothaiDateModels>
 
+    //GolToDay
+    @GET(URL.gold_to_day)
+    fun getListGoldToDay() : Call<SubGoldToDayModel>
 
     //ตรวจหวย
     @GET(URL.lotto_total_result)
@@ -26,6 +30,10 @@ interface Api {
 
     //Profile
     @POST("/api/myprofile")
-    fun addUser(@Body addUser: String?): Call<ProfileModels?>?
+    fun getProfile(@Body body : String): Call<ProfileModels?>?
+
+    //Login
+    @POST("/login/api/login_star.php")
+    fun getLogin(@Body user: String?): Call<LoginModels?>?
 
 }

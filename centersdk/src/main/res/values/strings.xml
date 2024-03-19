@@ -90,5 +90,7 @@
 
     <string name="news_today">ข่าวประจำวัน</string>
     <string name="text_episode">EP:</string>
+    <string name="tv_gold_buy">รับซื้อ (บาท)</string>
+    <string name="tv_gold_sell">ขายออก (บาท)</string>
 
 </resources>

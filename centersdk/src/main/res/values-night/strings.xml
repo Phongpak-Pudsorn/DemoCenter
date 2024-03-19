@@ -26,4 +26,6 @@
     <string name="line_profile">Line</string>
     <string name="google_profile">Google</string>
     <string name="mid_profile">mid</string>
+    <string name="tv_gold_buy">รับซื้อ (บาท)</string>
+    <string name="tv_gold_sell">ขายออก (บาท)</string>
 </resources>
