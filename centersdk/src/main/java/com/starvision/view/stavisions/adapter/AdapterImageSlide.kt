@@ -1,4 +1,4 @@
-package com.starvision.view.login.stavisions.adapter
+package com.starvision.view.stavisions.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.starvision.luckygamesdk.databinding.ItemAppsBannerBinding
 import com.starvision.luckygamesdk.databinding.ItemAppsBinding
 import com.starvision.luckygamesdk.databinding.ItemNewsBinding
-import com.starvision.view.login.stavisions.info.BannerInfo
+import com.starvision.view.stavisions.info.BannerInfo
 
 class AdapterImageSlide(val bannerList:ArrayList<BannerInfo>):RecyclerView.Adapter<AdapterImageSlide.ImageHolder>(){
     class ImageHolder(val imgBinding:ItemAppsBannerBinding):RecyclerView.ViewHolder(imgBinding.root)

@@ -1,4 +1,4 @@
-package com.starvision.view.login.stavisions
+package com.starvision.view.stavisions
 
 import android.os.Bundle
 import android.util.Log
@@ -9,9 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.starvision.luckygamesdk.databinding.PageStarvisionBinding
-import com.starvision.view.login.stavisions.adapter.AdapterStarvision
-import com.starvision.view.login.stavisions.info.BannerInfo
-import com.starvision.view.login.stavisions.info.NewsInfo
+import com.starvision.view.stavisions.adapter.AdapterStarvision
+import com.starvision.view.stavisions.info.BannerInfo
+import com.starvision.view.stavisions.info.NewsInfo
 
 class StarvisionFragment:Fragment() {
     val binding : PageStarvisionBinding by lazy { PageStarvisionBinding.inflate(layoutInflater) }

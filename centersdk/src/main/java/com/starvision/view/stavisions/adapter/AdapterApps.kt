@@ -1,11 +1,11 @@
-package com.starvision.view.login.stavisions.adapter
+package com.starvision.view.stavisions.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.starvision.luckygamesdk.databinding.ItemAppsBinding
-import com.starvision.view.login.stavisions.info.BannerInfo
+import com.starvision.view.stavisions.info.BannerInfo
 
 class AdapterApps(val list:ArrayList<BannerInfo>): RecyclerView.Adapter<AdapterApps.AppsHolder>() {
 

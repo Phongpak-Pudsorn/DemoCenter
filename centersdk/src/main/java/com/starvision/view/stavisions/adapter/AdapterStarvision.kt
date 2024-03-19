@@ -1,4 +1,4 @@
-package com.starvision.view.login.stavisions.adapter
+package com.starvision.view.stavisions.adapter
 
 import android.content.Context
 import android.os.Looper
@@ -16,8 +16,8 @@ import com.starvision.luckygamesdk.databinding.ItemNewsBinding
 import com.starvision.luckygamesdk.databinding.ItemNewsHeaderBinding
 import com.starvision.luckygamesdk.databinding.ItemTabsBinding
 import com.starvision.luckygamesdk.databinding.PageBannerAppsBinding
-import com.starvision.view.login.stavisions.info.BannerInfo
-import com.starvision.view.login.stavisions.info.NewsInfo
+import com.starvision.view.stavisions.info.BannerInfo
+import com.starvision.view.stavisions.info.NewsInfo
 import java.util.logging.Handler
 
 class AdapterStarvision(context:Context, val listNews:ArrayList<NewsInfo>, val bannerList:ArrayList<BannerInfo>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {

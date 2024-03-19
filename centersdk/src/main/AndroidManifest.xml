@@ -14,7 +14,7 @@
         <activity android:name="com.starvision.view.login.view.LoginPage"
                   android:label="Login_Page">
         </activity>
-        <activity android:name="com.starvision.view.center.view.MainPage" />
+        <activity android:name="com.starvision.view.center.MainActivity" />
         <activity android:name="com.starvision.api.WebViewPage" />
     </application>
 

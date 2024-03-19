@@ -1,4 +1,4 @@
-package com.starvision.view.playplay.view
+package com.starvision.view.playplay
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.starvision.luckygamesdk.databinding.PageStarvisionBinding
 import com.starvision.view.playplay.adapter.AdapterPlayplay
 
-class PlayplayPage:Fragment() {
+class PlayplayFragment:Fragment() {
     val binding:PageStarvisionBinding by lazy { PageStarvisionBinding.inflate(layoutInflater) }
     override fun onCreateView(
         inflater: LayoutInflater,

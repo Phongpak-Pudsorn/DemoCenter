@@ -1,4 +1,4 @@
-package com.starvision.view.login.stavisions.info
+package com.starvision.view.stavisions.info
 
 data class BannerInfo(val id:String,
                       val image:String,

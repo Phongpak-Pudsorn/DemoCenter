@@ -1,11 +1,11 @@
-package com.starvision.view.login.stavisions.adapter
+package com.starvision.view.stavisions.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.ItemDotsBinding
-import com.starvision.view.login.stavisions.info.BannerInfo
+import com.starvision.view.stavisions.info.BannerInfo
 
 class AdapterDots(position: Int,var list:ArrayList<BannerInfo>):RecyclerView.Adapter<AdapterDots.DotHolder>() {
     private val pos = position
