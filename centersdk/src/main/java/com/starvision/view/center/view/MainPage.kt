@@ -11,10 +11,11 @@ import com.starvision.luckygamesdk.databinding.MainPageBinding
 import com.starvision.view.center.adapter.AdapterMenuTab
 import com.starvision.view.center.adapter.AdapterPager
 import com.starvision.view.center.info.TabInfo
+import com.starvision.view.login.stavisions.StarvisionFragment
 import com.starvision.view.luckygamesdk.view.LuckyGamePage
 import com.starvision.view.playplay.view.PlayplayPage
 
-import com.starvision.view.stavisions.view.StarvisionPage
+
 
 class MainPage: AppCompatActivity() {
     private val binding: MainPageBinding by lazy { MainPageBinding.inflate(layoutInflater) }
@@ -71,7 +72,7 @@ class MainPage: AppCompatActivity() {
         return tablist
     }
     private fun setFragments(){
-        fragments.add(StarvisionPage())
+        fragments.add(StarvisionFragment())
         fragments.add(LuckyGamePage())
         fragments.add(PlayplayPage())
 

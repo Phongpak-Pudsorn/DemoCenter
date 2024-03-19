@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.starvision.luckygamesdk.databinding.StarvisionPageBinding
+import com.starvision.luckygamesdk.databinding.PageStarvisionBinding
 import com.starvision.view.playplay.adapter.AdapterPlayplay
 
 class PlayplayPage:Fragment() {
-    val binding:StarvisionPageBinding by lazy { StarvisionPageBinding.inflate(layoutInflater) }
+    val binding:PageStarvisionBinding by lazy { PageStarvisionBinding.inflate(layoutInflater) }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
