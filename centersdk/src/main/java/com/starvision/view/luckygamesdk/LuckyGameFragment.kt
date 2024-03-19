@@ -1,4 +1,4 @@
-package com.starvision.view.luckygamesdk.view
+package com.starvision.view.luckygamesdk
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.starvision.view.luckygamesdk.adapter.AdapterGamePage
 import com.starvision.luckygamesdk.databinding.LuckyGamePageBinding
 
-class LuckyGamePage : Fragment(){
+class LuckyGameFragment : Fragment(){
     private val binding : LuckyGamePageBinding by lazy { LuckyGamePageBinding.inflate(layoutInflater) }
     private var gameAdapter : AdapterGamePage? = null
 

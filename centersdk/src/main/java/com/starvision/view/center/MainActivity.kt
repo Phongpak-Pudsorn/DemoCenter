@@ -12,7 +12,7 @@ import com.starvision.view.center.adapter.AdapterMenuTab
 import com.starvision.view.center.adapter.AdapterPager
 import com.starvision.view.center.info.TabInfo
 import com.starvision.view.stavisions.StarvisionFragment
-import com.starvision.view.luckygamesdk.view.LuckyGamePage
+import com.starvision.view.luckygamesdk.LuckyGameFragment
 import com.starvision.view.playplay.PlayplayFragment
 
 
@@ -61,7 +61,7 @@ class MainActivity: AppCompatActivity() {
         }
         binding.tvCoinNum.text = "0"
         binding.tvUsername.text = "NoFace"
-        binding.imgProfile.setOnClickListener { ProfilePage().show(supportFragmentManager,"") }
+        binding.imgProfile.setOnClickListener { ProfileDialogFragment().show(supportFragmentManager,"") }
     }
     private fun setTab(): ArrayList<TabInfo> {
         tablist.clear()
@@ -73,7 +73,7 @@ class MainActivity: AppCompatActivity() {
     }
     private fun setFragments(){
         fragments.add(StarvisionFragment())
-        fragments.add(LuckyGamePage())
+        fragments.add(LuckyGameFragment())
         fragments.add(PlayplayFragment())
 
     }

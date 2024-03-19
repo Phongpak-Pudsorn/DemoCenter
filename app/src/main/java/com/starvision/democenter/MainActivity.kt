@@ -12,7 +12,7 @@ import com.starvision.view.center.sub.SubLottothaiPage
 import com.starvision.view.center.sub.SubSmileLottoPage
 import com.starvision.view.center.sub.SubZodiacFragment
 import com.starvision.view.center.MainActivity
-import com.starvision.view.login.view.LoginPage
+import com.starvision.view.login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
     private val binding : ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 //            val intent = Intent(this,MainPage::class.java)
 //            startActivity(intent)
             // TEST LOGIN
-            val intent = Intent(this,LoginPage::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
 

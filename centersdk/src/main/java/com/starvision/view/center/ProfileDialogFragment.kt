@@ -21,7 +21,7 @@ import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ProfilePage : DialogFragment() {
+class ProfileDialogFragment : DialogFragment() {
     private val binding : PageFullProfileBinding by lazy { PageFullProfileBinding.inflate(layoutInflater) }
     private val TAG = javaClass.simpleName
 

@@ -1,4 +1,4 @@
-package com.starvision.view.login.view
+package com.starvision.view.login
 
 import android.graphics.Bitmap
 import android.os.Bundle
@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageForgotBinding
 
-class ForgotPage(private val bm: Bitmap) : Fragment() {
+class ForgotFragment(private val bm: Bitmap) : Fragment() {
     private val binding : PageForgotBinding by lazy { PageForgotBinding.inflate(layoutInflater) }
     private val handler = Handler(Looper.getMainLooper())
 

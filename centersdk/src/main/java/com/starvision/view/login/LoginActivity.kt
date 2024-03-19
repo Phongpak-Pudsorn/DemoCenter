@@ -1,7 +1,6 @@
-package com.starvision.view.login.view
+package com.starvision.view.login
 
 import android.Manifest
-import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -13,7 +12,6 @@ import android.telephony.TelephonyManager
 import android.text.Editable
 import android.transition.Slide
 import android.transition.TransitionManager
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.Toast
@@ -37,7 +35,7 @@ import retrofit2.Response
 import java.util.*
 
 
-class LoginPage : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
     private val binding : PageLoginBinding by lazy { PageLoginBinding.inflate(layoutInflater) }
     private val handler = Handler(Looper.getMainLooper())
     private var callback : OnBackPressedCallback? = null
@@ -66,24 +64,24 @@ class LoginPage : AppCompatActivity() {
         val bm = getBitmapFromAsset("logo_starvision.png")
         binding.imgLogo.setImageBitmap(bm)
         binding.tvRegister.setOnClickListener {
-            val registerPage = RegisterPage(bm)
-            registerPage.setCloseListener(object : RegisterPage.CloseListener{
+            val registerFragment = RegisterFragment(bm)
+            registerFragment.setCloseListener(object : RegisterFragment.CloseListener {
                 override fun onClose() {
                     toggle()
                 }
             })
             toggle()
-            setFragment(registerPage)
+            setFragment(registerFragment)
         }
         binding.tvForgot.setOnClickListener {
-            val forgotPage = ForgotPage(bm)
-            forgotPage.setCloseListener(object : ForgotPage.CloseListener{
+            val forgotFragment = ForgotFragment(bm)
+            forgotFragment.setCloseListener(object : ForgotFragment.CloseListener {
                 override fun onClose() {
                     toggle()
                 }
             })
             toggle()
-            setFragment(forgotPage)
+            setFragment(forgotFragment)
         }
         binding.btnBack.setOnClickListener {
             finish()
@@ -91,7 +89,7 @@ class LoginPage : AppCompatActivity() {
         binding.tvPolicy.setOnClickListener {
             binding.tvPolicy.isEnabled = false
             handler.postDelayed({ binding.tvPolicy.isEnabled = true },1000)
-            WebViewPolicyPage().show(supportFragmentManager,"policy")
+            WebViewPolicyDialogFragment().show(supportFragmentManager,"policy")
         }
         binding.cvLogin.setOnClickListener {
             binding.cvLogin.isEnabled = false

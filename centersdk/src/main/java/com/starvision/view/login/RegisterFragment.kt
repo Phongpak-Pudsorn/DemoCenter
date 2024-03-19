@@ -1,4 +1,4 @@
-package com.starvision.view.login.view
+package com.starvision.view.login
 
 import android.graphics.Bitmap
 import android.os.Bundle
@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageRegisterBinding
 
-class RegisterPage(private val bm: Bitmap) : Fragment() {
+class RegisterFragment(private val bm: Bitmap) : Fragment() {
     private val binding : PageRegisterBinding by lazy { PageRegisterBinding.inflate(layoutInflater) }
     private val handler = Handler(Looper.getMainLooper())
 
@@ -57,7 +57,7 @@ class RegisterPage(private val bm: Bitmap) : Fragment() {
         binding.tvPolicyRegister.setOnClickListener {
             binding.tvPolicyRegister.isEnabled = false
             handler.postDelayed({ binding.tvPolicyRegister.isEnabled = true },1000)
-            WebViewPolicyPage().show(childFragmentManager,"policy")
+            WebViewPolicyDialogFragment().show(childFragmentManager,"policy")
         }
 
         binding.btnBack.setOnClickListener {

@@ -14,7 +14,7 @@
 <!--        tools:ignore="UnusedAttribute" />-->
 
     <application>
-        <activity android:name="com.starvision.view.login.view.LoginPage"
+        <activity android:name="com.starvision.view.login.LoginActivity"
             android:usesCleartextTraffic="true"
                   android:label="Login_Page">
         </activity>
