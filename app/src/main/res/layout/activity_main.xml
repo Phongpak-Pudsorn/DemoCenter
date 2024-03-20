@@ -94,6 +94,28 @@
             android:paddingEnd="10dp"
             android:text="ดูดวง 12 ราศี"
             android:textSize="20sp" />
+        <TextView
+            android:id="@+id/btn_Exchange"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_center"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:text="อัตราแลกเปลี่ยน"
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/btn_Oil"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_center"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:text="ราคาน้ำมัน"
+            android:textSize="20sp" />
 
     </LinearLayout>
 

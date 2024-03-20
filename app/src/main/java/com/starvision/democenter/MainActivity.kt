@@ -7,11 +7,8 @@ import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.starvision.democenter.databinding.ActivityMainBinding
-import com.starvision.view.center.sub.SubGoldToDayPage
-import com.starvision.view.center.sub.SubLottothaiPage
-import com.starvision.view.center.sub.SubSmileLottoPage
-import com.starvision.view.center.sub.SubZodiacFragment
 import com.starvision.view.center.MainActivity
+import com.starvision.view.center.sub.*
 import com.starvision.view.login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
@@ -61,6 +58,16 @@ class MainActivity : AppCompatActivity() {
         }
         binding.btnZodiac.setOnClickListener {
             setFragment(SubZodiacFragment())
+            binding.framelayoutFragment.visibility = View.VISIBLE
+            binding.lnBtn.visibility = View.GONE
+        }
+        binding.btnExchange.setOnClickListener {
+            setFragment(SubExchangeFragment())
+            binding.framelayoutFragment.visibility = View.VISIBLE
+            binding.lnBtn.visibility = View.GONE
+        }
+        binding.btnOil.setOnClickListener {
+            setFragment(SubOilFragment())
             binding.framelayoutFragment.visibility = View.VISIBLE
             binding.lnBtn.visibility = View.GONE
         }

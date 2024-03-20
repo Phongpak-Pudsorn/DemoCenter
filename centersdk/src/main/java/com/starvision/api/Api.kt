@@ -28,6 +28,9 @@ interface Api {
     fun getLottoTotalDate() : Call<SubSmileLottoDateModels>
     @GET(URL.lotto_result+"{date}"+".json")
     fun getLottoResult(@Path("date") date : String): Call<SubSmileLottoRewardModels>
+    //อัตราแลกเปลี่ยน
+    @GET(URL.exchange)
+    fun getExchange() : Call<SubExchangeModel>
 
     //Profile
     @GET()
