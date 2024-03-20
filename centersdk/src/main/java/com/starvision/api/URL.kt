@@ -26,4 +26,7 @@ object URL {
     //ราคาทอง
     const val gold_to_day = "https://lottery.starvision.in.th/gold/file_select_rate.php"
 
+    //อัตราแลกเปลี่ยน
+    const val exchange = "/mobileweb/appsmartdirect/exchangerate/serverweb/services/datajson/exchange_rate.json"
+
 }
