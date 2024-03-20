@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.starvision.luckygamesdk.databinding.ItemPlayplayBinding
 import com.starvision.luckygamesdk.databinding.ItemPlayplayHeaderBinding
-import com.starvision.api.WebViewPage
+import com.starvision.view.WebViewActivity
 
 class AdapterPlayplay(private val mActivity : Activity) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val VIEW_TYPE_HEADER = 1
@@ -39,13 +39,13 @@ class AdapterPlayplay(private val mActivity : Activity) : RecyclerView.Adapter<R
             holder.epBinding.tvEpisode.text = "$position"
             holder.epBinding.tvDate.text = "3/13/2024"
             holder.itemView.setOnClickListener {
-                val intent = Intent(mActivity, WebViewPage::class.java)
+                val intent = Intent(mActivity, WebViewActivity::class.java)
                 intent.putExtra("link", "https://bit.ly/ppplus_youtube")
                 mActivity.startActivity(intent)
             }
         }else if (holder is headerHolder){
             holder.itemView.setOnClickListener {
-                val intent = Intent(mActivity, WebViewPage::class.java)
+                val intent = Intent(mActivity, WebViewActivity::class.java)
                 intent.putExtra("link", "https://bit.ly/ppplus_youtube")
                 mActivity.startActivity(intent)
             }

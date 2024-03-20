@@ -1,4 +1,4 @@
-package com.starvision.api
+package com.starvision.view
 
 import android.annotation.SuppressLint
 import android.net.http.SslError
@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageWebviewBinding
 
-class WebViewPage : AppCompatActivity() {
+class WebViewActivity : AppCompatActivity() {
     private val binding : PageWebviewBinding by lazy { PageWebviewBinding.inflate(layoutInflater) }
     private var callback : OnBackPressedCallback? = null
 

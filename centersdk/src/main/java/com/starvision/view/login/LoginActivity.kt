@@ -1,6 +1,5 @@
 package com.starvision.view.login
 
-import android.Manifest
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -17,7 +16,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.starvision.api.Api
 import com.starvision.api.ApiClient
@@ -47,19 +45,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         supportActionBar?.hide()
-
-        val telephonyManager = getSystemService(TELEPHONY_SERVICE) as TelephonyManager
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-            // if permissions are not provided we are requesting for permissions.
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_PHONE_STATE), REQUEST_CODE)
-        }
-
-        // in the below line, we are setting our imei to our text view.
-        val imei = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            telephonyManager.imei
-        } else {
-            telephonyManager.deviceId
-        }
 
         val bm = getBitmapFromAsset("logo_starvision.png")
         binding.imgLogo.setImageBitmap(bm)
@@ -108,15 +93,21 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 val password = AESHelper.encrypt(binding.editUsername.text.toString(),Const.AES_KEY)
-                val imei = imei
+                val imei = Const.getUUID(this)
                 val platform = "Android "+Build.VERSION.SDK_INT
                 val model = getDeviceName()
                 val ChannelId = "StarVision"
                 val phonenumber = ""
                 val acc_name = binding.editUsername.text
                 val account_type = "s1"
-                val sign = MD5.CMD5("password|{$password}|imei|{$imei}|platform|{$platform}|model|{$model}|ChannelId|{$ChannelId}|phonenumber|{$phonenumber}" +
-                        "|acc_name|{$acc_name}|account_type|{$account_type}")
+                val sign = MD5.CMD5("password|$password|" +
+                        "imei|$imei|" +
+                        "platform|$platform|" +
+                        "model|$model|" +
+                        "ChannelId|$ChannelId|" +
+                        "phonenumber|$phonenumber" +
+                        "|acc_name|$acc_name|" +
+                        "account_type|$account_type")
 
                 Const.loge(TAG,"sign : $sign")
                 Const.loge(TAG,"password : $password")
@@ -126,18 +117,18 @@ class LoginActivity : AppCompatActivity() {
                 Const.loge(TAG,"acc_name : $acc_name")
 
 
-                val services = ApiClient().getBaseLink(URL.BASE_URL_SDK,":443").create(Api::class.java)
-                services.getLogin(sign)!!.enqueue(object : Callback<LoginModels?> {
-                    override fun onResponse(call: Call<LoginModels?>, response: Response<LoginModels?>) {
-                        Const.loge(TAG," onResponse : "+call.request().url())
-                        Const.loge(TAG," onResponse response: "+response.body()!!)
-                    }
-
-                    override fun onFailure(call: Call<LoginModels?>, t: Throwable) {
-                        Const.loge(TAG," onFailure : "+call.request().url())
-                        Const.loge(TAG," onFailure : $t")
-                    }
-                })
+//                val services = ApiClient().getBaseLink(URL.BASE_URL_SDK,"").create(Api::class.java)
+//                services.getLogin(sign)!!.enqueue(object : Callback<LoginModels?> {
+//                    override fun onResponse(call: Call<LoginModels?>, response: Response<LoginModels?>) {
+//                        Const.loge(TAG," onResponse : "+call.request().url)
+//                        Const.loge(TAG," onResponse response: "+response.body()!!)
+//                    }
+//
+//                    override fun onFailure(call: Call<LoginModels?>, t: Throwable) {
+//                        Const.loge(TAG," onFailure : "+call.request().url)
+//                        Const.loge(TAG," onFailure : $t")
+//                    }
+//                })
 
                 //รอเซ็ต auto login จาก regis
 //                val intent = Intent(this,MainPage::class.java)

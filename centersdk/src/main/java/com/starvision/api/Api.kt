@@ -1,14 +1,15 @@
 package com.starvision.api
 
 
+import android.database.Observable
 import com.starvision.view.center.models.ProfileModels
 import com.starvision.view.center.sub.models.*
 import com.starvision.view.login.models.LoginModels
+import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.Response
+import retrofit2.http.*
 
 interface Api {
 
@@ -29,11 +30,18 @@ interface Api {
     fun getLottoResult(@Path("date") date : String): Call<SubSmileLottoRewardModels>
 
     //Profile
-    @POST("/api/myprofile")
-    fun getProfile(@Body body : String): Call<ProfileModels?>?
+    @GET()
+    fun getData(@Url url : String) : Observable<ProfileModels>
+    @FormUrlEncoded
+    @POST()
+    suspend fun pushData (
+        @Url url : String,
+        @FieldMap params : HashMap<String?,String?>
+    ) : ProfileModels
+
 
     //Login
-    @POST("/login/api/login_star.php")
-    fun getLogin(@Body user: String?): Call<LoginModels?>?
+//    @POST("/login/api/login_star.php")
+//    fun getLogin(@Body user: String?): Call<LoginModels?>?
 
 }
