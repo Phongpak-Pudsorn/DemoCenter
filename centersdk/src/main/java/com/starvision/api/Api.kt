@@ -31,6 +31,9 @@ interface Api {
     //อัตราแลกเปลี่ยน
     @GET(URL.exchange)
     fun getExchange() : Call<SubExchangeModel>
+    //ราคาน้ำมัน
+    @GET(URL.oil_price)
+    fun getOil() : Call<SubOilModel>
 
     //Profile
     @GET()

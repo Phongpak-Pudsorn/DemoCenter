@@ -92,5 +92,14 @@
     <string name="text_episode">EP:</string>
     <string name="tv_gold_buy">รับซื้อ (บาท)</string>
     <string name="tv_gold_sell">ขายออก (บาท)</string>
+    <!-- น้ำมัน-->
+    <string name="oil1">แก๊สโซฮอล์ 95</string>
+    <string name="oil2">แก๊สโซฮอล์ 91</string>
+    <string name="oil3">แก๊สโซฮอล์ E20</string>
+    <string name="oil4">แก๊สโซฮอล์ E85</string>
+    <string name="oil5">เบนซิน 95</string>
+    <string name="oil6">ดีเซล เกรดดี</string>
+    <string name="oil7">ดีเซล</string>
+    <string name="oil8">NGV</string>
 
 </resources>
