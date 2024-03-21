@@ -36,18 +36,7 @@ interface Api {
     fun getOil() : Call<SubOilModel>
 
     //Profile
-    @GET()
-    fun getData(@Url url : String) : Observable<ProfileModels>
-    @FormUrlEncoded
     @POST()
-    suspend fun pushData (
-        @Url url : String,
-        @FieldMap params : HashMap<String?,String?>
-    ) : ProfileModels
-
-
-    //Login
-//    @POST("/login/api/login_star.php")
-//    fun getLogin(@Body user: String?): Call<LoginModels?>?
+    fun postRequest(@Url url : String, @Body body: java.util.HashMap<String?, String?>): Call<ResponseBody>
 
 }

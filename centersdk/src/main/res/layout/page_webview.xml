@@ -9,6 +9,7 @@
 		android:id="@+id/ln_top_bar"
 		android:layout_width="match_parent"
 		android:layout_height="40dp"
+		android:gravity="end"
 		android:orientation="horizontal"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
@@ -20,7 +21,7 @@
 			android:layout_height="40dp"
 			android:layout_weight="0"
 			android:paddingStart="10dp"
-			app:srcCompat="@drawable/btn_back_sdk" />
+			app:srcCompat="@drawable/selector_bt_close_dialog_banner_sdk" />
 
 		<TextView
 			android:id="@+id/name_page"
