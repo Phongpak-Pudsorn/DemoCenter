@@ -2,13 +2,13 @@ package com.starvision.view.center.models
 
 data class ProfileModels (val code : String,
                           val message : String,
-                          val data : Data
+                          val data : Data?
 ){
 
-    data class Data (val idx : String,
-                     val name : String,
-                     val avatar : String,
-                     val coin : Int)
+    data class Data (val idx : String?,
+                     val name : String?,
+                     val avatar : String?,
+                     val coin : Int?)
 }
 
 

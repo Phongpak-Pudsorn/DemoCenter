@@ -1,5 +1,6 @@
 package com.starvision.view.center
 
+import android.content.Intent
 import android.os.Bundle
 
 import androidx.appcompat.app.AppCompatActivity
@@ -14,8 +15,6 @@ import com.starvision.view.center.info.TabInfo
 import com.starvision.view.stavisions.StarvisionFragment
 import com.starvision.view.luckygamesdk.LuckyGameFragment
 import com.starvision.view.playplay.PlayplayFragment
-
-
 
 class MainActivity: AppCompatActivity() {
     private val binding: MainPageBinding by lazy { MainPageBinding.inflate(layoutInflater) }
@@ -61,7 +60,15 @@ class MainActivity: AppCompatActivity() {
         }
         binding.tvCoinNum.text = "0"
         binding.tvUsername.text = "NoFace"
-        binding.imgProfile.setOnClickListener { ProfileDialogFragment().show(supportFragmentManager,"") }
+        binding.imgProfile.setOnClickListener {
+            val dialogProfile = ProfileDialogFragment()
+            dialogProfile.setClickListener(object : ProfileDialogFragment.ClickListener{
+                override fun onLogout() {
+                    finish()
+                }
+            })
+            dialogProfile.show(supportFragmentManager,"")
+        }
     }
     private fun setTab(): ArrayList<TabInfo> {
         tablist.clear()

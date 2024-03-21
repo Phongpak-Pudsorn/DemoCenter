@@ -1,5 +1,6 @@
 package com.starvision.view.login
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -17,20 +18,29 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.starvision.api.Api
-import com.starvision.api.ApiClient
-import com.starvision.api.URL
+import androidx.lifecycle.ViewModelProvider
+import com.google.gson.Gson
+import com.starvision.api.*
 import com.starvision.config.AESHelper
 import com.starvision.config.MD5
 import com.starvision.data.AppPreferencesLogin
 import com.starvision.data.Const
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageLoginBinding
+import com.starvision.view.center.MainActivity
+import com.starvision.view.center.models.ProfileModels
 import com.starvision.view.login.models.LoginModels
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
+import retrofit2.http.Body
+import retrofit2.http.POST
 import java.util.*
+import kotlin.collections.HashMap
 
 
 class LoginActivity : AppCompatActivity() {
@@ -39,7 +49,6 @@ class LoginActivity : AppCompatActivity() {
     private var callback : OnBackPressedCallback? = null
     private var appPrefe = AppPreferencesLogin
     private val TAG = javaClass.simpleName
-    private val REQUEST_CODE = 101
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,11 +57,29 @@ class LoginActivity : AppCompatActivity() {
 
         val bm = getBitmapFromAsset("logo_starvision.png")
         binding.imgLogo.setImageBitmap(bm)
+
+        if(appPrefe.getPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_CHECK,true) == true){
+            val user = appPrefe.getPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_USER,"")
+            val password = appPrefe.getPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_PASSWORD,"")
+            binding.editUsername.text = Editable.Factory.getInstance().newEditable(user.toString())
+            binding.editPassword.text = Editable.Factory.getInstance().newEditable(password.toString())
+            binding.checkboxRememberPass.isChecked = true
+        }
+
         binding.tvRegister.setOnClickListener {
             val registerFragment = RegisterFragment(bm)
-            registerFragment.setCloseListener(object : RegisterFragment.CloseListener {
+            registerFragment.setClickListener(object : RegisterFragment.ClickListener {
                 override fun onClose() {
                     toggle()
+                }
+
+                override fun onSuccess() {
+                    val user = appPrefe.getPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_REMEMBER_USER,"")
+                    val password = appPrefe.getPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_REMEMBER_PASSWORD,"")
+                    binding.editUsername.text = Editable.Factory.getInstance().newEditable(user.toString())
+                    binding.editPassword.text = Editable.Factory.getInstance().newEditable(password.toString())
+                    binding.checkboxRememberPass.isChecked = true
+                    onLogin()
                 }
             })
             toggle()
@@ -77,71 +104,7 @@ class LoginActivity : AppCompatActivity() {
             WebViewPolicyDialogFragment().show(supportFragmentManager,"policy")
         }
         binding.cvLogin.setOnClickListener {
-            binding.cvLogin.isEnabled = false
-            handler.postDelayed({ binding.cvLogin.isEnabled = true },1000)
-            if(binding.editUsername.length() < 6){
-                Toast.makeText(this,getString(R.string.text_alert_user_min),Toast.LENGTH_SHORT).show()
-            }else if(binding.editPassword.length() < 6){
-                Toast.makeText(this,getString(R.string.text_alert_password_min), Toast.LENGTH_SHORT).show()
-            }else{
-                if(binding.checkboxRememberPass.isChecked){
-                    appPrefe.setPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_CHECK,true)
-                    appPrefe.setPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_USER,binding.editUsername.text.toString())
-                    appPrefe.setPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_PASSWORD,binding.editPassword.text.toString())
-                }else{
-                    appPrefe.setPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_CHECK,false)
-                }
-
-                val password = AESHelper.encrypt(binding.editUsername.text.toString(),Const.AES_KEY)
-                val imei = Const.getUUID(this)
-                val platform = "Android "+Build.VERSION.SDK_INT
-                val model = getDeviceName()
-                val ChannelId = "StarVision"
-                val phonenumber = ""
-                val acc_name = binding.editUsername.text
-                val account_type = "s1"
-                val sign = MD5.CMD5("password|$password|" +
-                        "imei|$imei|" +
-                        "platform|$platform|" +
-                        "model|$model|" +
-                        "ChannelId|$ChannelId|" +
-                        "phonenumber|$phonenumber" +
-                        "|acc_name|$acc_name|" +
-                        "account_type|$account_type")
-
-                Const.loge(TAG,"sign : $sign")
-                Const.loge(TAG,"password : $password")
-                Const.loge(TAG,"imei : $imei")
-                Const.loge(TAG,"platform : $platform")
-                Const.loge(TAG,"model : $model")
-                Const.loge(TAG,"acc_name : $acc_name")
-
-
-//                val services = ApiClient().getBaseLink(URL.BASE_URL_SDK,"").create(Api::class.java)
-//                services.getLogin(sign)!!.enqueue(object : Callback<LoginModels?> {
-//                    override fun onResponse(call: Call<LoginModels?>, response: Response<LoginModels?>) {
-//                        Const.loge(TAG," onResponse : "+call.request().url)
-//                        Const.loge(TAG," onResponse response: "+response.body()!!)
-//                    }
-//
-//                    override fun onFailure(call: Call<LoginModels?>, t: Throwable) {
-//                        Const.loge(TAG," onFailure : "+call.request().url)
-//                        Const.loge(TAG," onFailure : $t")
-//                    }
-//                })
-
-                //รอเซ็ต auto login จาก regis
-//                val intent = Intent(this,MainPage::class.java)
-//                startActivity(intent)
-            }
-        }
-
-        if(appPrefe.getPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_CHECK,true) == true){
-            val user = appPrefe.getPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_USER,"")
-            val password = appPrefe.getPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_PASSWORD,"")
-            binding.editUsername.text = Editable.Factory.getInstance().newEditable(user.toString())
-            binding.editPassword.text = Editable.Factory.getInstance().newEditable(password.toString())
-            binding.checkboxRememberPass.isChecked = true
+            onLogin()
         }
 
         callback = object : OnBackPressedCallback(true) {
@@ -157,6 +120,69 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+    private fun onLogin(){
+        binding.cvLogin.isEnabled = false
+        handler.postDelayed({ binding.cvLogin.isEnabled = true },1000)
+        if(binding.editUsername.length() < 6){
+            Toast.makeText(this,getString(R.string.text_alert_user_min),Toast.LENGTH_SHORT).show()
+        }else if(binding.editPassword.length() < 6){
+            Toast.makeText(this,getString(R.string.text_alert_password_min), Toast.LENGTH_SHORT).show()
+        }else{
+            val password = MD5.CMD5(binding.editPassword.text.toString())
+            val imei = Const.getUUID(this)
+            val platform = "Android "+Build.VERSION.SDK_INT
+            val model = getDeviceName()
+            val ChannelId = "StarVision"
+            val phonenumber = ""
+            val acc_name = binding.editUsername.text.toString().lowercase(Locale.getDefault())
+            val account_type = "s1"
+
+            val hashMap = HashMap<String?,String?>()
+            hashMap["password"] = password
+            hashMap["imei"] = imei
+            hashMap["platform"] = platform
+            hashMap["model"] = model
+            hashMap["ChannelId"] = ChannelId
+            hashMap["phonenumber"] = phonenumber
+            hashMap["acc_name"] = acc_name
+            hashMap["account_type"] = account_type
+
+            Const.loge(TAG,"params : $hashMap")
+            val apiService = ApiClient().getBaseLink(URL.BASE_URL_SDK,"").create(Api::class.java)
+            apiService.postRequest("/login/api/login_star.php",hashMap).enqueue(object : Callback<ResponseBody> {
+                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                    Const.loge(TAG,"onResponse url :"+call.request().url)
+                    val jSon = Gson().fromJson(response.body()!!.string(), LoginModels::class.java)
+                    Const.loge(TAG,"onResponse jSon :"+jSon.message)
+                    try {
+                        if(jSon.message == "success"){
+                            if(binding.checkboxRememberPass.isChecked){
+                                appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_REMEMBER_CHECK,true)
+                                appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_REMEMBER_USER,binding.editUsername.text.toString())
+                                appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_REMEMBER_PASSWORD,binding.editPassword.text.toString())
+                            }else{
+                                appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_REMEMBER_CHECK,false)
+                            }
+                            appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_LOGIN,true)
+                            Toast.makeText(this@LoginActivity,jSon.message,Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this@LoginActivity,MainActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }else{
+                            Toast.makeText(this@LoginActivity,jSon.message,Toast.LENGTH_SHORT).show()
+                        }
+                    }catch (e : Exception) {
+                        e.printStackTrace()
+                    }
+                }
+
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    Const.loge(TAG,"onFailure url :"+call.request().url)
+                    Const.loge(TAG, "onFailure t :$t")
+                }
+            })
+        }
+    }
     private fun getBitmapFromAsset(strPic: String): Bitmap {
         val assetManager = assets
         val iStr = assetManager.open(strPic)
@@ -186,7 +212,7 @@ class LoginActivity : AppCompatActivity() {
         callback!!.remove()
         super.onDestroy()
     }
-    private fun getDeviceName(): String {
+    fun getDeviceName(): String {
         val manufacturer = Build.MANUFACTURER
         val model = Build.MODEL
         return if (model.lowercase(Locale.getDefault())
@@ -208,21 +234,6 @@ class LoginActivity : AppCompatActivity() {
             s
         } else {
             first.uppercaseChar().toString() + s.substring(1)
-        }
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
-        if (requestCode == REQUEST_CODE) {
-            // in the below line, we are checking if permission is granted.
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // if permissions are granted we are displaying below toast message.
-                Toast.makeText(this, "Permission granted.", Toast.LENGTH_SHORT).show()
-            } else {
-                // in the below line, we are displaying toast message if permissions are not granted.
-                Toast.makeText(this, "Permission denied.", Toast.LENGTH_SHORT).show()
-            }
         }
     }
 

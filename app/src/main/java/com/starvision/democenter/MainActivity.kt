@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import com.starvision.data.AppPreferencesLogin
 import com.starvision.democenter.databinding.ActivityMainBinding
 import com.starvision.view.center.MainActivity
 import com.starvision.view.center.sub.*
@@ -14,31 +15,34 @@ import com.starvision.view.login.LoginActivity
 class MainActivity : AppCompatActivity() {
     private val binding : ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private var callback : OnBackPressedCallback? = null
+    private val appPrefe = AppPreferencesLogin
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        //เช็ค Login ถ้า login แล้วให้ขึ้นรูปเขียว
-//    if(Login == true){
-//        binding.imgPerson.setImageDrawable(getDrawable(R.drawable.baseline_person_24_green))
-//    }else{
-//        binding.imgPerson.setImageDrawable(getDrawable(R.drawable.baseline_person_24_black))
-//    }
+
 
 
         binding.btnCenter.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            if (appPrefe.getPreferences(this, AppPreferencesLogin.KEY_PREFS_LOGIN, true) == true) {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            } else {
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+            }
         }
 
         binding.imgPerson.setOnClickListener {
-            // REAL
-//            val intent = Intent(this,MainPage::class.java)
-//            startActivity(intent)
-            // TEST LOGIN
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+            if (appPrefe.getPreferences(this, AppPreferencesLogin.KEY_PREFS_LOGIN, true) == true) {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            } else {
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+            }
         }
 
         binding.btnLottoThai.setOnClickListener {
@@ -92,4 +96,12 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
+    override fun onResume() {
+        super.onResume()
+        if(appPrefe.getPreferences(this,AppPreferencesLogin.KEY_PREFS_LOGIN,true) == true){
+            binding.imgPerson.setImageDrawable(getDrawable(R.drawable.baseline_person_24_green))
+        }else{
+            binding.imgPerson.setImageDrawable(getDrawable(R.drawable.baseline_person_24_black))
+        }
+    }
 }

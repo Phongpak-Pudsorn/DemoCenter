@@ -1,6 +1,8 @@
 package com.starvision.view.login
 
+import android.content.Intent
 import android.graphics.Bitmap
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -9,19 +11,38 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.google.gson.Gson
+import com.starvision.api.Api
+import com.starvision.api.ApiClient
+import com.starvision.api.URL
+import com.starvision.config.MD5
+import com.starvision.data.AppPreferencesLogin
+import com.starvision.data.Const
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageRegisterBinding
+import com.starvision.view.center.MainActivity
+import com.starvision.view.login.models.LoginModels
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.util.*
+import kotlin.collections.HashMap
 
 class RegisterFragment(private val bm: Bitmap) : Fragment() {
     private val binding : PageRegisterBinding by lazy { PageRegisterBinding.inflate(layoutInflater) }
     private val handler = Handler(Looper.getMainLooper())
+    private val TAG = javaClass.simpleName
+    private val appPrefe = AppPreferencesLogin
 
-    private lateinit var mCloseListener : CloseListener
-    interface CloseListener {
+    private lateinit var mClickListener : ClickListener
+    interface ClickListener {
         fun onClose()
+        fun onSuccess()
     }
-    fun setCloseListener(listener : CloseListener) {
-        mCloseListener = listener
+    fun setClickListener(listener : ClickListener) {
+        mClickListener = listener
     }
 
     override fun onCreateView(
@@ -49,7 +70,55 @@ class RegisterFragment(private val bm: Bitmap) : Fragment() {
             }else if(!binding.checkboxAcceptPolicy.isChecked){
                 Toast.makeText(requireContext(),getString(R.string.text_alert_policy_uncheck), Toast.LENGTH_SHORT).show()
             }else{
-                // set เหลือส่งเข้าระบบ
+                val acc_name = binding.editUsername.text.toString().lowercase(Locale.getDefault())
+                val password = MD5.CMD5(binding.editPassword.text.toString())
+                val confirmpassword = MD5.CMD5(binding.editConfirmPassword.text.toString())
+                val sign = MD5.CMD5("Starvision|$acc_name|Register|$password")
+                val account_type = "s1"
+                val ChannelId = "StarVision"
+                val platform = "Android "+ Build.VERSION.SDK_INT
+                val imei = Const.getUUID(requireContext())
+                val model = LoginActivity().getDeviceName()
+                val phonenumber = ""
+                val hashMap = HashMap<String?,String?>()
+
+                hashMap["acc_name"] = acc_name
+                hashMap["password"] = password
+                hashMap["confirmpassword"] = confirmpassword
+                hashMap["sign"] = sign
+                hashMap["account_type"] = account_type
+                hashMap["ChannelId"] = ChannelId
+                hashMap["platform"] = platform
+                hashMap["imei"] = imei
+                hashMap["model"] = model
+                hashMap["phonenumber"] = phonenumber
+
+                Const.loge(TAG,"params : $hashMap")
+
+                val apiService = ApiClient().getBaseLink(URL.BASE_URL_SDK,"").create(Api::class.java)
+                apiService.postRequest("login/api/register.php",hashMap).enqueue(object : Callback<ResponseBody>{
+                    override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                        val jSon = Gson().fromJson(response.body()!!.string(), LoginModels::class.java)
+                        try {
+                            Const.loge(TAG,"response.body()!!.string() : "+response.body()!!.string())
+                            if(jSon.message == "success"){
+                                appPrefe.setPreferences(requireContext(), AppPreferencesLogin.KEY_PREFS_REMEMBER_CHECK,true)
+                                appPrefe.setPreferences(requireContext(), AppPreferencesLogin.KEY_PREFS_REMEMBER_USER,binding.editUsername.text.toString())
+                                appPrefe.setPreferences(requireContext(), AppPreferencesLogin.KEY_PREFS_REMEMBER_PASSWORD,binding.editPassword.text.toString())
+                                Toast.makeText(requireContext(),jSon.message,Toast.LENGTH_SHORT).show()
+                                mClickListener.onSuccess()
+                            }else{
+                                Toast.makeText(requireContext(),jSon.message,Toast.LENGTH_SHORT).show()
+                            }
+                        }catch (e : Exception) {
+                            e.printStackTrace()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+
+                    }
+                })
 
             }
         }
@@ -61,7 +130,7 @@ class RegisterFragment(private val bm: Bitmap) : Fragment() {
         }
 
         binding.btnBack.setOnClickListener {
-            mCloseListener.onClose()
+            mClickListener.onClose()
         }
     }
 

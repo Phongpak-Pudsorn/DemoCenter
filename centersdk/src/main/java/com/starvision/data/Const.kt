@@ -8,7 +8,6 @@ import java.util.*
 
 object Const {
     const val AES_KEY = "47cbed84d5ad52e955621904170d2e6e"
-    const val AES_KEY_N = "2CMtfqRBmX6isUAHHMGdQfMGA6/Q+0NBckKA0F9gNeI"
 
     fun loge(str : String,str2 : String){
         Log.e(str,str2)
