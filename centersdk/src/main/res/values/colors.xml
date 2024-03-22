@@ -19,6 +19,7 @@
     <color name="gray_light">#DFE6EF</color>
     <color name="bg_name_lucky">#1f44bb</color>
     <color name="blue">#0037FF</color>
+    <color name="blue_text">#2340c2</color>
     <color name="blue_link">#1436DD</color>
     <color name="blue_link_tran">#6A1436DD</color>
     <color name="clam">#0A8CE9</color>
@@ -33,10 +34,13 @@
     <color name="bg_gold_under">#F0E78C</color>
     <color name="red">#FF0000</color>
     <color name="green">#33FF25</color>
-    <color name="colorBuy">#008A00</color>
-    <color name="colorSell">#FC8C00</color>
+    <color name="colorBuy">#24ff00</color>
+    <color name="colorSell">#ffc600</color>
     <color name="bg_exchange">#1BA1E2</color>
-
+    <color name="light_blue">#74cafb</color>
+    <color name="bg_name_lucky">#1f44bb</color>
+    <color name="clam_light">#74cafc</color>
+    <color name="bg_exchange_light">#85d3ff</color>
     <color name="transparent">#00000000</color>
 
 </resources>

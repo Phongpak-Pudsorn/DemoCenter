@@ -30,4 +30,7 @@ object URL {
     //อัตราแลกเปลี่ยน
     const val exchange = "/mobileweb/appsmartdirect/exchangerate/serverweb/services/datajson/exchange_rate.json"
 
+    //ราคาน้ำมัน
+    const val oil_price = "/mobileweb/appsmartdirect/oil/serverweb/services/datajson/file_get_oil.json"
+
 }

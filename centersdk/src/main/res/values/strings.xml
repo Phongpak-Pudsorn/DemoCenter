@@ -46,7 +46,7 @@
     <string name="id_profile">ID :</string>
     <string name="topup">Topup</string>
     <string name="e_mail_profile">E-mail :</string>
-    <string name="account_management_profile">Account Management</string>
+    <string name="delete_account_profile">Delete Account</string>
     <string name="logout_profile">Logout</string>
     <string name="account_bar_profile">บัญชี</string>
     <string name="facebook_profile">Facebook</string>
@@ -90,9 +90,30 @@
 
     <string name="news_today">ข่าวประจำวัน</string>
     <string name="text_episode">EP:</string>
-    <string name="tv_gold_buy">รับซื้อ (บาท) : </string>
-    <string name="tv_gold_sell">ขายออก (บาท) : </string>
-    <string name="gold_96_5">ทองรูปพรรณ 96.5%</string>
-    <string name="gold_in_place_96_5">ทองคำแท่ง 96.5%</string>
-
+    <string name="tv_gold_buy">รับซื้อ (บาท)</string>
+    <string name="tv_gold_sell">ขายออก (บาท)</string>
+    <!-- น้ำมัน-->
+    <string name="oil1">แก๊สโซฮอล์ 95</string>
+    <string name="oil2">แก๊สโซฮอล์ 91</string>
+    <string name="oil3">แก๊สโซฮอล์ E20</string>
+    <string name="oil4">แก๊สโซฮอล์ E85</string>
+    <string name="oil5">เบนซิน 95</string>
+    <string name="oil6">ดีเซล เกรดดี</string>
+    <string name="oil7">ดีเซล</string>
+    <string name="oil8">NGV</string>
+    <string name="today_cheapest">ราคาน้ำมันถูกสุดวันนี้</string>
+    <string name="oil_app">เกาะติดสถานการณ์ราคาน้ำมันรายวัน ได้แล้ววันนี้</string>
+    <string name="oil_more">ดูเพิ่มเติมเต็มๆได้ที่ \"ราคาน้ำมันวันนี้\"</string>
+    <string name="oil_name">ราคาน้ำมัน</string>
+    <!-- อัตราแลกเปลี่ยน-->
+    <string name="exchange_app">ศูนย์รวมข้อมูลอัตราการแลกเปลี่ยนจากที่ต่างๆในแอปเดียว</string>
+    <string name="exchange_more">ดูเพิ่มเติมเต็มๆได้ที่ \"อัตราแลกเปลี่ยนวันนี้\"</string>
+    <string name="exchange_name">อัตราแลกเปลี่ยน</string>
+    <string name="bank">ธนาคาร</string>
+    <string name="buy">ซื้อ</string>
+    <string name="sell">ขาย</string>
+    <!-- ดูดวง 12 ราศี-->
+    <string name="zodiac_app">ดูดวงตามราศีเกิด การเงิน การงาน โชคลาภ ความรัก</string>
+    <string name="zodiac_more">ดูเพิ่มเติมเต็มๆได้ที่ \"ดูดวง 12 ราศี\"</string>
+    <string name="zodiac_name">ดูดวง 12 ราศี</string>
 </resources>
