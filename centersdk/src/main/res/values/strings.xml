@@ -90,8 +90,10 @@
 
     <string name="news_today">ข่าวประจำวัน</string>
     <string name="text_episode">EP:</string>
-    <string name="tv_gold_buy">รับซื้อ (บาท)</string>
-    <string name="tv_gold_sell">ขายออก (บาท)</string>
+    <string name="tv_gold_buy">รับซื้อ (บาท) : </string>
+    <string name="tv_gold_sell">ขายออก (บาท) : </string>
+    <string name="gold_96_5">ทองรูปพรรณ 96.5%</string>
+    <string name="gold_in_place_96_5">ทองคำแท่ง 96.5%</string>
     <!-- น้ำมัน-->
     <string name="oil1">แก๊สโซฮอล์ 95</string>
     <string name="oil2">แก๊สโซฮอล์ 91</string>
