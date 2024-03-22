@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
+    android:padding="5dp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -10,36 +12,48 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/greeny"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="5dp">
+            app:cardCornerRadius="5dp">
 
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
-                android:textColor="@color/black_light"
-                android:text="@string/text_bureau_off" />
-
-            <TextView
-                android:id="@+id/item_off"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:background="@color/clam_light"
                 android:gravity="center"
-                android:textColor="@color/black_light"
-                android:text="00000000000" />
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:fontFamily="@font/psl156"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:text="@string/text_bureau_off" />
+
+                <TextView
+                    android:id="@+id/item_off"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/psl156"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:text="00000000000" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/gray_w1"
             android:orientation="vertical"
             android:padding="5dp">
 
@@ -53,7 +67,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:width="90dp"
-                    android:textColor="@color/black_light"
+                    android:fontFamily="@font/psl156"
+                    android:textColor="@color/clam_light"
+                    android:textSize="20sp"
                     android:text="@string/text_3_off" />
 
                 <TextView
@@ -61,7 +77,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:textColor="@color/black_light"
+                    android:fontFamily="@font/psl156"
+                    android:textColor="@color/bg_name_lucky"
+                    android:textSize="20sp"
                     android:text="000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000" />
             </LinearLayout>
 
@@ -75,7 +93,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:width="90dp"
-                    android:textColor="@color/black_light"
+                    android:fontFamily="@font/psl156"
+                    android:textColor="@color/clam_light"
+                    android:textSize="20sp"
                     android:text="@string/text_2_up_off" />
 
                 <TextView
@@ -83,7 +103,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:textColor="@color/black_light"
+                    android:fontFamily="@font/psl156"
+                    android:textColor="@color/bg_name_lucky"
+                    android:textSize="20sp"
                     android:text="00 00 00 00" />
             </LinearLayout>
 
@@ -97,7 +119,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:width="90dp"
-                    android:textColor="@color/black_light"
+                    android:fontFamily="@font/psl156"
+                    android:textColor="@color/clam_light"
+                    android:textSize="20sp"
                     android:text="@string/text_2_down_off" />
 
                 <TextView
@@ -105,7 +129,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:textColor="@color/black_light"
+                    android:fontFamily="@font/psl156"
+                    android:textColor="@color/bg_name_lucky"
+                    android:textSize="20sp"
                     android:text="00 00 00 00 00" />
             </LinearLayout>
         </LinearLayout>

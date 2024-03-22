@@ -1,38 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:paddingTop="25dp"
+    android:paddingEnd="10dp"
+    android:paddingStart="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardview_imgPro"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                app:cardCornerRadius="50dp">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:id="@+id/img_profile"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/ic_launcher"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:gravity="center"
-                    android:text="Edit"
-                    android:textColor="@color/white"
-                    android:textSize="15sp"
-                    android:visibility="gone">
-
-                </TextView>
-
-            </androidx.cardview.widget.CardView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="70dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -55,18 +46,20 @@
                         android:padding="5dp"
                         android:text="@string/name_profile"
                         android:textColor="@color/black_light"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/tv_name"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="start|center"
+                        android:gravity="center"
                         android:padding="5dp"
+                        android:fontFamily="@font/psl156"
                         android:text="User Test"
                         android:textColor="@color/black_light"
-                        android:textSize="15sp" />
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -84,15 +77,19 @@
                         android:padding="5dp"
                         android:text="@string/id_profile"
                         android:textColor="@color/black_light"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/tv_idx"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="start|center"
-                        android:padding="5dp"
+                        android:gravity="center"
+                        android:paddingTop="1dp"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="5dp"
+                        android:fontFamily="@font/psl156"
                         android:text="XXXXXX"
                         android:textColor="@color/black_light"
                         android:textSize="15sp" />
@@ -101,21 +98,34 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tv_coin"
-                        android:layout_width="match_parent"
+                    <ImageView
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:src="@mipmap/star" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="180dp"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="10dp"
-                        android:layout_weight="1"
-                        android:drawableLeft="@drawable/baseline_monetization_on_24"
-                        android:drawablePadding="5dp"
-                        android:gravity="start|center"
-                        android:padding="5dp"
-                        android:text="8,888,888"
-                        android:textColor="@color/black_light"
-                        android:textSize="15sp" />
+                        android:layout_marginStart="5dp"
+                        app:cardCornerRadius="5dp">
+
+                        <TextView
+                            android:id="@+id/tv_coin"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/grey_bg"
+                            android:gravity="end|center"
+                            android:padding="5dp"
+                            android:text="8,888,888"
+                            android:fontFamily="@font/psl156"
+                            android:textColor="@color/black_light"
+                            android:textSize="24sp" />
+
+                    </androidx.cardview.widget.CardView>
 
                     <TextView
                         android:id="@+id/tv_topup"
@@ -128,7 +138,8 @@
                         android:padding="5dp"
                         android:text="@string/topup"
                         android:textColor="@color/black_light"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:visibility="gone" />
                 </LinearLayout>
 
                 <TextView
@@ -143,7 +154,8 @@
                     android:padding="5dp"
                     android:text="@string/e_mail_profile"
                     android:textColor="@color/black_light"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tv_editProfile"
@@ -162,40 +174,95 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_delete"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:drawableLeft="@drawable/baseline_settings_accessibility_24"
-                android:drawablePadding="5dp"
-                android:layout_marginTop="35dp"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="@string/delete_account_profile"
-                android:textColor="@color/black_light"
-                android:textSize="15sp" />
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="30dp"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_logout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="20dp"
-                android:drawableLeft="@drawable/baseline_logout_24"
-                android:drawablePadding="5dp"
-                android:gravity="center"
-                android:background="@drawable/btn_logout"
-                android:text="@string/logout_profile"
-                android:textColor="@color/black_light"
-                android:textSize="15sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="40dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@mipmap/accountmanagement2">
+
+                    </ImageView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_delete"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:text="@string/account_management_profile"
+                            android:textColor="@color/black_light"
+                            android:textSize="20sp"
+                            android:fontFamily="@font/psl156"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="40dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@mipmap/logout">
+
+                    </ImageView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_logout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/btn_logout"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:fontFamily="@font/psl156"
+                            android:text="@string/logout_profile"
+                            android:textColor="@color/black_light"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -203,13 +270,13 @@
                     android:orientation="horizontal">
 
                     <FrameLayout
-                        android:background="@color/black_light"
                         android:layout_width="wrap_content"
                         android:layout_height="5dp"
                         android:layout_gravity="center"
-                        android:layout_weight="1"
                         android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp">
+                        android:layout_marginEnd="20dp"
+                        android:layout_weight="1"
+                        android:background="@color/black_light">
 
                     </FrameLayout>
 
@@ -219,18 +286,18 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
                         android:gravity="center"
+                        android:text="@string/account_bar_profile"
                         android:textColor="@color/black_light"
-                        android:textSize="20sp"
-                        android:text="@string/account_bar_profile" />
+                        android:textSize="20sp" />
 
                     <FrameLayout
-                        android:background="@color/black_light"
                         android:layout_width="wrap_content"
                         android:layout_height="5dp"
                         android:layout_gravity="center"
-                        android:layout_weight="1"
                         android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp">
+                        android:layout_marginEnd="20dp"
+                        android:layout_weight="1"
+                        android:background="@color/black_light">
 
                     </FrameLayout>
                 </LinearLayout>
@@ -253,8 +320,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:textSize="12sp"
-                            android:text="@string/facebook_profile">
+                            android:text="@string/facebook_profile"
+                            android:textSize="12sp">
 
                         </TextView>
 
@@ -283,9 +350,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="12sp"
                             android:layout_gravity="center"
-                            android:text="@string/line_profile">
+                            android:text="@string/line_profile"
+                            android:textSize="12sp">
 
                         </TextView>
 
@@ -314,9 +381,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="12sp"
                             android:layout_gravity="center"
-                            android:text="@string/google_profile">
+                            android:text="@string/google_profile"
+                            android:textSize="12sp">
 
                         </TextView>
 
@@ -345,9 +412,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="12sp"
                             android:layout_gravity="center"
-                            android:text="@string/mid_profile">
+                            android:text="@string/mid_profile"
+                            android:textSize="12sp">
 
                         </TextView>
 
@@ -371,5 +438,56 @@
 
             </LinearLayout>
 
+        </LinearLayout>
 
-</LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview_imgPro11"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_gravity="center"
+        app:cardCornerRadius="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/grey_bg"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview_imgPro"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="50dp">
+
+            <ImageView
+                android:id="@+id/img_profile"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher" />
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:layout_constraintStart_toStartOf="@+id/cardView"
+        app:layout_constraintTop_toTopOf="@+id/cardView">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@mipmap/setting" />
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

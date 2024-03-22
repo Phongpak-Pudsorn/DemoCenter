@@ -78,40 +78,8 @@ class SubLottothaiPage : Fragment() {
     }
 
     private fun setClick() {
-//        binding.mSpinner.text = listDataDate!![0]
         binding.tvRoundLot.text = listDataDate!![0]
         ExecuteData(listDataFd!![0])
-//        binding.mSpinner.setOnClickListener { spinnerPopupWindow(binding.mSpinner) }
-    }
-
-    private fun spinnerPopupWindow(anchorView: View) {
-        val layout = layoutInflater.inflate(R.layout.layout_listview, null)
-        val popup = PopupWindow(requireContext())
-        val adp = AdapterSpinnerCustom(requireContext(), listDataDate!!)
-        val listView = layout.findViewById<ListView>(R.id.listView)
-        listView.adapter = adp
-        if(checkRefresh){
-            listView.setSelection(positionSpinner + 1)
-        }else{
-            listView.setSelection(1)
-        }
-        listView.onItemClickListener =
-            AdapterView.OnItemClickListener { adapterView, view, i, l ->
-                positionSpinner = i
-//                if (chkInternet!!.isOnline) {
-                    checkRefresh = true
-                    ExecuteData(listDataFd!![i])
-//                }
-                binding.mSpinner.text = listDataDate!![i]
-                popup.dismiss()
-            }
-        popup.contentView = layout
-        popup.height = WindowManager.LayoutParams.MATCH_PARENT
-        popup.width = WindowManager.LayoutParams.MATCH_PARENT
-        popup.isOutsideTouchable = true
-        popup.isFocusable = true
-        popup.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        popup.showAsDropDown(anchorView)
     }
 
     private fun ExecuteData(date: String) {

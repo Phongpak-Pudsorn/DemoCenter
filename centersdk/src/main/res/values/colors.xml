@@ -17,10 +17,12 @@
     <color name="white">#FFFFFFFF</color>
     <color name="white_dark">#EDEDED</color>
     <color name="gray_light">#DFE6EF</color>
+    <color name="bg_name_lucky">#1f44bb</color>
     <color name="blue">#0037FF</color>
     <color name="blue_link">#1436DD</color>
     <color name="blue_link_tran">#6A1436DD</color>
     <color name="clam">#0A8CE9</color>
+    <color name="clam_light">#74cafc</color>
     <color name="greeny">#99FF99</color>
     <color name="gray_w1">#FDF5E6</color>
     <color name="bg_orange">#ff9700</color>

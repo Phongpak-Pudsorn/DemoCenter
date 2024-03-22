@@ -105,6 +105,10 @@ class RegisterFragment(private val bm: Bitmap) : Fragment() {
                                 appPrefe.setPreferences(requireContext(), AppPreferencesLogin.KEY_PREFS_REMEMBER_CHECK,true)
                                 appPrefe.setPreferences(requireContext(), AppPreferencesLogin.KEY_PREFS_REMEMBER_USER,binding.editUsername.text.toString())
                                 appPrefe.setPreferences(requireContext(), AppPreferencesLogin.KEY_PREFS_REMEMBER_PASSWORD,binding.editPassword.text.toString())
+
+                                appPrefe.setPreferences(requireContext(), AppPreferencesLogin.KEY_PREFS_USERID,jSon.userid)
+                                appPrefe.setPreferences(requireContext(), AppPreferencesLogin.KEY_PREFS_SKEY,jSon.SKey!!)
+                                appPrefe.setPreferences(requireContext(), AppPreferencesLogin.KEY_PREFS_IDX,jSon.idx!!)
                                 Toast.makeText(requireContext(),jSon.message,Toast.LENGTH_SHORT).show()
                                 mClickListener.onSuccess()
                             }else{
@@ -116,7 +120,7 @@ class RegisterFragment(private val bm: Bitmap) : Fragment() {
                     }
 
                     override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-
+                        t.printStackTrace()
                     }
                 })
 

@@ -6,22 +6,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.ViewModelProvider
 import com.google.gson.Gson
-import com.starvision.api.*
+import com.starvision.api.Api
+import com.starvision.api.ApiClient
+import com.starvision.api.URL
 import com.starvision.config.AESHelper
+import com.starvision.config.CryptoHandler
 import com.starvision.config.MD5
 import com.starvision.data.AppPreferencesLogin
 import com.starvision.data.Const
+import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageFullProfileBinding
 import com.starvision.view.center.models.ProfileModels
 import com.starvision.view.login.LoginActivity
 import okhttp3.ResponseBody
-import retrofit2.*
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.POST
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.security.SecureRandom
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -50,26 +52,28 @@ class ProfileDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         val width = ViewGroup.LayoutParams.MATCH_PARENT
         dialog!!.window!!.setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog!!.window!!.setBackgroundDrawableResource(R.color.transparent)
         bindingObject()
 
+//        val IV = "0000000000000000"
         val timeStamp : String = SimpleDateFormat("yyyyMMddHHmmss").format(Date())
-        val idx = AESHelper.encrypt("1001001000",Const.AES_KEY)
+        val idx = "1001001000"
         val ts =  AESHelper.encrypt(timeStamp,Const.AES_KEY)
         val sign = MD5.CMD5("Starvision|$idx|CheckProfile|$ts")
 
         val hashMap = HashMap<String?,String?>()
-        hashMap["sign"] = sign
         hashMap["idx"] = idx
         hashMap["ts"] = ts
-
+        hashMap["sign"] = sign
         Const.loge(TAG, "params : $hashMap")
         val apiService = ApiClient().getBaseLink(URL.BASE_URL_SDK,"").create(Api::class.java)
         apiService.postRequest("/api/myprofile",hashMap).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 Const.loge(TAG,"onResponse url :"+call.request().url)
-                val jSon = Gson().fromJson(response.body()!!.string(),ProfileModels::class.java)
+                Const.loge(TAG,"onResponse :"+response.body()!!.string())
+//                val jSon = Gson().fromJson(response.body()!!.string(),ProfileModels::class.java)
                 try {
-                    Const.loge(TAG,"onResponse response :"+jSon.message)
+//                    Const.loge(TAG,"onResponse response :"+jSon.message)
                 }catch (e : Exception) {
                     e.printStackTrace()
                 }
@@ -79,7 +83,6 @@ class ProfileDialogFragment : DialogFragment() {
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 Const.loge(TAG,"onFailure url :"+call.request().url)
                 Const.loge(TAG, "onFailure t :$t")
-                // handle the failure
             }
         })
 

@@ -163,6 +163,9 @@ class LoginActivity : AppCompatActivity() {
                             }else{
                                 appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_REMEMBER_CHECK,false)
                             }
+                            appPrefe.setPreferences(this@LoginActivity, AppPreferencesLogin.KEY_PREFS_USERID,jSon.userid)
+                            appPrefe.setPreferences(this@LoginActivity, AppPreferencesLogin.KEY_PREFS_SKEY,jSon.SKey!!)
+                            appPrefe.setPreferences(this@LoginActivity, AppPreferencesLogin.KEY_PREFS_IDX,jSon.idx!!)
                             appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_LOGIN,true)
                             Toast.makeText(this@LoginActivity,jSon.message,Toast.LENGTH_SHORT).show()
                             val intent = Intent(this@LoginActivity,MainActivity::class.java)

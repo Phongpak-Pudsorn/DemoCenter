@@ -89,6 +89,8 @@ class SubGoldToDayPage : Fragment() {
                         binding.tvProgressSell2.setCompoundDrawablesWithIntrinsicBounds(dropDown, 0, 0,0 )
                     }
                     binding.progressBar.visibility = View.GONE
+                    binding.linearLayout4.visibility = View.VISIBLE
+                    binding.linearLayout3.visibility = View.VISIBLE
                 }
             }
 

@@ -4,15 +4,7 @@ data class LoginModels(val code : String,
                        val userid : String,
                        val message : String,
                        val SKey : String?,
-                       val idx : String?,
-//                       val data : Data?
-){
-    data class Data (val idx : String?,
-                     val name : String?,
-                     val avatar : String?,
-                     val coin : Int?)
-}
-
+                       val idx : String? )
 // Get
 //  {
 //        "code":"1101",

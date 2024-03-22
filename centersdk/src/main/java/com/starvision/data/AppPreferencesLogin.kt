@@ -12,6 +12,10 @@ object AppPreferencesLogin {
     const val KEY_PREFS_REMEMBER_USER = "KEY_PREFS_REMEMBER_USER"
     const val KEY_PREFS_REMEMBER_PASSWORD = "KEY_PREFS_REMEMBER_PASSWORD"
     const val KEY_PREFS_LOGIN = "KEY_PREFS_LOGIN"
+    const val KEY_PREFS_USERID = "KEY_PREFS_USERID"
+    const val KEY_PREFS_SKEY = "KEY_PREFS_SKEY"
+    const val KEY_PREFS_IDX = "KEY_PREFS_IDX"
+
 
     fun setPreferences(mContext: Context,key: String, objects: Any){
         val preferences = mContext.getSharedPreferences(APP_SHARED_PREFS, Activity.MODE_PRIVATE)

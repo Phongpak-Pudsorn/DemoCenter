@@ -10,29 +10,36 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:orientation="vertical"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tv_name_gold"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/bg_gold_bar"
-            android:paddingStart="10dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="5dp"
-            android:paddingBottom="5dp"
-            android:text="ทองคำแท่ง 96.5%"
-            android:textColor="@color/black_light"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            app:cardCornerRadius="5dp">
+
+            <TextView
+                android:id="@+id/tv_name_gold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/grey"
+                android:paddingStart="10dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:paddingBottom="5dp"
+                android:fontFamily="@font/psl156"
+                android:text="@string/gold_in_place_96_5"
+                android:textColor="@color/bg_name_lucky"
+                android:textSize="24sp" />
+
+        </androidx.cardview.widget.CardView>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/bg_gold_under"
             android:orientation="horizontal"
             android:paddingStart="5dp"
             android:paddingTop="10dp"
@@ -50,8 +57,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tv_gold_buy"
-                    android:textColor="@color/black_light"
-                    android:textSize="18sp" />
+                    android:fontFamily="@font/psl156"
+                    android:textColor="@color/clam_light"
+                    android:textSize="22sp" />
 
                 <TextView
                     android:id="@+id/tv_sell"
@@ -59,8 +67,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/tv_gold_sell"
-                    android:textColor="@color/black_light"
-                    android:textSize="18sp" />
+                    android:fontFamily="@font/psl156"
+                    android:textColor="@color/clam_light"
+                    android:textSize="22sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -73,15 +82,17 @@
                     android:id="@+id/tv_price_sell"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/psl156"
                     android:textColor="@color/black_light"
-                    android:textSize="18sp" />
+                    android:textSize="22sp" />
 
                 <TextView
                     android:id="@+id/tv_price_buy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black_light"
-                    android:textSize="18sp" />
+                    android:fontFamily="@font/psl156"
+                    android:textSize="22sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -96,14 +107,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black_light"
-                    android:textSize="18sp" />
+                    android:fontFamily="@font/psl156"
+                    android:textSize="22sp" />
 
                 <TextView
                     android:id="@+id/tv_progress_sell"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black_light"
-                    android:textSize="18sp" />
+                    android:fontFamily="@font/psl156"
+                    android:textSize="22sp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -111,33 +124,44 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:orientation="vertical"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
-        <TextView
-            android:id="@+id/tv_name_gold2"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/bg_gold_bar"
-            android:paddingStart="10dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="5dp"
-            android:paddingBottom="5dp"
-            android:text="ทองรูปพรรณ 96.5%"
-            android:textColor="@color/black_light"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            app:cardCornerRadius="5dp">
+
+            <TextView
+                android:id="@+id/tv_name_gold2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/grey"
+                android:paddingStart="10dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:paddingBottom="5dp"
+                android:fontFamily="@font/psl156"
+                android:text="@string/gold_96_5"
+                android:textColor="@color/bg_name_lucky"
+                android:textSize="24sp" />
+
+        </androidx.cardview.widget.CardView>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/bg_gold_under"
             android:orientation="horizontal"
             android:paddingStart="5dp"
             android:paddingTop="10dp"
@@ -155,8 +179,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tv_gold_buy"
-                    android:textColor="@color/black_light"
-                    android:textSize="18sp" />
+                    android:fontFamily="@font/psl156"
+                    android:textColor="@color/clam_light"
+                    android:textSize="22sp" />
 
                 <TextView
                     android:id="@+id/tv_sell2"
@@ -164,8 +189,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/tv_gold_sell"
-                    android:textColor="@color/black_light"
-                    android:textSize="18sp" />
+                    android:fontFamily="@font/psl156"
+                    android:textColor="@color/clam_light"
+                    android:textSize="22sp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -179,14 +205,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black_light"
-                    android:textSize="18sp" />
+                    android:fontFamily="@font/psl156"
+                    android:textSize="22sp" />
 
                 <TextView
                     android:id="@+id/tv_price_buy2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black_light"
-                    android:textSize="18sp" />
+                    android:fontFamily="@font/psl156"
+                    android:textSize="22sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -201,14 +229,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black_light"
-                    android:textSize="18sp" />
+                    android:fontFamily="@font/psl156"
+                    android:textSize="22sp" />
 
                 <TextView
                     android:id="@+id/tv_progress_sell2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black_light"
-                    android:textSize="18sp" />
+                    android:fontFamily="@font/psl156"
+                    android:textSize="22sp" />
             </LinearLayout>
 
         </LinearLayout>

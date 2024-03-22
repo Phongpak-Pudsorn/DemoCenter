@@ -2,34 +2,43 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:cardCornerRadius="5dp"
-    android:layout_margin="10dp"
+    app:cardCornerRadius="7dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginEnd="5dp"
+    android:layout_marginBottom="10dp"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/bg_name_lucky"
         android:orientation="vertical">
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="7dp">
 
-        <ImageView
-            android:id="@+id/image_game"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:scaleType="fitCenter"
-            android:src="@mipmap/ic_launcher"/>
+            <ImageView
+                android:id="@+id/image_game"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/ic_launcher"/>
+
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/name_game"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/black_light"
+            android:layout_height="match_parent"
+            android:background="@color/bg_name_lucky"
             android:gravity="center"
+            android:fontFamily="@font/psl156"
             android:textColor="@color/white_dark"
-            android:textSize="15sp"
+            android:textSize="19sp"
             android:text="@string/nameGame" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>
