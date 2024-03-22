@@ -1,10 +1,12 @@
 package com.starvision.view.center.sub
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
@@ -35,19 +37,22 @@ class SubOilFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         execeuteData()
+        binding.btnReload.setOnClickListener {
+            execeuteData()
+        }
 
     }
     private fun execeuteData(){
         binding.mProgressBar.visibility = View.VISIBLE
         oilList.clear()
-        oilList.add(SubOilTodayModel("1","95E10",setName("95E10"),"0","","","","",setOilIcon("95E10")))
-        oilList.add(SubOilTodayModel("1","91E10",setName("91E10"),"0","","","","",setOilIcon("91E10")))
-        oilList.add(SubOilTodayModel("1","95E20",setName("95E20"),"0","","","","",setOilIcon("95E20")))
-        oilList.add(SubOilTodayModel("1","95E85",setName("95E85"),"0","","","","",setOilIcon("95E85")))
-        oilList.add(SubOilTodayModel("1","95",setName("95"),"0","","","","",setOilIcon("95")))
-        oilList.add(SubOilTodayModel("1","dieselpremium",setName("dieselpremium"),"0","","","","",setOilIcon("dieselpremium")))
-        oilList.add(SubOilTodayModel("1","diesel",setName("diesel"),"0","","","","",setOilIcon("diesel")))
-        oilList.add(SubOilTodayModel("1","ngv",setName("ngv"),"0","","","","",setOilIcon("ngv")))
+        oilList.add(SubOilTodayModel("1","95E10",setName("95E10"),"0","",setOilIcon("95E10")))
+        oilList.add(SubOilTodayModel("1","91E10",setName("91E10"),"0","",setOilIcon("91E10")))
+        oilList.add(SubOilTodayModel("1","95E20",setName("95E20"),"0","",setOilIcon("95E20")))
+        oilList.add(SubOilTodayModel("1","95E85",setName("95E85"),"0","",setOilIcon("95E85")))
+        oilList.add(SubOilTodayModel("1","95",setName("95"),"0","",setOilIcon("95")))
+        oilList.add(SubOilTodayModel("1","dieselpremium",setName("dieselpremium"),"0","",setOilIcon("dieselpremium")))
+        oilList.add(SubOilTodayModel("1","diesel",setName("diesel"),"0","",setOilIcon("diesel")))
+        oilList.add(SubOilTodayModel("1","ngv",setName("ngv"),"0","",setOilIcon("ngv")))
         val services = ApiClient().getBaseLink(URL.BASE_URL,":443").create(Api::class.java)
         services.getOil().enqueue(object :Callback<SubOilModel>{
             override fun onResponse(call: Call<SubOilModel>, response: Response<SubOilModel>) {
@@ -72,16 +77,16 @@ class SubOilFragment: Fragment() {
                                     }
                                     if (oilList[k].priceType==listOil[i].data[j].type){
                                         if (oilPrice<=oilPrice1||oilPrice1<=0){
-                                            val img1 = oilList[k].priceImg1
+                                            var img1 = oilList[k].priceImg1
                                             var img2 = ""
                                             for (l in listOil.indices){
-                                                //กลับมาแก้ listOil[i].data[j].name ด้วย
                                                 if (listOil[l].oil==listOil[i].data[j].id){
+                                                    Log.e("l $l",listOil[l].oil)
                                                     img2 = listOil[l].image
                                                     break
                                                 }
                                             }
-                                            oilList[k] = SubOilTodayModel("1",listOil[i].data[j].type,setName(listOil[i].data[j].type),listOil[i].data[j].today,img1,img2,"","",setOilIcon(listOil[i].data[j].type))
+                                            oilList[k] = SubOilTodayModel("1",listOil[i].data[j].type,setName(listOil[i].data[j].type),listOil[i].data[j].today,img1+","+img2,setOilIcon(listOil[i].data[j].type))
                                         }
                                     }
                                 }
@@ -103,6 +108,9 @@ class SubOilFragment: Fragment() {
             override fun onFailure(call: Call<SubOilModel>, t: Throwable) {
             }
         })
+        binding.imgBack.setOnClickListener {
+
+        }
 
     }
     fun setName(oil: String): String {

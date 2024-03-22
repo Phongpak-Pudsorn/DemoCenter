@@ -101,5 +101,19 @@
     <string name="oil6">ดีเซล เกรดดี</string>
     <string name="oil7">ดีเซล</string>
     <string name="oil8">NGV</string>
-
+    <string name="today_cheapest">ราคาน้ำมันถูกสุดวันนี้</string>
+    <string name="oil_app">เกาะติดสถานการณ์ราคาน้ำมันรายวัน ได้แล้ววันนี้</string>
+    <string name="oil_more">ดูเพิ่มเติมเต็มๆได้ที่ \"ราคาน้ำมันวันนี้\"</string>
+    <string name="oil_name">ราคาน้ำมัน</string>
+    <!-- อัตราแลกเปลี่ยน-->
+    <string name="exchange_app">ศูนย์รวมข้อมูลอัตราการแลกเปลี่ยนจากที่ต่างๆในแอปเดียว</string>
+    <string name="exchange_more">ดูเพิ่มเติมเต็มๆได้ที่ \"อัตราแลกเปลี่ยนวันนี้\"</string>
+    <string name="exchange_name">อัตราแลกเปลี่ยน</string>
+    <string name="bank">ธนาคาร</string>
+    <string name="buy">ซื้อ</string>
+    <string name="sell">ขาย</string>
+    <!-- ดูดวง 12 ราศี-->
+    <string name="zodiac_app">ดูดวงตามราศีเกิด การเงิน การงาน โชคลาภ ความรัก</string>
+    <string name="zodiac_more">ดูเพิ่มเติมเต็มๆได้ที่ \"ดูดวง 12 ราศี\"</string>
+    <string name="zodiac_name">ดูดวง 12 ราศี</string>
 </resources>

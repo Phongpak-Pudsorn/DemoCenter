@@ -23,17 +23,22 @@ class AdapterOilSub(val context:Context,val list:ArrayList<SubOilTodayModel>):Re
     override fun onBindViewHolder(holder: OilHolder, position: Int) {
         holder.oilBinding.mTvToDayOil.text = list[position].priceToday
         holder.oilBinding.mTvNameOil.text = list[position].priceName
-        if (list[position].priceImg1!=""){
-            Glide.with(context).load(list[position].priceImg1).into(holder.oilBinding.imgOil1)
+        val imgArr = list[position].priceImg1.split(",")
+        Glide.with(context).load(imgArr[1]).into(holder.oilBinding.imgOil1)
+        try {
+            Glide.with(context).load(imgArr[2]).into(holder.oilBinding.imgOil2)
+        }catch (e:Exception){
+            Glide.with(context).load("").into(holder.oilBinding.imgOil2)
         }
-        if (list[position].priceImg2!=""){
-            Glide.with(context).load(list[position].priceImg2).into(holder.oilBinding.imgOil2)
+        try {
+            Glide.with(context).load(imgArr[3]).into(holder.oilBinding.imgOil3)
+        }catch (e:Exception){
+            Glide.with(context).load("").into(holder.oilBinding.imgOil3)
         }
-        if (list[position].priceImg3!=""){
-            Glide.with(context).load(list[position].priceImg3).into(holder.oilBinding.imgOil3)
-        }
-        if (list[position].priceImg4!=""){
-            Glide.with(context).load(list[position].priceImg4).into(holder.oilBinding.imgOil4)
+        try {
+            Glide.with(context).load(imgArr[4]).into(holder.oilBinding.imgOil4)
+        }catch (e:Exception){
+            Glide.with(context).load("").into(holder.oilBinding.imgOil4)
         }
         try {
             val inputs = context.assets.open("oil/"+list[position].imgOil+".png")
