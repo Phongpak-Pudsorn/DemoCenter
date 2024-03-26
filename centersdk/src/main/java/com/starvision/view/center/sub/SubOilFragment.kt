@@ -1,27 +1,29 @@
 package com.starvision.view.center.sub
 
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
 import com.starvision.api.Api
 import com.starvision.api.ApiClient
 import com.starvision.api.URL
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageOilSubBinding
 import com.starvision.view.center.sub.adapter.AdapterOilSub
-import com.starvision.view.center.sub.models.SubExchangeModel
 import com.starvision.view.center.sub.models.SubOilModel
 import com.starvision.view.center.sub.models.SubOilTodayModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 class SubOilFragment: Fragment() {
     val binding: PageOilSubBinding by lazy { PageOilSubBinding.inflate(layoutInflater) }
@@ -29,7 +31,7 @@ class SubOilFragment: Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         return binding.root
     }
@@ -40,7 +42,9 @@ class SubOilFragment: Fragment() {
         binding.btnReload.setOnClickListener {
             execeuteData()
         }
-
+        binding.cvMore.setOnClickListener {
+            openPlayStore(requireContext(),"com.smileapp.oil")
+        }
     }
     private fun execeuteData(){
         binding.mProgressBar.visibility = View.VISIBLE
@@ -57,10 +61,9 @@ class SubOilFragment: Fragment() {
         services.getOil().enqueue(object :Callback<SubOilModel>{
             override fun onResponse(call: Call<SubOilModel>, response: Response<SubOilModel>) {
                 try {
-                    val gsonOil = Gson().toJson(response.body()!!, SubOilModel::class.java)
-                    val dataOil = Gson().fromJson(gsonOil, SubOilModel::class.java)
-                    var listOil = dataOil.Datarow.data.price_today
+                    val dataOil = response.body()!!
                     if (dataOil.Status=="True") {
+                        var listOil = dataOil.Datarow.data.price_today
                         for (i in listOil.indices){
                             for(j in listOil[i].data.indices){
                                 listOil[i].data[j].id = listOil[i].oil
@@ -86,7 +89,11 @@ class SubOilFragment: Fragment() {
                                                     break
                                                 }
                                             }
+                                            if (listOil[i].data[j].today.toDouble() < oilList[k].priceToday.toDouble()) {
+                                                img1 = ""
+                                            }
                                             oilList[k] = SubOilTodayModel("1",listOil[i].data[j].type,setName(listOil[i].data[j].type),listOil[i].data[j].today,img1+","+img2,setOilIcon(listOil[i].data[j].type))
+                                            Log.e("oilList $k",oilList[k].priceToday)
                                         }
                                     }
                                 }
@@ -168,5 +175,36 @@ class SubOilFragment: Fragment() {
                 return "oil8"
             }
         }
+    }
+
+    private fun appInstalledOrNot(context: Context, packageName:String): Boolean {
+        val pm = context.packageManager
+        try {
+            pm.getPackageInfo(packageName,PackageManager.GET_ACTIVITIES)
+            return true
+        }catch (e:PackageManager.NameNotFoundException){
+            e.printStackTrace()
+        }
+        return false
+    }
+    private fun openPlayStore(context: Context, destinationPackageName:String){
+        try {
+            if (appInstalledOrNot(context,"com.android.vending")){
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse("market://details?id=$destinationPackageName")
+                intent.setClassName("com.android.vending","com.google.android.finsky.activities.LaunchUrlHandlerActivity")
+                context.startActivity(intent)
+            }else{
+                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=$destinationPackageName")))
+//                val appIntent = Intent(context.packageManager.getLaunchIntentForPackage(destinationPackageName))
+//                context.startActivity(appIntent)
+            }
+        }catch (anfe:android.content.ActivityNotFoundException){
+            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=$destinationPackageName")))
+            anfe.printStackTrace()
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
+
     }
 }

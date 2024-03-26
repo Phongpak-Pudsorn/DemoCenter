@@ -42,10 +42,9 @@ class SubExchangeFragment: Fragment() {
                 response: Response<SubExchangeModel>,
             ) {
                 try {
-                    val gsonExchange = Gson().toJson(response.body()!!, SubExchangeModel::class.java)
-                    val dataExchange = Gson().fromJson(gsonExchange, SubExchangeModel::class.java)
-                    var listExchange = dataExchange.Datarow
+                    val dataExchange = response.body()!!
                     if (dataExchange.Status=="True"){
+                        var  listExchange = response.body()!!.Datarow
                         binding.rvExchange.apply {
                             adapter = AdapterExchangeSub(requireContext(),listExchange)
                             layoutManager = LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
