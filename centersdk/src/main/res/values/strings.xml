@@ -46,7 +46,7 @@
     <string name="id_profile">ID :</string>
     <string name="topup">Topup</string>
     <string name="e_mail_profile">E-mail :</string>
-    <string name="delete_account_profile">Delete Account</string>
+    <string name="account_management_profile">Account Management</string>
     <string name="logout_profile">Logout</string>
     <string name="account_bar_profile">บัญชี</string>
     <string name="facebook_profile">Facebook</string>

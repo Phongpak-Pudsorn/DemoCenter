@@ -17,6 +17,7 @@ import com.starvision.api.Api
 import com.starvision.api.ApiClient
 import com.starvision.api.URL
 import com.starvision.config.MD5
+import com.starvision.config.ParamsData
 import com.starvision.data.AppPreferencesLogin
 import com.starvision.data.Const
 import com.starvision.luckygamesdk.R
@@ -27,6 +28,7 @@ import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.http.Url
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -95,12 +97,10 @@ class RegisterFragment(private val bm: Bitmap) : Fragment() {
 
                 Const.loge(TAG,"params : $hashMap")
 
-                val apiService = ApiClient().getBaseLink(URL.BASE_URL_SDK,"").create(Api::class.java)
-                apiService.postRequest("login/api/register.php",hashMap).enqueue(object : Callback<ResponseBody>{
-                    override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                        val jSon = Gson().fromJson(response.body()!!.string(), LoginModels::class.java)
+                ParamsData(object : ParamsData.PostLoadListener{
+                    override fun onSuccess(body: String) {
                         try {
-                            Const.loge(TAG,"response.body()!!.string() : "+response.body()!!.string())
+                            val jSon = Gson().fromJson(body, LoginModels::class.java)
                             if(jSon.message == "success"){
                                 appPrefe.setPreferences(requireContext(), AppPreferencesLogin.KEY_PREFS_REMEMBER_CHECK,true)
                                 appPrefe.setPreferences(requireContext(), AppPreferencesLogin.KEY_PREFS_REMEMBER_USER,binding.editUsername.text.toString())
@@ -119,11 +119,10 @@ class RegisterFragment(private val bm: Bitmap) : Fragment() {
                         }
                     }
 
-                    override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                        t.printStackTrace()
+                    override fun onFailed(t: Throwable) {
+                        Const.loge(TAG,"t : $t")
                     }
-                })
-
+                }).postLoadData(URL.BASE_URL_SDK,URL.URL_LOGIN,"",hashMap)
             }
         }
 

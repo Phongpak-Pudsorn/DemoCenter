@@ -1,15 +1,15 @@
 package com.starvision.view.login
 
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.telephony.TelephonyManager
 import android.text.Editable
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.transition.Slide
 import android.transition.TransitionManager
 import android.view.Gravity
@@ -18,27 +18,17 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.google.gson.Gson
 import com.starvision.api.*
-import com.starvision.config.AESHelper
 import com.starvision.config.MD5
+import com.starvision.config.ParamsData
 import com.starvision.data.AppPreferencesLogin
 import com.starvision.data.Const
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageLoginBinding
 import com.starvision.view.center.MainActivity
-import com.starvision.view.center.models.ProfileModels
 import com.starvision.view.login.models.LoginModels
 import okhttp3.ResponseBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.POST
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -104,7 +94,19 @@ class LoginActivity : AppCompatActivity() {
             WebViewPolicyDialogFragment().show(supportFragmentManager,"policy")
         }
         binding.cvLogin.setOnClickListener {
+            binding.cvLogin.isEnabled = false
+            binding.progressBar2.visibility = View.VISIBLE
             onLogin()
+        }
+
+        binding.seePassword.setOnClickListener {
+            if(binding.seePassword.drawable.constantState!! == this.getDrawable(R.drawable.baseline_eye_visibility_off_24)!!.constantState){
+                binding.seePassword.setImageDrawable(getDrawable(R.drawable.baseline_eye_24_grey))
+                binding.editPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            }else{
+                binding.seePassword.setImageDrawable(getDrawable(R.drawable.baseline_eye_visibility_off_24))
+                binding.editPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+            }
         }
 
         callback = object : OnBackPressedCallback(true) {
@@ -136,7 +138,6 @@ class LoginActivity : AppCompatActivity() {
             val phonenumber = ""
             val acc_name = binding.editUsername.text.toString().lowercase(Locale.getDefault())
             val account_type = "s1"
-
             val hashMap = HashMap<String?,String?>()
             hashMap["password"] = password
             hashMap["imei"] = imei
@@ -147,14 +148,14 @@ class LoginActivity : AppCompatActivity() {
             hashMap["acc_name"] = acc_name
             hashMap["account_type"] = account_type
 
-            Const.loge(TAG,"params : $hashMap")
-            val apiService = ApiClient().getBaseLink(URL.BASE_URL_SDK,"").create(Api::class.java)
-            apiService.postRequest("/login/api/login_star.php",hashMap).enqueue(object : Callback<ResponseBody> {
-                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                    Const.loge(TAG,"onResponse url :"+call.request().url)
-                    val jSon = Gson().fromJson(response.body()!!.string(), LoginModels::class.java)
-                    Const.loge(TAG,"onResponse jSon :"+jSon.message)
+            Const.loge(TAG, "hashmap : $hashMap")
+
+            ParamsData(object : ParamsData.PostLoadListener{
+                override fun onSuccess(body : String) {
+                    binding.cvLogin.isEnabled = true
+                    binding.progressBar2.visibility = View.GONE
                     try {
+                        val jSon = Gson().fromJson(body,LoginModels::class.java)
                         if(jSon.message == "success"){
                             if(binding.checkboxRememberPass.isChecked){
                                 appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_REMEMBER_CHECK,true)
@@ -166,7 +167,8 @@ class LoginActivity : AppCompatActivity() {
                             appPrefe.setPreferences(this@LoginActivity, AppPreferencesLogin.KEY_PREFS_USERID,jSon.userid)
                             appPrefe.setPreferences(this@LoginActivity, AppPreferencesLogin.KEY_PREFS_SKEY,jSon.SKey!!)
                             appPrefe.setPreferences(this@LoginActivity, AppPreferencesLogin.KEY_PREFS_IDX,jSon.idx!!)
-                            appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_LOGIN,true)
+//                            appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_LOGIN,true)
+                            Const.KEY_PREFS_LOGIN = true
                             Toast.makeText(this@LoginActivity,jSon.message,Toast.LENGTH_SHORT).show()
                             val intent = Intent(this@LoginActivity,MainActivity::class.java)
                             startActivity(intent)
@@ -179,11 +181,14 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
 
-                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                    Const.loge(TAG,"onFailure url :"+call.request().url)
-                    Const.loge(TAG, "onFailure t :$t")
+                override fun onFailed(t: Throwable) {
+                    binding.cvLogin.isEnabled = true
+                    binding.progressBar2.visibility = View.GONE
+                    Const.loge(TAG,"t : $t")
                 }
-            })
+
+            }).postLoadData(URL.BASE_URL_SDK,URL.URL_LOGIN,"",hashMap)
+
         }
     }
     private fun getBitmapFromAsset(strPic: String): Bitmap {
@@ -226,7 +231,6 @@ class LoginActivity : AppCompatActivity() {
             capitalize(manufacturer) + " " + model
         }
     }
-
 
     private fun capitalize(s: String?): String {
         if (s == null || s.isEmpty()) {
