@@ -8,6 +8,7 @@ import java.util.*
 
 object Const {
     const val AES_KEY = "47cbed84d5ad52e955621904170d2e6e"
+    var KEY_PREFS_LOGIN = false
 
     fun loge(str : String,str2 : String){
         Log.e(str,str2)

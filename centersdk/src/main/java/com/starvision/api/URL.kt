@@ -4,9 +4,13 @@ object URL {
     //SDK
     const val BASE_URL_SDK = "https://app.starvision.in.th"
 
-//    const val URL_PROFILE = "https://app.starvision.in.th/api/myprofile"
+//    const val URL_PROFILE = "https://app.starvision.in.th/api/myprofile/"
 //    const val URL_LOGIN = "https://app.starvision.in.th/login/api/login_star.php"
 //    const val URL_REGISTER = "https://app.starvision.in.th/login/api/register.php"
+
+    const val URL_LOGIN = "/login/api/login_star.php"
+    const val URL_REGISTER = "/login/api/register.php"
+    const val URL_PROFILE = "/api/myprofile"
 
     const val BASE_URL = "https://starvision.in.th"
     const val BASE_URL_LOTTO= "https://lottery.starvision.in.th"

@@ -22,6 +22,8 @@ import com.google.gson.Gson
 import com.starvision.api.Api
 import com.starvision.api.ApiClient
 import com.starvision.api.URL
+import com.starvision.config.ParamsData
+import com.starvision.data.Const
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageSmilelottoSubBinding
 import com.starvision.view.center.sub.adapter.AdapterSpinnerCustom
@@ -33,6 +35,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.zip.GZIPOutputStream
 import kotlin.collections.ArrayList
 
 class SubSmileLottoPage : Fragment() {
@@ -69,36 +72,6 @@ class SubSmileLottoPage : Fragment() {
         executeData(listDataFd!![0])
 //        binding.mSpinner.setOnClickListener { spinnerPopupWindow(binding.mSpinner) }
     }
-
-//    private fun spinnerPopupWindow(anchorView: View) {
-//        val layout = layoutInflater.inflate(R.layout.layout_listview, null)
-//        val popup = PopupWindow(requireContext())
-//        val adp = AdapterSpinnerCustom(requireContext(), listDataDate!!)
-//        val listView = layout.findViewById<ListView>(R.id.listView)
-//        listView.adapter = adp
-//        if(checkRefresh){
-//            listView.setSelection(positionSpinner + 1)
-//        }else{
-//            listView.setSelection(1)
-//        }
-//        listView.onItemClickListener =
-//            AdapterView.OnItemClickListener { adapterView, view, i, l ->
-//                positionSpinner = i
-////                if (chkInternet!!.isOnline) {
-//                checkRefresh = true
-//                executeData(listDataFd!![i])
-////                }
-//                binding.mSpinner.text = listDataDate!![i]
-//                popup.dismiss()
-//            }
-//        popup.contentView = layout
-//        popup.height = WindowManager.LayoutParams.MATCH_PARENT
-//        popup.width = WindowManager.LayoutParams.MATCH_PARENT
-//        popup.isOutsideTouchable = true
-//        popup.isFocusable = true
-//        popup.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//        popup.showAsDropDown(anchorView)
-//    }
 
     private fun setObjViewLotto() {
         binding.mLnHome.visibility = View.VISIBLE
@@ -157,16 +130,15 @@ class SubSmileLottoPage : Fragment() {
     }
 
     private fun executeDataDate() {
-        val getApiOfficeDate = ApiClient().getBaseLink(URL.BASE_URL_LOTTO,":9943").create(Api::class.java)
-        getApiOfficeDate.getLottoTotalDate().enqueue(object : Callback<SubSmileLottoDateModels> {
-            override fun onResponse(call: Call<SubSmileLottoDateModels>, response: Response<SubSmileLottoDateModels>) {
+        ParamsData(object : ParamsData.PostLoadListener{
+            override fun onSuccess(body: String) {
                 try {
-                    val dataDate = response.body()!!
+                    val dataDate = Gson().fromJson(body,SubSmileLottoDateModels::class.java)
                     listDataFd = ArrayList()
                     listDataDate = ArrayList()
                     var dateNew = ""
 //                    if (dataDate.Status == "True") {
-                        for (i in dataDate.LottoDate.indices) {
+                    for (i in dataDate.LottoDate.indices) {
                         val sugDate = dataDate.LottoDate[i]
                         listDataFd?.add(sugDate)
                         try {
@@ -179,109 +151,109 @@ class SubSmileLottoPage : Fragment() {
                         } catch (e: ParseException) {
                             e.printStackTrace()
                         }
-                          listDataDate?.add("  " + resources.getString(R.string.text_date_off) + dateNew)
-                        }
-                        setClick()
+                        listDataDate?.add("  " + resources.getString(R.string.text_date_off) + dateNew)
+                    }
+                    setClick()
 //                    }
                 }catch (e:Exception){
                     e.printStackTrace()
                 }
             }
-            override fun onFailure(call: Call<SubSmileLottoDateModels>, t: Throwable) {
 
+            override fun onFailed(t: Throwable) {
+                Const.loge(TAG,"t : $t")
             }
-        })
+
+        }).getLoadData(URL.BASE_URL_LOTTO,URL.lotto_total_result,":9943")
     }
 
     private fun executeData(date: String) {
-        val getApiOfficeDate = ApiClient().getBaseLink(URL.BASE_URL_LOTTO,":9943").create(Api::class.java)
-        getApiOfficeDate.getLottoResult(date).enqueue(object : Callback<SubSmileLottoRewardModels> {
-            override fun onResponse(call: Call<SubSmileLottoRewardModels>, response: Response<SubSmileLottoRewardModels>) {
-                val gsonfile = Gson().toJson(response.body()!!,SubSmileLottoRewardModels::class.java)
-                listLotto = Gson().fromJson(gsonfile,SubSmileLottoRewardModels::class.java)
-                setObjViewLotto()
-                binding.btnCheck.setOnClickListener {
-                    if (binding.mEditCheck.length() >= 6) {
-                        mHelper = DataBaseLotto(requireActivity())
-                        mDb = mHelper.writableDatabase
-                        val strSqlStatus =
-                            (("SELECT * FROM " + DataBaseLotto.TABLE_NAME_CHECK) + " WHERE " + DataBaseLotto.CHE_DATE) + " = '" + listLotto.result_date + "'; "
-                        mCursor = mDb.rawQuery(strSqlStatus, null)
-                        if (mCursor.count == 0) {
-                            mDb.execSQL(
-                                ((((((((((((("INSERT INTO " + DataBaseLotto.TABLE_NAME_CHECK) + " (" + DataBaseLotto.CHE_DATE) + ", " + DataBaseLotto.CHE_ONE) + ", " + DataBaseLotto.CHE_ONE_BY) + ", " + DataBaseLotto.CHE_TWO) + ", "
-                                        + DataBaseLotto.CHE_TWO_END) + ", " + DataBaseLotto.CHE_THREE) + ", " + DataBaseLotto.CHE_FIRST_THREE_END) + ", " + DataBaseLotto.CHE_THREE_END) + ", "
-                                        + DataBaseLotto.CHE_FOUR) + ", " + DataBaseLotto.CHE_FIVE) + ", " + DataBaseLotto.CHE_LINK_LOTTO) + ", "
-                                        + DataBaseLotto.FORM_NEW) + ") " +
-                                        "VALUES ('" + listLotto.result_date + "', + '" + listLotto.first + "', + '" + listLotto.near_one + "', + '" + listLotto.second + "', + '" + listLotto.last_two + "', + '" + listLotto.third
-                                        + "', + '" + listLotto.first_three + "', + '" + listLotto.last_three + "', + '" + listLotto.forth + "', + '" + listLotto.fifth + "', + '" + listLotto.link_list_lotto_result + "', + '" + listLotto.form_new
-                                        + "');"
-                            )
-                        }
-                        val strCheckLotto = getCheck(requireContext(), listLotto.result_date, binding.mEditCheck.text.toString(), listLotto)
-                        if (strCheckLotto != "") {
-                            binding.mEditCheck.setText(strQrCode)
-                            val strData_Lot = strCheckLotto.split("_")
+        ParamsData(object : ParamsData.PostLoadListener{
+            override fun onSuccess(body: String) {
+                    listLotto = Gson().fromJson(body,SubSmileLottoRewardModels::class.java)
+                    setObjViewLotto()
+                    binding.btnCheck.setOnClickListener {
+                        if (binding.mEditCheck.length() >= 6) {
                             mHelper = DataBaseLotto(requireActivity())
                             mDb = mHelper.writableDatabase
-                            if ((strData_Lot[2] == "P")) {
+                            val strSqlStatus =
+                                (("SELECT * FROM " + DataBaseLotto.TABLE_NAME_CHECK) + " WHERE " + DataBaseLotto.CHE_DATE) + " = '" + listLotto.result_date + "'; "
+                            mCursor = mDb.rawQuery(strSqlStatus, null)
+                            if (mCursor.count == 0) {
                                 mDb.execSQL(
-                                    ((((((("INSERT INTO " + DataBaseLotto.TABLE_NAME_LOTTO_HISTORY) + " (" + DataBaseLotto.CHE_STRDATE_HIS) + ", " + DataBaseLotto.CHE_STR_RESULT_HIS) +
-                                            ", " + DataBaseLotto.CHE_STR_NUMBER_HIS) + ", " + DataBaseLotto.CHE_STR_TEXT_HIS) + ") " +
-                                            "VALUES ('" + listLotto.result_date) + "', + '" + strData_Lot[2] + "', + '" + strData_Lot[0] + "', + '" + strData_Lot[1] + "');")
+                                    ((((((((((((("INSERT INTO " + DataBaseLotto.TABLE_NAME_CHECK) + " (" + DataBaseLotto.CHE_DATE) + ", " + DataBaseLotto.CHE_ONE) + ", " + DataBaseLotto.CHE_ONE_BY) + ", " + DataBaseLotto.CHE_TWO) + ", "
+                                            + DataBaseLotto.CHE_TWO_END) + ", " + DataBaseLotto.CHE_THREE) + ", " + DataBaseLotto.CHE_FIRST_THREE_END) + ", " + DataBaseLotto.CHE_THREE_END) + ", "
+                                            + DataBaseLotto.CHE_FOUR) + ", " + DataBaseLotto.CHE_FIVE) + ", " + DataBaseLotto.CHE_LINK_LOTTO) + ", "
+                                            + DataBaseLotto.FORM_NEW) + ") " +
+                                            "VALUES ('" + listLotto.result_date + "', + '" + listLotto.first + "', + '" + listLotto.near_one + "', + '" + listLotto.second + "', + '" + listLotto.last_two + "', + '" + listLotto.third
+                                            + "', + '" + listLotto.first_three + "', + '" + listLotto.last_three + "', + '" + listLotto.forth + "', + '" + listLotto.fifth + "', + '" + listLotto.link_list_lotto_result + "', + '" + listLotto.form_new
+                                            + "');"
                                 )
-                                val selectQuery = "SELECT * FROM " + DataBaseLotto.TABLE_NAME_LOTTO_HISTORY
-                                val cursor = mDb.rawQuery(selectQuery, null)
-                                cursor.moveToLast()
-                            } else {
-                                mDb.execSQL(
-                                    ((((((("INSERT INTO " + DataBaseLotto.TABLE_NAME_LOTTO_HISTORY) + " (" + DataBaseLotto.CHE_STRDATE_HIS) + ", " + DataBaseLotto.CHE_STR_RESULT_HIS) + ", " + DataBaseLotto.CHE_STR_NUMBER_HIS) + ", " + DataBaseLotto.CHE_STR_TEXT_HIS) + ") " +
-                                            "VALUES ('" + listLotto.result_date) + "', + '" + strData_Lot[2] + "', + '" + strData_Lot[0] + "', + '" + strData_Lot[1] + "');")
-                                )
-                                val selectQuery = "SELECT * FROM " + DataBaseLotto.TABLE_NAME_LOTTO_HISTORY
-                                val cursor = mDb.rawQuery(selectQuery, null)
-                                cursor.moveToLast()
                             }
+                            val strCheckLotto = getCheck(requireContext(), listLotto.result_date, binding.mEditCheck.text.toString(), listLotto)
+                            if (strCheckLotto != "") {
+                                binding.mEditCheck.setText(strQrCode)
+                                val strData_Lot = strCheckLotto.split("_")
+                                mHelper = DataBaseLotto(requireActivity())
+                                mDb = mHelper.writableDatabase
+                                if ((strData_Lot[2] == "P")) {
+                                    mDb.execSQL(
+                                        ((((((("INSERT INTO " + DataBaseLotto.TABLE_NAME_LOTTO_HISTORY) + " (" + DataBaseLotto.CHE_STRDATE_HIS) + ", " + DataBaseLotto.CHE_STR_RESULT_HIS) +
+                                                ", " + DataBaseLotto.CHE_STR_NUMBER_HIS) + ", " + DataBaseLotto.CHE_STR_TEXT_HIS) + ") " +
+                                                "VALUES ('" + listLotto.result_date) + "', + '" + strData_Lot[2] + "', + '" + strData_Lot[0] + "', + '" + strData_Lot[1] + "');")
+                                    )
+                                    val selectQuery = "SELECT * FROM " + DataBaseLotto.TABLE_NAME_LOTTO_HISTORY
+                                    val cursor = mDb.rawQuery(selectQuery, null)
+                                    cursor.moveToLast()
+                                } else {
+                                    mDb.execSQL(
+                                        ((((((("INSERT INTO " + DataBaseLotto.TABLE_NAME_LOTTO_HISTORY) + " (" + DataBaseLotto.CHE_STRDATE_HIS) + ", " + DataBaseLotto.CHE_STR_RESULT_HIS) + ", " + DataBaseLotto.CHE_STR_NUMBER_HIS) + ", " + DataBaseLotto.CHE_STR_TEXT_HIS) + ") " +
+                                                "VALUES ('" + listLotto.result_date) + "', + '" + strData_Lot[2] + "', + '" + strData_Lot[0] + "', + '" + strData_Lot[1] + "');")
+                                    )
+                                    val selectQuery = "SELECT * FROM " + DataBaseLotto.TABLE_NAME_LOTTO_HISTORY
+                                    val cursor = mDb.rawQuery(selectQuery, null)
+                                    cursor.moveToLast()
+                                }
 
+                                val aBuilder = AlertDialog.Builder(requireContext())
+                                aBuilder.setMessage(strData_Lot[0]+" "+strData_Lot[1])
+                                aBuilder.setPositiveButton("OK") { dialog, which ->
+                                    dialog.cancel()
+                                }
+//                            aBuilder.setCancelable(false)
+                                aBuilder.show()
+
+                                object : CountDownTimer(3000, 1000) {
+                                    override fun onTick(millisUntilFinished: Long) {}
+                                    override fun onFinish() {
+                                        binding.mEditCheck.setText("")
+                                        strNumberEdit = ""
+                                        strQrCode = ""
+                                    }
+                                }.start()
+                            }
+                        }else{
                             val aBuilder = AlertDialog.Builder(requireContext())
-                            aBuilder.setMessage(strData_Lot[0]+" "+strData_Lot[1])
+                            aBuilder.setMessage(getString(R.string.text_check_incomplete))
                             aBuilder.setPositiveButton("OK") { dialog, which ->
                                 dialog.cancel()
                             }
-//                            aBuilder.setCancelable(false)
+                            aBuilder.setCancelable(false)
                             aBuilder.show()
-
-                            object : CountDownTimer(3000, 1000) {
-                                override fun onTick(millisUntilFinished: Long) {}
-                                override fun onFinish() {
-                                    binding.mEditCheck.setText("")
-                                    strNumberEdit = ""
-                                    strQrCode = ""
-                                }
-                            }.start()
                         }
-                    }else{
-                        val aBuilder = AlertDialog.Builder(requireContext())
-                        aBuilder.setMessage(getString(R.string.text_check_incomplete))
-                        aBuilder.setPositiveButton("OK") { dialog, which ->
-                            dialog.cancel()
-                        }
-                        aBuilder.setCancelable(false)
-                        aBuilder.show()
                     }
-                }
-
             }
-            override fun onFailure(call: Call<SubSmileLottoRewardModels>, t: Throwable) {
 
+            override fun onFailed(t: Throwable) {
+                Const.loge(TAG,"t : $t")
             }
-        })
+        }).getLoadData(URL.BASE_URL_LOTTO,URL.lotto_result+date+".json",":9943")
+
     }
 
     private fun getCheck(mContext: Context, strDateTime: String, strNumber: String, listLotto: SubSmileLottoRewardModels): String {
         var strCheckText = ""
         var strTextResult = ""
-        val postion = 0
         var rusultt = false
         var rusultf = true
         val two_end = strNumber.substring(4, 6)

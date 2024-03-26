@@ -8,13 +8,18 @@ import java.util.*
 object AppPreferencesLogin {
 
     private const val APP_SHARED_PREFS = "AppPreferences_Login"
+
+    //get from check Remember
     const val KEY_PREFS_REMEMBER_CHECK = "KEY_PREFS_REMEMBER_CHECK"
     const val KEY_PREFS_REMEMBER_USER = "KEY_PREFS_REMEMBER_USER"
     const val KEY_PREFS_REMEMBER_PASSWORD = "KEY_PREFS_REMEMBER_PASSWORD"
-    const val KEY_PREFS_LOGIN = "KEY_PREFS_LOGIN"
+//    const val KEY_PREFS_LOGIN = "KEY_PREFS_LOGIN"
+
+    //get from login
     const val KEY_PREFS_USERID = "KEY_PREFS_USERID"
     const val KEY_PREFS_SKEY = "KEY_PREFS_SKEY"
     const val KEY_PREFS_IDX = "KEY_PREFS_IDX"
+//    const val KEY_PREFS_HASH_LOGIN = "KEY_PREFS_HASH_LOGIN"
 
 
     fun setPreferences(mContext: Context,key: String, objects: Any){

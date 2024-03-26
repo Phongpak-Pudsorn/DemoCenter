@@ -17,9 +17,12 @@ import android.widget.PopupWindow
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.starvision.api.Api
 import com.starvision.api.ApiClient
 import com.starvision.api.URL
+import com.starvision.config.ParamsData
+import com.starvision.data.Const
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageLottothaiSubBinding
 import com.starvision.view.center.sub.adapter.AdapterLottothaiSub
@@ -29,6 +32,8 @@ import com.starvision.view.center.sub.models.SubLottothaiModels
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.http.GET
+import retrofit2.http.Path
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -88,18 +93,15 @@ class SubLottothaiPage : Fragment() {
         listData.clear()
         listDataRow.clear()
         binding.mProgressBar.visibility = View.VISIBLE
-
-        val getApiOffice = ApiClient().getBaseLink(URL.BASE_URL_LOTTO,":9943").create(Api::class.java)
-        getApiOffice.getLottoOffice(date).enqueue(object : Callback<SubLottothaiModels> {
-            @SuppressLint("NotifyDataSetChanged")
-            override fun onResponse(call: Call<SubLottothaiModels>, response: Response<SubLottothaiModels>) {
-                val getApiLottoOffice = response.body()!!
+        ParamsData(object : ParamsData.PostLoadListener {
+            override fun onSuccess(body: String) {
+                val getApiLottoOffice = Gson().fromJson(body,SubLottothaiModels::class.java)
                 if (getApiLottoOffice.Status == "True"){
                     for(i in getApiLottoOffice.Datarow.indices){
                         val dataRow = getApiLottoOffice.Datarow[i]
                         listDataRow.add(
                             SubLottothaiModels.NumberLot(dataRow.suggest_id, dataRow.suggest_date, dataRow.suggest_name, dataRow.top_second,
-                            dataRow.bottom_second, dataRow.top_third, dataRow.creationdate, dataRow.modificationdate, dataRow.compare_lotto_resault))
+                                dataRow.bottom_second, dataRow.top_third, dataRow.creationdate, dataRow.modificationdate, dataRow.compare_lotto_resault))
                         listData.add(SubLottothaiModels(getApiLottoOffice.Status,getApiLottoOffice.ErrorCode,listDataRow))
                     }
                     binding.mProgressBar.visibility = View.GONE
@@ -108,36 +110,36 @@ class SubLottothaiPage : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<SubLottothaiModels>, t: Throwable) {
-
+            override fun onFailed(t: Throwable) {
+                Const.loge(TAG,"t : $t")
             }
-        })
+
+        }).getLoadData(URL.BASE_URL_LOTTO,URL.lotto_office+date+".json",":9943")
     }
 
     private fun ExecuteDataDate() {
-        val getApiOfficeDate = ApiClient().getBaseLink(URL.BASE_URL_LOTTO,":9943").create(Api::class.java)
-        getApiOfficeDate.getLottoOfficeDate().enqueue(object : Callback<SubLottothaiDateModels> {
-            override fun onResponse(call: Call<SubLottothaiDateModels>, response: Response<SubLottothaiDateModels>) {
+        ParamsData(object : ParamsData.PostLoadListener{
+            override fun onSuccess(body: String) {
                 try {
-                    val dataDate = response.body()!!
+                    val dataDate = Gson().fromJson(body,SubLottothaiDateModels::class.java)
                     listDataFd = ArrayList()
                     listDataDate = ArrayList()
                     var dateNew = ""
                     if (dataDate.Status == "True") {
 //                        for (i in dataDate.Datarow.indices) {
-                            val sugDate = dataDate.Datarow[0].suggestdate
-                            listDataFd?.add(sugDate)
-                            try {
-                                val string = sugDate
-                                val sdfOld = SimpleDateFormat("yyyy-MM-dd")
-                                val date2 = sdfOld.parse(string)
-                                val year = date2!!.year + 543 + 1900
-                                val sdfNew = SimpleDateFormat(" dd MMMM $year", Locale("th", "THA"))
-                                dateNew = sdfNew.format(date2)
-                            } catch (e: ParseException) {
-                                e.printStackTrace()
-                            }
-                            listDataDate?.add("  " + resources.getString(R.string.text_date_off) + dateNew)
+                        val sugDate = dataDate.Datarow[0].suggestdate
+                        listDataFd?.add(sugDate)
+                        try {
+                            val string = sugDate
+                            val sdfOld = SimpleDateFormat("yyyy-MM-dd")
+                            val date2 = sdfOld.parse(string)
+                            val year = date2!!.year + 543 + 1900
+                            val sdfNew = SimpleDateFormat(" dd MMMM $year", Locale("th", "THA"))
+                            dateNew = sdfNew.format(date2)
+                        } catch (e: ParseException) {
+                            e.printStackTrace()
+                        }
+                        listDataDate?.add("  " + resources.getString(R.string.text_date_off) + dateNew)
 //                        }
                         setClick()
                     }
@@ -145,9 +147,11 @@ class SubLottothaiPage : Fragment() {
                     e.printStackTrace()
                 }
             }
-            override fun onFailure(call: Call<SubLottothaiDateModels>, t: Throwable) {
 
+            override fun onFailed(t: Throwable) {
+                Const.loge(TAG,"t : $t")
             }
-        })
+        }).getLoadData(URL.BASE_URL_LOTTO,URL.lotto_office_date,":9943")
+
     }
 }

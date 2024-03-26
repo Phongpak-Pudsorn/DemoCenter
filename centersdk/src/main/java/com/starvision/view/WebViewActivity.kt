@@ -1,6 +1,7 @@
 package com.starvision.view
 
 import android.annotation.SuppressLint
+import android.content.pm.ActivityInfo
 import android.net.http.SslError
 import android.os.Bundle
 import android.view.View
@@ -18,6 +19,7 @@ class WebViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         supportActionBar?.hide()
+//        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
         val bundle = intent.extras
         val link = bundle!!.getString("link")
 
