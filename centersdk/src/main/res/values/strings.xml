@@ -118,4 +118,12 @@
     <string name="zodiac_app">ดูดวงตามราศีเกิด การเงิน การงาน โชคลาภ ความรัก</string>
     <string name="zodiac_more">ดูเพิ่มเติมเต็มๆได้ที่ \"ดูดวง 12 ราศี\"</string>
     <string name="zodiac_name">ดูดวง 12 ราศี</string>
+
+    <!--package-->
+    <string name="oil_package">com.smileapp.oil</string>
+    <string name="exchange_package">com.starvision.exchangerate</string>
+    <string name="zodiac_package">com.smileapp.zodiac</string>
+    <string name="gold_package">com.smileapp.goldprice</string>
+    <string name="lucky_package">com.starvision.lottothai</string>
+    <string name="lottery_package">com.smileapp.lottery</string>
 </resources>

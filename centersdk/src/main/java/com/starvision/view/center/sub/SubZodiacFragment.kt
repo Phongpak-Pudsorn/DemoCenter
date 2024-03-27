@@ -13,6 +13,8 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import com.starvision.api.URL
+import com.starvision.data.Const
+import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageZodiacSubBinding
 
 class SubZodiacFragment:Fragment() {
@@ -29,6 +31,9 @@ class SubZodiacFragment:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         startWebView(URL.zodiac)
+        binding.cvMore.setOnClickListener {
+            Const.openApp(requireContext(),getString(R.string.zodiac_package),"view.activity.MainActivity")
+        }
     }
     private fun startWebView(url: String) {
 

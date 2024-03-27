@@ -1,9 +1,8 @@
 package com.starvision.view.center.sub
 
-import android.content.Context
+import android.content.ActivityNotFoundException
+import android.content.ComponentName
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.starvision.api.Api
 import com.starvision.api.ApiClient
 import com.starvision.api.URL
+import com.starvision.data.Const
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageOilSubBinding
 import com.starvision.view.center.sub.adapter.AdapterOilSub
@@ -43,7 +43,7 @@ class SubOilFragment: Fragment() {
             execeuteData()
         }
         binding.cvMore.setOnClickListener {
-            openPlayStore(requireContext(),"com.smileapp.oil")
+            Const.openApp(requireActivity(),getString(R.string.oil_package),"SplashActivity")
         }
     }
     private fun execeuteData(){
@@ -84,7 +84,6 @@ class SubOilFragment: Fragment() {
                                             var img2 = ""
                                             for (l in listOil.indices){
                                                 if (listOil[l].oil==listOil[i].data[j].id){
-                                                    Log.e("l $l",listOil[l].oil)
                                                     img2 = listOil[l].image
                                                     break
                                                 }
@@ -93,7 +92,6 @@ class SubOilFragment: Fragment() {
                                                 img1 = ""
                                             }
                                             oilList[k] = SubOilTodayModel("1",listOil[i].data[j].type,setName(listOil[i].data[j].type),listOil[i].data[j].today,img1+","+img2,setOilIcon(listOil[i].data[j].type))
-                                            Log.e("oilList $k",oilList[k].priceToday)
                                         }
                                     }
                                 }
@@ -175,36 +173,5 @@ class SubOilFragment: Fragment() {
                 return "oil8"
             }
         }
-    }
-
-    private fun appInstalledOrNot(context: Context, packageName:String): Boolean {
-        val pm = context.packageManager
-        try {
-            pm.getPackageInfo(packageName,PackageManager.GET_ACTIVITIES)
-            return true
-        }catch (e:PackageManager.NameNotFoundException){
-            e.printStackTrace()
-        }
-        return false
-    }
-    private fun openPlayStore(context: Context, destinationPackageName:String){
-        try {
-            if (appInstalledOrNot(context,"com.android.vending")){
-                val intent = Intent(Intent.ACTION_VIEW)
-                intent.data = Uri.parse("market://details?id=$destinationPackageName")
-                intent.setClassName("com.android.vending","com.google.android.finsky.activities.LaunchUrlHandlerActivity")
-                context.startActivity(intent)
-            }else{
-                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=$destinationPackageName")))
-//                val appIntent = Intent(context.packageManager.getLaunchIntentForPackage(destinationPackageName))
-//                context.startActivity(appIntent)
-            }
-        }catch (anfe:android.content.ActivityNotFoundException){
-            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=$destinationPackageName")))
-            anfe.printStackTrace()
-        }catch (e:Exception){
-            e.printStackTrace()
-        }
-
     }
 }

@@ -12,6 +12,8 @@ import com.google.gson.Gson
 import com.starvision.api.Api
 import com.starvision.api.ApiClient
 import com.starvision.api.URL
+import com.starvision.data.Const
+import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageExhangeSubBinding
 import com.starvision.view.center.sub.adapter.AdapterExchangeSub
 import com.starvision.view.center.sub.models.SubExchangeModel
@@ -33,6 +35,9 @@ class SubExchangeFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         executeData()
+        binding.cvMore.setOnClickListener {
+            Const.openApp(requireContext(),getString(R.string.exchange_package),"SplashActivity")
+        }
     }
     private fun executeData(){
         val services = ApiClient().getBaseLink(URL.BASE_URL,":443").create(Api::class.java)
