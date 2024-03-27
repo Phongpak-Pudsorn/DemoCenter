@@ -47,28 +47,28 @@ class StarvisionFragment:Fragment() {
     }
     private fun setNews(): ArrayList<NewsInfo> {
         newsList.clear()
-        newsList.add(NewsInfo("banner","",""))
-        newsList.add(NewsInfo("header","",""))
-        newsList.add(NewsInfo("1","","News 1"))
-        newsList.add(NewsInfo("2","","News 2"))
-        newsList.add(NewsInfo("3","","News 3"))
-        newsList.add(NewsInfo("4","","News 4"))
-        newsList.add(NewsInfo("5","","News 5"))
-        newsList.add(NewsInfo("6","","News 6"))
-        newsList.add(NewsInfo("7","","News 7"))
-        newsList.add(NewsInfo("8","","News 8"))
-        newsList.add(NewsInfo("9","","News 9"))
-        newsList.add(NewsInfo("10","","News 10"))
+        newsList.add(NewsInfo("banner","","","","",""))
+        newsList.add(NewsInfo("header","","","","",""))
+        newsList.add(NewsInfo("1","","News 1","","",""))
+        newsList.add(NewsInfo("2","","News 2","","",""))
+        newsList.add(NewsInfo("3","","News 3","","",""))
+        newsList.add(NewsInfo("4","","News 4","","",""))
+        newsList.add(NewsInfo("5","","News 5","","",""))
+        newsList.add(NewsInfo("6","","News 6","","",""))
+        newsList.add(NewsInfo("7","","News 7","","",""))
+        newsList.add(NewsInfo("8","","News 8","","",""))
+        newsList.add(NewsInfo("9","","News 9","","",""))
+        newsList.add(NewsInfo("10","","News 10","","",""))
         return newsList
     }
     private fun setBanner(): ArrayList<BannerInfo> {
         bannerList.clear()
-        bannerList.add(BannerInfo("1","","Contentdajukcbnahaefo ijhaeifnjhcoaenj;cvpavopn;anvpianvacdcacacadcacadecacaecacaecae"))
-        bannerList.add(BannerInfo("2","","News 2"))
-        bannerList.add(BannerInfo("3","","News 3"))
-        bannerList.add(BannerInfo("4","","News 4"))
-        bannerList.add(BannerInfo("5","","News 5"))
-        bannerList.add(BannerInfo("6","","News 6"))
+        bannerList.add(BannerInfo("1","","Contentdajukcbnahaefo ijhaeifnjhcoaenj;cvpavopn;anvpianvacdcacacadcacadecacaecacaecae","",""))
+        bannerList.add(BannerInfo("2","","News 2","",""))
+        bannerList.add(BannerInfo("3","","News 3","",""))
+        bannerList.add(BannerInfo("4","","News 4","",""))
+        bannerList.add(BannerInfo("5","","News 5","",""))
+        bannerList.add(BannerInfo("6","","News 6","",""))
         return bannerList
     }
 }

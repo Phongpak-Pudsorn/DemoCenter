@@ -37,9 +37,9 @@ class AdapterStarvision(context:Context, val listNews:ArrayList<NewsInfo>, val b
     class NewsHolder(val newsBinding: ItemNewsBinding):RecyclerView.ViewHolder(newsBinding.root)
     class HeaderHolder(val headerBinding: ItemNewsHeaderBinding):RecyclerView.ViewHolder(headerBinding.root)
     override fun getItemViewType(position: Int): Int {
-        if (listNews[position].id=="banner"){
+        if (listNews[position].newsappId=="banner"){
             return VIEW_TYPE_BANNER
-        }else if (listNews[position].id=="header"){
+        }else if (listNews[position].newsappId=="header"){
             return VIEW_TYPE_NEWS_HEADER
         }else{
             return VIEW_TYPE_NEWS
@@ -126,7 +126,7 @@ class AdapterStarvision(context:Context, val listNews:ArrayList<NewsInfo>, val b
                 layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL,false)
             }
         }else if (holder is NewsHolder){
-            holder.newsBinding.tvTitle.text = listNews[position].desc
+            holder.newsBinding.tvTitle.text = listNews[position].newsappTitle
         }
 
     }

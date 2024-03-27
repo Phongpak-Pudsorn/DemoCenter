@@ -20,6 +20,6 @@ class AdapterImageSlide(val bannerList:ArrayList<BannerInfo>):RecyclerView.Adapt
     override fun getItemCount(): Int = bannerList.size
 
     override fun onBindViewHolder(holder: ImageHolder, position: Int) {
-        holder.imgBinding.tvContent.text = bannerList[position].desc
+        holder.imgBinding.tvContent.text = bannerList[position].bannerTitle
     }
 }

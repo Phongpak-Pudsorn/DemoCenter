@@ -11,6 +11,7 @@ object URL {
     const val URL_LOGIN = "/login/api/login_star.php"
     const val URL_REGISTER = "/login/api/register.php"
     const val URL_PROFILE = "/api/myprofile"
+    const val URL_CENTER = "/api/apicenter"
 
     const val BASE_URL = "https://starvision.in.th"
     const val BASE_URL_LOTTO= "https://lottery.starvision.in.th"
