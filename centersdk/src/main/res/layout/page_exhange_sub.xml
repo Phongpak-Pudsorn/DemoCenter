@@ -19,7 +19,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/bg"
+            android:background="@mipmap/bg"
             android:orientation="horizontal">
 
             <RelativeLayout
@@ -77,7 +77,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:padding="3dp"
-                    android:src="@drawable/us" />
+                    android:src="@mipmap/us" />
 
                 <TextView
                     android:id="@+id/mTvCurrencryR"
@@ -192,7 +192,7 @@
                     android:id="@+id/imageView2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_exchange" />
+                    android:src="@mipmap/ic_exchange" />
 
             </androidx.cardview.widget.CardView>
 
