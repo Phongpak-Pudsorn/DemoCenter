@@ -19,22 +19,25 @@
         android:scaleType="fitXY"
         app:srcCompat="@mipmap/ic_launcher" />
 
-    <TextView
-        android:id="@+id/tvContent"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black_light"
+        android:layout_margin="20dp"
+        app:cardCornerRadius="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:padding="10dp"
-        android:gravity="center"
-        android:text="Contentdajukcbnahaefo ijhaeifnjhcoaenj;cvpavopn;anvpianvacdcacacadcacadecacaecacaecae"
-        android:textColor="@color/white"
-        android:textSize="24sp" />
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/tvContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="20dp"
+            android:background="@color/black_jang"
+            android:text="Contentdajukcbnahaefo ijhaeifnjhcoaenj;cvpavopn;anvpianvacdcacacadcacadecacaecacaecae"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

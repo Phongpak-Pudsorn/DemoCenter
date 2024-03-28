@@ -2,6 +2,7 @@ package com.starvision.api
 
 
 import android.database.Observable
+import com.starvision.view.center.models.CenterModels
 import com.starvision.view.center.models.ProfileModels
 import com.starvision.view.center.sub.models.*
 import com.starvision.view.login.models.LoginModels
@@ -18,6 +19,8 @@ interface Api {
     //ราคาน้ำมัน
     @GET(URL.oil_price)
     fun getOil() : Call<SubOilModel>
+    @GET(URL.URL_CENTER)
+    fun getCenter() : Call<CenterModels>
 
     @POST()
     fun postRequest(@Url url : String, @Body body: java.util.HashMap<String?, String?>): Call<ResponseBody>
