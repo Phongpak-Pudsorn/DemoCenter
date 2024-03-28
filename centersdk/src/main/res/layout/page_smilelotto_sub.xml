@@ -35,8 +35,9 @@
                 android:layout_gravity="center_vertical"
                 android:gravity="center"
                 android:text="@string/checklotto_name"
+                android:fontFamily="@font/psl156"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="22sp" />
         </RelativeLayout>
 
     </LinearLayout>
