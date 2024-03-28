@@ -32,7 +32,8 @@ class SubZodiacFragment:Fragment() {
         super.onViewCreated(view, savedInstanceState)
         startWebView(URL.zodiac)
         binding.cvMore.setOnClickListener {
-            Const.openAnotherApp(requireContext(),getString(R.string.zodiac_package))
+//            Const.openApp(requireContext(),getString(R.string.zodiac_package),"view.activity.MainActivity")
+            Const.openAnotherApp(requireActivity(),getString(R.string.zodiac_package))
         }
     }
     private fun startWebView(url: String) {

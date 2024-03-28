@@ -36,7 +36,8 @@ class SubExchangeFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         executeData()
         binding.cvMore.setOnClickListener {
-            Const.openAnotherApp(requireContext(),getString(R.string.exchange_package))
+//            Const.openApp(requireContext(),getString(R.string.exchange_package),"SplashActivity")
+            Const.openAnotherApp(requireActivity(),getString(R.string.exchange_package))
         }
     }
     private fun executeData(){
