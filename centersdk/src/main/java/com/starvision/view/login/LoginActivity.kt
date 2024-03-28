@@ -18,8 +18,10 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.starvision.api.*
+import com.starvision.config.CryptoHandler
 import com.starvision.config.MD5
 import com.starvision.config.ParamsData
 import com.starvision.data.AppPreferencesLogin
@@ -27,8 +29,10 @@ import com.starvision.data.Const
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageLoginBinding
 import com.starvision.view.center.MainActivity
+import com.starvision.view.center.models.ProfileModels
 import com.starvision.view.login.models.LoginModels
 import okhttp3.ResponseBody
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -164,6 +168,42 @@ class LoginActivity : AppCompatActivity() {
                             }else{
                                 appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_REMEMBER_CHECK,false)
                             }
+                            val timeStamp : String = SimpleDateFormat("HHmmssddMMyyyy").format(Date())
+                            val idx = CryptoHandler().encrypt(jSon.idx,Const.AES_KEY,"0000000000000000")
+                            val ts =  CryptoHandler().encrypt(timeStamp ,Const.AES_KEY,"0000000000000000")
+                            val sign = MD5.CMD5("Starvision|${jSon.idx}|CheckProfile|$timeStamp")
+                            val hashMaps = java.util.HashMap<String?, String?>()
+                            hashMaps["idx"] = idx
+                            hashMaps["ts"] = ts
+                            hashMaps["sign"] = sign
+                            Const.loge(TAG, "params : $hashMaps")
+
+                            ParamsData(object : ParamsData.PostLoadListener{
+                                override fun onSuccess(body: String) {
+                                    try {
+                                        val jSonPro = Gson().fromJson(body, ProfileModels::class.java)
+//                                        Const.loge(TAG," "+jSonPro.message)
+//                                        Const.loge(TAG," "+jSonPro.code)
+//                                        Const.loge(TAG," "+jSonPro.data!!.name)
+//                                        Const.loge(TAG," "+jSonPro.data.avatar)
+//                                        Const.loge(TAG," "+jSonPro.data.coin)
+                                        appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_NAME, jSonPro.data!!.name!!.toString())
+                                        appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_AVATAR,jSonPro.data.avatar!!.toString())
+                                        appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_COIN,jSonPro.data.coin!!.toString())
+
+                                        Const.loge(TAG," "+appPrefe.getPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_NAME,""))
+                                        Const.loge(TAG," "+appPrefe.getPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_AVATAR,""))
+                                        Const.loge(TAG," "+appPrefe.getPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_COIN,""))
+//
+                                    }catch (e : Exception){
+                                        e.printStackTrace()
+                                    }
+                                }
+
+                                override fun onFailed(t: Throwable) {
+                                    Const.loge(TAG,"t : $t")
+                                }
+                            }).postLoadData(URL.BASE_URL_SDK,URL.URL_PROFILE,"",hashMaps)
                             appPrefe.setPreferences(this@LoginActivity, AppPreferencesLogin.KEY_PREFS_USERID,jSon.userid)
                             appPrefe.setPreferences(this@LoginActivity, AppPreferencesLogin.KEY_PREFS_SKEY,jSon.SKey!!)
                             appPrefe.setPreferences(this@LoginActivity, AppPreferencesLogin.KEY_PREFS_IDX,jSon.idx!!)
@@ -244,4 +284,6 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun loadCheckProfile(){
+    }
 }

@@ -10,21 +10,34 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
+import com.google.gson.Gson
+import com.starvision.api.URL
+import com.starvision.config.AESHelper
+import com.starvision.config.CryptoHandler
+import com.starvision.config.MD5
+import com.starvision.config.ParamsData
 import com.starvision.data.AppPreferencesLogin
+import com.starvision.data.Const
 import com.starvision.luckygamesdk.databinding.MainPageBinding
 import com.starvision.view.center.adapter.AdapterMenuTab
 import com.starvision.view.center.adapter.AdapterPager
 import com.starvision.view.center.info.TabInfo
+import com.starvision.view.center.models.ProfileModels
 import com.starvision.view.stavisions.StarvisionFragment
 import com.starvision.view.luckygamesdk.LuckyGameFragment
 import com.starvision.view.playplay.PlayplayFragment
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity: AppCompatActivity() {
     private val binding: MainPageBinding by lazy { MainPageBinding.inflate(layoutInflater) }
     private val appPrefs = AppPreferencesLogin
+    private val TAG = javaClass.simpleName
     var tablist = ArrayList<TabInfo>()
     var fragments = ArrayList<Fragment>()
-    override fun onCreate(savedInstanceState: Bundle?) {
+        override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         supportActionBar?.hide()
@@ -48,8 +61,6 @@ class MainActivity: AppCompatActivity() {
             })
             layoutManager = LinearLayoutManager(this@MainActivity,RecyclerView.HORIZONTAL,false)
         }
-        binding.tvCoinNum.text = "0"
-        binding.tvUsername.text = appPrefs.getPreferences(this@MainActivity,AppPreferencesLogin.KEY_PREFS_REMEMBER_USER,"") as String
         binding.imgProfile.setOnClickListener {
             val dialogProfile = ProfileDialogFragment()
             dialogProfile.setClickListener(object : ProfileDialogFragment.ClickListener{
@@ -59,6 +70,9 @@ class MainActivity: AppCompatActivity() {
             })
             dialogProfile.show(supportFragmentManager,"")
         }
+            binding.tvUsername.text = appPrefs.getPreferences(this,AppPreferencesLogin.KEY_PREFS_NAME,"").toString()
+            binding.tvCoinNum.text = appPrefs.getPreferences(this,AppPreferencesLogin.KEY_PREFS_COIN,"").toString()
+            Glide.with(this).load(appPrefs.getPreferences(this,AppPreferencesLogin.KEY_PREFS_AVATAR,"")).into(binding.imgProfile)
     }
     private fun setTab(): ArrayList<TabInfo> {
         tablist.clear()

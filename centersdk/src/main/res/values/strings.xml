@@ -32,6 +32,31 @@
     <!-- Login,Regis,Forgot -->
 
     <!-- เลขเด็ดหวยดัง -->
+    <string name="lotto_package">com.starvision.lottothai</string>
+    <string name="lotto_app">- ตรวจลอตเตอรี่, ตรวจรางวัล, หวยลาว, lottery thai
+        - ตรวจหวย ด้วย QRCode (คิวอาร์โค้ด)
+        - แจ้งเตือนเมื่อหวยออกทันที รวดเร็ว ทันใจ ++
+        - รู้ผลลอตเตอรี่ แบบ Real Time ด้วยการแจ้งเตือน Push ไม่ต้องเสียตังค์!!
+        - อัพเดทผลสลาก ตรวจลอตเตอรี่ ผลสลากกินแบ่งรัฐบาล ได้ก่อนใคร คอหวย สามารถตรวจล็อตเตอรี่ได้ครั้งละหลายๆ ใบ
+        - สถิติหวยรายวัน เช่น สถิติหวยออกวันจันทร์,สถิติหวยออกวันอังคาร, สถิติหวยวันพุธ
+        - สถิติหวยรายเดือน เช่น สถิติหวยเดือนตุลาคม, สถิติหวยออกเดือนพฤศจิกายน
+        - วิเคราะห์เลขเด็ดจากหลายแหล่งให้เลขตรงกัน
+        - อันดับสำนักให้หวยแม่น และสถิติเลขหวยสำนักแม่น
+        - จัดการเรียงเมนูได้ด้วยตนเอง
+        - ร่วมสนุก เสี่ยงดวง โดยการ ขูดเลขเด็ด แล้ววัดผลความแม่นกับสำนักดัง
+        - เลขจากสำนักดัง เลขเด็ด วิเคราะห์หวย รวบรวมเหล่าหวยดังจากบรรดาสำนัก เกจิอาจารย์ดัง อัพเดททุกงวด
+        - ทำนายฝันแม่นๆ กว่า 4,000 คำ พร้อมเลขนำโชค
+        - ข่าวเลขดัง รวมทุกความเคลื่อนไหวเรื่องหวยทั่วไทย ไม่ควรพลาด
+        - สถิติหวย สรุปวิเคราะห์สถิติหวย 2ตัว 3ตัว สามารถตรวจสอบหวยย้อนหลัง และแสดงสถิติสำนักที่ให้หวยแม่น
+        - ดูดวง ประจำวันกันได้ด้วยการ เสี่ยงเซียมซี
+        - เงื่อนไขเงินรางวัลสลากกินแบ่งรัฐบาล
+        - ฟังวิทยุออนไลน์ ฟังหวยสด
+        - แชร์เลขดัง , ข่าวหวย , หวย , สถิติหวยย้อนหลัง ThaiLottery ไปยัง Facebook, Twitter, Line
+        - ฝากตรวจหวยล่วงหน้า
+        - ร่วมด้วยช่วยกันแชร์ เลขดัง ของคุณใน Vote หวย
+        - สแกนเลขดัง ของท่านเองบนบาร์โค้ดสลากสินค้าต่างๆ</string>
+    <string name="lotto_more">ดูเพิ่มเติมเต็มๆได้ที่ \"เลขเด็ดหวยดัง - ตรวจหวย\"</string>
+    <string name="lotto_name">เลขเด็ดหวยดัง - ตรวจหวย</string>
     <string name="text_bureau_off">สำนัก : </string>
     <string name="text_3_off">3 ตัวบน :</string>
     <string name="text_2_up_off">2 ตัวบน :</string>
@@ -56,7 +81,10 @@
     <!-- Profile -->
 
     <!--  ตรวจหวย  -->
-    <string name="text_name_app_check_lotto">ตรวจหวย</string>
+    <string name="checklotto_app">ตรวจสลากกินแบ่ง (Lottery Thai) - ตรวจหวยย้อนหลัง รวดเร็วทันใจ พร้อมระบบฝากตรวจล่วงหน้า ช่วยให้คุณตรวจหวยได้อย่างสะดวกสบายยิ่งขึ้น</string>
+    <string name="checklotto_more">ดูเพิ่มเติมเต็มๆได้ที่ \"ตรวจหวย ตรวจลอตเตอรี่ QRCode\"</string>
+    <string name="checklotto_name">ตรวจหวย ตรวจลอตเตอรี่ QRCode</string>
+    <string name="checklotto_package">com.smileapp.lottery</string>
     <string name="check_one">รางวัลที่ 1</string>
     <string name="check_one_by">รางวัลข้างเคียงรางวัลที่ 1</string>
     <string name="check_two_end">เลขท้าย 2 ตัว</string>
@@ -88,12 +116,19 @@
     <string name="text_check_incomplete">กรุณาใส่หมายเลขสลาก 6 หลัก</string>
     <!--  ตรวจหวย  -->
 
+    <!--  ราคาทองวันนี้  -->
+    <string name="goldToday_app">ติดตาม ราคาทองคำ ในประเทศไทย Thai Gold Price in Thailand</string>
+    <string name="goldToday_more">ดูเพิ่มเติมเต็มๆได้ที่ \"ราคาทองวันนี้\"</string>
+    <string name="goldToday_name">ราคาทองวันนี้</string>
+    <string name="goldToday_package">com.smileapp.goldprice</string>
     <string name="news_today">ข่าวประจำวัน</string>
     <string name="text_episode">EP:</string>
     <string name="tv_gold_buy">รับซื้อ (บาท) : </string>
     <string name="tv_gold_sell">ขายออก (บาท) : </string>
     <string name="gold_96_5">ทองรูปพรรณ 96.5%</string>
     <string name="gold_in_place_96_5">ทองคำแท่ง 96.5%</string>
+    <!--  ราคาทองวันนี้  -->
+
     <!-- น้ำมัน-->
     <string name="oil1">แก๊สโซฮอล์ 95</string>
     <string name="oil2">แก๊สโซฮอล์ 91</string>

@@ -5,6 +5,42 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/bg"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imgBack"
+                android:layout_width="wrap_content"
+                android:paddingStart="10dp"
+                android:layout_height="50dp"
+                android:layout_alignParentStart="true"
+                app:srcCompat="@drawable/btn_back_sdk" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:text="@string/goldToday_name"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,7 +49,7 @@
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -25,11 +61,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/grey"
+                android:fontFamily="@font/psl156"
                 android:paddingStart="10dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="5dp"
                 android:paddingBottom="5dp"
-                android:fontFamily="@font/psl156"
                 android:text="@string/gold_in_place_96_5"
                 android:textColor="@color/bg_name_lucky"
                 android:textSize="24sp" />
@@ -58,8 +94,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="@string/tv_gold_buy"
                     android:fontFamily="@font/psl156"
+                    android:text="@string/tv_gold_buy"
                     android:textColor="@color/clam_light"
                     android:textSize="22sp" />
 
@@ -68,8 +104,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="@string/tv_gold_sell"
                     android:fontFamily="@font/psl156"
+                    android:text="@string/tv_gold_sell"
                     android:textColor="@color/clam_light"
                     android:textSize="22sp" />
             </LinearLayout>
@@ -84,8 +120,8 @@
                     android:id="@+id/tv_price_sell"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:fontFamily="@font/psl156"
                     android:layout_weight="1"
+                    android:fontFamily="@font/psl156"
                     android:textColor="@color/black_light"
                     android:textSize="22sp" />
 
@@ -93,9 +129,9 @@
                     android:id="@+id/tv_price_buy"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textColor="@color/black_light"
                     android:layout_weight="1"
                     android:fontFamily="@font/psl156"
+                    android:textColor="@color/black_light"
                     android:textSize="22sp" />
             </LinearLayout>
 
@@ -109,15 +145,15 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingStart="10dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingStart="10dp">
 
                     <TextView
                         android:id="@+id/tv_progress_buy"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textColor="@color/black_light"
                         android:fontFamily="@font/psl156"
+                        android:textColor="@color/black_light"
                         android:textSize="22sp" />
 
                     <ImageView
@@ -130,15 +166,15 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingStart="10dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingStart="10dp">
 
                     <TextView
                         android:id="@+id/tv_progress_sell"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textColor="@color/black_light"
                         android:fontFamily="@font/psl156"
+                        android:textColor="@color/black_light"
                         android:textSize="22sp" />
 
                     <ImageView
@@ -155,7 +191,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="@color/grey"/>
+            android:background="@color/grey" />
 
     </LinearLayout>
 
@@ -318,8 +354,6 @@
         android:id="@+id/cv_app"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -327,16 +361,26 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/grey_bg"
+            android:background="@color/grey"
             android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_margin="10dp"
+            <androidx.cardview.widget.CardView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="15dp"
                 android:layout_weight="0"
-                android:src="@mipmap/ic_launcher" />
+                app:cardCornerRadius="10dp">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_gold" />
+
+            </androidx.cardview.widget.CardView>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -351,42 +395,52 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingStart="5dp"
-                    android:text="tv_name_app"
                     android:textColor="@color/black_light"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp"
+                    android:singleLine="true"
+                    android:focusableInTouchMode="true"
+                    android:ellipsize="marquee"
+                    android:freezesText="false"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:fontFamily="@font/psl156"
+                    android:text="@string/goldToday_app" />
 
                 <TextView
                     android:id="@+id/tv_des_app"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="tv_des_app"
                     android:textColor="@color/black_light"
-                    android:textSize="14sp" />
+                    android:textSize="17sp"
+                    android:singleLine="true"
+                    android:focusableInTouchMode="true"
+                    android:ellipsize="marquee"
+                    android:freezesText="false"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:fontFamily="@font/psl156"
+                    android:text="@string/goldToday_more" />
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_more"
+                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="10dp"
-                android:layout_weight="0"
-                app:cardCornerRadius="10dp">
+                app:cardCornerRadius="10dp"
+                android:layout_weight="0">
 
                 <TextView
                     android:id="@+id/tv_more"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/btn_login"
                     android:paddingStart="10dp"
-                    android:paddingTop="2dp"
                     android:paddingEnd="10dp"
-                    android:paddingBottom="2dp"
-                    android:text="เพิ่มเติม"
+                    android:background="@drawable/btn_login"
                     android:textColor="@color/white"
-                    android:textSize="13sp" />
+                    android:textSize="16sp"
+                    android:fontFamily="@font/psl156"
+                    android:text="เพิ่มเติม >" />
             </androidx.cardview.widget.CardView>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

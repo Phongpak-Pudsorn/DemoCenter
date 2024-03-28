@@ -11,6 +11,7 @@ import com.google.gson.Gson
 import com.starvision.api.URL
 import com.starvision.config.AESHelper
 import com.starvision.config.CryptoHandler
+import com.starvision.config.MD5
 import com.starvision.config.ParamsData
 import com.starvision.data.AppPreferencesLogin
 import com.starvision.data.Const
@@ -32,7 +33,7 @@ import javax.crypto.spec.SecretKeySpec
 class ProfileDialogFragment : DialogFragment() {
     private val binding : PageFullProfileBinding by lazy { PageFullProfileBinding.inflate(layoutInflater) }
     private val TAG = javaClass.simpleName
-    private val appPref = AppPreferencesLogin
+    private val appPrefe = AppPreferencesLogin
 
     private lateinit var mClickListener : ClickListener
     interface ClickListener {
@@ -56,52 +57,13 @@ class ProfileDialogFragment : DialogFragment() {
         dialog!!.window!!.setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT)
         dialog!!.window!!.setBackgroundDrawableResource(R.color.transparent)
         bindingObject()
-
-        val timeStamp : String = SimpleDateFormat("HHmmssddMMyyyy").format(Date())
-        val loadIdx = appPref.getPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_IDX,"").toString()
-        val sKey = appPref.getPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_SKEY,"").toString()
-        val idx = CryptoHandler().encrypt(appPref.getPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_IDX,"").toString(),sKey,"0000000000000000")
-        val ts =  CryptoHandler().encrypt(timeStamp ,sKey,"0000000000000000")
-
-//        val idx = AESHelper.encrypt(idxs,Const.AES_KEY)
-//        val ts = AESHelper.encrypt(tss, Const.AES_KEY)
-        val sign = "Starvision|$loadIdx|CheckProfile|$timeStamp"
-
-//        {sign=Starvision|1001001000|CheckProfile|16165826032024, idx=wFN2NxGmXUW4qCLFoEmqwQ==, ts=SCcwm8Jo3OETfNyaK83sdA==}
-//        {"idx":"B8Fz151GGq+MqrHyPWAoLmy+XrzrMlbzyzepKjwtkHw=","ts":"c2Ux1/9d5wBV4bY95M00O3WXNZA2jBENbch2XPmQz4s=","sign":"b8704a6af06a6d4740bd5ec393de1e4a"}
-
-        val hashMap = HashMap<String?,String?>()
-        hashMap["idx"] = idx
-        hashMap["ts"] = ts
-        hashMap["sign"] = sign
-        Const.loge(TAG, "params : $hashMap")
-
-        ParamsData(object : ParamsData.PostLoadListener{
-            override fun onSuccess(body: String) {
-                try {
-                    val jSon = Gson().fromJson(body,ProfileModels::class.java)
-                    Const.loge(TAG," "+jSon.message)
-                    Const.loge(TAG," "+jSon.code)
-                    Const.loge(TAG," "+jSon.data!!.idx)
-                    Const.loge(TAG," "+jSon.data.name)
-                    Const.loge(TAG," "+jSon.data.avatar)
-                    Const.loge(TAG," "+jSon.data.coin)
-
-                    binding.tvName.text = jSon.data.name
-                    binding.tvCoin.text = jSon.data.coin.toString()
-                    binding.tvIdx.text = "Idx : "+jSon.data.idx
-                    Glide.with(requireContext()).load(jSon.data.avatar).into(binding.imgProfile)
-                }catch (e : Exception){
-                    e.printStackTrace()
-                }
-            }
-
-            override fun onFailed(t: Throwable) {
-                Const.loge(TAG,"t : $t")
-            }
-        }).postLoadData(URL.BASE_URL_SDK,URL.URL_PROFILE,"",hashMap)
-
+//        loadCheckProfile()
         dialog!!.show()
+        binding.tvName.text = appPrefe.getPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_NAME,"").toString()
+        binding.tvCoin.text = appPrefe.getPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_COIN,"").toString()
+        binding.tvIdx.text = appPrefe.getPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_IDX,"").toString()
+        Glide.with(requireContext()).load(appPrefe.getPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_AVATAR,"")).into(binding.imgProfile)
+
     }
 
     private fun bindingObject(){

@@ -19,6 +19,10 @@ object AppPreferencesLogin {
     const val KEY_PREFS_USERID = "KEY_PREFS_USERID"
     const val KEY_PREFS_SKEY = "KEY_PREFS_SKEY"
     const val KEY_PREFS_IDX = "KEY_PREFS_IDX"
+
+    const val KEY_PREFS_NAME = "KEY_PREFS_NAME"
+    const val KEY_PREFS_AVATAR = "KEY_PREFS_AVATAR"
+    const val KEY_PREFS_COIN = "KEY_PREFS_COIN"
 //    const val KEY_PREFS_HASH_LOGIN = "KEY_PREFS_HASH_LOGIN"
 
 

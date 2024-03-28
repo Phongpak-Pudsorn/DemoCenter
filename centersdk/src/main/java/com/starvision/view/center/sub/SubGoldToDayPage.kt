@@ -35,6 +35,11 @@ class SubGoldToDayPage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         executeData()
+        binding.tvNameApp.isSelected = true
+        binding.tvDesApp.isSelected = true
+        binding.cvMore.setOnClickListener {
+            Const.openAnotherApp(requireContext(),getString(R.string.goldToday_package))
+        }
     }
 
     private fun executeData(){

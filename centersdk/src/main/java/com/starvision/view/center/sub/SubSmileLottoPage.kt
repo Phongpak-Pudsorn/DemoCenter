@@ -63,8 +63,12 @@ class SubSmileLottoPage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         executeDataDate()
-        binding.tvNameApp.text = getString(R.string.text_name_app_check_lotto)
+        binding.tvNameApp.isSelected = true
+        binding.tvDesApp.isSelected = true
         binding.mProgressBar.visibility = View.VISIBLE
+        binding.cvMore.setOnClickListener {
+            Const.openAnotherApp(requireContext(),getString(R.string.checklotto_package))
+        }
     }
 
     private fun setClick() {

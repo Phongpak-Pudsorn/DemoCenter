@@ -62,9 +62,11 @@ class SubLottothaiPage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         ExecuteDataDate()
-
-        binding.tvNameApp.text = getString(R.string.text_name_app_lottothai)
-
+        binding.cvMore.setOnClickListener {
+            Const.openAnotherApp(requireContext(),getString(R.string.lotto_package))
+        }
+        binding.tvNameApp.isSelected = true
+        binding.tvDesApp.isSelected = true
         binding.reCycleView.visibility = View.VISIBLE
         binding.mLvOffice.isRefreshing = false
         binding.mLvOffice.setOnChildScrollUpCallback { parent, child -> false }

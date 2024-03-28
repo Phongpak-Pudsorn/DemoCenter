@@ -43,7 +43,7 @@ class SubOilFragment: Fragment() {
             execeuteData()
         }
         binding.cvMore.setOnClickListener {
-            Const.openApp(requireActivity(),getString(R.string.oil_package),"SplashActivity")
+            Const.openAnotherApp(requireActivity(),getString(R.string.oil_package))
         }
     }
     private fun execeuteData(){
