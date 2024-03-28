@@ -9,7 +9,7 @@
         android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@drawable/bg"
+        android:background="@mipmap/bg"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -166,7 +166,7 @@
                     android:id="@+id/imageView2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_lucky" />
+                    android:src="@mipmap/ic_lucky" />
 
             </androidx.cardview.widget.CardView>
 

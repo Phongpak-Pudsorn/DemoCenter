@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageWebviewBinding
 
-class WebViewActivity : AppCompatActivity() {
+class WebViewLuckyActivity : AppCompatActivity() {
     private val binding : PageWebviewBinding by lazy { PageWebviewBinding.inflate(layoutInflater) }
     private var callback : OnBackPressedCallback? = null
 
@@ -19,12 +19,10 @@ class WebViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         supportActionBar?.hide()
+//        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
         val bundle = intent.extras
         val link = bundle!!.getString("link")
 
-        binding.lnTopBar.visibility = View.VISIBLE
-        binding.linearLayout2.visibility = View.VISIBLE
-        binding.linearLayout.visibility = View.VISIBLE
         binding.btnBack.setOnClickListener { finish() }
         callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {

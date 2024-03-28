@@ -16,10 +16,21 @@
     <application>
         <activity android:name="com.starvision.view.login.LoginActivity"
             android:usesCleartextTraffic="true"
-                  android:label="Login_Page">
+            android:screenOrientation="portrait"
+            android:label="Login_Page">
         </activity>
-        <activity android:name="com.starvision.view.center.MainActivity" />
-        <activity android:name="com.starvision.view.WebViewActivity" />
+
+        <activity android:name="com.starvision.view.center.MainActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name="com.starvision.view.WebViewActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name="com.starvision.view.WebViewLuckyActivity"
+            android:screenOrientation="landscape">
+        </activity>
 
     </application>
 <!--    <queries>-->

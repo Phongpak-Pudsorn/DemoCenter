@@ -131,8 +131,10 @@ class LoginActivity : AppCompatActivity() {
         handler.postDelayed({ binding.cvLogin.isEnabled = true },1000)
         if(binding.editUsername.length() < 6){
             Toast.makeText(this,getString(R.string.text_alert_user_min),Toast.LENGTH_SHORT).show()
+            binding.progressBar2.visibility = View.GONE
         }else if(binding.editPassword.length() < 6){
             Toast.makeText(this,getString(R.string.text_alert_password_min), Toast.LENGTH_SHORT).show()
+            binding.progressBar2.visibility = View.GONE
         }else{
             val password = MD5.CMD5(binding.editPassword.text.toString())
             val imei = Const.getUUID(this)
@@ -156,8 +158,6 @@ class LoginActivity : AppCompatActivity() {
 
             ParamsData(object : ParamsData.PostLoadListener{
                 override fun onSuccess(body : String) {
-                    binding.cvLogin.isEnabled = true
-                    binding.progressBar2.visibility = View.GONE
                     try {
                         val jSon = Gson().fromJson(body,LoginModels::class.java)
                         if(jSon.message == "success"){
@@ -168,6 +168,7 @@ class LoginActivity : AppCompatActivity() {
                             }else{
                                 appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_REMEMBER_CHECK,false)
                             }
+
                             val timeStamp : String = SimpleDateFormat("HHmmssddMMyyyy").format(Date())
                             val idx = CryptoHandler().encrypt(jSon.idx,Const.AES_KEY,"0000000000000000")
                             val ts =  CryptoHandler().encrypt(timeStamp ,Const.AES_KEY,"0000000000000000")
@@ -181,20 +182,18 @@ class LoginActivity : AppCompatActivity() {
                             ParamsData(object : ParamsData.PostLoadListener{
                                 override fun onSuccess(body: String) {
                                     try {
+                                        binding.cvLogin.isEnabled = true
+                                        binding.progressBar2.visibility = View.GONE
                                         val jSonPro = Gson().fromJson(body, ProfileModels::class.java)
-//                                        Const.loge(TAG," "+jSonPro.message)
-//                                        Const.loge(TAG," "+jSonPro.code)
-//                                        Const.loge(TAG," "+jSonPro.data!!.name)
-//                                        Const.loge(TAG," "+jSonPro.data.avatar)
-//                                        Const.loge(TAG," "+jSonPro.data.coin)
                                         appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_NAME, jSonPro.data!!.name!!.toString())
                                         appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_AVATAR,jSonPro.data.avatar!!.toString())
                                         appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_COIN,jSonPro.data.coin!!.toString())
 
-                                        Const.loge(TAG," "+appPrefe.getPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_NAME,""))
-                                        Const.loge(TAG," "+appPrefe.getPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_AVATAR,""))
-                                        Const.loge(TAG," "+appPrefe.getPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_COIN,""))
-//
+                                        Const.KEY_PREFS_LOGIN = true
+                                        Toast.makeText(this@LoginActivity,jSon.message,Toast.LENGTH_SHORT).show()
+                                        val intent = Intent(this@LoginActivity,MainActivity::class.java)
+                                        startActivity(intent)
+                                        finish()
                                     }catch (e : Exception){
                                         e.printStackTrace()
                                     }
@@ -208,13 +207,11 @@ class LoginActivity : AppCompatActivity() {
                             appPrefe.setPreferences(this@LoginActivity, AppPreferencesLogin.KEY_PREFS_SKEY,jSon.SKey!!)
                             appPrefe.setPreferences(this@LoginActivity, AppPreferencesLogin.KEY_PREFS_IDX,jSon.idx!!)
 //                            appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_LOGIN,true)
-                            Const.KEY_PREFS_LOGIN = true
-                            Toast.makeText(this@LoginActivity,jSon.message,Toast.LENGTH_SHORT).show()
-                            val intent = Intent(this@LoginActivity,MainActivity::class.java)
-                            startActivity(intent)
-                            finish()
+
                         }else{
                             Toast.makeText(this@LoginActivity,jSon.message,Toast.LENGTH_SHORT).show()
+                            binding.cvLogin.isEnabled = true
+                            binding.progressBar2.visibility = View.GONE
                         }
                     }catch (e : Exception) {
                         e.printStackTrace()

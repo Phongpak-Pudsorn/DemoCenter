@@ -37,7 +37,7 @@ class MainActivity: AppCompatActivity() {
     private val TAG = javaClass.simpleName
     var tablist = ArrayList<TabInfo>()
     var fragments = ArrayList<Fragment>()
-        override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         supportActionBar?.hide()
@@ -50,9 +50,7 @@ class MainActivity: AppCompatActivity() {
         }
         binding.pager2.adapter = AdapterPager(this,fragments)
         binding.pager2.isUserInputEnabled = false
-        binding.pager2.registerOnPageChangeCallback(object :ViewPager2.OnPageChangeCallback(){
-
-        })
+        binding.pager2.registerOnPageChangeCallback(object :ViewPager2.OnPageChangeCallback(){})
         binding.menuTab.apply {
             adapter = AdapterMenuTab(this@MainActivity, tablist,object: AdapterMenuTab.TabClickListener{
                 override fun onTabClick(position: Int) {
@@ -70,9 +68,10 @@ class MainActivity: AppCompatActivity() {
             })
             dialogProfile.show(supportFragmentManager,"")
         }
-            binding.tvUsername.text = appPrefs.getPreferences(this,AppPreferencesLogin.KEY_PREFS_NAME,"").toString()
-            binding.tvCoinNum.text = appPrefs.getPreferences(this,AppPreferencesLogin.KEY_PREFS_COIN,"").toString()
-            Glide.with(this).load(appPrefs.getPreferences(this,AppPreferencesLogin.KEY_PREFS_AVATAR,"")).into(binding.imgProfile)
+        binding.tvUsername.text = appPrefs.getPreferences(this,AppPreferencesLogin.KEY_PREFS_NAME,"").toString()
+        binding.tvCoinNum.text = appPrefs.getPreferences(this,AppPreferencesLogin.KEY_PREFS_COIN,"").toString()
+        Glide.with(this).load(appPrefs.getPreferences(this,AppPreferencesLogin.KEY_PREFS_AVATAR,"")).into(binding.imgProfile)
+
     }
     private fun setTab(): ArrayList<TabInfo> {
         tablist.clear()

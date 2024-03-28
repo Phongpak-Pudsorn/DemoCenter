@@ -20,6 +20,7 @@ object AppPreferencesLogin {
     const val KEY_PREFS_SKEY = "KEY_PREFS_SKEY"
     const val KEY_PREFS_IDX = "KEY_PREFS_IDX"
 
+    //get from checkProfile
     const val KEY_PREFS_NAME = "KEY_PREFS_NAME"
     const val KEY_PREFS_AVATAR = "KEY_PREFS_AVATAR"
     const val KEY_PREFS_COIN = "KEY_PREFS_COIN"

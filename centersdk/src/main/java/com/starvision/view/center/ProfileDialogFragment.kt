@@ -57,20 +57,20 @@ class ProfileDialogFragment : DialogFragment() {
         dialog!!.window!!.setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT)
         dialog!!.window!!.setBackgroundDrawableResource(R.color.transparent)
         bindingObject()
-//        loadCheckProfile()
         dialog!!.show()
-        binding.tvName.text = appPrefe.getPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_NAME,"").toString()
-        binding.tvCoin.text = appPrefe.getPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_COIN,"").toString()
-        binding.tvIdx.text = appPrefe.getPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_IDX,"").toString()
-        Glide.with(requireContext()).load(appPrefe.getPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_AVATAR,"")).into(binding.imgProfile)
-
     }
 
     private fun bindingObject(){
-        binding.cardviewImgPro.setOnClickListener {}
+        binding.tvName.text = appPrefe.getPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_NAME,"").toString()
+        binding.tvCoin.text = appPrefe.getPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_COIN,"").toString()
+        binding.tvIdx.text = "idx : "+appPrefe.getPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_IDX,"").toString()
+        Glide.with(requireContext()).load(appPrefe.getPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_AVATAR,"")).into(binding.imgProfile)
         binding.tvLogout.setOnClickListener {
             mClickListener.onLogout()
 //            appPref.setPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_LOGIN,false)
+            appPrefe.setPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_NAME, "")
+            appPrefe.setPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_AVATAR,"")
+            appPrefe.setPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_COIN,"")
             Const.KEY_PREFS_LOGIN = false
             val intent = Intent(requireContext(),LoginActivity::class.java)
             startActivity(intent)
