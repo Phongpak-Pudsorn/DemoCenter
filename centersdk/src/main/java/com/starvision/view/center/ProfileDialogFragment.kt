@@ -71,8 +71,8 @@ class ProfileDialogFragment : DialogFragment() {
 //        {"idx":"B8Fz151GGq+MqrHyPWAoLmy+XrzrMlbzyzepKjwtkHw=","ts":"c2Ux1/9d5wBV4bY95M00O3WXNZA2jBENbch2XPmQz4s=","sign":"b8704a6af06a6d4740bd5ec393de1e4a"}
 
         val hashMap = HashMap<String?,String?>()
-        hashMap["idx"] = idx
-        hashMap["ts"] = ts
+//        hashMap["idx"] = idx
+//        hashMap["ts"] = ts
         hashMap["sign"] = sign
         Const.loge(TAG, "params : $hashMap")
 
