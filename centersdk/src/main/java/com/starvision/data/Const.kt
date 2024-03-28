@@ -74,4 +74,23 @@ object Const {
             }
         }
     }
+
+    fun openAnotherApp(context: Context, packageName: String) {
+        try {
+            var intent = context.packageManager.getLaunchIntentForPackage(packageName)
+            if (intent != null) {
+                // We found the activity now start the activity
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                context.startActivity(intent)
+            } else {
+                // Bring user to the market or let them choose an app?
+                intent = Intent(Intent.ACTION_VIEW)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                intent.data = Uri.parse("market://details?id=$packageName")
+                context.startActivity(intent)
+            }
+        }catch (e : java.lang.Exception){
+            e.printStackTrace()
+        }
+    }
 }
