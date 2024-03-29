@@ -23,7 +23,7 @@ import com.starvision.view.stavisions.info.IconInfo
 import com.starvision.view.stavisions.info.NewsInfo
 import java.util.logging.Handler
 
-class AdapterStarvision(context:Context, val listNews:ArrayList<NewsInfo>, val bannerList:ArrayList<BannerInfo>, val appList:ArrayList<IconInfo>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdapterStarvision(val context:Context, val listNews:ArrayList<NewsInfo>, val bannerList:ArrayList<BannerInfo>, val appList:ArrayList<IconInfo>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val VIEW_TYPE_NEWS = 1
     val VIEW_TYPE_BANNER = 2
     val VIEW_TYPE_NEWS_HEADER = 3
