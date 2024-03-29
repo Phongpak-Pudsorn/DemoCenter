@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.starvision.data.AppPreferencesLogin
 import com.starvision.luckygamesdk.R
 import com.starvision.view.WebViewActivity
 import com.starvision.view.WebViewLuckyActivity
 
 class AdapterGamePage(private val mActivity: Activity) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private val appPref = AppPreferencesLogin
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_games, parent, false)
@@ -25,7 +27,12 @@ class AdapterGamePage(private val mActivity: Activity) : RecyclerView.Adapter<Re
 
 //            Glide.with(mContext).load("").into(holder.image_game)
 //            holder.name_game.text = ""
+
             holder.itemView.setOnClickListener {
+//                val uid = appPref.getPreferences(mActivity,AppPreferencesLogin.KEY_PREFS_USERID,"")
+//                val token = ""
+//                val lan = "thai_th"
+
                 val intent = Intent(mActivity, WebViewLuckyActivity::class.java)
                 intent.putExtra("link", "https://luckygame.in.th/")
                 mActivity.startActivity(intent)

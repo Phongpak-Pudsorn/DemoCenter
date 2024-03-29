@@ -28,7 +28,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_weight="0"
-                app:srcCompat="@drawable/btn_back_sdk" />
+                app:srcCompat="@drawable/btn_back_sdk_black" />
 
             <TextView
                 android:id="@+id/name_page"

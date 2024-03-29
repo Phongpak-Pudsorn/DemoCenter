@@ -1,11 +1,14 @@
 package com.starvision.view.login
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,19 +58,20 @@ class RegisterFragment(private val bm: Bitmap) : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.imgLogo.setImageBitmap(bm)
         binding.cvRegister.setOnClickListener {
             binding.cvRegister.isEnabled = false
             handler.postDelayed({ binding.cvRegister.isEnabled = true },1000)
-            if(binding.editUsername.length() <= 6){
+            if(binding.editUsername.length() < 6){
                 Toast.makeText(requireContext(),getString(R.string.text_alert_user_min), Toast.LENGTH_SHORT).show()
-            }else if(binding.editPassword.length() <= 6){
+            }else if(binding.editPassword.length() < 6){
                 Toast.makeText(requireContext(),getString(R.string.text_alert_password_min), Toast.LENGTH_SHORT).show()
-            }else if(binding.editConfirmPassword.length() <= 6){
+            }else if(binding.editConfirmPassword.length() < 6){
                 Toast.makeText(requireContext(),getString(R.string.text_alert_password_not_same), Toast.LENGTH_SHORT).show()
-            }else if(binding.editEmail.length() <= 6){
+            }else if(binding.editEmail.length() < 6){
                 Toast.makeText(requireContext(),getString(R.string.text_alert_email_min), Toast.LENGTH_SHORT).show()
             }else if(!binding.checkboxAcceptPolicy.isChecked){
                 Toast.makeText(requireContext(),getString(R.string.text_alert_policy_uncheck), Toast.LENGTH_SHORT).show()
@@ -122,7 +126,7 @@ class RegisterFragment(private val bm: Bitmap) : Fragment() {
                     override fun onFailed(t: Throwable) {
                         Const.loge(TAG,"t : $t")
                     }
-                }).postLoadData(URL.BASE_URL_SDK,URL.URL_LOGIN,"",hashMap)
+                }).postLoadData(URL.BASE_URL_SDK,URL.URL_REGISTER,"",hashMap)
             }
         }
 
@@ -130,6 +134,26 @@ class RegisterFragment(private val bm: Bitmap) : Fragment() {
             binding.tvPolicyRegister.isEnabled = false
             handler.postDelayed({ binding.tvPolicyRegister.isEnabled = true },1000)
             WebViewPolicyDialogFragment().show(childFragmentManager,"policy")
+        }
+
+        binding.seePassword.setOnClickListener {
+            if(binding.seePassword.drawable.constantState!! == requireActivity().getDrawable(R.drawable.baseline_eye_visibility_off_24)!!.constantState){
+                binding.seePassword.setImageDrawable(requireActivity().getDrawable(R.drawable.baseline_eye_24_grey))
+                binding.editPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            }else{
+                binding.seePassword.setImageDrawable(requireActivity().getDrawable(R.drawable.baseline_eye_visibility_off_24))
+                binding.editPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+            }
+        }
+
+        binding.seePasswordCon.setOnClickListener {
+            if(binding.seePasswordCon.drawable.constantState!! == requireActivity().getDrawable(R.drawable.baseline_eye_visibility_off_24)!!.constantState){
+                binding.seePasswordCon.setImageDrawable(requireActivity().getDrawable(R.drawable.baseline_eye_24_grey))
+                binding.editConfirmPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            }else{
+                binding.seePasswordCon.setImageDrawable(requireActivity().getDrawable(R.drawable.baseline_eye_visibility_off_24))
+                binding.editConfirmPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+            }
         }
 
         binding.btnBack.setOnClickListener {

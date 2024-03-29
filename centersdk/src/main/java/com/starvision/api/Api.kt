@@ -13,15 +13,6 @@ import retrofit2.Response
 import retrofit2.http.*
 
 interface Api {
-    //อัตราแลกเปลี่ยน
-    @GET(URL.exchange)
-    fun getExchange() : Call<SubExchangeModel>
-    //ราคาน้ำมัน
-    @GET(URL.oil_price)
-    fun getOil() : Call<SubOilModel>
-    @GET(URL.URL_CENTER)
-    fun getCenter() : Call<CenterModels>
-
     @POST()
     fun postRequest(@Url url : String, @Body body: java.util.HashMap<String?, String?>): Call<ResponseBody>
 

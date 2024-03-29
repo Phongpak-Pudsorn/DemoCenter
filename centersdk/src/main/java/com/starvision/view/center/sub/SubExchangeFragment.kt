@@ -12,6 +12,7 @@ import com.google.gson.Gson
 import com.starvision.api.Api
 import com.starvision.api.ApiClient
 import com.starvision.api.URL
+import com.starvision.config.ParamsData
 import com.starvision.data.Const
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageExhangeSubBinding
@@ -20,6 +21,7 @@ import com.starvision.view.center.sub.models.SubExchangeModel
 import com.starvision.view.center.sub.models.SubGoldToDayModel
 import retrofit2.Call
 import retrofit2.Response
+import retrofit2.http.GET
 import javax.security.auth.callback.Callback
 
 class SubExchangeFragment: Fragment() {
@@ -41,32 +43,29 @@ class SubExchangeFragment: Fragment() {
         }
     }
     private fun executeData(){
-        val services = ApiClient().getBaseLink(URL.BASE_URL,":443").create(Api::class.java)
-        services.getExchange().enqueue(object : retrofit2.Callback<SubExchangeModel>{
-            override fun onResponse(
-                call: Call<SubExchangeModel>,
-                response: Response<SubExchangeModel>,
-            ) {
+        ParamsData(object : ParamsData.PostLoadListener{
+            override fun onSuccess(body: String) {
                 try {
-                    val dataExchange = response.body()!!
-                    if (dataExchange.Status=="True"){
-                        var  listExchange = response.body()!!.Datarow
+                    val dataExchange = Gson().fromJson(body,SubExchangeModel::class.java)
+                    if (dataExchange.Status=="True") {
+                        var listExchange = dataExchange.Datarow
                         binding.rvExchange.apply {
-                            adapter = AdapterExchangeSub(requireContext(),listExchange)
-                            layoutManager = LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
+                            adapter = AdapterExchangeSub(requireContext(), listExchange)
+                            layoutManager =
+                                LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
                         }
                         binding.mProgressBar.visibility = View.GONE
                         binding.tableCurrency.visibility = View.VISIBLE
                         binding.tabHeader.visibility = View.VISIBLE
                     }
-
                 }catch (e:Exception){
                     e.printStackTrace()
                 }
             }
 
-            override fun onFailure(call: Call<SubExchangeModel>, t: Throwable) {
+            override fun onFailed(t: Throwable) {
+                t.printStackTrace()
             }
-        })
+        }).getLoadData(URL.BASE_URL,URL.exchange,":443")
     }
 }

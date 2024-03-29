@@ -13,19 +13,19 @@ import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.starvision.api.URL
-import com.starvision.config.AESHelper
-import com.starvision.config.CryptoHandler
-import com.starvision.config.MD5
-import com.starvision.config.ParamsData
+import com.starvision.config.*
 import com.starvision.data.AppPreferencesLogin
 import com.starvision.data.Const
 import com.starvision.luckygamesdk.databinding.MainPageBinding
 import com.starvision.view.center.adapter.AdapterMenuTab
 import com.starvision.view.center.adapter.AdapterPager
 import com.starvision.view.center.info.TabInfo
+import com.starvision.view.center.models.CenterModels
 import com.starvision.view.center.models.ProfileModels
+import com.starvision.view.login.LoginActivity
 import com.starvision.view.stavisions.StarvisionFragment
 import com.starvision.view.luckygamesdk.LuckyGameFragment
+import com.starvision.view.luckygamesdk.models.LuckyGameModels
 import com.starvision.view.playplay.PlayplayFragment
 import java.text.SimpleDateFormat
 import java.util.*
@@ -41,8 +41,14 @@ class MainActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         supportActionBar?.hide()
-        //ทำเช็ค login
 
+        if(!Login.isLogin){
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        loadApiCenter()
         tablist = setTab()
         setFragments()
         binding.imgGoBack.setOnClickListener {
@@ -60,17 +66,22 @@ class MainActivity: AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@MainActivity,RecyclerView.HORIZONTAL,false)
         }
         binding.imgProfile.setOnClickListener {
+            binding.imgProfile.isEnabled = false
             val dialogProfile = ProfileDialogFragment()
             dialogProfile.setClickListener(object : ProfileDialogFragment.ClickListener{
                 override fun onLogout() {
                     finish()
                 }
+
+                override fun onCancel() {
+                    binding.imgProfile.isEnabled = true
+                }
             })
             dialogProfile.show(supportFragmentManager,"")
         }
-        binding.tvUsername.text = appPrefs.getPreferences(this,AppPreferencesLogin.KEY_PREFS_NAME,"").toString()
-        binding.tvCoinNum.text = appPrefs.getPreferences(this,AppPreferencesLogin.KEY_PREFS_COIN,"").toString()
-        Glide.with(this).load(appPrefs.getPreferences(this,AppPreferencesLogin.KEY_PREFS_AVATAR,"")).into(binding.imgProfile)
+        binding.tvUsername.text = Login.getName
+        binding.tvCoinNum.text = Login.getCoin
+        Glide.with(this).load(Login.getAvatar).into(binding.imgProfile)
 
     }
     private fun setTab(): ArrayList<TabInfo> {
@@ -87,4 +98,25 @@ class MainActivity: AppCompatActivity() {
         fragments.add(PlayplayFragment())
 
     }
+
+    private fun loadApiCenter(){
+        ParamsData(object : ParamsData.PostLoadListener{
+            override fun onSuccess(body: String) {
+                try {
+                    val dataModel = Gson().fromJson(body,CenterModels::class.java)
+                    for (i in dataModel.data.PageCenter.indices) {
+                        Const.loge(TAG,"dataModel : "+dataModel.data.PageCenter[i])
+
+                    }
+                }catch (e : Exception){
+                    e.printStackTrace()
+                }
+            }
+
+            override fun onFailed(t: Throwable) {
+                t.printStackTrace()
+            }
+        }).getLoadData(URL.BASE_URL_SDK,URL.URL_CENTER,"")
+    }
+
 }

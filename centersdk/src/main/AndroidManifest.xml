@@ -13,7 +13,7 @@
 <!--    <application android:usesCleartextTraffic="true"-->
 <!--        tools:ignore="UnusedAttribute" />-->
 
-    <application>
+    <application android:name="com.starvision.config.MyApplication">
         <activity android:name="com.starvision.view.login.LoginActivity"
             android:usesCleartextTraffic="true"
             android:screenOrientation="portrait"
@@ -31,7 +31,6 @@
         <activity android:name="com.starvision.view.WebViewLuckyActivity"
             android:screenOrientation="landscape">
         </activity>
-
     </application>
 <!--    <queries>-->
 <!--        <package android:name="com.smileapp.oil" />-->

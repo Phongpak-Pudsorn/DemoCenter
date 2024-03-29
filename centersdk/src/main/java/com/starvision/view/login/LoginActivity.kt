@@ -1,5 +1,6 @@
 package com.starvision.view.login
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -22,6 +23,7 @@ import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.starvision.api.*
 import com.starvision.config.CryptoHandler
+import com.starvision.config.Login
 import com.starvision.config.MD5
 import com.starvision.config.ParamsData
 import com.starvision.data.AppPreferencesLogin
@@ -44,6 +46,7 @@ class LoginActivity : AppCompatActivity() {
     private var appPrefe = AppPreferencesLogin
     private val TAG = javaClass.simpleName
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -52,15 +55,17 @@ class LoginActivity : AppCompatActivity() {
         val bm = getBitmapFromAsset("logo_starvision.png")
         binding.imgLogo.setImageBitmap(bm)
 
-        if(appPrefe.getPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_CHECK,true) == true){
-            val user = appPrefe.getPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_USER,"")
-            val password = appPrefe.getPreferences(this,AppPreferencesLogin.KEY_PREFS_REMEMBER_PASSWORD,"")
-            binding.editUsername.text = Editable.Factory.getInstance().newEditable(user.toString())
-            binding.editPassword.text = Editable.Factory.getInstance().newEditable(password.toString())
+        if(Login.isRememberCheck){
+            val user = Login.getUserName
+            val password = Login.getPassword
+            binding.editUsername.text = Editable.Factory.getInstance().newEditable(user)
+            binding.editPassword.text = Editable.Factory.getInstance().newEditable(password)
             binding.checkboxRememberPass.isChecked = true
         }
 
         binding.tvRegister.setOnClickListener {
+            binding.tvRegister.isEnabled = false
+            handler.postDelayed({binding.tvRegister.isEnabled = true},1000)
             val registerFragment = RegisterFragment(bm)
             registerFragment.setClickListener(object : RegisterFragment.ClickListener {
                 override fun onClose() {
@@ -68,10 +73,10 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 override fun onSuccess() {
-                    val user = appPrefe.getPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_REMEMBER_USER,"")
-                    val password = appPrefe.getPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_REMEMBER_PASSWORD,"")
-                    binding.editUsername.text = Editable.Factory.getInstance().newEditable(user.toString())
-                    binding.editPassword.text = Editable.Factory.getInstance().newEditable(password.toString())
+                    val user = Login.getUserName
+                    val password = Login.getPassword
+                    binding.editUsername.text = Editable.Factory.getInstance().newEditable(user)
+                    binding.editPassword.text = Editable.Factory.getInstance().newEditable(password)
                     binding.checkboxRememberPass.isChecked = true
                     onLogin()
                 }
@@ -188,8 +193,6 @@ class LoginActivity : AppCompatActivity() {
                                         appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_NAME, jSonPro.data!!.name!!.toString())
                                         appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_AVATAR,jSonPro.data.avatar!!.toString())
                                         appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_COIN,jSonPro.data.coin!!.toString())
-
-                                        Const.KEY_PREFS_LOGIN = true
                                         Toast.makeText(this@LoginActivity,jSon.message,Toast.LENGTH_SHORT).show()
                                         val intent = Intent(this@LoginActivity,MainActivity::class.java)
                                         startActivity(intent)
@@ -198,7 +201,6 @@ class LoginActivity : AppCompatActivity() {
                                         e.printStackTrace()
                                     }
                                 }
-
                                 override fun onFailed(t: Throwable) {
                                     Const.loge(TAG,"t : $t")
                                 }
@@ -206,8 +208,7 @@ class LoginActivity : AppCompatActivity() {
                             appPrefe.setPreferences(this@LoginActivity, AppPreferencesLogin.KEY_PREFS_USERID,jSon.userid)
                             appPrefe.setPreferences(this@LoginActivity, AppPreferencesLogin.KEY_PREFS_SKEY,jSon.SKey!!)
                             appPrefe.setPreferences(this@LoginActivity, AppPreferencesLogin.KEY_PREFS_IDX,jSon.idx!!)
-//                            appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_LOGIN,true)
-
+                            appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_LOGIN,true)
                         }else{
                             Toast.makeText(this@LoginActivity,jSon.message,Toast.LENGTH_SHORT).show()
                             binding.cvLogin.isEnabled = true
@@ -217,13 +218,11 @@ class LoginActivity : AppCompatActivity() {
                         e.printStackTrace()
                     }
                 }
-
                 override fun onFailed(t: Throwable) {
                     binding.cvLogin.isEnabled = true
                     binding.progressBar2.visibility = View.GONE
                     Const.loge(TAG,"t : $t")
                 }
-
             }).postLoadData(URL.BASE_URL_SDK,URL.URL_LOGIN,"",hashMap)
 
         }
@@ -279,8 +278,5 @@ class LoginActivity : AppCompatActivity() {
         } else {
             first.uppercaseChar().toString() + s.substring(1)
         }
-    }
-
-    private fun loadCheckProfile(){
     }
 }

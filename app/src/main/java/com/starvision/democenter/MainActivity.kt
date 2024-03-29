@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.starvision.api.URL
+import com.starvision.config.Login
 import com.starvision.config.ParamsData
 import com.starvision.data.AppPreferencesLogin
 import com.starvision.data.Const
@@ -29,25 +30,13 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         binding.btnCenter.setOnClickListener {
-            if(Const.KEY_PREFS_LOGIN){
-//            if (appPrefe.getPreferences(this, AppPreferencesLogin.KEY_PREFS_LOGIN, true) == true) {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-            } else {
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
-            }
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
 
         binding.imgPerson.setOnClickListener {
-            if(Const.KEY_PREFS_LOGIN){
-//            if (appPrefe.getPreferences(this, AppPreferencesLogin.KEY_PREFS_LOGIN, true) == true) {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-            } else {
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
-            }
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
 
         binding.btnLottoThai.setOnClickListener {
@@ -103,8 +92,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if(Const.KEY_PREFS_LOGIN){
-//        if(appPrefe.getPreferences(this,AppPreferencesLogin.KEY_PREFS_LOGIN,true) == true){
+        if(Login.isLogin){
             binding.imgPerson.setImageDrawable(getDrawable(R.drawable.baseline_person_24_green))
         }else{
             binding.imgPerson.setImageDrawable(getDrawable(R.drawable.baseline_person_24_black))

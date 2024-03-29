@@ -11,9 +11,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.starvision.api.Api
 import com.starvision.api.ApiClient
 import com.starvision.api.URL
+import com.starvision.config.ParamsData
 import com.starvision.data.Const
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageOilSubBinding
@@ -23,6 +25,7 @@ import com.starvision.view.center.sub.models.SubOilTodayModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.http.GET
 
 
 class SubOilFragment: Fragment() {
@@ -58,11 +61,10 @@ class SubOilFragment: Fragment() {
         oilList.add(SubOilTodayModel("1","dieselpremium",setName("dieselpremium"),"0","",setOilIcon("dieselpremium")))
         oilList.add(SubOilTodayModel("1","diesel",setName("diesel"),"0","",setOilIcon("diesel")))
         oilList.add(SubOilTodayModel("1","ngv",setName("ngv"),"0","",setOilIcon("ngv")))
-        val services = ApiClient().getBaseLink(URL.BASE_URL,":443").create(Api::class.java)
-        services.getOil().enqueue(object :Callback<SubOilModel>{
-            override fun onResponse(call: Call<SubOilModel>, response: Response<SubOilModel>) {
+        ParamsData(object : ParamsData.PostLoadListener{
+            override fun onSuccess(body: String) {
                 try {
-                    val dataOil = response.body()!!
+                    val dataOil = Gson().fromJson(body,SubOilModel::class.java)
                     if (dataOil.Status=="True") {
                         var listOil = dataOil.Datarow.data.price_today
                         for (i in listOil.indices){
@@ -111,9 +113,12 @@ class SubOilFragment: Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<SubOilModel>, t: Throwable) {
+            override fun onFailed(t: Throwable) {
+                t.printStackTrace()
             }
-        })
+
+        }).getLoadData(URL.BASE_URL,URL.oil_price,":443")
+
         binding.imgBack.setOnClickListener {
 
         }

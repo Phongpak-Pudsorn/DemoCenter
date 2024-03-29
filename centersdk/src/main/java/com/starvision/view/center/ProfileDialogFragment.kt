@@ -9,10 +9,7 @@ import androidx.fragment.app.DialogFragment
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.starvision.api.URL
-import com.starvision.config.AESHelper
-import com.starvision.config.CryptoHandler
-import com.starvision.config.MD5
-import com.starvision.config.ParamsData
+import com.starvision.config.*
 import com.starvision.data.AppPreferencesLogin
 import com.starvision.data.Const
 import com.starvision.luckygamesdk.R
@@ -38,6 +35,7 @@ class ProfileDialogFragment : DialogFragment() {
     private lateinit var mClickListener : ClickListener
     interface ClickListener {
         fun onLogout()
+        fun onCancel()
     }
     fun setClickListener(listener : ClickListener) {
         mClickListener = listener
@@ -58,20 +56,22 @@ class ProfileDialogFragment : DialogFragment() {
         dialog!!.window!!.setBackgroundDrawableResource(R.color.transparent)
         bindingObject()
         dialog!!.show()
+        dialog!!.setOnCancelListener {
+            mClickListener.onCancel()
+        }
     }
 
     private fun bindingObject(){
-        binding.tvName.text = appPrefe.getPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_NAME,"").toString()
-        binding.tvCoin.text = appPrefe.getPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_COIN,"").toString()
-        binding.tvIdx.text = "idx : "+appPrefe.getPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_IDX,"").toString()
-        Glide.with(requireContext()).load(appPrefe.getPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_AVATAR,"")).into(binding.imgProfile)
+        binding.tvName.text = Login.getName
+        binding.tvCoin.text = Login.getCoin
+        binding.tvIdx.text = "idx : "+Login.getIDX
+        Glide.with(requireContext()).load(Login.getAvatar).into(binding.imgProfile)
         binding.tvLogout.setOnClickListener {
             mClickListener.onLogout()
-//            appPref.setPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_LOGIN,false)
+            appPrefe.setPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_LOGIN,false)
             appPrefe.setPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_NAME, "")
             appPrefe.setPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_AVATAR,"")
             appPrefe.setPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_COIN,"")
-            Const.KEY_PREFS_LOGIN = false
             val intent = Intent(requireContext(),LoginActivity::class.java)
             startActivity(intent)
         }

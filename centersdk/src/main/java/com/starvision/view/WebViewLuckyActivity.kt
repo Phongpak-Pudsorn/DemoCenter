@@ -1,25 +1,31 @@
 package com.starvision.view
 
 import android.annotation.SuppressLint
-import android.content.pm.ActivityInfo
 import android.net.http.SslError
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import android.webkit.*
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
+import com.starvision.data.Const
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageWebviewBinding
 
+
 class WebViewLuckyActivity : AppCompatActivity() {
     private val binding : PageWebviewBinding by lazy { PageWebviewBinding.inflate(layoutInflater) }
+    private val TAG = javaClass.simpleName
     private var callback : OnBackPressedCallback? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         supportActionBar?.hide()
-//        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        hideStatusBar()
         val bundle = intent.extras
         val link = bundle!!.getString("link")
 
@@ -52,8 +58,18 @@ class WebViewLuckyActivity : AppCompatActivity() {
         binding.mBtGoHome.setOnClickListener { binding.mWebView.loadUrl(link.toString()) }
 
     }
-
+    private fun hideStatusBar() {
+        WindowCompat.getInsetsController(window,window.decorView).apply {
+            systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            hide(WindowInsetsCompat.Type.statusBars())
+        }
+    }
     inner class CustomWebViewClient : WebViewClient() {
+
+        override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+            Const.loge(TAG,"url : "+ request!!.url)
+            return false
+        }
 
         @SuppressLint("WebViewClientOnReceivedSslError")
         override fun onReceivedSslError(view: WebView, handler: SslErrorHandler, error: SslError) {

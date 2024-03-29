@@ -13,7 +13,7 @@ object AppPreferencesLogin {
     const val KEY_PREFS_REMEMBER_CHECK = "KEY_PREFS_REMEMBER_CHECK"
     const val KEY_PREFS_REMEMBER_USER = "KEY_PREFS_REMEMBER_USER"
     const val KEY_PREFS_REMEMBER_PASSWORD = "KEY_PREFS_REMEMBER_PASSWORD"
-//    const val KEY_PREFS_LOGIN = "KEY_PREFS_LOGIN"
+    const val KEY_PREFS_LOGIN = "KEY_PREFS_LOGIN"
 
     //get from login
     const val KEY_PREFS_USERID = "KEY_PREFS_USERID"
@@ -26,6 +26,8 @@ object AppPreferencesLogin {
     const val KEY_PREFS_COIN = "KEY_PREFS_COIN"
 //    const val KEY_PREFS_HASH_LOGIN = "KEY_PREFS_HASH_LOGIN"
 
+    //get from luckygame center
+    const val KEY_PREFS_LUCKY_GAME = "KEY_PREFS_LUCKY_GAME"
 
     fun setPreferences(mContext: Context,key: String, objects: Any){
         val preferences = mContext.getSharedPreferences(APP_SHARED_PREFS, Activity.MODE_PRIVATE)
