@@ -41,19 +41,38 @@ class MainActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         supportActionBar?.hide()
-
         if(!Login.isLogin){
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
-
-        loadApiCenter()
-        tablist = setTab()
         setFragments()
         binding.imgGoBack.setOnClickListener {
             finish()
         }
+        executeData()
+    }
+    private fun executeData(){
+        ParamsData(object :ParamsData.PostLoadListener{
+            override fun onSuccess(body: String) {
+                val list = Gson().fromJson(body,CenterModels::class.java)
+                for (i in list!!.data.PageCenter.indices){
+                    tablist.add(TabInfo(list.data.PageCenter[i].MenuTitle))
+                }
+                binding.menuTab.apply {
+                    adapter = AdapterMenuTab(this@MainActivity, tablist,object: AdapterMenuTab.TabClickListener{
+                        override fun onTabClick(position: Int) {
+                            binding.pager2.setCurrentItem(position,false)
+                        }
+                    })
+                    layoutManager = LinearLayoutManager(this@MainActivity,RecyclerView.HORIZONTAL,false)
+                }
+            }
+
+            override fun onFailed(t: Throwable) {
+                Const.loge(TAG,"t $t")
+            }
+        }).getLoadData(URL.BASE_URL_SDK,URL.URL_CENTER,"")
         binding.pager2.adapter = AdapterPager(this,fragments)
         binding.pager2.isUserInputEnabled = false
         binding.pager2.registerOnPageChangeCallback(object :ViewPager2.OnPageChangeCallback(){})
@@ -82,41 +101,12 @@ class MainActivity: AppCompatActivity() {
         binding.tvUsername.text = Login.getName
         binding.tvCoinNum.text = Login.getCoin
         Glide.with(this).load(Login.getAvatar).into(binding.imgProfile)
-
-    }
-    private fun setTab(): ArrayList<TabInfo> {
-        tablist.clear()
-        tablist.add(TabInfo("Stavision",false))
-        tablist.add(TabInfo("Lucky Game",false))
-        tablist.add(TabInfo("Playplay+",false))
-
-        return tablist
     }
     private fun setFragments(){
         fragments.add(StarvisionFragment())
         fragments.add(LuckyGameFragment())
         fragments.add(PlayplayFragment())
 
-    }
-
-    private fun loadApiCenter(){
-        ParamsData(object : ParamsData.PostLoadListener{
-            override fun onSuccess(body: String) {
-                try {
-                    val dataModel = Gson().fromJson(body,CenterModels::class.java)
-                    for (i in dataModel.data.PageCenter.indices) {
-                        Const.loge(TAG,"dataModel : "+dataModel.data.PageCenter[i])
-
-                    }
-                }catch (e : Exception){
-                    e.printStackTrace()
-                }
-            }
-
-            override fun onFailed(t: Throwable) {
-                t.printStackTrace()
-            }
-        }).getLoadData(URL.BASE_URL_SDK,URL.URL_CENTER,"")
     }
 
 }
