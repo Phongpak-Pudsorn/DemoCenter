@@ -76,14 +76,6 @@ class MainActivity: AppCompatActivity() {
         binding.pager2.adapter = AdapterPager(this,fragments)
         binding.pager2.isUserInputEnabled = false
         binding.pager2.registerOnPageChangeCallback(object :ViewPager2.OnPageChangeCallback(){})
-        binding.menuTab.apply {
-            adapter = AdapterMenuTab(this@MainActivity, tablist,object: AdapterMenuTab.TabClickListener{
-                override fun onTabClick(position: Int) {
-                    binding.pager2.setCurrentItem(position,false)
-                }
-            })
-            layoutManager = LinearLayoutManager(this@MainActivity,RecyclerView.HORIZONTAL,false)
-        }
         binding.imgProfile.setOnClickListener {
             binding.imgProfile.isEnabled = false
             val dialogProfile = ProfileDialogFragment()
