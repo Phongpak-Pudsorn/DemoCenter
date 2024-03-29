@@ -1,6 +1,7 @@
 package com.starvision.view.stavisions.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,11 +17,12 @@ import com.starvision.luckygamesdk.databinding.ItemNewsBinding
 import com.starvision.luckygamesdk.databinding.ItemNewsHeaderBinding
 import com.starvision.luckygamesdk.databinding.ItemTabsBinding
 import com.starvision.luckygamesdk.databinding.PageBannerAppsBinding
+import com.starvision.view.WebViewActivity
 import com.starvision.view.stavisions.info.BannerInfo
 import com.starvision.view.stavisions.info.NewsInfo
 import java.util.logging.Handler
 
-class AdapterStarvision(context:Context, val listNews:ArrayList<NewsInfo>, val bannerList:ArrayList<BannerInfo>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdapterStarvision(private val context:Context, val listNews:ArrayList<NewsInfo>, val bannerList:ArrayList<BannerInfo>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val VIEW_TYPE_NEWS = 1
     val VIEW_TYPE_BANNER = 2
     val VIEW_TYPE_NEWS_HEADER = 3
@@ -127,6 +129,11 @@ class AdapterStarvision(context:Context, val listNews:ArrayList<NewsInfo>, val b
             }
         }else if (holder is NewsHolder){
             holder.newsBinding.tvTitle.text = listNews[position].newsappTitle
+            holder.itemView.setOnClickListener {
+                val intent = Intent(context, WebViewActivity::class.java)
+                intent.putExtra("link", "https://google.com")
+                context.startActivity(intent)
+            }
         }
 
     }
