@@ -31,6 +31,8 @@ class SubZodiacFragment:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         startWebView(URL.zodiac)
+        binding.tvNameApp.isSelected = true
+        binding.tvDesApp.isSelected = true
         binding.cvMore.setOnClickListener {
 //            Const.openApp(requireContext(),getString(R.string.zodiac_package),"view.activity.MainActivity")
             Const.openAnotherApp(requireActivity(),getString(R.string.zodiac_package))

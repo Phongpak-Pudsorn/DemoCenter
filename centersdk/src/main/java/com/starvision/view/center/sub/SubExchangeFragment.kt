@@ -37,6 +37,8 @@ class SubExchangeFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         executeData()
+        binding.tvNameApp.isSelected = true
+        binding.tvDesApp.isSelected = true
         binding.cvMore.setOnClickListener {
             Const.openAnotherApp(requireActivity(),getString(R.string.exchange_package))
         }

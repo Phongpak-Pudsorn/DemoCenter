@@ -43,6 +43,8 @@ class SubOilFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         execeuteData()
+        binding.tvNameApp.isSelected = true
+        binding.tvDesApp.isSelected = true
         binding.btnReload.setOnClickListener {
             execeuteData()
         }
