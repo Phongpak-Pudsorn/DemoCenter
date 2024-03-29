@@ -17,10 +17,11 @@ import com.starvision.luckygamesdk.databinding.ItemNewsHeaderBinding
 import com.starvision.luckygamesdk.databinding.ItemTabsBinding
 import com.starvision.luckygamesdk.databinding.PageBannerAppsBinding
 import com.starvision.view.stavisions.info.BannerInfo
+import com.starvision.view.stavisions.info.IconInfo
 import com.starvision.view.stavisions.info.NewsInfo
 import java.util.logging.Handler
 
-class AdapterStarvision(context:Context, val listNews:ArrayList<NewsInfo>, val bannerList:ArrayList<BannerInfo>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdapterStarvision(context:Context, val listNews:ArrayList<NewsInfo>, val bannerList:ArrayList<BannerInfo>, val appList:ArrayList<IconInfo>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val VIEW_TYPE_NEWS = 1
     val VIEW_TYPE_BANNER = 2
     val VIEW_TYPE_NEWS_HEADER = 3
@@ -30,7 +31,7 @@ class AdapterStarvision(context:Context, val listNews:ArrayList<NewsInfo>, val b
     val handler = android.os.Handler(Looper.getMainLooper())
     init {
         imageAdapter = AdapterImageSlide(bannerList)
-        appAdapter = AdapterApps(bannerList)
+        appAdapter = AdapterApps(context,appList)
         dotAdapter = AdapterDots(1,bannerList)
     }
     class BannerHolder(val bannerBinding: PageBannerAppsBinding):RecyclerView.ViewHolder(bannerBinding.root)

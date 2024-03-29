@@ -8,15 +8,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageStarvisionBinding
 import com.starvision.view.stavisions.adapter.AdapterStarvision
 import com.starvision.view.stavisions.info.BannerInfo
+import com.starvision.view.stavisions.info.IconInfo
 import com.starvision.view.stavisions.info.NewsInfo
 
 class StarvisionFragment:Fragment() {
     val binding : PageStarvisionBinding by lazy { PageStarvisionBinding.inflate(layoutInflater) }
     var newsList = ArrayList<NewsInfo>()
     var bannerList = ArrayList<BannerInfo>()
+    var appList = ArrayList<IconInfo>()
 //    var imageAdapter :AdapterImageSlide?=null
 //    var appAdapter :AdapterApps?=null
 //    var dotAdapter :AdapterDots?=null
@@ -32,6 +35,7 @@ class StarvisionFragment:Fragment() {
         super.onViewCreated(view, savedInstanceState)
         newsList = setNews()
         bannerList =setBanner()
+        appList = setIcon()
         if (bannerList.size>=2) {
             bannerList.add(0, bannerList[bannerList.size - 1])
             bannerList.add(bannerList[1])
@@ -41,7 +45,7 @@ class StarvisionFragment:Fragment() {
 //        appAdapter = AdapterApps(bannerList)
         Log.e("newsList",newsList.size.toString())
         binding.rvMain.apply {
-            adapter = AdapterStarvision(requireContext(),newsList, bannerList)
+            adapter = AdapterStarvision(requireContext(),newsList, bannerList,appList)
             layoutManager = LinearLayoutManager(requireActivity(),RecyclerView.VERTICAL,false)
         }
     }
@@ -70,5 +74,15 @@ class StarvisionFragment:Fragment() {
         bannerList.add(BannerInfo("5","","News 5","",""))
         bannerList.add(BannerInfo("6","","News 6","",""))
         return bannerList
+    }
+    private fun setIcon():ArrayList<IconInfo>{
+        appList.clear()
+        appList.add(IconInfo("1","อัตราแลกเปลี่ยน","","",getString(R.string.exchange_package)))
+        appList.add(IconInfo("2","ดูดวง 12 ราศี","","",getString(R.string.zodiac_package)))
+        appList.add(IconInfo("3","ราคาทองวันนี้","","",getString(R.string.gold_package)))
+        appList.add(IconInfo("4","ราคาน้ำมันวันนี้","","",getString(R.string.oil_package)))
+        appList.add(IconInfo("5","เลขเด็ด หวยดัง","","",getString(R.string.lucky_package)))
+        appList.add(IconInfo("6","ตรวจหวย","","",getString(R.string.lottery_package)))
+        return appList
     }
 }
