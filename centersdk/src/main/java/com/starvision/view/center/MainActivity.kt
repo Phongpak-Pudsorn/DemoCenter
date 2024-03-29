@@ -23,6 +23,7 @@ import com.starvision.luckygamesdk.databinding.MainPageBinding
 import com.starvision.view.center.adapter.AdapterMenuTab
 import com.starvision.view.center.adapter.AdapterPager
 import com.starvision.view.center.info.TabInfo
+import com.starvision.view.center.models.CenterModels
 import com.starvision.view.center.models.ProfileModels
 import com.starvision.view.stavisions.StarvisionFragment
 import com.starvision.view.luckygamesdk.LuckyGameFragment
@@ -32,7 +33,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class MainActivity: AppCompatActivity() {
-    private val binding: MainPageBinding by lazy { MainPageBinding.inflate(layoutInflater) }
+    private val binding:MainPageBinding by lazy { MainPageBinding.inflate(layoutInflater) }
     private val appPrefs = AppPreferencesLogin
     private val TAG = javaClass.simpleName
     var tablist = ArrayList<TabInfo>()
@@ -42,13 +43,36 @@ class MainActivity: AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
         //ทำเช็ค login
-
-        tablist = setTab()
-        setFragments()
         binding.imgGoBack.setOnClickListener {
             finish()
         }
-        binding.pager2.adapter = AdapterPager(this,fragments)
+        executeData()
+
+
+    }
+    private fun executeData(){
+        ParamsData(object :ParamsData.PostLoadListener{
+            override fun onSuccess(body: String) {
+                val list = Gson().fromJson(body,CenterModels::class.java)
+                for (i in list!!.data.PageCenter.indices){
+                    tablist.add(TabInfo(list.data.PageCenter[i].MenuTitle))
+                }
+                binding.menuTab.apply {
+                    adapter = AdapterMenuTab(this@MainActivity, tablist,object: AdapterMenuTab.TabClickListener{
+                        override fun onTabClick(position: Int) {
+                            binding.pager2.setCurrentItem(position,false)
+                        }
+                    })
+                    layoutManager = LinearLayoutManager(this@MainActivity,RecyclerView.HORIZONTAL,false)
+                }
+            }
+
+            override fun onFailed(t: Throwable) {
+                Const.loge(TAG,"t $t")
+            }
+        }).getLoadData(URL.BASE_URL_SDK,URL.URL_CENTER,"")
+        setFragments()
+        binding.pager2.adapter = AdapterPager(this@MainActivity,fragments)
         binding.pager2.isUserInputEnabled = false
         binding.pager2.registerOnPageChangeCallback(object :ViewPager2.OnPageChangeCallback(){})
         binding.menuTab.apply {
@@ -68,18 +92,9 @@ class MainActivity: AppCompatActivity() {
             })
             dialogProfile.show(supportFragmentManager,"")
         }
-        binding.tvUsername.text = appPrefs.getPreferences(this,AppPreferencesLogin.KEY_PREFS_NAME,"").toString()
-        binding.tvCoinNum.text = appPrefs.getPreferences(this,AppPreferencesLogin.KEY_PREFS_COIN,"").toString()
-        Glide.with(this).load(appPrefs.getPreferences(this,AppPreferencesLogin.KEY_PREFS_AVATAR,"")).into(binding.imgProfile)
-
-    }
-    private fun setTab(): ArrayList<TabInfo> {
-        tablist.clear()
-        tablist.add(TabInfo("Stavision",false))
-        tablist.add(TabInfo("Lucky Game",false))
-        tablist.add(TabInfo("Playplay+",false))
-
-        return tablist
+        binding.tvUsername.text = appPrefs.getPreferences(this@MainActivity,AppPreferencesLogin.KEY_PREFS_NAME,"").toString()
+        binding.tvCoinNum.text = appPrefs.getPreferences(this@MainActivity,AppPreferencesLogin.KEY_PREFS_COIN,"").toString()
+        Glide.with(binding.imgProfile).load(appPrefs.getPreferences(this@MainActivity,AppPreferencesLogin.KEY_PREFS_AVATAR,"")).into(binding.imgProfile)
     }
     private fun setFragments(){
         fragments.add(StarvisionFragment())

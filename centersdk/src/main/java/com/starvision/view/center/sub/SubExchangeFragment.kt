@@ -12,6 +12,7 @@ import com.google.gson.Gson
 import com.starvision.api.Api
 import com.starvision.api.ApiClient
 import com.starvision.api.URL
+import com.starvision.config.ParamsData
 import com.starvision.data.Const
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageExhangeSubBinding
@@ -24,6 +25,7 @@ import javax.security.auth.callback.Callback
 
 class SubExchangeFragment: Fragment() {
     val binding:PageExhangeSubBinding by lazy { PageExhangeSubBinding.inflate(layoutInflater) }
+    val TAG = javaClass.simpleName
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,21 +38,16 @@ class SubExchangeFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         executeData()
         binding.cvMore.setOnClickListener {
-//            Const.openApp(requireContext(),getString(R.string.exchange_package),"SplashActivity")
             Const.openAnotherApp(requireActivity(),getString(R.string.exchange_package))
         }
     }
     private fun executeData(){
-        val services = ApiClient().getBaseLink(URL.BASE_URL,":443").create(Api::class.java)
-        services.getExchange().enqueue(object : retrofit2.Callback<SubExchangeModel>{
-            override fun onResponse(
-                call: Call<SubExchangeModel>,
-                response: Response<SubExchangeModel>,
-            ) {
+        ParamsData(object :ParamsData.PostLoadListener{
+            override fun onSuccess(body: String) {
                 try {
-                    val dataExchange = response.body()!!
+                    val dataExchange = Gson().fromJson(body,SubExchangeModel::class.java)
                     if (dataExchange.Status=="True"){
-                        var  listExchange = response.body()!!.Datarow
+                        var  listExchange = dataExchange.Datarow
                         binding.rvExchange.apply {
                             adapter = AdapterExchangeSub(requireContext(),listExchange)
                             layoutManager = LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
@@ -65,8 +62,9 @@ class SubExchangeFragment: Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<SubExchangeModel>, t: Throwable) {
+            override fun onFailed(t: Throwable) {
+                Const.loge(TAG,"t $t")
             }
-        })
+        }).getLoadData(URL.BASE_URL,URL.exchange,"")
     }
 }
