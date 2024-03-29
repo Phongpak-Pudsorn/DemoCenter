@@ -21,11 +21,11 @@ import com.starvision.view.center.sub.models.SubExchangeModel
 import com.starvision.view.center.sub.models.SubGoldToDayModel
 import retrofit2.Call
 import retrofit2.Response
-import retrofit2.http.GET
 import javax.security.auth.callback.Callback
 
 class SubExchangeFragment: Fragment() {
     val binding:PageExhangeSubBinding by lazy { PageExhangeSubBinding.inflate(layoutInflater) }
+    val TAG = javaClass.simpleName
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,35 +37,36 @@ class SubExchangeFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         executeData()
+        binding.tvNameApp.isSelected = true
+        binding.tvDesApp.isSelected = true
         binding.cvMore.setOnClickListener {
-//            Const.openApp(requireContext(),getString(R.string.exchange_package),"SplashActivity")
             Const.openAnotherApp(requireActivity(),getString(R.string.exchange_package))
         }
     }
     private fun executeData(){
-        ParamsData(object : ParamsData.PostLoadListener{
+        ParamsData(object :ParamsData.PostLoadListener{
             override fun onSuccess(body: String) {
                 try {
                     val dataExchange = Gson().fromJson(body,SubExchangeModel::class.java)
-                    if (dataExchange.Status=="True") {
-                        var listExchange = dataExchange.Datarow
+                    if (dataExchange.Status=="True"){
+                        var  listExchange = dataExchange.Datarow
                         binding.rvExchange.apply {
-                            adapter = AdapterExchangeSub(requireContext(), listExchange)
-                            layoutManager =
-                                LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+                            adapter = AdapterExchangeSub(requireContext(),listExchange)
+                            layoutManager = LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
                         }
                         binding.mProgressBar.visibility = View.GONE
                         binding.tableCurrency.visibility = View.VISIBLE
                         binding.tabHeader.visibility = View.VISIBLE
                     }
+
                 }catch (e:Exception){
                     e.printStackTrace()
                 }
             }
 
             override fun onFailed(t: Throwable) {
-                t.printStackTrace()
+                Const.loge(TAG,"t $t")
             }
-        }).getLoadData(URL.BASE_URL,URL.exchange,":443")
+        }).getLoadData(URL.BASE_URL,URL.exchange,"")
     }
 }

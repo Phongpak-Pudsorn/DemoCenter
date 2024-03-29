@@ -20,16 +20,17 @@ import com.starvision.data.Const
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageOilSubBinding
 import com.starvision.view.center.sub.adapter.AdapterOilSub
+import com.starvision.view.center.sub.models.SubGoldToDayModel
 import com.starvision.view.center.sub.models.SubOilModel
 import com.starvision.view.center.sub.models.SubOilTodayModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.http.GET
 
 
 class SubOilFragment: Fragment() {
     val binding: PageOilSubBinding by lazy { PageOilSubBinding.inflate(layoutInflater) }
+    private val TAG = javaClass.simpleName
     private val oilList = ArrayList<SubOilTodayModel>()
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,6 +43,8 @@ class SubOilFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         execeuteData()
+        binding.tvNameApp.isSelected = true
+        binding.tvDesApp.isSelected = true
         binding.btnReload.setOnClickListener {
             execeuteData()
         }
@@ -61,10 +64,10 @@ class SubOilFragment: Fragment() {
         oilList.add(SubOilTodayModel("1","dieselpremium",setName("dieselpremium"),"0","",setOilIcon("dieselpremium")))
         oilList.add(SubOilTodayModel("1","diesel",setName("diesel"),"0","",setOilIcon("diesel")))
         oilList.add(SubOilTodayModel("1","ngv",setName("ngv"),"0","",setOilIcon("ngv")))
-        ParamsData(object : ParamsData.PostLoadListener{
+        ParamsData(object :ParamsData.PostLoadListener{
             override fun onSuccess(body: String) {
                 try {
-                    val dataOil = Gson().fromJson(body,SubOilModel::class.java)
+                    val dataOil = Gson().fromJson(body, SubOilModel::class.java)
                     if (dataOil.Status=="True") {
                         var listOil = dataOil.Datarow.data.price_today
                         for (i in listOil.indices){
@@ -114,11 +117,9 @@ class SubOilFragment: Fragment() {
             }
 
             override fun onFailed(t: Throwable) {
-                t.printStackTrace()
+                Const.loge(TAG,"t $t")
             }
-
-        }).getLoadData(URL.BASE_URL,URL.oil_price,":443")
-
+        }).getLoadData(URL.BASE_URL,URL.oil_price,"")
         binding.imgBack.setOnClickListener {
 
         }
