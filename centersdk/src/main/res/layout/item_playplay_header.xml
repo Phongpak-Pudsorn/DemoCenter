@@ -23,7 +23,7 @@
             <ImageView
                 android:id="@+id/imgCover"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="200dp"
                 android:scaleType="fitXY"
                 app:srcCompat="@mipmap/ic_launcher_round" />
         </androidx.cardview.widget.CardView>

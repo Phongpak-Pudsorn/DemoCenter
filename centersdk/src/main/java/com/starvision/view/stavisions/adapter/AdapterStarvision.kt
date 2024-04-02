@@ -32,7 +32,7 @@ class AdapterStarvision(val context:Context, val listNews:ArrayList<NewsInfo>, v
     var dotAdapter : AdapterDots?=null
     val handler = android.os.Handler(Looper.getMainLooper())
     init {
-        imageAdapter = AdapterImageSlide(bannerList)
+        imageAdapter = AdapterImageSlide(context,bannerList)
         appAdapter = AdapterApps(context,appList)
         dotAdapter = AdapterDots(1,bannerList)
     }
