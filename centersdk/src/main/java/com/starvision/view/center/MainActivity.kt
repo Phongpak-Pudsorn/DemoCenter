@@ -3,6 +3,7 @@ package com.starvision.view.center
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.view.View
 import android.view.WindowManager
 
 import androidx.appcompat.app.AppCompatActivity
@@ -16,22 +17,25 @@ import com.starvision.api.URL
 import com.starvision.config.*
 import com.starvision.data.AppPreferencesLogin
 import com.starvision.data.Const
+import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.MainPageBinding
 import com.starvision.view.center.adapter.AdapterMenuTab
 import com.starvision.view.center.adapter.AdapterPager
 import com.starvision.view.center.info.TabInfo
 import com.starvision.view.center.models.CenterModels
 import com.starvision.view.center.models.ProfileModels
+import com.starvision.view.center.sub.*
 import com.starvision.view.login.LoginActivity
 import com.starvision.view.stavisions.StarvisionFragment
 import com.starvision.view.luckygamesdk.LuckyGameFragment
 import com.starvision.view.luckygamesdk.models.LuckyGameModels
 import com.starvision.view.playplay.PlayplayFragment
+import com.starvision.view.stavisions.adapter.AdapterImageSlide
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class MainActivity: AppCompatActivity() {
+class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
     private val binding: MainPageBinding by lazy { MainPageBinding.inflate(layoutInflater) }
     private val appPrefs = AppPreferencesLogin
     private val TAG = javaClass.simpleName
@@ -99,6 +103,34 @@ class MainActivity: AppCompatActivity() {
         fragments.add(LuckyGameFragment())
         fragments.add(PlayplayFragment())
 
+    }
+    private fun setSubPage(packName:String){
+        if (packName==getString(R.string.oil_package)){
+            getFragment(SubOilFragment())
+        }else if (packName==getString(R.string.gold_package)){
+            getFragment(SubGoldToDayPage())
+        }else if (packName==getString(R.string.exchange_package)){
+            getFragment(SubExchangeFragment())
+        }else if (packName==getString(R.string.zodiac_package)){
+            getFragment(SubZodiacFragment())
+        }else if (packName==getString(R.string.lucky_package)){
+            getFragment(SubLottothaiPage())
+        }else if (packName==getString(R.string.lottery_package)){
+            getFragment(SubSmileLottoPage())
+        }
+    }
+    private fun getFragment (fragment: Fragment) {
+        binding.fmSub.visibility = View.VISIBLE
+        binding.llMain.visibility = View.GONE
+        supportFragmentManager.beginTransaction()
+            .replace(binding.fmSub.id, fragment)
+            .commit()
+    }
+
+    override fun passData(packName: String) {
+        if (packName!=""){
+            setSubPage(packName)
+        }
     }
 
 }
