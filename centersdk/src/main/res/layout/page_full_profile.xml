@@ -480,7 +480,8 @@
             android:id="@+id/imageView3"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:src="@mipmap/setting" />
+            android:src="@mipmap/setting"
+            android:visibility="gone" />
 
     </androidx.cardview.widget.CardView>
 

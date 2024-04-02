@@ -32,12 +32,6 @@ class LuckyGameFragment : Fragment(){
         gameAdapter = AdapterGamePage(requireActivity())
         binding.recycleView.layoutManager = GridLayoutManager(requireContext(),3)
         binding.recycleView.adapter = gameAdapter
-//        try {
-//            val newData = Gson().fromJson(appPrefs.getPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_LUCKY_GAME,"").toString(),LuckyGameModels::class.java)
-//            Const.loge(TAG," check gson : "+newData.message)
-//        }catch (e : Exception){
-//            e.printStackTrace()
-//        }
 
     }
 

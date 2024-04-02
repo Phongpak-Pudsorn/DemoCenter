@@ -132,7 +132,7 @@ class AdapterStarvision(val context:Context, val listNews:ArrayList<NewsInfo>, v
             holder.newsBinding.tvTitle.text = listNews[position].newsappTitle
             holder.itemView.setOnClickListener {
                 val intent = Intent(context, WebViewActivity::class.java)
-                intent.putExtra("link", "https://google.com")
+                intent.putExtra("link", "https://www.starvision.in.th/mobileweb/webview_calendar/webview.php?OS=Android&p=artide_webview&id=2709")
                 context.startActivity(intent)
             }
         }

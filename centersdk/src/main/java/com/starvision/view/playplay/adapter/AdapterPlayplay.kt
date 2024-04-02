@@ -40,15 +40,17 @@ class AdapterPlayplay(private val mActivity : Activity) : RecyclerView.Adapter<R
             holder.epBinding.tvDate.text = "3/13/2024"
             holder.itemView.setOnClickListener {
                 val intent = Intent(mActivity, WebViewActivity::class.java)
-                intent.putExtra("link", "https://bit.ly/ppplus_youtube")
+                intent.putExtra("link", "https://www.playplayplus.com/")
                 mActivity.startActivity(intent)
             }
         }else if (holder is headerHolder){
             holder.itemView.setOnClickListener {
                 val intent = Intent(mActivity, WebViewActivity::class.java)
-                intent.putExtra("link", "https://bit.ly/ppplus_youtube")
+                intent.putExtra("link", "https://www.playplayplus.com/")
                 mActivity.startActivity(intent)
             }
+
+            // รอเช็ตข้อมูลจาก api
             holder.headBinding.tvTitle.text = "Dragonball DAIMA"
             holder.headBinding.tvSummary.text = "the last story of Dragon ball that Akira Toriyama left in this world will on air in 2024"
         }

@@ -58,6 +58,9 @@ class MainActivity: AppCompatActivity() {
                 val list = Gson().fromJson(body,CenterModels::class.java)
                 for (i in list!!.data.PageCenter.indices){
                     tablist.add(TabInfo(list.data.PageCenter[i].MenuTitle))
+//                if(list.data.PageCenter[i].MenuType == "NewsCenter") {
+//                    tablist.add(TabInfo(list.data.PageCenter[i].MenuTitle))
+//                }
                 }
                 binding.menuTab.apply {
                     adapter = AdapterMenuTab(this@MainActivity, tablist,object: AdapterMenuTab.TabClickListener{
