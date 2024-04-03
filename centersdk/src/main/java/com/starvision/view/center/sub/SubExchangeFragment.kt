@@ -26,6 +26,13 @@ import javax.security.auth.callback.Callback
 class SubExchangeFragment: Fragment() {
     val binding:PageExhangeSubBinding by lazy { PageExhangeSubBinding.inflate(layoutInflater) }
     val TAG = javaClass.simpleName
+    private lateinit var mClickListener : ClickListener
+    interface ClickListener {
+        fun onClickBack()
+    }
+    fun setClickListener(listener : ClickListener) {
+        mClickListener = listener
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -41,6 +48,9 @@ class SubExchangeFragment: Fragment() {
         binding.tvDesApp.isSelected = true
         binding.cvMore.setOnClickListener {
             Const.openAnotherApp(requireActivity(),getString(R.string.exchange_package))
+        }
+        binding.imgBack.setOnClickListener {
+            mClickListener.onClickBack()
         }
     }
     private fun executeData(){

@@ -20,6 +20,13 @@ import com.starvision.luckygamesdk.databinding.PageZodiacSubBinding
 class SubZodiacFragment:Fragment() {
     var loading = true
     val binding:PageZodiacSubBinding by lazy { PageZodiacSubBinding.inflate(layoutInflater) }
+    private lateinit var mClickListener : ClickListener
+    interface ClickListener {
+        fun onClickBack()
+    }
+    fun setClickListener(listener : ClickListener) {
+        mClickListener = listener
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,6 +43,9 @@ class SubZodiacFragment:Fragment() {
         binding.cvMore.setOnClickListener {
 //            Const.openApp(requireContext(),getString(R.string.zodiac_package),"view.activity.MainActivity")
             Const.openAnotherApp(requireActivity(),getString(R.string.zodiac_package))
+        }
+        binding.imgBack.setOnClickListener {
+            mClickListener.onClickBack()
         }
     }
     private fun startWebView(url: String) {

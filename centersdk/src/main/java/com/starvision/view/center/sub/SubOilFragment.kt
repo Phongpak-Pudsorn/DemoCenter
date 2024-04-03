@@ -32,6 +32,14 @@ class SubOilFragment: Fragment() {
     val binding: PageOilSubBinding by lazy { PageOilSubBinding.inflate(layoutInflater) }
     private val TAG = javaClass.simpleName
     private val oilList = ArrayList<SubOilTodayModel>()
+
+    private lateinit var mClickListener : ClickListener
+    interface ClickListener {
+        fun onClickBack()
+    }
+    fun setClickListener(listener : ClickListener) {
+        mClickListener = listener
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -51,6 +59,9 @@ class SubOilFragment: Fragment() {
         binding.cvMore.setOnClickListener {
 //            Const.openApp(requireActivity(),getString(R.string.oil_package),"SplashActivity")
             Const.openAnotherApp(requireActivity(),getString(R.string.oil_package))
+        }
+        binding.imgBack.setOnClickListener {
+            mClickListener.onClickBack()
         }
     }
     private fun execeuteData(){
