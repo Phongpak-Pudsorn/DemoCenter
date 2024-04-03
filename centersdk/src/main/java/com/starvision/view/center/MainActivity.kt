@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import androidx.activity.OnBackPressedCallback
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -39,6 +40,7 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
     private val binding: MainPageBinding by lazy { MainPageBinding.inflate(layoutInflater) }
     private val appPrefs = AppPreferencesLogin
     private val TAG = javaClass.simpleName
+    private var callback : OnBackPressedCallback? = null
     var tablist = ArrayList<TabInfo>()
     var fragments = ArrayList<Fragment>()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,6 +52,20 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
             startActivity(intent)
             finish()
         }
+
+        callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if(binding.fmSub.visibility == View.VISIBLE){
+                    binding.fmSub.visibility = View.GONE
+                    binding.llMain.visibility = View.VISIBLE
+                    binding.fmSub.removeAllViews()
+                }else{
+                    finish()
+                }
+            }
+        }
+        this.onBackPressedDispatcher.addCallback(this,callback!!)
+
         setFragments()
         binding.imgGoBack.setOnClickListener {
             finish()
@@ -62,9 +78,9 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
                 val list = Gson().fromJson(body,CenterModels::class.java)
                 for (i in list!!.data.PageCenter.indices){
                     tablist.add(TabInfo(list.data.PageCenter[i].MenuTitle))
-//                if(list.data.PageCenter[i].MenuType == "NewsCenter") {
-//                    tablist.add(TabInfo(list.data.PageCenter[i].MenuTitle))
-//                }
+                    list.data.PageCenter[i].NewsApp
+                    list.data.PageCenter[i].IconApp
+                    list.data.PageCenter[i].BannerApp
                 }
                 binding.menuTab.apply {
                     adapter = AdapterMenuTab(this@MainActivity, tablist,object: AdapterMenuTab.TabClickListener{
@@ -136,4 +152,8 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
         }
     }
 
+    override fun onDestroy() {
+        callback!!.remove()
+        super.onDestroy()
+    }
 }
