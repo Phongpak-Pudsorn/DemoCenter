@@ -23,12 +23,15 @@ class MainActivity : AppCompatActivity() {
     private val binding : ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private var callback : OnBackPressedCallback? = null
     private val appPrefe = AppPreferencesLogin
+    private val subLottothaiPage = SubLottothaiPage()
+    private val subSmileLottoPage = SubSmileLottoPage()
+    private val subGoldToDayPage = SubGoldToDayPage()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         supportActionBar?.hide()
-
+        setButtonCallback()
         binding.btnCenter.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
@@ -40,17 +43,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnLottoThai.setOnClickListener {
-            setFragment(SubLottothaiPage())
+            setFragment(subLottothaiPage)
             binding.framelayoutFragment.visibility = View.VISIBLE
             binding.lnBtn.visibility = View.GONE
         }
         binding.btnLottoCalendar.setOnClickListener {
-            setFragment(SubSmileLottoPage())
+            setFragment(subSmileLottoPage)
             binding.framelayoutFragment.visibility = View.VISIBLE
             binding.lnBtn.visibility = View.GONE
         }
         binding.btnGoldtoday.setOnClickListener {
-            setFragment(SubGoldToDayPage())
+            setFragment(subGoldToDayPage)
             binding.framelayoutFragment.visibility = View.VISIBLE
             binding.lnBtn.visibility = View.GONE
         }
@@ -97,5 +100,22 @@ class MainActivity : AppCompatActivity() {
         }else{
             binding.imgPerson.setImageDrawable(getDrawable(R.drawable.baseline_person_24_black))
         }
+    }
+    private fun setButtonCallback(){
+        subLottothaiPage.setClickListener(object : SubLottothaiPage.ClickListener{
+            override fun onClickBack() {
+                callback!!.handleOnBackPressed()
+            }
+        })
+        subSmileLottoPage.setClickListener(object : SubSmileLottoPage.ClickListener{
+            override fun onClickBack() {
+                callback!!.handleOnBackPressed()
+            }
+        })
+        subGoldToDayPage.setClickListener(object : SubGoldToDayPage.ClickListener{
+            override fun onClickBack() {
+                callback!!.handleOnBackPressed()
+            }
+        })
     }
 }

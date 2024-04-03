@@ -45,11 +45,17 @@ class SubLottothaiPage : Fragment() {
     private val TAG = javaClass.simpleName
     private var listData = ArrayList<SubLottothaiModels>()
     private var listDataRow = ArrayList<SubLottothaiModels.NumberLot>()
-    private var positionSpinner = 0
     private var intlistOff = 0
     private var intlistAny = 0
-    private var jSonData = ""
     private var checkRefresh = false
+
+    private lateinit var mClickListener : ClickListener
+    interface ClickListener {
+        fun onClickBack()
+    }
+    fun setClickListener(listener : ClickListener) {
+        mClickListener = listener
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -82,6 +88,9 @@ class SubLottothaiPage : Fragment() {
         adapterLottothaiSub = AdapterLottothaiSub(listData)
         binding.reCycleView.layoutManager = LinearLayoutManager(requireActivity(), RecyclerView.VERTICAL,false)
         binding.reCycleView.adapter = adapterLottothaiSub
+        binding.imgBack.setOnClickListener {
+            mClickListener.onClickBack()
+        }
     }
 
     private fun setClick() {

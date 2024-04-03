@@ -52,6 +52,13 @@ class SubSmileLottoPage : Fragment() {
     private var strNumberEdit = ""
     private var TAG = javaClass.simpleName
 
+    private lateinit var mClickListener : ClickListener
+    interface ClickListener {
+        fun onClickBack()
+    }
+    fun setClickListener(listener : ClickListener) {
+        mClickListener = listener
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -68,6 +75,9 @@ class SubSmileLottoPage : Fragment() {
         binding.mProgressBar.visibility = View.VISIBLE
         binding.cvMore.setOnClickListener {
             Const.openAnotherApp(requireContext(),getString(R.string.checklotto_package))
+        }
+        binding.imgBack.setOnClickListener {
+            mClickListener.onClickBack()
         }
     }
 

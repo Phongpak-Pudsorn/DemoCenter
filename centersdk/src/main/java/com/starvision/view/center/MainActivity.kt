@@ -3,6 +3,8 @@ package com.starvision.view.center
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.view.WindowManager
 import androidx.activity.OnBackPressedCallback
@@ -41,6 +43,9 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
     private val appPrefs = AppPreferencesLogin
     private val TAG = javaClass.simpleName
     private var callback : OnBackPressedCallback? = null
+    private val subLottothaiPage = SubLottothaiPage()
+    private val subSmileLottoPage = SubSmileLottoPage()
+    private val subGoldToDayPage = SubGoldToDayPage()
     var tablist = ArrayList<TabInfo>()
     var fragments = ArrayList<Fragment>()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,14 +63,13 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
                 if(binding.fmSub.visibility == View.VISIBLE){
                     binding.fmSub.visibility = View.GONE
                     binding.llMain.visibility = View.VISIBLE
-                    binding.fmSub.removeAllViews()
                 }else{
                     finish()
                 }
             }
         }
         this.onBackPressedDispatcher.addCallback(this,callback!!)
-
+        setButtonCallback()
         setFragments()
         binding.imgGoBack.setOnClickListener {
             finish()
@@ -127,20 +131,22 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
         if (packName==getString(R.string.oil_package)){
             getFragment(SubOilFragment())
         }else if (packName==getString(R.string.gold_package)){
-            getFragment(SubGoldToDayPage())
+            getFragment(subGoldToDayPage)
         }else if (packName==getString(R.string.exchange_package)){
             getFragment(SubExchangeFragment())
         }else if (packName==getString(R.string.zodiac_package)){
             getFragment(SubZodiacFragment())
         }else if (packName==getString(R.string.lucky_package)){
-            getFragment(SubLottothaiPage())
+            getFragment(subLottothaiPage)
         }else if (packName==getString(R.string.lottery_package)){
-            getFragment(SubSmileLottoPage())
+            getFragment(subSmileLottoPage)
         }
     }
     private fun getFragment (fragment: Fragment) {
-        binding.fmSub.visibility = View.VISIBLE
-        binding.llMain.visibility = View.GONE
+        Handler(Looper.getMainLooper()).postDelayed({
+            binding.fmSub.visibility = View.VISIBLE
+            binding.llMain.visibility = View.GONE
+        },100)
         supportFragmentManager.beginTransaction()
             .replace(binding.fmSub.id, fragment)
             .commit()
@@ -155,5 +161,23 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
     override fun onDestroy() {
         callback!!.remove()
         super.onDestroy()
+    }
+
+    private fun setButtonCallback(){
+        subLottothaiPage.setClickListener(object : SubLottothaiPage.ClickListener{
+            override fun onClickBack() {
+                callback!!.handleOnBackPressed()
+            }
+        })
+        subSmileLottoPage.setClickListener(object : SubSmileLottoPage.ClickListener{
+            override fun onClickBack() {
+                callback!!.handleOnBackPressed()
+            }
+        })
+        subGoldToDayPage.setClickListener(object : SubGoldToDayPage.ClickListener{
+            override fun onClickBack() {
+                callback!!.handleOnBackPressed()
+            }
+        })
     }
 }
