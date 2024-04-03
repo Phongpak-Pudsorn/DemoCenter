@@ -17,14 +17,12 @@ object AppPreferencesLogin {
 
     //get from login
     const val KEY_PREFS_USERID = "KEY_PREFS_USERID"
-    const val KEY_PREFS_SKEY = "KEY_PREFS_SKEY"
     const val KEY_PREFS_IDX = "KEY_PREFS_IDX"
 
     //get from checkProfile
     const val KEY_PREFS_NAME = "KEY_PREFS_NAME"
     const val KEY_PREFS_AVATAR = "KEY_PREFS_AVATAR"
     const val KEY_PREFS_COIN = "KEY_PREFS_COIN"
-//    const val KEY_PREFS_HASH_LOGIN = "KEY_PREFS_HASH_LOGIN"
 
     //get from luckygame center
     const val KEY_PREFS_LUCKY_GAME = "KEY_PREFS_LUCKY_GAME"

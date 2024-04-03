@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.starvision.api.URL
 import com.starvision.config.*
-import com.starvision.data.AppPreferencesLogin
 import com.starvision.data.Const
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageFullProfileBinding
@@ -30,7 +29,6 @@ import javax.crypto.spec.SecretKeySpec
 class ProfileDialogFragment : DialogFragment() {
     private val binding : PageFullProfileBinding by lazy { PageFullProfileBinding.inflate(layoutInflater) }
     private val TAG = javaClass.simpleName
-    private val appPrefe = AppPreferencesLogin
 
     private lateinit var mClickListener : ClickListener
     interface ClickListener {
@@ -62,16 +60,16 @@ class ProfileDialogFragment : DialogFragment() {
     }
 
     private fun bindingObject(){
-        binding.tvName.text = Login.getName
-        binding.tvCoin.text = Login.getCoin
-        binding.tvIdx.text = "idx : "+Login.getIDX
-        Glide.with(requireContext()).load(Login.getAvatar).into(binding.imgProfile)
+        binding.tvName.text = Login.Name
+        binding.tvCoin.text = Login.Coin
+        binding.tvIdx.text = "idx : "+Login.IDX
+        Glide.with(requireContext()).load(Login.Avatar).into(binding.imgProfile)
         binding.tvLogout.setOnClickListener {
             mClickListener.onLogout()
-            appPrefe.setPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_LOGIN,false)
-            appPrefe.setPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_NAME, "")
-            appPrefe.setPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_AVATAR,"")
-            appPrefe.setPreferences(requireContext(),AppPreferencesLogin.KEY_PREFS_COIN,"")
+            Login.isLogin = false
+            Login.Name = ""
+            Login.Avatar = ""
+            Login.Coin = ""
             val intent = Intent(requireContext(),LoginActivity::class.java)
             startActivity(intent)
         }

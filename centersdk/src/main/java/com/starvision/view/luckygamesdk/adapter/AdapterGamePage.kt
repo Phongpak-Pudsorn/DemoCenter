@@ -8,13 +8,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.starvision.data.AppPreferencesLogin
 import com.starvision.luckygamesdk.R
 import com.starvision.view.WebViewActivity
 import com.starvision.view.WebViewLuckyActivity
 
 class AdapterGamePage(private val mActivity: Activity) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private val appPref = AppPreferencesLogin
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_games, parent, false)

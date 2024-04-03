@@ -19,31 +19,27 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.starvision.api.*
 import com.starvision.config.CryptoHandler
 import com.starvision.config.Login
 import com.starvision.config.MD5
 import com.starvision.config.ParamsData
-import com.starvision.data.AppPreferencesLogin
 import com.starvision.data.Const
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageLoginBinding
 import com.starvision.view.center.MainActivity
 import com.starvision.view.center.models.ProfileModels
 import com.starvision.view.login.models.LoginModels
-import okhttp3.ResponseBody
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.HashMap
 
 
 class LoginActivity : AppCompatActivity() {
     private val binding : PageLoginBinding by lazy { PageLoginBinding.inflate(layoutInflater) }
     private val handler = Handler(Looper.getMainLooper())
     private var callback : OnBackPressedCallback? = null
-    private var appPrefe = AppPreferencesLogin
+//    private var appPrefe = AppPreferencesLogin
     private val TAG = javaClass.simpleName
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -56,8 +52,8 @@ class LoginActivity : AppCompatActivity() {
         binding.imgLogo.setImageBitmap(bm)
 
         if(Login.isRememberCheck){
-            val user = Login.getUserName
-            val password = Login.getPassword
+            val user = Login.UserName
+            val password = Login.Password
             binding.editUsername.text = Editable.Factory.getInstance().newEditable(user)
             binding.editPassword.text = Editable.Factory.getInstance().newEditable(password)
             binding.checkboxRememberPass.isChecked = true
@@ -73,8 +69,8 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 override fun onSuccess() {
-                    val user = Login.getUserName
-                    val password = Login.getPassword
+                    val user = Login.UserName
+                    val password = Login.Password
                     binding.editUsername.text = Editable.Factory.getInstance().newEditable(user)
                     binding.editPassword.text = Editable.Factory.getInstance().newEditable(password)
                     binding.checkboxRememberPass.isChecked = true
@@ -135,10 +131,16 @@ class LoginActivity : AppCompatActivity() {
         binding.cvLogin.isEnabled = false
         handler.postDelayed({ binding.cvLogin.isEnabled = true },1000)
         if(binding.editUsername.length() < 6){
-            Toast.makeText(this,getString(R.string.text_alert_user_min),Toast.LENGTH_SHORT).show()
+            val toast = Toast.makeText(this,getString(R.string.text_alert_user_min),Toast.LENGTH_SHORT)
+            toast.show()
+            val handler = Handler(Looper.getMainLooper())
+            handler.postDelayed({ toast.cancel() }, 1000)
             binding.progressBar2.visibility = View.GONE
         }else if(binding.editPassword.length() < 6){
-            Toast.makeText(this,getString(R.string.text_alert_password_min), Toast.LENGTH_SHORT).show()
+            val toast = Toast.makeText(this,getString(R.string.text_alert_password_min), Toast.LENGTH_SHORT)
+            toast.show()
+            val handler = Handler(Looper.getMainLooper())
+            handler.postDelayed({ toast.cancel() }, 1000)
             binding.progressBar2.visibility = View.GONE
         }else{
             val password = MD5.CMD5(binding.editPassword.text.toString())
@@ -167,12 +169,11 @@ class LoginActivity : AppCompatActivity() {
                         val jSon = Gson().fromJson(body,LoginModels::class.java)
                         if(jSon.message == "success"){
                             if(binding.checkboxRememberPass.isChecked){
-                                appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_REMEMBER_CHECK,true)
-                                appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_REMEMBER_USER,binding.editUsername.text.toString())
-                                appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_REMEMBER_PASSWORD,binding.editPassword.text.toString())
-//                                Login.setPassword(binding.editPassword.text.toString())
+                                Login.isRememberCheck = true
+                                Login.UserName = binding.editUsername.text.toString()
+                                Login.Password = binding.editPassword.text.toString()
                             }else{
-                                appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_REMEMBER_CHECK,false)
+                                Login.isRememberCheck = false
                             }
 
                             val timeStamp : String = SimpleDateFormat("HHmmssddMMyyyy").format(Date())
@@ -191,9 +192,9 @@ class LoginActivity : AppCompatActivity() {
                                         binding.cvLogin.isEnabled = true
                                         binding.progressBar2.visibility = View.GONE
                                         val jSonPro = Gson().fromJson(body, ProfileModels::class.java)
-                                        appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_NAME, jSonPro.data!!.name!!.toString())
-                                        appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_AVATAR,jSonPro.data.avatar!!.toString())
-                                        appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_COIN,jSonPro.data.coin!!.toString())
+                                        Login.Name = jSonPro.data!!.name!!.toString()
+                                        Login.Avatar = jSonPro.data.avatar!!.toString()
+                                        Login.Coin = jSonPro.data.coin!!.toString()
                                         Toast.makeText(this@LoginActivity,jSon.message,Toast.LENGTH_SHORT).show()
                                         val intent = Intent(this@LoginActivity,MainActivity::class.java)
                                         startActivity(intent)
@@ -206,10 +207,9 @@ class LoginActivity : AppCompatActivity() {
                                     Const.loge(TAG,"t : $t")
                                 }
                             }).postLoadData(URL.BASE_URL_SDK,URL.URL_PROFILE,"",hashMaps)
-                            appPrefe.setPreferences(this@LoginActivity, AppPreferencesLogin.KEY_PREFS_USERID,jSon.userid)
-                            appPrefe.setPreferences(this@LoginActivity, AppPreferencesLogin.KEY_PREFS_SKEY,jSon.SKey!!)
-                            appPrefe.setPreferences(this@LoginActivity, AppPreferencesLogin.KEY_PREFS_IDX,jSon.idx!!)
-                            appPrefe.setPreferences(this@LoginActivity,AppPreferencesLogin.KEY_PREFS_LOGIN,true)
+                            Login.UserID = jSon.userid
+                            Login.IDX = jSon.idx!!
+                            Login.isLogin = true
                         }else{
                             Toast.makeText(this@LoginActivity,jSon.message,Toast.LENGTH_SHORT).show()
                             binding.cvLogin.isEnabled = true

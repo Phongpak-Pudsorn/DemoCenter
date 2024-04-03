@@ -14,6 +14,13 @@ import com.starvision.luckygamesdk.databinding.PageWebviewPolicyBinding
 class WebViewPolicyDialogFragment : DialogFragment() {
     private val binding : PageWebviewPolicyBinding by lazy { PageWebviewPolicyBinding.inflate(layoutInflater) }
 
+    private lateinit var mClickClose : ClickClose
+    interface ClickClose{
+        fun onClickClose()
+    }
+    fun setClickClose(listener : ClickClose){
+        mClickClose = listener
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,6 +41,7 @@ class WebViewPolicyDialogFragment : DialogFragment() {
         binding.webview.loadUrl("https://www.starvision.in.th/term/privacy.html")
         binding.webview.webViewClient = CustomWebViewClient()
         binding.imgClose.setOnClickListener {
+            mClickClose.onClickClose()
             dismiss()
         }
         dialog!!.show()

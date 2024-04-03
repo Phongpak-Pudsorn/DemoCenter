@@ -6,7 +6,7 @@
 
     <!-- Login,Regis,Forgot -->
     <string name="text_alert_user_min">กรุณากรอกชื่อให้ครบ</string>
-    <string name="text_alert_email_min">กรุณากรอกอิเมล์ให้ครบ</string>
+    <string name="text_alert_email_min">กรุณากรอกอีเมลให้ครบ</string>
     <string name="text_alert_policy_uncheck">กรุณายืนยันนโยบายส่วนตัว</string>
     <string name="text_alert_password_min">กรุณากรอกรหัสให้ครบ</string>
     <string name="text_alert_password_not_same">กรุณากรอกรหัสให้ตรงกัน</string>
@@ -21,13 +21,13 @@
     <string name="login">Login</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="remember">Remember</string>
-    <string name="password">password</string>
-    <string name="username">username</string>
+    <string name="password">assword</string>
+    <string name="username">sername</string>
     <string name="policy_text">นโยบายความเป็นส่วนตัว</string>
     <string name="forgot">Forgot</string>
     <string name="e_mail">E-mail</string>
     <string name="sent">Sent</string>
-    <string name="confirm_password">confirm password</string>
+    <string name="confirm_password">Confirm password</string>
     <string name="please_click_to_accept">Please click to accept</string>
     <!-- Login,Regis,Forgot -->
 

@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.gson.Gson
-import com.starvision.data.AppPreferencesLogin
 import com.starvision.data.Const
 import com.starvision.view.luckygamesdk.adapter.AdapterGamePage
 import com.starvision.luckygamesdk.databinding.LuckyGamePageBinding
@@ -17,7 +16,6 @@ class LuckyGameFragment : Fragment(){
     private val binding : LuckyGamePageBinding by lazy { LuckyGamePageBinding.inflate(layoutInflater) }
     private val TAG = javaClass.simpleName
     private var gameAdapter : AdapterGamePage? = null
-    private val appPrefs = AppPreferencesLogin
 
     override fun onCreateView(
         inflater: LayoutInflater,

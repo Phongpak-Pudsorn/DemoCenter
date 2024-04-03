@@ -1,7 +1,6 @@
 package com.starvision.view.login
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
@@ -14,32 +13,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.google.gson.Gson
-import com.starvision.api.Api
-import com.starvision.api.ApiClient
 import com.starvision.api.URL
+import com.starvision.config.Login
 import com.starvision.config.MD5
 import com.starvision.config.ParamsData
-import com.starvision.data.AppPreferencesLogin
 import com.starvision.data.Const
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageRegisterBinding
-import com.starvision.view.center.MainActivity
 import com.starvision.view.login.models.LoginModels
-import okhttp3.ResponseBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.http.Url
 import java.util.*
-import kotlin.collections.HashMap
 
 class RegisterFragment(private val bm: Bitmap) : Fragment() {
     private val binding : PageRegisterBinding by lazy { PageRegisterBinding.inflate(layoutInflater) }
     private val handler = Handler(Looper.getMainLooper())
     private val TAG = javaClass.simpleName
-    private val appPrefe = AppPreferencesLogin
 
     private lateinit var mClickListener : ClickListener
     interface ClickListener {
@@ -66,15 +54,30 @@ class RegisterFragment(private val bm: Bitmap) : Fragment() {
             binding.cvRegister.isEnabled = false
             handler.postDelayed({ binding.cvRegister.isEnabled = true },1000)
             if(binding.editUsername.length() < 6){
-                Toast.makeText(requireContext(),getString(R.string.text_alert_user_min), Toast.LENGTH_SHORT).show()
+                val toast = Toast.makeText(requireContext(),getString(R.string.text_alert_user_min), Toast.LENGTH_SHORT)
+                toast.show()
+                val handler = Handler(Looper.getMainLooper())
+                handler.postDelayed({ toast.cancel() }, 1000)
             }else if(binding.editPassword.length() < 6){
-                Toast.makeText(requireContext(),getString(R.string.text_alert_password_min), Toast.LENGTH_SHORT).show()
+                val toast = Toast.makeText(requireContext(),getString(R.string.text_alert_password_min), Toast.LENGTH_SHORT)
+                toast.show()
+                val handler = Handler(Looper.getMainLooper())
+                handler.postDelayed({ toast.cancel() }, 1000)
             }else if(binding.editConfirmPassword.length() < 6){
-                Toast.makeText(requireContext(),getString(R.string.text_alert_password_not_same), Toast.LENGTH_SHORT).show()
-            }else if(binding.editEmail.length() < 6){
-                Toast.makeText(requireContext(),getString(R.string.text_alert_email_min), Toast.LENGTH_SHORT).show()
+                val toast = Toast.makeText(requireContext(),getString(R.string.text_alert_password_not_same), Toast.LENGTH_SHORT)
+                toast.show()
+                val handler = Handler(Looper.getMainLooper())
+                handler.postDelayed({ toast.cancel() }, 1000)
+            }else if(binding.editEmail.length() < 8){
+                val toast = Toast.makeText(requireContext(),getString(R.string.text_alert_email_min), Toast.LENGTH_SHORT)
+                toast.show()
+                val handler = Handler(Looper.getMainLooper())
+                handler.postDelayed({ toast.cancel() }, 1000)
             }else if(!binding.checkboxAcceptPolicy.isChecked){
-                Toast.makeText(requireContext(),getString(R.string.text_alert_policy_uncheck), Toast.LENGTH_SHORT).show()
+                val toast = Toast.makeText(requireContext(),getString(R.string.text_alert_policy_uncheck), Toast.LENGTH_SHORT)
+                toast.show()
+                val handler = Handler(Looper.getMainLooper())
+                handler.postDelayed({ toast.cancel() }, 1000)
             }else{
                 val acc_name = binding.editUsername.text.toString().lowercase(Locale.getDefault())
                 val password = MD5.CMD5(binding.editPassword.text.toString())
@@ -106,13 +109,12 @@ class RegisterFragment(private val bm: Bitmap) : Fragment() {
                         try {
                             val jSon = Gson().fromJson(body, LoginModels::class.java)
                             if(jSon.message == "success"){
-                                appPrefe.setPreferences(requireContext(), AppPreferencesLogin.KEY_PREFS_REMEMBER_CHECK,true)
-                                appPrefe.setPreferences(requireContext(), AppPreferencesLogin.KEY_PREFS_REMEMBER_USER,binding.editUsername.text.toString())
-                                appPrefe.setPreferences(requireContext(), AppPreferencesLogin.KEY_PREFS_REMEMBER_PASSWORD,binding.editPassword.text.toString())
-
-                                appPrefe.setPreferences(requireContext(), AppPreferencesLogin.KEY_PREFS_USERID,jSon.userid)
-                                appPrefe.setPreferences(requireContext(), AppPreferencesLogin.KEY_PREFS_SKEY,jSon.SKey!!)
-                                appPrefe.setPreferences(requireContext(), AppPreferencesLogin.KEY_PREFS_IDX,jSon.idx!!)
+                                Login.isRememberCheck = true
+                                Login.UserName = binding.editUsername.text.toString()
+                                Login.Password = binding.editPassword.text.toString()
+                                Login.UserID = jSon.userid
+                                Login.IDX = jSon.idx!!
+                                Login.isLogin = true
                                 Toast.makeText(requireContext(),jSon.message,Toast.LENGTH_SHORT).show()
                                 mClickListener.onSuccess()
                             }else{
@@ -133,7 +135,13 @@ class RegisterFragment(private val bm: Bitmap) : Fragment() {
         binding.tvPolicyRegister.setOnClickListener {
             binding.tvPolicyRegister.isEnabled = false
             handler.postDelayed({ binding.tvPolicyRegister.isEnabled = true },1000)
-            WebViewPolicyDialogFragment().show(childFragmentManager,"policy")
+            val webview = WebViewPolicyDialogFragment()
+            webview.setClickClose(object : WebViewPolicyDialogFragment.ClickClose{
+                override fun onClickClose() {
+                    binding.checkboxAcceptPolicy.isChecked = true
+                }
+            })
+            webview.show(childFragmentManager,"policy")
         }
 
         binding.seePassword.setOnClickListener {
