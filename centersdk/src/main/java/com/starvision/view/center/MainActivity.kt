@@ -46,6 +46,9 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
     private val subLottothaiPage = SubLottothaiPage()
     private val subSmileLottoPage = SubSmileLottoPage()
     private val subGoldToDayPage = SubGoldToDayPage()
+    private val subZodiacPage = SubZodiacFragment()
+    private val subExchangePage = SubExchangeFragment()
+    private val subOilPage = SubOilFragment()
     var tablist = ArrayList<TabInfo>()
     var fragments = ArrayList<Fragment>()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -129,13 +132,13 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
     }
     private fun setSubPage(packName:String){
         if (packName==getString(R.string.oil_package)){
-            getFragment(SubOilFragment())
+            getFragment(subOilPage)
         }else if (packName==getString(R.string.gold_package)){
             getFragment(subGoldToDayPage)
         }else if (packName==getString(R.string.exchange_package)){
-            getFragment(SubExchangeFragment())
+            getFragment(subExchangePage)
         }else if (packName==getString(R.string.zodiac_package)){
-            getFragment(SubZodiacFragment())
+            getFragment(subZodiacPage)
         }else if (packName==getString(R.string.lucky_package)){
             getFragment(subLottothaiPage)
         }else if (packName==getString(R.string.lottery_package)){
@@ -175,6 +178,21 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
             }
         })
         subGoldToDayPage.setClickListener(object : SubGoldToDayPage.ClickListener{
+            override fun onClickBack() {
+                callback!!.handleOnBackPressed()
+            }
+        })
+        subZodiacPage.setClickListener(object : SubZodiacFragment.ClickListener{
+            override fun onClickBack() {
+                callback!!.handleOnBackPressed()
+            }
+        })
+        subOilPage.setClickListener(object : SubOilFragment.ClickListener{
+            override fun onClickBack() {
+                callback!!.handleOnBackPressed()
+            }
+        })
+        subExchangePage.setClickListener(object : SubExchangeFragment.ClickListener{
             override fun onClickBack() {
                 callback!!.handleOnBackPressed()
             }
