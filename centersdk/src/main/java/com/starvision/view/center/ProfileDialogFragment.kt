@@ -73,6 +73,9 @@ class ProfileDialogFragment : DialogFragment() {
             val intent = Intent(requireContext(),LoginActivity::class.java)
             startActivity(intent)
         }
+        binding.tvAccountManagement.setOnClickListener {
+            DeleteAccountDialogFragment().show(childFragmentManager,"")
+        }
     }
 
 }

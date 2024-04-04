@@ -81,7 +81,7 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
                 val list = Gson().fromJson(body,CenterModels::class.java)
                 for (i in list!!.data.PageCenter.indices){
                     tablist.add(TabInfo(list.data.PageCenter[i].MenuTitle))
-                    packageName = list.data.PageCenter[i].BannerApp
+//                    packageName = list.data.PageCenter[i].BannerApp
                 }
                 binding.menuTab.apply {
                     visibility = View.VISIBLE

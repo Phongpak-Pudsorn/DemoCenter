@@ -33,6 +33,7 @@ import com.starvision.data.Const
 import com.starvision.data.ParamUtil
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageLoginBinding
+import com.starvision.view.WebViewActivity
 import com.starvision.view.center.MainActivity
 import com.starvision.view.center.models.ProfileModels
 import com.starvision.view.center.sub.*
@@ -90,11 +91,15 @@ class LoginActivity : AppCompatActivity() {
             val forgotFragment = ForgotFragment(bm)
             forgotFragment.setCloseListener(object : ForgotFragment.CloseListener {
                 override fun onClose() {
-                    toggle()
+//                    toggle()
+                    val intent = Intent(this@LoginActivity,WebViewActivity::class.java)
+                    // link forgot
+                    intent.putExtra("link","")
+                    startActivity(intent)
                 }
             })
-            toggle()
-            setFragment(forgotFragment)
+//            toggle()
+//            setFragment(forgotFragment)
         }
         binding.btnBack.setOnClickListener {
             finish()
