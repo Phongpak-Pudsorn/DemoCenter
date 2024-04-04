@@ -1,6 +1,5 @@
 package com.starvision.view.center.adapter
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,7 +9,7 @@ import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.ItemTabsBinding
 import com.starvision.view.center.info.TabInfo
 
-class AdapterMenuTab(val context:Context,val listTab:ArrayList<TabInfo>,val onClickListener:TabClickListener): RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
+class AdapterMenuTab(val context:Context, private val listTab:ArrayList<TabInfo>, private val onClickListener:TabClickListener): RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
     class ViewHolder(val binding:ItemTabsBinding):RecyclerView.ViewHolder(binding.root)
     interface TabClickListener {
         fun onTabClick(position: Int)
@@ -38,10 +37,10 @@ class AdapterMenuTab(val context:Context,val listTab:ArrayList<TabInfo>,val onCl
             }
             holder.binding.textType.isChecked = listTab[position].boo
             if (listTab[position].boo) {
-                holder.binding.textType.setTextColor(ContextCompat.getColor(context,R.color.black))
-                holder.binding.textType.setBackgroundResource(R.drawable.btn_underline_black)
+                holder.binding.textType.setTextColor(ContextCompat.getColor(context,R.color.bg_name_lucky))
+                holder.binding.textType.setBackgroundResource(R.drawable.btn_underline_blue)
             } else {
-                holder.binding.textType.setTextColor(ContextCompat.getColor(context,R.color.grey_text))
+                holder.binding.textType.setTextColor(ContextCompat.getColor(context,R.color.almost_white))
                 holder.binding.textType.setBackgroundResource(R.color.white)
             }
 

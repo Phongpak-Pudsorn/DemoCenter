@@ -16,6 +16,7 @@
     <color name="grey_text">#6A6A6A</color>
     <color name="white">#FFFFFFFF</color>
     <color name="white_dark">#EDEDED</color>
+    <color name="almost_white">#c6c6c6</color>
     <color name="gray_light">#DFE6EF</color>
     <color name="bg_name_lucky">#1f44bb</color>
     <color name="blue">#0037FF</color>
