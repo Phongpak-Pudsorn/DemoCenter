@@ -84,6 +84,7 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
                     packageName = list.data.PageCenter[i].BannerApp
                 }
                 binding.menuTab.apply {
+                    visibility = View.VISIBLE
                     adapter = AdapterMenuTab(this@MainActivity, tablist,object: AdapterMenuTab.TabClickListener{
                         override fun onTabClick(position: Int) {
                             binding.pager2.setCurrentItem(position,false)
