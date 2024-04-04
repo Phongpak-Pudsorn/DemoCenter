@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,7 +24,7 @@ import retrofit2.Call
 import retrofit2.Response
 import javax.security.auth.callback.Callback
 
-class SubExchangeFragment: Fragment() {
+class SubExchangeFragment: DialogFragment() {
     val binding:PageExhangeSubBinding by lazy { PageExhangeSubBinding.inflate(layoutInflater) }
     val TAG = javaClass.simpleName
     private lateinit var mClickListener : ClickListener
@@ -37,12 +38,15 @@ class SubExchangeFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        dialog!!.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        dialog!!.window!!.setBackgroundDrawableResource(R.color.transparent)
+//        dialog!!.setCancelable(false)
         executeData()
         binding.tvNameApp.isSelected = true
         binding.tvDesApp.isSelected = true
@@ -50,8 +54,14 @@ class SubExchangeFragment: Fragment() {
             Const.openAnotherApp(requireActivity(),getString(R.string.exchange_package))
         }
         binding.imgBack.setOnClickListener {
-            mClickListener.onClickBack()
+            try {
+                mClickListener.onClickBack()
+            }catch (e : Exception){
+                e.printStackTrace()
+            }
+            dialog!!.dismiss()
         }
+        dialog!!.show()
     }
     private fun executeData(){
         ParamsData(object :ParamsData.PostLoadListener{

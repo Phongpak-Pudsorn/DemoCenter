@@ -1,6 +1,8 @@
 package com.starvision.view.login
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -14,7 +16,9 @@ import android.text.method.PasswordTransformationMethod
 import android.transition.Slide
 import android.transition.TransitionManager
 import android.view.Gravity
+import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
@@ -30,6 +34,7 @@ import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageLoginBinding
 import com.starvision.view.center.MainActivity
 import com.starvision.view.center.models.ProfileModels
+import com.starvision.view.center.sub.*
 import com.starvision.view.login.models.LoginModels
 import java.text.SimpleDateFormat
 import java.util.*
@@ -39,8 +44,8 @@ class LoginActivity : AppCompatActivity() {
     private val binding : PageLoginBinding by lazy { PageLoginBinding.inflate(layoutInflater) }
     private val handler = Handler(Looper.getMainLooper())
     private var callback : OnBackPressedCallback? = null
-//    private var appPrefe = AppPreferencesLogin
     private val TAG = javaClass.simpleName
+    private val bundle = Intent()
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -195,10 +200,17 @@ class LoginActivity : AppCompatActivity() {
                                         Login.Name = jSonPro.data!!.name!!.toString()
                                         Login.Avatar = jSonPro.data.avatar!!.toString()
                                         Login.Coin = jSonPro.data.coin!!.toString()
+
+                                        val message = intent.getStringExtra("fragment")
+                                        if(message != null){
+                                            Login.checkFragment = message
+                                            finish()
+                                        }else{
+                                            val intent = Intent(this@LoginActivity,MainActivity::class.java)
+                                            startActivity(intent)
+                                            finish()
+                                        }
                                         Toast.makeText(this@LoginActivity,jSon.message,Toast.LENGTH_SHORT).show()
-                                        val intent = Intent(this@LoginActivity,MainActivity::class.java)
-                                        startActivity(intent)
-                                        finish()
                                     }catch (e : Exception){
                                         e.printStackTrace()
                                     }
@@ -245,9 +257,11 @@ class LoginActivity : AppCompatActivity() {
         transition.addTarget(binding.frameFragment)
         TransitionManager.beginDelayedTransition(binding.frameFragment, transition)
         if(binding.frameFragment.visibility == View.VISIBLE){
+            Const.loge(TAG,"phy back toggle : "+"if")
             binding.frameFragment.visibility = View.GONE
             handler.postDelayed({binding.lnTotal.visibility = View.VISIBLE},200)
         }else{
+            Const.loge(TAG,"phy back  toggle: "+"else")
             handler.postDelayed({binding.lnTotal.visibility = View.GONE},150)
             binding.frameFragment.visibility = View.VISIBLE
         }
@@ -279,5 +293,13 @@ class LoginActivity : AppCompatActivity() {
         } else {
             first.uppercaseChar().toString() + s.substring(1)
         }
+    }
+
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        if (currentFocus != null) {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+        }
+        return super.dispatchTouchEvent(ev)
     }
 }

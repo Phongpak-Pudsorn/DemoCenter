@@ -73,5 +73,9 @@ object Login {
         return result
     } set(value) = appPref.setPreferences(mContext,AppPreferencesLogin.KEY_PREFS_REMEMBER_PASSWORD,value)
 
-
+    var checkFragment : String
+        get() { var result = ""
+            result = appPref.getPreferences(mContext,AppPreferencesLogin.KEY_PREFS_FRAGMENT,"").toString()
+            return result
+        } set(value) = appPref.setPreferences(mContext,AppPreferencesLogin.KEY_PREFS_FRAGMENT,value)
 }

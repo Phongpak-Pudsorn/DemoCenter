@@ -27,6 +27,8 @@ object AppPreferencesLogin {
     //get from luckygame center
     const val KEY_PREFS_LUCKY_GAME = "KEY_PREFS_LUCKY_GAME"
 
+    const val KEY_PREFS_FRAGMENT = "KEY_PREFS_FRAGMENT"
+
     fun setPreferences(mContext: Context,key: String, objects: Any){
         val preferences = mContext.getSharedPreferences(APP_SHARED_PREFS, Activity.MODE_PRIVATE)
         val prefer = preferences.edit()

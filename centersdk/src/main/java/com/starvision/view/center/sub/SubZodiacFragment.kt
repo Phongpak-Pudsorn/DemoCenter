@@ -1,6 +1,7 @@
 package com.starvision.view.center.sub
 
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.DialogInterface
 import android.net.http.SslError
 import android.os.Bundle
@@ -11,13 +12,14 @@ import android.webkit.SslErrorHandler
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import com.starvision.api.URL
 import com.starvision.data.Const
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageZodiacSubBinding
 
-class SubZodiacFragment:Fragment() {
+class SubZodiacFragment: DialogFragment() {
     var loading = true
     val binding:PageZodiacSubBinding by lazy { PageZodiacSubBinding.inflate(layoutInflater) }
     private lateinit var mClickListener : ClickListener
@@ -31,12 +33,15 @@ class SubZodiacFragment:Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        dialog!!.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        dialog!!.window!!.setBackgroundDrawableResource(R.color.transparent)
+//        dialog!!.setCancelable(false)
         startWebView(URL.zodiac)
         binding.tvNameApp.isSelected = true
         binding.tvDesApp.isSelected = true
@@ -45,8 +50,14 @@ class SubZodiacFragment:Fragment() {
             Const.openAnotherApp(requireActivity(),getString(R.string.zodiac_package))
         }
         binding.imgBack.setOnClickListener {
-            mClickListener.onClickBack()
+            try{
+                mClickListener.onClickBack()
+            }catch (e :java.lang.Exception){
+                e.printStackTrace()
+            }
+            dialog!!.dismiss()
         }
+        dialog!!.show()
     }
     private fun startWebView(url: String) {
 

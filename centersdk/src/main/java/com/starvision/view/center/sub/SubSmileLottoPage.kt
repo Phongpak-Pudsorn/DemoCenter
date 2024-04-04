@@ -17,6 +17,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.*
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import com.google.gson.Gson
 import com.starvision.api.Api
@@ -38,7 +39,7 @@ import java.util.*
 import java.util.zip.GZIPOutputStream
 import kotlin.collections.ArrayList
 
-class SubSmileLottoPage : Fragment() {
+class SubSmileLottoPage : DialogFragment() {
     private val binding : PageSmilelottoSubBinding by lazy { PageSmilelottoSubBinding.inflate(layoutInflater) }
     private lateinit var listLotto : SubSmileLottoRewardModels
     private lateinit var mHelper: DataBaseLotto
@@ -69,6 +70,9 @@ class SubSmileLottoPage : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        dialog!!.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        dialog!!.window!!.setBackgroundDrawableResource(R.color.transparent)
+//        dialog!!.setCancelable(false)
         executeDataDate()
         binding.tvNameApp.isSelected = true
         binding.tvDesApp.isSelected = true
@@ -77,8 +81,14 @@ class SubSmileLottoPage : Fragment() {
             Const.openAnotherApp(requireContext(),getString(R.string.checklotto_package))
         }
         binding.imgBack.setOnClickListener {
-            mClickListener.onClickBack()
+            try {
+                mClickListener.onClickBack()
+            }catch (e : java.lang.Exception){
+                e.printStackTrace()
+            }
+            dialog!!.dismiss()
         }
+        dialog!!.show()
     }
 
     private fun setClick() {

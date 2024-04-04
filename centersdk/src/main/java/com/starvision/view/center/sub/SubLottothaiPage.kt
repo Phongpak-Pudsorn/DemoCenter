@@ -1,8 +1,5 @@
 package com.starvision.view.center.sub
 
-import android.annotation.SuppressLint
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.net.ParseException
 import android.os.Bundle
 import android.os.Handler
@@ -10,34 +7,23 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
-import android.widget.AdapterView
-import android.widget.ListView
-import android.widget.PopupWindow
-import androidx.fragment.app.Fragment
+import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
-import com.starvision.api.Api
-import com.starvision.api.ApiClient
 import com.starvision.api.URL
 import com.starvision.config.ParamsData
 import com.starvision.data.Const
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageLottothaiSubBinding
 import com.starvision.view.center.sub.adapter.AdapterLottothaiSub
-import com.starvision.view.center.sub.adapter.AdapterSpinnerCustom
 import com.starvision.view.center.sub.models.SubLottothaiDateModels
 import com.starvision.view.center.sub.models.SubLottothaiModels
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Path
 import java.text.SimpleDateFormat
 import java.util.*
 
-class SubLottothaiPage : Fragment() {
+class SubLottothaiPage : DialogFragment() {
     private val binding : PageLottothaiSubBinding by lazy { PageLottothaiSubBinding.inflate(layoutInflater) }
     private var adapterLottothaiSub : AdapterLottothaiSub? = null
     private var listDataDate : ArrayList<String>? = null
@@ -67,6 +53,9 @@ class SubLottothaiPage : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        dialog!!.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        dialog!!.window!!.setBackgroundDrawableResource(R.color.transparent)
+//        dialog!!.setCancelable(false)
         ExecuteDataDate()
         binding.cvMore.setOnClickListener {
             Const.openAnotherApp(requireContext(),getString(R.string.lotto_package))
@@ -89,8 +78,14 @@ class SubLottothaiPage : Fragment() {
         binding.reCycleView.layoutManager = LinearLayoutManager(requireActivity(), RecyclerView.VERTICAL,false)
         binding.reCycleView.adapter = adapterLottothaiSub
         binding.imgBack.setOnClickListener {
-            mClickListener.onClickBack()
+            try {
+                mClickListener.onClickBack()
+            }catch (e : Exception){
+                e.printStackTrace()
+            }
+            dialog!!.dismiss()
         }
+        dialog!!.show()
     }
 
     private fun setClick() {

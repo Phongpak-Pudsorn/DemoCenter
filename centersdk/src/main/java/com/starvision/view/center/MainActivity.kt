@@ -20,6 +20,7 @@ import com.starvision.api.URL
 import com.starvision.config.*
 import com.starvision.data.AppPreferencesLogin
 import com.starvision.data.Const
+import com.starvision.luckygamesdk.BuildConfig
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.MainPageBinding
 import com.starvision.view.center.adapter.AdapterMenuTab
@@ -43,18 +44,14 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
     private val appPrefs = AppPreferencesLogin
     private val TAG = javaClass.simpleName
     private var callback : OnBackPressedCallback? = null
-    private val subLottothaiPage = SubLottothaiPage()
-    private val subSmileLottoPage = SubSmileLottoPage()
-    private val subGoldToDayPage = SubGoldToDayPage()
-    private val subZodiacPage = SubZodiacFragment()
-    private val subExchangePage = SubExchangeFragment()
-    private val subOilPage = SubOilFragment()
+    var packageName = ArrayList<CenterModels.CenterData.PageData.BannerData>()
     var tablist = ArrayList<TabInfo>()
     var fragments = ArrayList<Fragment>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         supportActionBar?.hide()
+
         if(!Login.isLogin){
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
@@ -72,7 +69,6 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
             }
         }
         this.onBackPressedDispatcher.addCallback(this,callback!!)
-        setButtonCallback()
         setFragments()
         binding.imgGoBack.setOnClickListener {
             finish()
@@ -85,9 +81,7 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
                 val list = Gson().fromJson(body,CenterModels::class.java)
                 for (i in list!!.data.PageCenter.indices){
                     tablist.add(TabInfo(list.data.PageCenter[i].MenuTitle))
-                    list.data.PageCenter[i].NewsApp
-                    list.data.PageCenter[i].IconApp
-                    list.data.PageCenter[i].BannerApp
+                    packageName = list.data.PageCenter[i].BannerApp
                 }
                 binding.menuTab.apply {
                     adapter = AdapterMenuTab(this@MainActivity, tablist,object: AdapterMenuTab.TabClickListener{
@@ -120,9 +114,9 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
             })
             dialogProfile.show(supportFragmentManager,"")
         }
-        binding.tvUsername.text = Login.getName
-        binding.tvCoinNum.text = Login.getCoin
-        Glide.with(this).load(Login.getAvatar).into(binding.imgProfile)
+        binding.tvUsername.text = Login.Name
+        binding.tvCoinNum.text = Login.Coin
+        Glide.with(this).load(Login.Avatar).into(binding.imgProfile)
     }
     private fun setFragments(){
         fragments.add(StarvisionFragment())
@@ -132,27 +126,18 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
     }
     private fun setSubPage(packName:String){
         if (packName==getString(R.string.oil_package)){
-            getFragment(subOilPage)
+            SubOilFragment().show(supportFragmentManager,"")
         }else if (packName==getString(R.string.gold_package)){
-            getFragment(subGoldToDayPage)
+            SubGoldToDayPage().show(supportFragmentManager,"")
         }else if (packName==getString(R.string.exchange_package)){
-            getFragment(subExchangePage)
+            SubExchangeFragment().show(supportFragmentManager,"")
         }else if (packName==getString(R.string.zodiac_package)){
-            getFragment(subZodiacPage)
+            SubZodiacFragment().show(supportFragmentManager,"")
         }else if (packName==getString(R.string.lucky_package)){
-            getFragment(subLottothaiPage)
+            SubLottothaiPage().show(supportFragmentManager,"")
         }else if (packName==getString(R.string.lottery_package)){
-            getFragment(subSmileLottoPage)
+            SubSmileLottoPage().show(supportFragmentManager,"")
         }
-    }
-    private fun getFragment (fragment: Fragment) {
-        Handler(Looper.getMainLooper()).postDelayed({
-            binding.fmSub.visibility = View.VISIBLE
-            binding.llMain.visibility = View.GONE
-        },100)
-        supportFragmentManager.beginTransaction()
-            .replace(binding.fmSub.id, fragment)
-            .commit()
     }
 
     override fun passData(packName: String) {
@@ -164,38 +149,5 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
     override fun onDestroy() {
         callback!!.remove()
         super.onDestroy()
-    }
-
-    private fun setButtonCallback(){
-        subLottothaiPage.setClickListener(object : SubLottothaiPage.ClickListener{
-            override fun onClickBack() {
-                callback!!.handleOnBackPressed()
-            }
-        })
-        subSmileLottoPage.setClickListener(object : SubSmileLottoPage.ClickListener{
-            override fun onClickBack() {
-                callback!!.handleOnBackPressed()
-            }
-        })
-        subGoldToDayPage.setClickListener(object : SubGoldToDayPage.ClickListener{
-            override fun onClickBack() {
-                callback!!.handleOnBackPressed()
-            }
-        })
-        subZodiacPage.setClickListener(object : SubZodiacFragment.ClickListener{
-            override fun onClickBack() {
-                callback!!.handleOnBackPressed()
-            }
-        })
-        subOilPage.setClickListener(object : SubOilFragment.ClickListener{
-            override fun onClickBack() {
-                callback!!.handleOnBackPressed()
-            }
-        })
-        subExchangePage.setClickListener(object : SubExchangeFragment.ClickListener{
-            override fun onClickBack() {
-                callback!!.handleOnBackPressed()
-            }
-        })
     }
 }

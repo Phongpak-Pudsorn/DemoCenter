@@ -1,5 +1,6 @@
 package com.starvision.view.center.sub
 
+import android.app.Dialog
 import android.content.ActivityNotFoundException
 import android.content.ComponentName
 import android.content.Intent
@@ -8,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,7 +30,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class SubOilFragment: Fragment() {
+class SubOilFragment: DialogFragment() {
     val binding: PageOilSubBinding by lazy { PageOilSubBinding.inflate(layoutInflater) }
     private val TAG = javaClass.simpleName
     private val oilList = ArrayList<SubOilTodayModel>()
@@ -44,12 +46,15 @@ class SubOilFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        dialog!!.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        dialog!!.window!!.setBackgroundDrawableResource(R.color.transparent)
+//        dialog!!.setCancelable(false)
         execeuteData()
         binding.tvNameApp.isSelected = true
         binding.tvDesApp.isSelected = true
@@ -61,8 +66,14 @@ class SubOilFragment: Fragment() {
             Const.openAnotherApp(requireActivity(),getString(R.string.oil_package))
         }
         binding.imgBack.setOnClickListener {
-            mClickListener.onClickBack()
+            try {
+                mClickListener.onClickBack()
+            }catch (e : Exception){
+                e.printStackTrace()
+            }
+            dialog!!.dismiss()
         }
+        dialog!!.show()
     }
     private fun execeuteData(){
         binding.mProgressBar.visibility = View.VISIBLE

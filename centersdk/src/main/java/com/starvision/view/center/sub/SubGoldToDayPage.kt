@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import com.google.gson.Gson
 import com.starvision.api.Api
@@ -20,7 +21,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SubGoldToDayPage : Fragment() {
+class SubGoldToDayPage : DialogFragment() {
     private val binding : PageGoldtodaySubBinding by lazy { PageGoldtodaySubBinding.inflate(layoutInflater) }
     private val TAG = javaClass.simpleName
 
@@ -42,6 +43,9 @@ class SubGoldToDayPage : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        dialog!!.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        dialog!!.window!!.setBackgroundDrawableResource(R.color.transparent)
+//        dialog!!.setCancelable(false)
         executeData()
         binding.tvNameApp.isSelected = true
         binding.tvDesApp.isSelected = true
@@ -49,8 +53,14 @@ class SubGoldToDayPage : Fragment() {
             Const.openAnotherApp(requireContext(),getString(R.string.goldToday_package))
         }
         binding.imgBack.setOnClickListener {
-            mClickListener.onClickBack()
+            try {
+                mClickListener.onClickBack()
+            }catch (e : Exception){
+                e.printStackTrace()
+            }
+            dialog!!.dismiss()
         }
+        dialog!!.show()
     }
 
     private fun executeData(){
