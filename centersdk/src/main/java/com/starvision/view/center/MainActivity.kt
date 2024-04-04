@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.activity.OnBackPressedCallback
@@ -20,6 +21,7 @@ import com.starvision.api.URL
 import com.starvision.config.*
 import com.starvision.data.AppPreferencesLogin
 import com.starvision.data.Const
+import com.starvision.luckygamesdk.BuildConfig
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.MainPageBinding
 import com.starvision.view.center.adapter.AdapterMenuTab
@@ -49,6 +51,7 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
     private val subZodiacPage = SubZodiacFragment()
     private val subExchangePage = SubExchangeFragment()
     private val subOilPage = SubOilFragment()
+    var packageName = ArrayList<CenterModels.CenterData.PageData.BannerData>()
     var tablist = ArrayList<TabInfo>()
     var fragments = ArrayList<Fragment>()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,6 +81,12 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
             finish()
         }
         executeData()
+
+        val message = this.intent.getStringExtra("fragment")
+        if(message != null){
+            setSubPage(message)
+        }
+
     }
     private fun executeData(){
         ParamsData(object :ParamsData.PostLoadListener{
@@ -90,6 +99,7 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
                     list.data.PageCenter[i].BannerApp
                 }
                 binding.menuTab.apply {
+                    visibility = View.VISIBLE
                     adapter = AdapterMenuTab(this@MainActivity, tablist,object: AdapterMenuTab.TabClickListener{
                         override fun onTabClick(position: Int) {
                             binding.pager2.setCurrentItem(position,false)
@@ -120,9 +130,9 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
             })
             dialogProfile.show(supportFragmentManager,"")
         }
-        binding.tvUsername.text = Login.getName
-        binding.tvCoinNum.text = Login.getCoin
-        Glide.with(this).load(Login.getAvatar).into(binding.imgProfile)
+        binding.tvUsername.text = Login.Name
+        binding.tvCoinNum.text = Login.Coin
+        Glide.with(this).load(Login.Avatar).into(binding.imgProfile)
     }
     private fun setFragments(){
         fragments.add(StarvisionFragment())

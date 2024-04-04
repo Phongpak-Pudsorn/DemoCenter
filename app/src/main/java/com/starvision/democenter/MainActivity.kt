@@ -47,53 +47,53 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnLottoThai.setOnClickListener {
             setFragment(subLottothaiPage)
-            binding.framelayoutFragment.visibility = View.VISIBLE
+//            binding.framelayoutFragment.visibility = View.VISIBLE
             binding.lnBtn.visibility = View.GONE
         }
         binding.btnLottoCalendar.setOnClickListener {
             setFragment(subSmileLottoPage)
-            binding.framelayoutFragment.visibility = View.VISIBLE
+//            binding.framelayoutFragment.visibility = View.VISIBLE
             binding.lnBtn.visibility = View.GONE
         }
         binding.btnGoldtoday.setOnClickListener {
             setFragment(subGoldToDayPage)
-            binding.framelayoutFragment.visibility = View.VISIBLE
+//            binding.framelayoutFragment.visibility = View.VISIBLE
             binding.lnBtn.visibility = View.GONE
         }
         binding.btnZodiac.setOnClickListener {
             setFragment(subZodiacPage)
-            binding.framelayoutFragment.visibility = View.VISIBLE
+//            binding.framelayoutFragment.visibility = View.VISIBLE
             binding.lnBtn.visibility = View.GONE
         }
         binding.btnExchange.setOnClickListener {
             setFragment(subExchangePage)
-            binding.framelayoutFragment.visibility = View.VISIBLE
+//            binding.framelayoutFragment.visibility = View.VISIBLE
             binding.lnBtn.visibility = View.GONE
         }
         binding.btnOil.setOnClickListener {
             setFragment(subOilPage)
-            binding.framelayoutFragment.visibility = View.VISIBLE
+//            binding.framelayoutFragment.visibility = View.VISIBLE
             binding.lnBtn.visibility = View.GONE
         }
 
         callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                if(binding.framelayoutFragment.visibility == View.VISIBLE){
-                    binding.framelayoutFragment.removeAllViews()
-                    binding.framelayoutFragment.visibility = View.GONE
-                    binding.lnBtn.visibility = View.VISIBLE
-                }else{
-                    finish()
-                }
+//                if(binding.framelayoutFragment.visibility == View.VISIBLE){
+//                    binding.framelayoutFragment.removeAllViews()
+//                    binding.framelayoutFragment.visibility = View.GONE
+//                    binding.lnBtn.visibility = View.VISIBLE
+//                }else{
+//                    finish()
+//                }
             }
         }
         this.onBackPressedDispatcher.addCallback(this,callback!!)
     }
 
     private fun setFragment (fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(binding.framelayoutFragment.id, fragment)
-            .commit()
+//        supportFragmentManager.beginTransaction()
+//            .replace(binding.framelayoutFragment.id, fragment)
+//            .commit()
     }
 
     override fun onResume() {

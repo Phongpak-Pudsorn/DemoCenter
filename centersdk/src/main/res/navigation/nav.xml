@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav">
+
+    <fragment
+        android:id="@+id/subExchangeFragment"
+        android:name="com.starvision.view.center.sub.SubExchangeFragment"
+        android:label="SubExchangeFragment" />
+    <fragment
+        android:id="@+id/subGoldToDayPage"
+        android:name="com.starvision.view.center.sub.SubGoldToDayPage"
+        android:label="SubGoldToDayPage" />
+    <fragment
+        android:id="@+id/subLottothaiPage"
+        android:name="com.starvision.view.center.sub.SubLottothaiPage"
+        android:label="SubLottothaiPage" />
+    <fragment
+        android:id="@+id/subOilFragment"
+        android:name="com.starvision.view.center.sub.SubOilFragment"
+        android:label="SubOilFragment" />
+    <fragment
+        android:id="@+id/subSmileLottoPage"
+        android:name="com.starvision.view.center.sub.SubSmileLottoPage"
+        android:label="SubSmileLottoPage" />
+    <fragment
+        android:id="@+id/subZodiacFragment"
+        android:name="com.starvision.view.center.sub.SubZodiacFragment"
+        android:label="SubZodiacFragment" />
+</navigation>
