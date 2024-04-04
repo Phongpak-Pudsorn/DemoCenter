@@ -30,6 +30,7 @@ import com.starvision.config.Login
 import com.starvision.config.MD5
 import com.starvision.config.ParamsData
 import com.starvision.data.Const
+import com.starvision.data.ParamUtil
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageLoginBinding
 import com.starvision.view.center.MainActivity
@@ -149,18 +150,19 @@ class LoginActivity : AppCompatActivity() {
             binding.progressBar2.visibility = View.GONE
         }else{
             val password = MD5.CMD5(binding.editPassword.text.toString())
-            val imei = Const.getUUID(this)
-            val platform = "Android "+Build.VERSION.SDK_INT
-            val model = getDeviceName()
+//            val imei = Const.getUUID(this)
+//            val platform = "Android "+Build.VERSION.SDK_INT
+//            val model = getDeviceName()
             val ChannelId = "StarVision"
             val phonenumber = ""
             val acc_name = binding.editUsername.text.toString().lowercase(Locale.getDefault())
             val account_type = "s1"
-            val hashMap = HashMap<String?,String?>()
+            val hashMap = ParamUtil.ParamsUid
+
             hashMap["password"] = password
-            hashMap["imei"] = imei
-            hashMap["platform"] = platform
-            hashMap["model"] = model
+//            hashMap["imei"] = imei
+//            hashMap["platform"] = platform
+//            hashMap["model"] = model
             hashMap["ChannelId"] = ChannelId
             hashMap["phonenumber"] = phonenumber
             hashMap["acc_name"] = acc_name
@@ -182,12 +184,12 @@ class LoginActivity : AppCompatActivity() {
                             }
 
                             val timeStamp : String = SimpleDateFormat("HHmmssddMMyyyy").format(Date())
-                            val idx = CryptoHandler().encrypt(jSon.idx,Const.AES_KEY,"0000000000000000")
-                            val ts =  CryptoHandler().encrypt(timeStamp ,Const.AES_KEY,"0000000000000000")
+//                            val idx = CryptoHandler().encrypt(jSon.idx,Const.AES_KEY,"0000000000000000")
+//                            val ts =  CryptoHandler().encrypt(timeStamp ,Const.AES_KEY,"0000000000000000")
                             val sign = MD5.CMD5("Starvision|${jSon.idx}|CheckProfile|$timeStamp")
-                            val hashMaps = java.util.HashMap<String?, String?>()
-                            hashMaps["idx"] = idx
-                            hashMaps["ts"] = ts
+                            val hashMaps = ParamUtil.ParamsUid
+//                            hashMaps["idx"] = idx
+//                            hashMaps["ts"] = ts
                             hashMaps["sign"] = sign
                             Const.loge(TAG, "params : $hashMaps")
 
@@ -257,11 +259,9 @@ class LoginActivity : AppCompatActivity() {
         transition.addTarget(binding.frameFragment)
         TransitionManager.beginDelayedTransition(binding.frameFragment, transition)
         if(binding.frameFragment.visibility == View.VISIBLE){
-            Const.loge(TAG,"phy back toggle : "+"if")
             binding.frameFragment.visibility = View.GONE
             handler.postDelayed({binding.lnTotal.visibility = View.VISIBLE},200)
         }else{
-            Const.loge(TAG,"phy back  toggle: "+"else")
             handler.postDelayed({binding.lnTotal.visibility = View.GONE},150)
             binding.frameFragment.visibility = View.VISIBLE
         }

@@ -140,7 +140,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center|end"
                 android:text="@string/forgot_password"
-                android:visibility="invisible"
+                android:visibility="visible"
                 android:textColor="@color/blue_text_selector"
                 android:textSize="13sp"
                 android:textStyle="bold" />

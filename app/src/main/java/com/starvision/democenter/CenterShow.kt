@@ -27,7 +27,7 @@ class CenterShow (private val mContext : FragmentActivity) {
             val subGoldToDayPage = SubGoldToDayPage()
             subGoldToDayPage.show(mContext.supportFragmentManager, "")
         }
-        return ""
+        return "com.smileapp.goldprice"
     }
 
     val setShowFragmentLotto : String
@@ -40,7 +40,7 @@ class CenterShow (private val mContext : FragmentActivity) {
             val subLottothaiPage = SubLottothaiPage()
             subLottothaiPage.show(mContext.supportFragmentManager, "")
         }
-        return ""
+        return "com.starvision.lottothai"
     }
 
     val setShowFragmentCheckLotto : String
@@ -53,7 +53,7 @@ class CenterShow (private val mContext : FragmentActivity) {
             val subSmileLottoPage = SubSmileLottoPage()
             subSmileLottoPage.show(mContext.supportFragmentManager, "")
         }
-        return ""
+        return "com.smileapp.lottery"
     }
 
     val setShowFragmentZodiac : String
@@ -66,7 +66,7 @@ class CenterShow (private val mContext : FragmentActivity) {
             val subZodiacFragment = SubZodiacFragment()
             subZodiacFragment.show(mContext.supportFragmentManager, "")
         }
-        return ""
+        return "com.smileapp.zodiac"
     }
 
     val setShowFragmentExchange : String
@@ -79,7 +79,7 @@ class CenterShow (private val mContext : FragmentActivity) {
             val subExchangeFragment = SubExchangeFragment()
             subExchangeFragment.show(mContext.supportFragmentManager, "")
         }
-        return ""
+        return "com.starvision.exchangerate"
     }
 
     val setShowFragmentOil : String
@@ -92,7 +92,7 @@ class CenterShow (private val mContext : FragmentActivity) {
             val subOilFragment = SubOilFragment()
             subOilFragment.show(mContext.supportFragmentManager, "")
         }
-        return ""
+        return "com.smileapp.oil"
     }
 
 //    private fun selectorFragment(fragment : String) : String {

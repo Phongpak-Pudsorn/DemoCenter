@@ -19,6 +19,7 @@ import com.starvision.config.Login
 import com.starvision.config.MD5
 import com.starvision.config.ParamsData
 import com.starvision.data.Const
+import com.starvision.data.ParamUtil
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageRegisterBinding
 import com.starvision.view.login.models.LoginModels
@@ -85,11 +86,11 @@ class RegisterFragment(private val bm: Bitmap) : Fragment() {
                 val sign = MD5.CMD5("Starvision|$acc_name|Register|$password")
                 val account_type = "s1"
                 val ChannelId = "StarVision"
-                val platform = "Android "+ Build.VERSION.SDK_INT
-                val imei = Const.getUUID(requireContext())
-                val model = LoginActivity().getDeviceName()
+//                val platform = "Android "+ Build.VERSION.SDK_INT
+//                val imei = Const.getUUID(requireContext())
+//                val model = LoginActivity().getDeviceName()
                 val phonenumber = ""
-                val hashMap = HashMap<String?,String?>()
+                val hashMap = ParamUtil.ParamsUid
 
                 hashMap["acc_name"] = acc_name
                 hashMap["password"] = password
@@ -97,9 +98,9 @@ class RegisterFragment(private val bm: Bitmap) : Fragment() {
                 hashMap["sign"] = sign
                 hashMap["account_type"] = account_type
                 hashMap["ChannelId"] = ChannelId
-                hashMap["platform"] = platform
-                hashMap["imei"] = imei
-                hashMap["model"] = model
+//                hashMap["platform"] = platform
+//                hashMap["imei"] = imei
+//                hashMap["model"] = model
                 hashMap["phonenumber"] = phonenumber
 
                 Const.loge(TAG,"params : $hashMap")

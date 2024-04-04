@@ -73,5 +73,6 @@ class MainActivity : AppCompatActivity() {
         }else{
             binding.imgPerson.setImageDrawable(getDrawable(R.drawable.baseline_person_24_black))
         }
+
     }
 }
