@@ -26,6 +26,9 @@ class AdapterDots(position: Int,var list:ArrayList<BannerInfo>):RecyclerView.Ada
 
     override fun onBindViewHolder(holder: DotHolder, position: Int) {
         clearColor(pos)
+        if (list.size==1){
+            list[0].boo = true
+        }
         if (list[position].boo){
             holder.dotsBinding.imgDot.setImageResource(R.drawable.tab_indicator_selected)
         }else{
