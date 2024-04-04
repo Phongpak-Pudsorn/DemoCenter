@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.activity.OnBackPressedCallback
@@ -20,6 +21,7 @@ import com.starvision.api.URL
 import com.starvision.config.*
 import com.starvision.data.AppPreferencesLogin
 import com.starvision.data.Const
+import com.starvision.data.ParamUtil
 import com.starvision.luckygamesdk.BuildConfig
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.MainPageBinding
@@ -44,6 +46,12 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
     private val appPrefs = AppPreferencesLogin
     private val TAG = javaClass.simpleName
     private var callback : OnBackPressedCallback? = null
+    private val subLottothaiPage = SubLottothaiPage()
+    private val subSmileLottoPage = SubSmileLottoPage()
+    private val subGoldToDayPage = SubGoldToDayPage()
+    private val subZodiacPage = SubZodiacFragment()
+    private val subExchangePage = SubExchangeFragment()
+    private val subOilPage = SubOilFragment()
     var packageName = ArrayList<CenterModels.CenterData.PageData.BannerData>()
     var tablist = ArrayList<TabInfo>()
     var fragments = ArrayList<Fragment>()
@@ -69,11 +77,18 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
             }
         }
         this.onBackPressedDispatcher.addCallback(this,callback!!)
+        setButtonCallback()
         setFragments()
         binding.imgGoBack.setOnClickListener {
             finish()
         }
         executeData()
+
+        val message = this.intent.getStringExtra("fragment")
+        if(message != null){
+            setSubPage(message)
+        }
+
     }
     private fun executeData(){
         ParamsData(object :ParamsData.PostLoadListener{
@@ -140,9 +155,22 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
             SubSmileLottoPage().show(supportFragmentManager,"")
         }
     }
+    private fun getFragment (fragment: Fragment) {
+        Handler(Looper.getMainLooper()).postDelayed({
+            binding.fmSub.visibility = View.VISIBLE
+            binding.llMain.visibility = View.GONE
+        },100)
+        supportFragmentManager.beginTransaction()
+            .replace(binding.fmSub.id, fragment)
+            .commit()
+    }
 
     override fun passData(packName: String) {
         if (packName!=""){
+            val param = ParamUtil.ParamsUid
+            param["imei"] = Const.getUUID(this)
+            Log.e("UUID",Const.getUUID(this).toString())
+            Log.e("ParamsUID",param.toString())
             setSubPage(packName)
         }
     }
@@ -150,5 +178,38 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
     override fun onDestroy() {
         callback!!.remove()
         super.onDestroy()
+    }
+
+    private fun setButtonCallback(){
+        subLottothaiPage.setClickListener(object : SubLottothaiPage.ClickListener{
+            override fun onClickBack() {
+                callback!!.handleOnBackPressed()
+            }
+        })
+        subSmileLottoPage.setClickListener(object : SubSmileLottoPage.ClickListener{
+            override fun onClickBack() {
+                callback!!.handleOnBackPressed()
+            }
+        })
+        subGoldToDayPage.setClickListener(object : SubGoldToDayPage.ClickListener{
+            override fun onClickBack() {
+                callback!!.handleOnBackPressed()
+            }
+        })
+        subZodiacPage.setClickListener(object : SubZodiacFragment.ClickListener{
+            override fun onClickBack() {
+                callback!!.handleOnBackPressed()
+            }
+        })
+        subOilPage.setClickListener(object : SubOilFragment.ClickListener{
+            override fun onClickBack() {
+                callback!!.handleOnBackPressed()
+            }
+        })
+        subExchangePage.setClickListener(object : SubExchangeFragment.ClickListener{
+            override fun onClickBack() {
+                callback!!.handleOnBackPressed()
+            }
+        })
     }
 }

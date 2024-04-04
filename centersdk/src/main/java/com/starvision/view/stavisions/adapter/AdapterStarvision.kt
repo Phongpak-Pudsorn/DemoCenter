@@ -101,12 +101,20 @@ class AdapterStarvision(val context:Context, val listNews:ArrayList<NewsInfo>, v
                     positionOffsetPixels: Int
                 ) {
                     super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-                    if (positionOffsetPixels != 0) {
-                        return
-                    }
-                    when (position) {
-                        0 ->  holder.bannerBinding.imageSlider.setCurrentItem(imageAdapter!!.itemCount - 2, false)
-                        imageAdapter!!.itemCount - 1 ->  holder.bannerBinding.imageSlider.setCurrentItem(1, false)
+                    if (bannerList.size>=2) {
+                        if (positionOffsetPixels != 0) {
+                            return
+                        }
+                        when (position) {
+                            0 -> holder.bannerBinding.imageSlider.setCurrentItem(
+                                imageAdapter!!.itemCount - 2,
+                                false
+                            )
+                            imageAdapter!!.itemCount - 1 -> holder.bannerBinding.imageSlider.setCurrentItem(
+                                1,
+                                false
+                            )
+                        }
                     }
                 }
 
@@ -114,8 +122,10 @@ class AdapterStarvision(val context:Context, val listNews:ArrayList<NewsInfo>, v
                     super.onPageSelected(position)
 //                    val runnable = Runnable { holder.bannerBinding.imageSlider.currentItem = ++holder.bannerBinding.imageSlider.currentItem }
 //                    if (position < (holder.bannerBinding.imageSlider.adapter?.itemCount ?: 0)) {
-                    handler.removeCallbacks(runnable)
-                    handler.postDelayed(runnable, 3000)
+                    if (bannerList.size>=2) {
+                        handler.removeCallbacks(runnable)
+                        handler.postDelayed(runnable, 3000)
+                    }
                     dotAdapter = AdapterDots(holder.bannerBinding.imageSlider.currentItem,bannerList)
                     holder.bannerBinding.dotTab.apply {
                         adapter = dotAdapter
