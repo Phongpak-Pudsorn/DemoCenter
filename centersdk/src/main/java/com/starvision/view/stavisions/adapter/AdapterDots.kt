@@ -5,9 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.ItemDotsBinding
-import com.starvision.view.stavisions.info.BannerInfo
+import com.starvision.view.center.models.CenterModels
 
-class AdapterDots(position: Int,var list:ArrayList<BannerInfo>):RecyclerView.Adapter<AdapterDots.DotHolder>() {
+class AdapterDots(position: Int,var list:ArrayList<CenterModels.CenterData.PageData.BannerData>):RecyclerView.Adapter<AdapterDots.DotHolder>() {
     private val pos = position
     class DotHolder(val dotsBinding: ItemDotsBinding):RecyclerView.ViewHolder(dotsBinding.root)
 

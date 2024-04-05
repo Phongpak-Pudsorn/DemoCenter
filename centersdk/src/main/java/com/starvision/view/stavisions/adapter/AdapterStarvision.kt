@@ -3,27 +3,19 @@ package com.starvision.view.stavisions.adapter
 import android.content.Context
 import android.content.Intent
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
-import com.starvision.luckygamesdk.R
+import com.bumptech.glide.Glide
 import com.starvision.luckygamesdk.databinding.ItemNewsBinding
 import com.starvision.luckygamesdk.databinding.ItemNewsHeaderBinding
-import com.starvision.luckygamesdk.databinding.ItemTabsBinding
 import com.starvision.luckygamesdk.databinding.PageBannerAppsBinding
 import com.starvision.view.WebViewActivity
-import com.starvision.view.stavisions.info.BannerInfo
-import com.starvision.view.stavisions.info.IconInfo
-import com.starvision.view.stavisions.info.NewsInfo
-import java.util.logging.Handler
+import com.starvision.view.center.models.CenterModels
 
-class AdapterStarvision(val context:Context, val listNews:ArrayList<NewsInfo>, val bannerList:ArrayList<BannerInfo>, val appList:ArrayList<IconInfo>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdapterStarvision(val context:Context, val listNews:ArrayList<CenterModels.CenterData.PageData.NewsData>, val bannerList:ArrayList<CenterModels.CenterData.PageData.BannerData>, val appList:ArrayList<CenterModels.CenterData.PageData.IconData>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val VIEW_TYPE_NEWS = 1
     val VIEW_TYPE_BANNER = 2
     val VIEW_TYPE_NEWS_HEADER = 3
@@ -142,9 +134,10 @@ class AdapterStarvision(val context:Context, val listNews:ArrayList<NewsInfo>, v
             holder.newsBinding.tvTitle.text = listNews[position].newsappTitle
             holder.itemView.setOnClickListener {
                 val intent = Intent(context, WebViewActivity::class.java)
-                intent.putExtra("link", "https://www.starvision.in.th/mobileweb/webview_calendar/webview.php?OS=Android&p=artide_webview&id=2709")
+                intent.putExtra("link", listNews[position].newsappUrlNews)
                 context.startActivity(intent)
             }
+            Glide.with(holder.newsBinding.imgNews).load(listNews[position].newsappImgNews).into(holder.newsBinding.imgNews)
         }
 
     }
