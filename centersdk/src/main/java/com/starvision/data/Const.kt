@@ -9,11 +9,12 @@ import android.net.Uri
 import android.os.Build
 import android.provider.Settings
 import android.util.Log
+import java.text.SimpleDateFormat
 import java.util.*
 
 object Const {
     const val AES_KEY = "47cbed84d5ad52e955621904170d2e6e"
-
+    val timeStamp : String = SimpleDateFormat("HHmmssddMMyyyy").format(Date())
     fun loge(str : String,str2 : String){
         Log.e(str,str2)
     }

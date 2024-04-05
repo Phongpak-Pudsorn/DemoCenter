@@ -91,15 +91,11 @@ class LoginActivity : AppCompatActivity() {
             val forgotFragment = ForgotFragment(bm)
             forgotFragment.setCloseListener(object : ForgotFragment.CloseListener {
                 override fun onClose() {
-//                    toggle()
-                    val intent = Intent(this@LoginActivity,WebViewActivity::class.java)
-                    // link forgot
-                    intent.putExtra("link","")
-                    startActivity(intent)
+                    toggle()
                 }
             })
-//            toggle()
-//            setFragment(forgotFragment)
+            toggle()
+            setFragment(forgotFragment)
         }
         binding.btnBack.setOnClickListener {
             finish()
@@ -155,9 +151,6 @@ class LoginActivity : AppCompatActivity() {
             binding.progressBar2.visibility = View.GONE
         }else{
             val password = MD5.CMD5(binding.editPassword.text.toString())
-//            val imei = Const.getUUID(this)
-//            val platform = "Android "+Build.VERSION.SDK_INT
-//            val model = getDeviceName()
             val ChannelId = "StarVision"
             val phonenumber = ""
             val acc_name = binding.editUsername.text.toString().lowercase(Locale.getDefault())
@@ -165,9 +158,6 @@ class LoginActivity : AppCompatActivity() {
             val hashMap = ParamUtil.ParamsUid
 
             hashMap["password"] = password
-//            hashMap["imei"] = imei
-//            hashMap["platform"] = platform
-//            hashMap["model"] = model
             hashMap["ChannelId"] = ChannelId
             hashMap["phonenumber"] = phonenumber
             hashMap["acc_name"] = acc_name
@@ -189,12 +179,8 @@ class LoginActivity : AppCompatActivity() {
                             }
 
                             val timeStamp : String = SimpleDateFormat("HHmmssddMMyyyy").format(Date())
-//                            val idx = CryptoHandler().encrypt(jSon.idx,Const.AES_KEY,"0000000000000000")
-//                            val ts =  CryptoHandler().encrypt(timeStamp ,Const.AES_KEY,"0000000000000000")
                             val sign = MD5.CMD5("Starvision|${jSon.idx}|CheckProfile|$timeStamp")
                             val hashMaps = ParamUtil.ParamsUid
-//                            hashMaps["idx"] = idx
-//                            hashMaps["ts"] = ts
                             hashMaps["sign"] = sign
                             Const.loge(TAG, "params : $hashMaps")
 
@@ -219,10 +205,12 @@ class LoginActivity : AppCompatActivity() {
                                         }
                                         Toast.makeText(this@LoginActivity,jSon.message,Toast.LENGTH_SHORT).show()
                                     }catch (e : Exception){
+                                        Toast.makeText(this@LoginActivity,jSon.message,Toast.LENGTH_SHORT).show()
                                         e.printStackTrace()
                                     }
                                 }
                                 override fun onFailed(t: Throwable) {
+                                    Toast.makeText(this@LoginActivity,t.message,Toast.LENGTH_SHORT).show()
                                     Const.loge(TAG,"t : $t")
                                 }
                             }).postLoadData(URL.BASE_URL_SDK,URL.URL_PROFILE,"",hashMaps)
@@ -235,13 +223,14 @@ class LoginActivity : AppCompatActivity() {
                             binding.progressBar2.visibility = View.GONE
                         }
                     }catch (e : Exception) {
+                        Toast.makeText(this@LoginActivity,e.message,Toast.LENGTH_SHORT).show()
                         e.printStackTrace()
                     }
                 }
                 override fun onFailed(t: Throwable) {
                     binding.cvLogin.isEnabled = true
                     binding.progressBar2.visibility = View.GONE
-                    Const.loge(TAG,"t : $t")
+                    Toast.makeText(this@LoginActivity,t.message,Toast.LENGTH_SHORT).show()
                 }
             }).postLoadData(URL.BASE_URL_SDK,URL.URL_LOGIN,"",hashMap)
 

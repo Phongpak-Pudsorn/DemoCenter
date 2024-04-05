@@ -41,7 +41,11 @@ class WebViewPolicyDialogFragment : DialogFragment() {
         binding.webview.loadUrl("https://www.starvision.in.th/term/privacy.html")
         binding.webview.webViewClient = CustomWebViewClient()
         binding.imgClose.setOnClickListener {
-            mClickClose.onClickClose()
+            try {
+                mClickClose.onClickClose()
+            }catch (e : java.lang.Exception){
+                e.printStackTrace()
+            }
             dismiss()
         }
         dialog!!.show()

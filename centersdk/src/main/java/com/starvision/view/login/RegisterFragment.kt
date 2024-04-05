@@ -86,9 +86,6 @@ class RegisterFragment(private val bm: Bitmap) : Fragment() {
                 val sign = MD5.CMD5("Starvision|$acc_name|Register|$password")
                 val account_type = "s1"
                 val ChannelId = "StarVision"
-//                val platform = "Android "+ Build.VERSION.SDK_INT
-//                val imei = Const.getUUID(requireContext())
-//                val model = LoginActivity().getDeviceName()
                 val phonenumber = ""
                 val hashMap = ParamUtil.ParamsUid
 
@@ -98,9 +95,6 @@ class RegisterFragment(private val bm: Bitmap) : Fragment() {
                 hashMap["sign"] = sign
                 hashMap["account_type"] = account_type
                 hashMap["ChannelId"] = ChannelId
-//                hashMap["platform"] = platform
-//                hashMap["imei"] = imei
-//                hashMap["model"] = model
                 hashMap["phonenumber"] = phonenumber
 
                 Const.loge(TAG,"params : $hashMap")

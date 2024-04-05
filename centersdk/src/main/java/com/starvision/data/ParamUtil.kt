@@ -19,7 +19,7 @@ object ParamUtil {
             val hashMaps = HashMap<String?,String?>()
             hashMaps["imei"] = Const.getUUID(MyApplication.appContext)
             hashMaps["model"] = Build.MODEL.replace(" ","_")
-            hashMaps["platform"] = "Android"
+            hashMaps["platform"] = "Android "+Build.VERSION.SDK_INT
 //            hashMaps["version_center_sdk"] = Build.VERSION.SDK_INT.toString()
 //            if(Login.isLogin){
                 hashMaps["idx"] = CryptoHandler().encrypt(Login.IDX,Const.AES_KEY,"0000000000000000")

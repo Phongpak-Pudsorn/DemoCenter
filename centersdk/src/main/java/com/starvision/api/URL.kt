@@ -7,11 +7,15 @@ object URL {
 //    const val URL_PROFILE = "https://app.starvision.in.th/api/myprofile/"
 //    const val URL_LOGIN = "https://app.starvision.in.th/login/api/login_star.php"
 //    const val URL_REGISTER = "https://app.starvision.in.th/login/api/register.php"
+//    const val URL_TOPUP = https://starvision.in.th/apptopup/topup/
+//    const val URL_FORGOTPASS = https://app.starvision.in.th/login/api/forgetpass.php
 
+    const val URL_TOPUP = "/apptopup/topup/"
     const val URL_LOGIN = "/login/api/login_star.php"
     const val URL_REGISTER = "/login/api/register.php"
     const val URL_PROFILE = "/api/myprofile"
     const val URL_CENTER = "/api/apicenter"
+    const val URL_FORGOTPASS = "/login/api/forgetpass.php"
 
     const val BASE_URL = "https://starvision.in.th"
     const val BASE_URL_LOTTO= "https://lottery.starvision.in.th"
