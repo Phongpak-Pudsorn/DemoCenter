@@ -94,18 +94,25 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
         ParamsData(object :ParamsData.PostLoadListener{
             override fun onSuccess(body: String) {
                 val list = Gson().fromJson(body,CenterModels::class.java)
-                for (i in list!!.data.PageCenter.indices){
-                    tablist.add(TabInfo(list.data.PageCenter[i].MenuTitle))
+                Log.e("data",list.toString())
+                if (list.code=="101") {
+                    for (i in list!!.data.PageCenter.indices) {
+                        tablist.add(TabInfo(list.data.PageCenter[i].MenuTitle))
 //                    packageName = list.data.PageCenter[i].BannerApp
-                }
-                binding.menuTab.apply {
-                    visibility = View.VISIBLE
-                    adapter = AdapterMenuTab(this@MainActivity, tablist,object: AdapterMenuTab.TabClickListener{
-                        override fun onTabClick(position: Int) {
-                            binding.pager2.setCurrentItem(position,false)
-                        }
-                    })
-                    layoutManager = LinearLayoutManager(this@MainActivity,RecyclerView.HORIZONTAL,false)
+                    }
+                    binding.menuTab.apply {
+                        visibility = View.VISIBLE
+                        adapter = AdapterMenuTab(
+                            this@MainActivity,
+                            tablist,
+                            object : AdapterMenuTab.TabClickListener {
+                                override fun onTabClick(position: Int) {
+                                    binding.pager2.setCurrentItem(position, false)
+                                }
+                            })
+                        layoutManager =
+                            LinearLayoutManager(this@MainActivity, RecyclerView.HORIZONTAL, false)
+                    }
                 }
             }
 
@@ -167,10 +174,6 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
 
     override fun passData(packName: String) {
         if (packName!=""){
-            val param = ParamUtil.ParamsUid
-            param["imei"] = Const.getUUID(this)
-            Log.e("UUID",Const.getUUID(this).toString())
-            Log.e("ParamsUID",param.toString())
             setSubPage(packName)
         }
     }
