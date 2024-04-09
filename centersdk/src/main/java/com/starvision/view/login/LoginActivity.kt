@@ -97,6 +97,16 @@ class LoginActivity : AppCompatActivity() {
             toggle()
             setFragment(forgotFragment)
         }
+        binding.tvRecovery.setOnClickListener {
+            val recoveryFragment = RecoveryFragment(bm)
+            recoveryFragment.setCloseListener(object : RecoveryFragment.CloseListener {
+                override fun onClose() {
+                    toggle()
+                }
+            })
+            toggle()
+            setFragment(recoveryFragment)
+        }
         binding.btnBack.setOnClickListener {
             finish()
         }

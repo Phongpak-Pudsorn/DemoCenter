@@ -7,27 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.bumptech.glide.Glide
-import com.google.gson.Gson
 import com.starvision.api.URL
 import com.starvision.config.*
 import com.starvision.data.Const
 import com.starvision.data.ParamUtil
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageFullProfileBinding
-import com.starvision.view.center.models.ProfileModels
 import com.starvision.view.login.LoginActivity
 import com.starvision.view.login.WebViewPolicyDialogFragment
-import retrofit2.http.Body
-import java.security.SecureRandom
-import java.security.spec.KeySpec
-import java.text.SimpleDateFormat
-import java.util.*
-import javax.crypto.Cipher
-import javax.crypto.SecretKeyFactory
-import javax.crypto.spec.IvParameterSpec
-import javax.crypto.spec.PBEKeySpec
+import io.jsonwebtoken.Jwts
 import javax.crypto.spec.SecretKeySpec
-import kotlin.collections.HashMap
 
 class ProfileDialogFragment : DialogFragment() {
     private val binding : PageFullProfileBinding by lazy { PageFullProfileBinding.inflate(layoutInflater) }
@@ -84,19 +73,25 @@ class ProfileDialogFragment : DialogFragment() {
         }
         binding.imgTopup.setOnClickListener {
 
-//            val params = ParamUtil.ParamsUid
-            val params = kotlin.collections.HashMap<String?,String?>()
-            val idx = CryptoHandler().encrypt(Login.IDX,Const.AES_KEY,"0000000000000000")
-            val ts = CryptoHandler().encrypt(Const.timeStamp,Const.AES_KEY,"0000000000000000")
+            val params = ParamUtil.ParamsUid
             val account_type = CryptoHandler().encrypt("s1",Const.AES_KEY,"0000000000000000")
             val channel_id = CryptoHandler().encrypt("StarVision",Const.AES_KEY,"0000000000000000")
             val server_sign = MD5.CMD5("TopupStar|${Login.IDX}|s1|StarVision|${Const.timeStamp}")
 
-            params["idx"] = idx
-            params["ts"] = ts
             params["account_type"] = account_type
             params["channel_id"] = channel_id
             params["server_sign"] = server_sign
+
+//            val keyBytes = Encoder.BASE64URL.decode("{signing_secret}")
+//            val key: Key = Keys.hmacShaKeyFor(keyBytes)
+//            val skeySpec = SecretKeySpec(Const.AES_KEY.substring(0, 32).toByteArray(), "AES")
+
+//            val jwt: String = Jwts.builder()
+//                .setHeaderParam("dd-ver", "DD-JWT-V1")
+//                .setHeaderParam("typ", "JWT")
+//                .setClaims(params)
+//                .signWith(key)
+//                .compact();
 
             Const.loge(TAG,"params : $params")
             ParamsData(object : ParamsData.PostLoadListener{
@@ -108,8 +103,19 @@ class ProfileDialogFragment : DialogFragment() {
                 override fun onFailed(t: Throwable) {
 
                 }
-            }).getLoadData(URL.BASE_URL,URL.URL_TOPUP,"")
+            }).getLoadData(URL.BASE_URL,URL.URL_TOPUP+"?token="+"jwt","")
         }
     }
+
+//    {
+//        "server_sign":"bbbfd88d2e68b3943b88010661f0e046",
+//        "account_type":"2u19pYWvQlptCH8p5ygWZA==",
+//        "imei":"f27c8b7a-77ac-342c-8b39-d97e90dd5ce1",
+//        "model":"SM-A135F",
+//        "idx":"DEvdofF6NfxHATiKwUm7lQ==",
+//        "channel_id":"Ye8wCaYOb30937bfkAI42g==",
+//        "platform":"Android 33",
+//        "ts":"o+p0/EktU4HllvUhL61wEQ=="
+//    }
 
 }

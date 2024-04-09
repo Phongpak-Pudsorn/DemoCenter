@@ -19,6 +19,7 @@
     <string name="delete_account">Delete Account</string>
     <string name="by_starvision_team">By StarVision Team</string>
     <string name="register">Register</string>
+    <string name="recovery">Recovery</string>
     <string name="you_already_have_an_account">You Already have an Account ?</string>
     <string name="login">Login</string>
     <string name="forgot_password">Forgot Password?</string>

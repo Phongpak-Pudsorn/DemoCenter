@@ -43,11 +43,13 @@ class ParamsData(private var mPostLoadListener : PostLoadListener) {
     }
 
     fun getLoadData(urlBase : String,path :String,port: String){
+        Const.loge(TAG, "link : $urlBase$path")
         val apiService = ApiClient().getBaseLink(urlBase, port).create(Api::class.java)
         apiService.getRequest(path).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 try {
                     mPostLoadListener.onSuccess(response.body()!!.string())
+                    Const.loge(TAG,"response : "+response.body()!!.string())
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
@@ -57,6 +59,7 @@ class ParamsData(private var mPostLoadListener : PostLoadListener) {
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 try {
                     mPostLoadListener.onFailed(t)
+                    Const.loge(TAG,"response : "+t.message)
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
