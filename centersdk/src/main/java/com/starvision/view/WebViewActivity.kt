@@ -9,10 +9,11 @@ import android.webkit.*
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.starvision.luckygamesdk.R
+import com.starvision.luckygamesdk.databinding.PageNewsBinding
 import com.starvision.luckygamesdk.databinding.PageWebviewBinding
 
 class WebViewActivity : AppCompatActivity() {
-    private val binding : PageWebviewBinding by lazy { PageWebviewBinding.inflate(layoutInflater) }
+    private val binding : PageNewsBinding by lazy { PageNewsBinding.inflate(layoutInflater) }
     private var callback : OnBackPressedCallback? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,11 +22,12 @@ class WebViewActivity : AppCompatActivity() {
         supportActionBar?.hide()
         val bundle = intent.extras
         val link = bundle!!.getString("link")
+        val title = bundle.getString("title")
+        binding.tvTitle.text = title
+        binding.tvTitle.isSelected = true
 
-        binding.lnTopBar.visibility = View.VISIBLE
-        binding.linearLayout2.visibility = View.VISIBLE
-        binding.linearLayout.visibility = View.VISIBLE
-        binding.btnBack.setOnClickListener { finish() }
+        binding.topBar.visibility = View.VISIBLE
+        binding.imgBack.setOnClickListener { finish() }
         callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (binding.mWebView.canGoBack()) {
@@ -37,21 +39,13 @@ class WebViewActivity : AppCompatActivity() {
         }
         this.onBackPressedDispatcher.addCallback(this,callback!!)
 
-        binding.mBtGoForword.setOnClickListener {
-            if (binding.mWebView.canGoForward())
-                binding.mWebView.goForward()
-        }
-        binding.mBtGoBack.setOnClickListener {
-            if (binding.mWebView.canGoBack())
-                binding.mWebView.goBack()
-        }
 
         binding.mWebView.settings.javaScriptEnabled = true
         binding.mWebView.webChromeClient = WebChromeClient()
         binding.mWebView.webViewClient = WebViewClient()
         binding.mWebView.loadUrl(link.toString())
         binding.mWebView.webViewClient = CustomWebViewClient()
-        binding.mBtGoHome.setOnClickListener { binding.mWebView.loadUrl(link.toString()) }
+//        binding.mBtGoHome.setOnClickListener { binding.mWebView.loadUrl(link.toString()) }
 
     }
 
@@ -74,16 +68,6 @@ class WebViewActivity : AppCompatActivity() {
 
         override fun onPageFinished(view: WebView?, url: String?) {
             binding.mPbLoad.visibility = View.GONE
-            if (binding.mWebView.canGoForward()) {
-                binding.mBtGoForword.visibility = View.VISIBLE
-            } else {
-                binding.mBtGoForword.visibility = View.INVISIBLE
-            }
-            if (binding.mWebView.canGoBack()) {
-                binding.mBtGoBack.visibility = View.VISIBLE
-            } else {
-                binding.mBtGoBack.visibility = View.INVISIBLE
-            }
             super.onPageFinished(view, url)
         }
     }

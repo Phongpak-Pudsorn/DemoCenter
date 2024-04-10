@@ -135,6 +135,7 @@ class AdapterStarvision(val context:Context, val listNews:ArrayList<CenterModels
             holder.itemView.setOnClickListener {
                 val intent = Intent(context, WebViewActivity::class.java)
                 intent.putExtra("link", listNews[position].newsappUrlNews)
+                intent.putExtra("title",listNews[position].newsappTitle)
                 context.startActivity(intent)
             }
             Glide.with(holder.newsBinding.imgNews).load(listNews[position].newsappImgNews).into(holder.newsBinding.imgNews)
