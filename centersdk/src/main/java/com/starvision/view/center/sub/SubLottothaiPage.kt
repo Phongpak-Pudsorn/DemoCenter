@@ -160,4 +160,8 @@ class SubLottothaiPage : DialogFragment() {
         }).getLoadData(URL.BASE_URL_LOTTO,URL.lotto_office_date,":9943")
 
     }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Const.clickAble = true
+    }
 }

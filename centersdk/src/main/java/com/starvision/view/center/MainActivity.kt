@@ -168,6 +168,12 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        Log.e("onResume","onResume")
+        Const.clickAble = true
+    }
+
     override fun onDestroy() {
         callback!!.remove()
         super.onDestroy()

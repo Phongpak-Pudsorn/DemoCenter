@@ -203,4 +203,8 @@ class SubOilFragment: DialogFragment() {
             }
         }
     }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Const.clickAble = true
+    }
 }

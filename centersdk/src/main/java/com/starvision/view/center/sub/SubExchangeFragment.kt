@@ -51,7 +51,7 @@ class SubExchangeFragment: DialogFragment() {
         binding.tvNameApp.isSelected = true
         binding.tvDesApp.isSelected = true
         binding.cvMore.setOnClickListener {
-            Const.openAnotherApp(requireActivity(),getString(R.string.exchange_package))
+                Const.openAnotherApp(requireActivity(), getString(R.string.exchange_package))
         }
         binding.imgBack.setOnClickListener {
             try {
@@ -88,5 +88,9 @@ class SubExchangeFragment: DialogFragment() {
                 Const.loge(TAG,"t $t")
             }
         }).getLoadData(URL.BASE_URL,URL.exchange,"")
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Const.clickAble = true
     }
 }
