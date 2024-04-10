@@ -73,6 +73,8 @@ class MainActivity : AppCompatActivity() {
         }else{
             binding.imgPerson.setImageDrawable(getDrawable(R.drawable.baseline_person_24_black))
         }
-
+//        if(Const.KEY_PREFS_FRAGMENT != "" ){
+//            centerShow.checkFragment(centerShow.selectorFragment(Const.KEY_PREFS_FRAGMENT))
+//        }
     }
 }

@@ -44,8 +44,8 @@ class DeleteAccountDialogFragment : DialogFragment() {
                 getString(R.string.text_alert_delete_account1)+"\n"+
         getString(R.string.text_alert_delete_account2)+"\n"+
         getString(R.string.text_alert_delete_account3)+"\n"
-        binding.imgClose.setOnClickListener {
-            dismiss()
+        binding.imgBack.setOnClickListener {
+            dialog!!.dismiss()
         }
         binding.tvDelete.setOnClickListener {
             binding.tvDelete.isEnabled = false

@@ -101,6 +101,7 @@ class ProfileDialogFragment : DialogFragment() {
             Const.loge(TAG, "params : $params")
             Const.loge(TAG,"link : "+URL.BASE_URL+URL.URL_TOPUP+"?token="+jwtToken)
             val intent = Intent(requireContext(),WebViewActivity::class.java)
+            intent.putExtra("title",getString(R.string.coupon))
             intent.putExtra("link",URL.BASE_URL+URL.URL_TOPUP+"?token="+jwtToken)
             startActivity(intent)
         }

@@ -196,7 +196,7 @@ class LoginActivity : AppCompatActivity() {
 
                                         val message = intent.getStringExtra("fragment")
                                         if(message != null){
-                                            Login.checkFragment = message
+                                            Const.loge(TAG,"")
                                             finish()
                                         }else{
                                             val intent = Intent(this@LoginActivity,MainActivity::class.java)

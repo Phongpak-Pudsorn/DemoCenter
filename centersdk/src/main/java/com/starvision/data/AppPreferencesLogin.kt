@@ -26,6 +26,7 @@ object AppPreferencesLogin {
 
     //get from luckygame center
     const val KEY_PREFS_LUCKY_GAME = "KEY_PREFS_LUCKY_GAME"
+    const val KEY_PREFS_CENTER_MODELS = "KEY_PREFS_CENTER_MODELS"
 
     const val KEY_PREFS_FRAGMENT = "KEY_PREFS_FRAGMENT"
 

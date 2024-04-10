@@ -17,6 +17,35 @@ class CenterShow (private val mContext : FragmentActivity) {
         mContext.startActivity(intent)
     }
 
+//    fun checkFragment (fragment: String){
+//        when (fragment) {
+//            setShowFragmentGold -> {
+//                setShowFragmentGold
+//                Const.KEY_PREFS_FRAGMENT = ""
+//            }
+//            setShowFragmentLotto -> {
+//                setShowFragmentLotto
+//                Const.KEY_PREFS_FRAGMENT = ""
+//            }
+//            setShowFragmentCheckLotto -> {
+//                setShowFragmentCheckLotto
+//                Const.KEY_PREFS_FRAGMENT = ""
+//            }
+//            setShowFragmentZodiac -> {
+//                setShowFragmentZodiac
+//                Const.KEY_PREFS_FRAGMENT = ""
+//            }
+//            setShowFragmentExchange -> {
+//                setShowFragmentExchange
+//                Const.KEY_PREFS_FRAGMENT = ""
+//            }
+//            setShowFragmentOil -> {
+//                setShowFragmentOil
+//                Const.KEY_PREFS_FRAGMENT = ""
+//            }
+//        }
+//    }
+
     val setShowFragmentGold : String
     get(){
         if(!Login.isLogin){
@@ -24,8 +53,10 @@ class CenterShow (private val mContext : FragmentActivity) {
             intent.putExtra("fragment","com.smileapp.goldprice")
             mContext.startActivity(intent)
         } else {
-            val subGoldToDayPage = SubGoldToDayPage()
-            subGoldToDayPage.show(mContext.supportFragmentManager, "")
+//            if(Const.KEY_PREFS_FRAGMENT == "com.smileapp.goldprice") {
+                val subGoldToDayPage = SubGoldToDayPage()
+                subGoldToDayPage.show(mContext.supportFragmentManager, "")
+//            }
         }
         return "com.smileapp.goldprice"
     }
@@ -37,8 +68,10 @@ class CenterShow (private val mContext : FragmentActivity) {
             intent.putExtra("fragment","com.starvision.lottothai")
             mContext.startActivity(intent)
         } else {
-            val subLottothaiPage = SubLottothaiPage()
-            subLottothaiPage.show(mContext.supportFragmentManager, "")
+//            if(Const.KEY_PREFS_FRAGMENT == "com.starvision.lottothai") {
+                val subLottothaiPage = SubLottothaiPage()
+                subLottothaiPage.show(mContext.supportFragmentManager, "")
+//            }
         }
         return "com.starvision.lottothai"
     }
@@ -50,8 +83,10 @@ class CenterShow (private val mContext : FragmentActivity) {
             intent.putExtra("fragment","com.smileapp.lottery")
             mContext.startActivity(intent)
         } else {
-            val subSmileLottoPage = SubSmileLottoPage()
-            subSmileLottoPage.show(mContext.supportFragmentManager, "")
+//            if(Const.KEY_PREFS_FRAGMENT == "com.smileapp.lottery") {
+                val subSmileLottoPage = SubSmileLottoPage()
+                subSmileLottoPage.show(mContext.supportFragmentManager, "")
+//            }
         }
         return "com.smileapp.lottery"
     }
@@ -63,8 +98,10 @@ class CenterShow (private val mContext : FragmentActivity) {
             intent.putExtra("fragment","com.smileapp.zodiac")
             mContext.startActivity(intent)
         } else {
-            val subZodiacFragment = SubZodiacFragment()
-            subZodiacFragment.show(mContext.supportFragmentManager, "")
+//            if(Const.KEY_PREFS_FRAGMENT == "com.smileapp.zodiac") {
+                val subZodiacFragment = SubZodiacFragment()
+                subZodiacFragment.show(mContext.supportFragmentManager, "")
+//            }
         }
         return "com.smileapp.zodiac"
     }
@@ -76,8 +113,10 @@ class CenterShow (private val mContext : FragmentActivity) {
             intent.putExtra("fragment","com.starvision.exchangerate")
             mContext.startActivity(intent)
         } else {
-            val subExchangeFragment = SubExchangeFragment()
-            subExchangeFragment.show(mContext.supportFragmentManager, "")
+//            if(Const.KEY_PREFS_FRAGMENT == "com.starvision.exchangerate") {
+                val subExchangeFragment = SubExchangeFragment()
+                subExchangeFragment.show(mContext.supportFragmentManager, "")
+//            }
         }
         return "com.starvision.exchangerate"
     }
@@ -89,20 +128,24 @@ class CenterShow (private val mContext : FragmentActivity) {
             intent.putExtra("fragment","com.smileapp.oil")
             mContext.startActivity(intent)
         } else {
-            val subOilFragment = SubOilFragment()
-            subOilFragment.show(mContext.supportFragmentManager, "")
+//            if(Const.KEY_PREFS_FRAGMENT == "com.smileapp.oil") {
+                val subOilFragment = SubOilFragment()
+                subOilFragment.show(mContext.supportFragmentManager, "")
+//            }
         }
         return "com.smileapp.oil"
     }
 
-//    private fun selectorFragment(fragment : String) : String {
-//        var arr = ""
+//    fun selectorFragment(fragment : String) : String {
+//        var arr: ArrayList<CenterModels.CenterData.PageData.IconData>
+//        var result = ""
 //        for (i in MainActivity().packageName.indices){
-//            if(MainActivity().packageName[i].bannerId == fragment){
-//                arr = MainActivity().packageName[i].bannerLinkstoreapp
+//            if(MainActivity().packageName[i].iconappLinkstoregoogle == fragment){
+//                arr = MainActivity().packageName
+//                result = arr[i].iconappLinkstoregoogle
 //            }
 //        }
-//        return arr
+//        return result
 //    }
 
 }

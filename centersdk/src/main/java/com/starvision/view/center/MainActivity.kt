@@ -53,7 +53,7 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
     private val subZodiacPage = SubZodiacFragment()
     private val subExchangePage = SubExchangeFragment()
     private val subOilPage = SubOilFragment()
-    var packageName = ArrayList<CenterModels.CenterData.PageData.BannerData>()
+    var packageName = ArrayList<CenterModels.CenterData.PageData.IconData>()
     var tablist = ArrayList<TabInfo>()
     var fragments = ArrayList<Fragment>()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -98,7 +98,7 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
                 if (list.code=="101") {
                     for (i in list!!.data.PageCenter.indices) {
                         tablist.add(TabInfo(list.data.PageCenter[i].MenuTitle))
-//                    packageName = list.data.PageCenter[i].BannerApp
+                    packageName = list.data.PageCenter[i].IconApp
                     }
                     binding.menuTab.apply {
                         visibility = View.VISIBLE
