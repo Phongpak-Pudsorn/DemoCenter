@@ -235,6 +235,7 @@ class LoginActivity : AppCompatActivity() {
                                         toast.show()
                                         handler.postDelayed({toast.cancel()},1000)
                                         binding.progressBar2.visibility = View.GONE
+                                        return onLogin()
                                     }
 
                                     override fun onFailed(t: Throwable) {
