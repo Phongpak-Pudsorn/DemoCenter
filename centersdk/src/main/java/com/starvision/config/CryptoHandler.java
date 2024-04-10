@@ -41,7 +41,7 @@ public class CryptoHandler {
         IvParameterSpec ivSpec = new IvParameterSpec(IV.substring(0,16).getBytes());
         Cipher ecipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
         ecipher.init(Cipher.DECRYPT_MODE, skeySpec, ivSpec);
-        byte[] raw = Base64.decode(encrypted.getBytes(), 0, 16, Base64.DEFAULT);
+        byte[] raw = Base64.decode(encrypted.getBytes(), Base64.DEFAULT);
         byte[] originalBytes = ecipher.doFinal(raw);
         return new String(originalBytes, StandardCharsets.UTF_8);
     }

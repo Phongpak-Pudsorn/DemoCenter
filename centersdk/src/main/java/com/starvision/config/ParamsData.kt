@@ -24,8 +24,11 @@ class ParamsData(private var mPostLoadListener : PostLoadListener) {
         apiService.postRequest(path,hashMap).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 try {
-                    mPostLoadListener.onSuccess(response.body()!!.string())
-                    Const.loge(TAG,"response : "+response.body()!!.string())
+                    val result = response.body()!!.string()
+                    Const.loge(TAG,"response code : "+response.code())
+                    Const.loge(TAG,"response message : "+response.message())
+                    Const.loge(TAG, "response : $result")
+                    mPostLoadListener.onSuccess(result)
                 }catch (e : Exception) {
                     e.printStackTrace()
                 }
@@ -48,8 +51,11 @@ class ParamsData(private var mPostLoadListener : PostLoadListener) {
         apiService.getRequest(path).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 try {
-                    mPostLoadListener.onSuccess(response.body()!!.string())
-                    Const.loge(TAG,"response : "+response.body()!!.string())
+                    val result = response.body()!!.string()
+                    Const.loge(TAG,"response code : "+response.code())
+                    Const.loge(TAG,"response message : "+response.message())
+                    Const.loge(TAG, "response : $result")
+                    mPostLoadListener.onSuccess(result)
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
@@ -58,8 +64,8 @@ class ParamsData(private var mPostLoadListener : PostLoadListener) {
 
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 try {
-                    mPostLoadListener.onFailed(t)
                     Const.loge(TAG,"response : "+t.message)
+                    mPostLoadListener.onFailed(t)
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
