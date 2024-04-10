@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.starvision.data.Const
 import com.starvision.luckygamesdk.databinding.ItemAppsBannerBinding
 import com.starvision.view.center.models.CenterModels
 
@@ -28,7 +29,10 @@ class AdapterImageSlide(context: Context,val bannerList:ArrayList<CenterModels.C
     override fun onBindViewHolder(holder: ImageHolder, position: Int) {
         holder.imgBinding.tvContent.text = bannerList[position].bannerappImgintroduce
         holder.imgBinding.root.setOnClickListener {
-            dataPasser.passData(bannerList[position].bannerappLinkstoregoogle)
+            if (Const.clickAble) {
+                Const.clickAble = false
+                dataPasser.passData(bannerList[position].bannerappLinkstoregoogle)
+            }
         }
         Glide.with(holder.imgBinding.imageView).load(bannerList[position].bannerappImgbackground).into(holder.imgBinding.imageView)
     }

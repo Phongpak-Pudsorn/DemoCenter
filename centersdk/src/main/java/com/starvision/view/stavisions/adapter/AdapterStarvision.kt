@@ -2,6 +2,7 @@ package com.starvision.view.stavisions.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.os.CountDownTimer
 import android.os.Looper
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
+import com.starvision.data.Const
 import com.starvision.luckygamesdk.databinding.ItemNewsBinding
 import com.starvision.luckygamesdk.databinding.ItemNewsHeaderBinding
 import com.starvision.luckygamesdk.databinding.PageBannerAppsBinding
@@ -133,10 +135,13 @@ class AdapterStarvision(val context:Context, val listNews:ArrayList<CenterModels
         }else if (holder is NewsHolder){
             holder.newsBinding.tvTitle.text = listNews[position].newsappTitle
             holder.itemView.setOnClickListener {
-                val intent = Intent(context, WebViewActivity::class.java)
-                intent.putExtra("link", listNews[position].newsappUrlNews)
-                intent.putExtra("title",listNews[position].newsappTitle)
-                context.startActivity(intent)
+                if (Const.clickAble) {
+                    Const.clickAble = false
+                    val intent = Intent(context, WebViewActivity::class.java)
+                    intent.putExtra("link", listNews[position].newsappUrlNews)
+                    intent.putExtra("title", listNews[position].newsappTitle)
+                    context.startActivity(intent)
+                }
             }
             Glide.with(holder.newsBinding.imgNews).load(listNews[position].newsappImgNews).into(holder.newsBinding.imgNews)
         }

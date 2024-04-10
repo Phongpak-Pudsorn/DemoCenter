@@ -149,4 +149,8 @@ class SubZodiacFragment: DialogFragment() {
         //Load url in webview
         binding.zodiacWeb.loadUrl(url)
     }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Const.clickAble = true
+    }
 }

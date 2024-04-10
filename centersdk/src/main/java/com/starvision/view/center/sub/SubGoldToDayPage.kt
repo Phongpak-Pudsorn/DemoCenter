@@ -136,4 +136,9 @@ class SubGoldToDayPage : DialogFragment() {
 
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Const.clickAble = true
+    }
+
 }

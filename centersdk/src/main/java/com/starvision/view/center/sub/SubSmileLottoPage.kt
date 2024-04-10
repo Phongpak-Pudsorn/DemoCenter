@@ -425,5 +425,9 @@ class SubSmileLottoPage : DialogFragment() {
         }
         return strCheckText
     }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Const.clickAble = true
+    }
 
 }

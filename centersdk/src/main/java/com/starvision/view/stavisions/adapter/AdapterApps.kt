@@ -25,7 +25,10 @@ class AdapterApps(val context: Context,val list:ArrayList<CenterModels.CenterDat
         holder.appsBinding.tvName.text = list[position].iconappTitle
         Glide.with(holder.appsBinding.imgApp).load(list[position].iconappImgicon).into(holder.appsBinding.imgApp)
         holder.appsBinding.root.setOnClickListener {
-            Const.openAnotherApp(context,list[position].iconappLinkstoregoogle)
+            if (Const.clickAble) {
+                Const.clickAble = false
+                Const.openAnotherApp(context, list[position].iconappLinkstoregoogle)
+            }
         }
     }
 
