@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnLottoThai.setOnClickListener {
             centerShow.setShowFragmentLotto
         }
-        binding.btnLottoCalendar.setOnClickListener {
+        binding.btnCheckLotto.setOnClickListener {
             centerShow.setShowFragmentCheckLotto
         }
         binding.btnGoldtoday.setOnClickListener {

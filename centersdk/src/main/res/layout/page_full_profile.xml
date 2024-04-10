@@ -138,6 +138,7 @@
                             android:id="@+id/img_topup"
                             android:layout_width="38dp"
                             android:layout_height="38dp"
+                            android:background="@drawable/btn_topup"
                             android:src="@mipmap/topup" />
 
                         <TextView
@@ -147,6 +148,7 @@
                             android:gravity="center"
                             android:text="TopUp"
                             android:layout_marginStart="5dp"
+                            android:visibility="gone"
                             android:textSize="22sp"
                             android:textColor="@color/black_light"
                             android:fontFamily="@font/psl156">
@@ -517,7 +519,7 @@
             android:layout_margin="10dp"
             android:layout_gravity="center"
             app:shapeAppearanceOverlay="@style/Circular"
-            app:srcCompat="@mipmap/ic_launcher" />
+            android:src="@mipmap/ic_launcher" />
 
     </androidx.cardview.widget.CardView>
 

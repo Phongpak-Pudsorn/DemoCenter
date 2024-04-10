@@ -1,5 +1,6 @@
 package com.starvision.view.center
 
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
@@ -138,7 +139,8 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
         }
         binding.tvUsername.text = Login.Name
         binding.tvCoinNum.text = Login.Coin
-        Glide.with(this).load(Login.Avatar).into(binding.imgProfile)
+        Glide.with(this@MainActivity).load(Login.Avatar).into(binding.imgProfile)
+        Const.loge(TAG,"Login.Avatar : "+Login.Avatar)
     }
     private fun setFragments(){
         fragments.add(StarvisionFragment())

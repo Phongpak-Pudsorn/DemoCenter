@@ -22,9 +22,9 @@ class WebViewActivity : AppCompatActivity() {
         val bundle = intent.extras
         val link = bundle!!.getString("link")
 
-        binding.lnTopBar.visibility = View.VISIBLE
-        binding.linearLayout2.visibility = View.VISIBLE
-        binding.linearLayout.visibility = View.VISIBLE
+//        binding.lnTopBar.visibility = View.VISIBLE
+//        binding.linearLayout2.visibility = View.VISIBLE
+//        binding.linearLayout.visibility = View.VISIBLE
         binding.btnBack.setOnClickListener { finish() }
         callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {

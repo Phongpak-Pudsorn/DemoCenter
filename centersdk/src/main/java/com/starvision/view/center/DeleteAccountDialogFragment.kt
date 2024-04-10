@@ -19,9 +19,11 @@ import com.starvision.data.ParamUtil
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageDeleteAccountBinding
 import com.starvision.view.center.models.DeleteAccountModels
+import com.starvision.view.login.LoginActivity
 
 class DeleteAccountDialogFragment : DialogFragment() {
     private val binding : PageDeleteAccountBinding by lazy { PageDeleteAccountBinding.inflate(layoutInflater) }
+    private val handler = Handler(Looper.getMainLooper())
     private val TAG = javaClass.simpleName
 
     override fun onCreateView(
@@ -38,19 +40,22 @@ class DeleteAccountDialogFragment : DialogFragment() {
         dialog!!.window!!.setBackgroundDrawableResource(R.color.transparent)
         dialog!!.setCancelable(false)
         dialog!!.show()
+        binding.tvText.text = getString(R.string.text_alert_delete_account)+"\n"+"\n"+
+                getString(R.string.text_alert_delete_account1)+"\n"+
+        getString(R.string.text_alert_delete_account2)+"\n"+
+        getString(R.string.text_alert_delete_account3)+"\n"
         binding.imgClose.setOnClickListener {
             dismiss()
         }
         binding.tvDelete.setOnClickListener {
+            binding.tvDelete.isEnabled = false
+            handler.postDelayed({binding.tvDelete.isEnabled = true},1000)
             if(!binding.checkBox.isChecked){
                 val toast = Toast.makeText(requireContext(),getString(R.string.text_alert_delete_uncheck),Toast.LENGTH_SHORT)
                 toast.show()
                 val handler = Handler(Looper.getMainLooper())
                 handler.postDelayed({ toast.cancel() }, 1000)
             }else{
-//                - acc_name
-//                - password MD5
-//                - type 1=ลบ 2=กู้
                 val params = ParamUtil.ParamsUid
                 params["acc_name"] = Login.UserName
                 params["password"] = MD5.CMD5(Login.Password)
@@ -58,13 +63,18 @@ class DeleteAccountDialogFragment : DialogFragment() {
                 ParamsData(object : ParamsData.PostLoadListener{
                     override fun onSuccess(body: String) {
                         val jSon = Gson().fromJson(body,DeleteAccountModels::class.java)
-                        Const.loge(TAG,"jSon : "+jSon.message)
-                        val intent = Intent(requireContext(),Login::class.java)
+                        val toast = Toast.makeText(requireContext(),jSon.message,Toast.LENGTH_SHORT)
+                        toast.show()
+                        handler.postDelayed({toast.cancel()},1000)
+                        Login.isLogin = false
+                        val intent = Intent(requireContext(),LoginActivity::class.java)
                         startActivity(intent)
                     }
 
                     override fun onFailed(t: Throwable) {
-
+                        val toast = Toast.makeText(requireContext(),t.message,Toast.LENGTH_SHORT)
+                        toast.show()
+                        handler.postDelayed({toast.cancel()},1000)
                     }
 
                 }).postLoadData(URL.BASE_URL_SDK,URL.URL_DELETE_AND_RECOVERY,"",params)

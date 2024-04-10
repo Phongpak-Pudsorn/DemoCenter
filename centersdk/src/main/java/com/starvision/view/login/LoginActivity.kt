@@ -2,6 +2,7 @@ package com.starvision.view.login
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -35,6 +36,7 @@ import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageLoginBinding
 import com.starvision.view.WebViewActivity
 import com.starvision.view.center.MainActivity
+import com.starvision.view.center.models.DeleteAccountModels
 import com.starvision.view.center.models.ProfileModels
 import com.starvision.view.center.sub.*
 import com.starvision.view.login.models.LoginModels
@@ -47,7 +49,7 @@ class LoginActivity : AppCompatActivity() {
     private val handler = Handler(Looper.getMainLooper())
     private var callback : OnBackPressedCallback? = null
     private val TAG = javaClass.simpleName
-    private val bundle = Intent()
+    private var checkError = 0
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,16 +98,6 @@ class LoginActivity : AppCompatActivity() {
             })
             toggle()
             setFragment(forgotFragment)
-        }
-        binding.tvRecovery.setOnClickListener {
-            val recoveryFragment = RecoveryFragment(bm)
-            recoveryFragment.setCloseListener(object : RecoveryFragment.CloseListener {
-                override fun onClose() {
-                    toggle()
-                }
-            })
-            toggle()
-            setFragment(recoveryFragment)
         }
         binding.btnBack.setOnClickListener {
             finish()
@@ -173,8 +165,6 @@ class LoginActivity : AppCompatActivity() {
             hashMap["acc_name"] = acc_name
             hashMap["account_type"] = account_type
 
-            Const.loge(TAG, "hashmap : $hashMap")
-
             ParamsData(object : ParamsData.PostLoadListener{
                 override fun onSuccess(body : String) {
                     try {
@@ -200,9 +190,9 @@ class LoginActivity : AppCompatActivity() {
                                         binding.cvLogin.isEnabled = true
                                         binding.progressBar2.visibility = View.GONE
                                         val jSonPro = Gson().fromJson(body, ProfileModels::class.java)
-                                        Login.Name = jSonPro.data!!.name!!.toString()
-                                        Login.Avatar = jSonPro.data.avatar!!.toString()
-                                        Login.Coin = jSonPro.data.coin!!.toString()
+                                        Login.Name = jSonPro.data!!.name!!
+                                        Login.Avatar = jSonPro.data.avatar!!
+                                        Login.Coin = jSonPro.data.coin.toString()
 
                                         val message = intent.getStringExtra("fragment")
                                         if(message != null){
@@ -213,7 +203,9 @@ class LoginActivity : AppCompatActivity() {
                                             startActivity(intent)
                                             finish()
                                         }
-                                        Toast.makeText(this@LoginActivity,jSon.message,Toast.LENGTH_SHORT).show()
+                                        val toast = Toast.makeText(this@LoginActivity,jSon.message,Toast.LENGTH_SHORT)
+                                        toast.show()
+                                        handler.postDelayed({toast.cancel()},1000)
                                     }catch (e : Exception){
                                         Toast.makeText(this@LoginActivity,jSon.message,Toast.LENGTH_SHORT).show()
                                         e.printStackTrace()
@@ -227,6 +219,38 @@ class LoginActivity : AppCompatActivity() {
                             Login.UserID = jSon.userid
                             Login.IDX = jSon.idx!!
                             Login.isLogin = true
+                        }else if (jSon.code == "1001"){
+                            binding.progressBar2.visibility = View.VISIBLE
+                            val params = ParamUtil.ParamsUid
+                            params["acc_name"] = binding.editUsername.text.toString()
+                            params["password"] = MD5.CMD5(binding.editPassword.text.toString())
+                            params["type"] = "2"
+                            val aBuilder = AlertDialog.Builder(this@LoginActivity)
+                            aBuilder.setMessage("คุณต้องการกู้คืน ID ของคุณหรือไม่")
+                            aBuilder.setPositiveButton("ตกลง") { dialog, which ->
+                                ParamsData(object : ParamsData.PostLoadListener{
+                                    override fun onSuccess(body: String) {
+                                        val jSonDelete = Gson().fromJson(body, DeleteAccountModels::class.java)
+                                        val toast = Toast.makeText(this@LoginActivity,jSonDelete.message, Toast.LENGTH_SHORT)
+                                        toast.show()
+                                        handler.postDelayed({toast.cancel()},1000)
+                                        binding.progressBar2.visibility = View.GONE
+                                    }
+
+                                    override fun onFailed(t: Throwable) {
+                                        val toast = Toast.makeText(this@LoginActivity,t.message, Toast.LENGTH_SHORT)
+                                        toast.show()
+                                        handler.postDelayed({toast.cancel()},1000)
+                                        binding.progressBar2.visibility = View.GONE
+                                    }
+                                }).postLoadData(URL.BASE_URL_SDK, URL.URL_DELETE_AND_RECOVERY,"",params)
+                            }
+                            aBuilder.setNegativeButton("ยกเลิก") { dialog, whith ->
+                                binding.progressBar2.visibility = View.GONE
+                                dialog.dismiss()
+                            }
+                            aBuilder.setCancelable(false)
+                            aBuilder.show()
                         }else{
                             Toast.makeText(this@LoginActivity,jSon.message,Toast.LENGTH_SHORT).show()
                             binding.cvLogin.isEnabled = true
