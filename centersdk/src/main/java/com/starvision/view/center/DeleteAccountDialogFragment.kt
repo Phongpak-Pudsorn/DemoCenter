@@ -26,6 +26,13 @@ class DeleteAccountDialogFragment : DialogFragment() {
     private val handler = Handler(Looper.getMainLooper())
     private val TAG = javaClass.simpleName
 
+    private lateinit var mClickListener : ClickListener
+    interface ClickListener {
+        fun onClickBack()
+    }
+    fun setClickListener(listener : ClickListener) {
+        mClickListener = listener
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -69,6 +76,7 @@ class DeleteAccountDialogFragment : DialogFragment() {
                         Login.isLogin = false
                         val intent = Intent(requireContext(),LoginActivity::class.java)
                         startActivity(intent)
+                        mClickListener.onClickBack()
                     }
 
                     override fun onFailed(t: Throwable) {

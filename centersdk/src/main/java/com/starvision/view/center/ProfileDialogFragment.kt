@@ -36,6 +36,7 @@ class ProfileDialogFragment : DialogFragment() {
     interface ClickListener {
         fun onLogout()
         fun onCancel()
+        fun onDelete()
     }
     fun setClickListener(listener : ClickListener) {
         mClickListener = listener
@@ -76,7 +77,7 @@ class ProfileDialogFragment : DialogFragment() {
             startActivity(intent)
         }
         binding.tvAccountManagement.setOnClickListener {
-            DeleteAccountDialogFragment().show(childFragmentManager,"")
+            mClickListener.onDelete()
         }
         binding.tvPolicy.setOnClickListener {
             WebViewPolicyDialogFragment().show(childFragmentManager,"policy")
@@ -86,8 +87,16 @@ class ProfileDialogFragment : DialogFragment() {
             val account_type = CryptoHandler().encrypt("s1",Const.AES_KEY,"0000000000000000")
             val channel_id = CryptoHandler().encrypt("StarVision",Const.AES_KEY,"0000000000000000")
             val server_sign = MD5.CMD5("TopupStar|${Login.IDX}|s1|StarVision|${Const.timeStamp}")
+//            val ts = CryptoHandler().encrypt(Const.timeStamp ,Const.AES_KEY,"0000000000000000")
+//
+//            Const.loge(TAG,"decode : account_type = "+CryptoHandler().decrypt(account_type ,Const.AES_KEY,"0000000000000000"))
+//            Const.loge(TAG,"decode : channel_id = "+CryptoHandler().decrypt(channel_id ,Const.AES_KEY,"0000000000000000"))
+////            Const.loge(TAG,"decode : server_sign = "+CryptoHandler().decrypt(server_sign ,Const.AES_KEY,"0000000000000000"))
+//            Const.loge(TAG,"decode : idx = "+ params["idx"])
+//            Const.loge(TAG,"decode : ts = "+CryptoHandler().decrypt(params["ts"] ,Const.AES_KEY,"0000000000000000") )
+//            Const.loge(TAG,"decode : ts page pro  = "+CryptoHandler().decrypt(ts ,Const.AES_KEY,"0000000000000000"))
 
-            params["ts"] = CryptoHandler().encrypt(Const.timeStamp ,Const.AES_KEY,"0000000000000000")
+//            params["ts"] = CryptoHandler().encrypt(Const.timeStamp ,Const.AES_KEY,"0000000000000000")
             params["account_type"] = account_type
             params["channel_id"] = channel_id
             params["server_sign"] = server_sign

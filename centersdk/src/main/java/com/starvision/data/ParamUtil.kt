@@ -24,7 +24,7 @@ object ParamUtil {
 //            if(Login.isLogin){
                 hashMaps["idx"] = CryptoHandler().encrypt(Login.IDX,Const.AES_KEY,"0000000000000000")
 //            }
-            hashMaps["ts"] = CryptoHandler().encrypt(SimpleDateFormat("HHmmssddMMyyyy").format(Date()).toString() ,Const.AES_KEY,"0000000000000000")
+            hashMaps["ts"] = CryptoHandler().encrypt(SimpleDateFormat("HHmmssddMMyyyy").format(Date()) ,Const.AES_KEY,"0000000000000000")
             return hashMaps
         }
 }

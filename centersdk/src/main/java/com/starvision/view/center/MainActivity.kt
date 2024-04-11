@@ -98,7 +98,7 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
                 if (list.code=="101") {
                     for (i in list!!.data.PageCenter.indices) {
                         tablist.add(TabInfo(list.data.PageCenter[i].MenuTitle))
-                    packageName = list.data.PageCenter[i].IconApp
+//                    packageName = list.data.PageCenter[i].IconApp
                     }
                     binding.menuTab.apply {
                         visibility = View.VISIBLE
@@ -133,6 +133,16 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
 
                 override fun onCancel() {
                     binding.imgProfile.isEnabled = true
+                }
+
+                override fun onDelete() {
+                    val delete = DeleteAccountDialogFragment()
+                    delete.setClickListener(object : DeleteAccountDialogFragment.ClickListener{
+                        override fun onClickBack() {
+                            this@MainActivity.finish()
+                        }
+                    })
+                    delete.show(supportFragmentManager,"delete")
                 }
             })
             dialogProfile.show(supportFragmentManager,"")
