@@ -32,11 +32,11 @@ class MainActivity : AppCompatActivity() {
         centerShow = CenterShow(this)
 
         binding.btnCenter.setOnClickListener {
-            centerShow.getMainCenter()
+            centerShow.getMainCenter(this.packageName)
         }
 
         binding.imgPerson.setOnClickListener {
-            centerShow.getMainCenter()
+            centerShow.getMainCenter(this.packageName)
         }
 
         binding.btnLottoThai.setOnClickListener {

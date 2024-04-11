@@ -27,7 +27,6 @@ class StarvisionFragment:Fragment() {
     var moreNews = ""
     var isLoading = false
     var loadCount = 1
-    val getPackage =  ""
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -80,12 +79,12 @@ class StarvisionFragment:Fragment() {
                     newsList.add(CenterModels.CenterData.PageData.NewsData(0,"banner","","","","","",""))
                     newsList.add(CenterModels.CenterData.PageData.NewsData(0,"header","","","","","",""))
                     for (i in list.data.PageCenter[0].BannerApp.indices){
-                        if (list.data.PageCenter[0].BannerApp[i].bannerappLinkstoregoogle!=getPackage) {
+                        if (list.data.PageCenter[0].BannerApp[i].bannerappLinkstoregoogle!=Const.appPackage) {
                             bannerList.add(list.data.PageCenter[0].BannerApp[i])
                         }
                     }
                     for (i in list.data.PageCenter[0].IconApp.indices){
-                        if (list.data.PageCenter[0].IconApp[i].iconappLinkstoregoogle!=getPackage) {
+                        if (list.data.PageCenter[0].IconApp[i].iconappLinkstoregoogle!=Const.appPackage) {
                             appList.add(list.data.PageCenter[0].IconApp[i])
                         }
                     }
