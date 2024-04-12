@@ -12,8 +12,9 @@ import com.starvision.view.center.sub.*
 import com.starvision.view.login.LoginActivity
 
 class CenterShow (private val mContext : FragmentActivity) {
-    fun getMainCenter(){
+    fun getMainCenter(packageName:String){
         val intent = Intent(mContext, MainActivity::class.java)
+        intent.putExtra("package",packageName)
         mContext.startActivity(intent)
     }
 

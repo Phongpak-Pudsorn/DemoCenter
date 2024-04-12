@@ -20,6 +20,7 @@ import java.util.*
 
 object Const {
     var clickAble = true
+    var appPackage = ""
     const val AES_KEY = "47cbed84d5ad52e955621904170d2e6e"
     val timeStamp : String = SimpleDateFormat("HHmmssddMMyyyy").format(Date())
 //    var KEY_PREFS_FRAGMENT = ""

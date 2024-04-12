@@ -53,13 +53,16 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
     private val subZodiacPage = SubZodiacFragment()
     private val subExchangePage = SubExchangeFragment()
     private val subOilPage = SubOilFragment()
-    var packageName = ArrayList<CenterModels.CenterData.PageData.IconData>()
     var tablist = ArrayList<TabInfo>()
     var fragments = ArrayList<Fragment>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         supportActionBar?.hide()
+        val extra = intent.getStringExtra("package")
+        if (extra!=null){
+            Const.appPackage = extra
+        }
 
         if(!Login.isLogin){
             val intent = Intent(this, LoginActivity::class.java)
@@ -94,14 +97,12 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
         ParamsData(object :ParamsData.PostLoadListener{
             override fun onSuccess(body: String) {
                 val list = Gson().fromJson(body,CenterModels::class.java)
-                Log.e("data",list.toString())
                 if (list.code=="101") {
                     for (i in list!!.data.PageCenter.indices) {
                         tablist.add(TabInfo(list.data.PageCenter[i].MenuTitle))
 //                    packageName = list.data.PageCenter[i].IconApp
                     }
                     binding.menuTab.apply {
-                        visibility = View.VISIBLE
                         adapter = AdapterMenuTab(
                             this@MainActivity,
                             tablist,
@@ -112,6 +113,11 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
                             })
                         layoutManager =
                             LinearLayoutManager(this@MainActivity, RecyclerView.HORIZONTAL, false)
+                    }
+                    if (tablist.size<=1){
+                        binding.menuTab.visibility = View.GONE
+                    }else{
+                        binding.menuTab.visibility = View.VISIBLE
                     }
                 }
             }
@@ -182,7 +188,6 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
 
     override fun onResume() {
         super.onResume()
-        Log.e("onResume","onResume")
         Const.clickAble = true
     }
 
