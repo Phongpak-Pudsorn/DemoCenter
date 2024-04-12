@@ -73,6 +73,7 @@
                         android:textSize="22sp" />
 
                     <LinearLayout
+                        android:id="@+id/ln_coin"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"

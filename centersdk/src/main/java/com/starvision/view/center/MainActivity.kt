@@ -69,6 +69,7 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
             startActivity(intent)
             finish()
         }
+        Const.checkStatus()
 
         callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -99,7 +100,15 @@ class MainActivity: AppCompatActivity(),AdapterImageSlide.OnDataPass {
                 val list = Gson().fromJson(body,CenterModels::class.java)
                 if (list.code=="101") {
                     for (i in list!!.data.PageCenter.indices) {
-                        tablist.add(TabInfo(list.data.PageCenter[i].MenuTitle))
+                        if (Const.isSdk){
+                            binding.lnCoin.visibility = View.INVISIBLE
+                            if(list.data.PageCenter[i].MenuType == "NewsCenter"){
+                                tablist.add(TabInfo(list.data.PageCenter[i].MenuTitle))
+                            }
+                        }else{
+                            tablist.add(TabInfo(list.data.PageCenter[i].MenuTitle))
+                        }
+
 //                    packageName = list.data.PageCenter[i].IconApp
                     }
                     binding.menuTab.apply {

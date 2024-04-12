@@ -23,6 +23,10 @@ object Const {
     var appPackage = ""
     const val AES_KEY = "47cbed84d5ad52e955621904170d2e6e"
     val timeStamp : String = SimpleDateFormat("HHmmssddMMyyyy").format(Date())
+    var isReview = false
+    var isSdk = false
+    var priority = ""
+    var chkVersion = ""
 //    var KEY_PREFS_FRAGMENT = ""
     fun loge(str : String,str2 : String){
         Log.e(str,str2)
@@ -68,21 +72,22 @@ object Const {
         ParamsData(object : ParamsData.PostLoadListener{
             override fun onSuccess(body: String) {
                 val jsonData = Gson().fromJson(body,CheckVersionModels::class.java)
-                val isReview = jsonData.data.StatusServer.is_review
-                val isSdk = jsonData.data.StatusServer.is_sdk
-                val priority = jsonData.data.Version.priority
-                val chkVersion = jsonData.data.Version.current_version
-                if(!isReview){
-                    // เซ็ตปิดปุ่ม
+                isReview = jsonData.data.StatusServer.is_review
+                isSdk = jsonData.data.StatusServer.is_sdk
+                priority = jsonData.data.Version.priority
+                chkVersion = jsonData.data.Version.current_version
 
-                }
-                if(!isSdk){
-                    // เซ็ตปิดปุ่ม
-
-                }
-                if(priority == "True"){
-
-                }
+//                if(!isReview){
+//                    // เซ็ตปิดปุ่ม
+//
+//                }
+//                if(!isSdk){
+//                    // เซ็ตปิดปุ่ม
+//
+//                }
+//                if(priority == "True"){
+//
+//                }
             }
 
             override fun onFailed(t: Throwable) {
