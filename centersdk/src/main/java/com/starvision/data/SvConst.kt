@@ -7,9 +7,9 @@ import android.net.Uri
 import android.provider.Settings
 import android.util.Log
 import com.google.gson.Gson
-import com.starvision.api.URL
+import com.starvision.api.SvURL
 import com.starvision.config.SvParamsData
-import com.starvision.models.CheckVersionModels
+import com.starvision.models.SvCheckVersionModels
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -66,7 +66,7 @@ object SvConst {
     fun checkStatus(){
         SvParamsData(object : SvParamsData.PostLoadListener{
             override fun onSuccess(body: String) {
-                val jsonData = Gson().fromJson(body,CheckVersionModels::class.java)
+                val jsonData = Gson().fromJson(body,SvCheckVersionModels::class.java)
                 isReview = jsonData.data.StatusServer.is_review
                 isSdk = jsonData.data.StatusServer.is_sdk
                 priority = jsonData.data.Version.priority
@@ -89,6 +89,6 @@ object SvConst {
                 t.printStackTrace()
             }
 
-        }).getLoadData(URL.BASE_URL_SDK, URL.URL_CHECK_VERSION+"?"+"app=0"+"&os=android","")
+        }).getLoadData(SvURL.BASE_URL_SDK, SvURL.URL_CHECK_VERSION+"?"+"app=0"+"&os=android","")
     }
 }

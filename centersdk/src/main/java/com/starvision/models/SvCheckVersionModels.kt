@@ -1,8 +1,8 @@
 package com.starvision.models
 
-data class CheckVersionModels(val code : String,
-                              val message : String,
-                              val data : DataRow){
+data class SvCheckVersionModels(val code : String,
+                                val message : String,
+                                val data : DataRow){
 
     data class DataRow(val Status : String,
                        val StatusServer : DataStatusServer,
