@@ -106,7 +106,7 @@ class SvMainActivity: AppCompatActivity(),SvAdapterImageSlide.OnDataPass {
                         layoutManager =
                             LinearLayoutManager(this@SvMainActivity, RecyclerView.HORIZONTAL, false)
                     }
-                    if (tablist.size<=1){
+                    if (tablist.size<1){
                         binding.menuTab.visibility = View.GONE
                     }else{
                         binding.menuTab.visibility = View.VISIBLE
