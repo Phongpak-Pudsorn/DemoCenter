@@ -1,10 +1,10 @@
 package com.starvision.view.stavisions.adapter
 
-import android.content.Context
 import android.content.Intent
 import android.os.Looper
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -15,8 +15,9 @@ import com.starvision.luckygamesdk.databinding.ItemNewsHeaderBinding
 import com.starvision.luckygamesdk.databinding.PageBannerAppsBinding
 import com.starvision.view.SvWebViewActivity
 import com.starvision.view.center.models.SvCenterModels
+import com.starvision.view.center.sub.SvSubMoreApp
 
-class SvAdapterStarvision(val context:Context, val listNews:ArrayList<SvCenterModels.CenterData.PageData.NewsData>, val bannerList:ArrayList<SvCenterModels.CenterData.PageData.BannerData>, val appList:ArrayList<SvCenterModels.CenterData.PageData.IconData>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class SvAdapterStarvision(val context:FragmentActivity, val listNews:ArrayList<SvCenterModels.CenterData.PageData.NewsData>, val bannerList:ArrayList<SvCenterModels.CenterData.PageData.BannerData>, val appList:ArrayList<SvCenterModels.CenterData.PageData.IconData>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val VIEW_TYPE_NEWS = 1
     val VIEW_TYPE_BANNER = 2
     val VIEW_TYPE_NEWS_HEADER = 3
@@ -58,7 +59,9 @@ class SvAdapterStarvision(val context:Context, val listNews:ArrayList<SvCenterMo
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is HeaderHolder){
-
+            holder.headerBinding.root.setOnClickListener {
+                SvSubMoreApp(context,appList).show(context.supportFragmentManager,"")
+            }
         }else if (holder is BannerHolder){
             holder.bannerBinding.imageSlider.adapter = imageAdapter
 //            TabLayoutMediator(holder.bannerBinding.tabLayout,holder.bannerBinding.imageSlider){ tab, position ->
@@ -127,9 +130,11 @@ class SvAdapterStarvision(val context:Context, val listNews:ArrayList<SvCenterMo
 //                    }
                 }
                 })
-            holder.bannerBinding.appList.apply {
-                adapter = appAdapter
-                layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL,false)
+            if (SvConst.isReviewSDK) {
+                holder.bannerBinding.appList.apply {
+                    adapter = appAdapter
+                    layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+                }
             }
         }else if (holder is NewsHolder){
             holder.newsBinding.tvTitle.text = listNews[position].newsappTitle

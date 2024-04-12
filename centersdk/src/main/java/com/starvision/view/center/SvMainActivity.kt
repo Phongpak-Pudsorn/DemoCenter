@@ -35,12 +35,6 @@ class SvMainActivity: AppCompatActivity(),SvAdapterImageSlide.OnDataPass {
     private val appPrefs = SvAppPreferencesLogin
     private val TAG = javaClass.simpleName
     private var callback : OnBackPressedCallback? = null
-    private val subLottothaiPage = SvSubLottothaiFragment()
-    private val subSmileLottoPage = SvSubSmileLottoFragment()
-    private val subGoldToDayPage = SvSubGoldToDayFragment()
-    private val subZodiacPage = SvSubZodiacFragment()
-    private val subExchangePage = SvSubExchangeFragment()
-    private val subOilPage = SvSubOilFragment()
     var tablist = ArrayList<SvTabModels>()
     var fragments = ArrayList<Fragment>()
     override fun onCreate(savedInstanceState: Bundle?) {

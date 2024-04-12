@@ -40,8 +40,8 @@ class SvAdapterMenuTab(val context:Context, private val listTab:ArrayList<SvTabM
                 holder.binding.textType.setTextColor(ContextCompat.getColor(context,R.color.bg_name_lucky))
                 holder.binding.textType.setBackgroundResource(R.drawable.btn_underline_blue)
             } else {
-                holder.binding.textType.setTextColor(ContextCompat.getColor(context,R.color.almost_white))
-                holder.binding.textType.setBackgroundResource(R.color.white)
+                holder.binding.textType.setTextColor(ContextCompat.getColor(context,R.color.white))
+                holder.binding.textType.setBackgroundResource(R.color.transparent)
             }
 
         }

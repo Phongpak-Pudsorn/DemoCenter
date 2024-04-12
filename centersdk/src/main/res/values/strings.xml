@@ -2,6 +2,7 @@
     <string name="app_name">LuckyGameSDK</string>
     <string name="nameGame">LuckyGame</string>
     <string name="text_nocon">Please Connect Internet</string>
+    <string name="text_moreapp">แอพเพิ่มเติม</string>
     <!-- WebView -->
 
     <!-- Login,Regis,Forgot -->

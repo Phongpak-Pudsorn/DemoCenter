@@ -100,7 +100,7 @@ class SvStarvisionFragment:Fragment() {
                         bannerList.add(0, bannerList[bannerList.size - 1])
                         bannerList.add(bannerList[1])
                     }
-                    stvAdapter = SvAdapterStarvision(requireContext(),newsList, bannerList,appList)
+                    stvAdapter = SvAdapterStarvision(requireActivity(),newsList, bannerList,appList)
                     binding.rvMain.apply {
                         adapter = stvAdapter
                         layoutManager = LinearLayoutManager(requireActivity(),RecyclerView.VERTICAL,false)
