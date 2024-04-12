@@ -9,6 +9,12 @@ import android.net.Uri
 import android.os.Build
 import android.provider.Settings
 import android.util.Log
+import android.view.View
+import com.google.gson.Gson
+import com.starvision.api.URL
+import com.starvision.config.ParamsData
+import com.starvision.luckygamesdk.BuildConfig
+import com.starvision.models.CheckVersionModels
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -55,5 +61,33 @@ object Const {
         }catch (e : java.lang.Exception){
             e.printStackTrace()
         }
+    }
+
+    fun checkStatus(){
+        ParamsData(object : ParamsData.PostLoadListener{
+            override fun onSuccess(body: String) {
+                val jsonData = Gson().fromJson(body,CheckVersionModels::class.java)
+                val isReview = jsonData.data.StatusServer.is_review
+                val isSdk = jsonData.data.StatusServer.is_sdk
+                val priority = jsonData.data.Version.priority
+                val chkVersion = jsonData.data.Version.current_version
+                if(!isReview){
+                    // เซ็ตปิดปุ่ม
+
+                }
+                if(!isSdk){
+                    // เซ็ตปิดปุ่ม
+
+                }
+                if(priority == "True"){
+
+                }
+            }
+
+            override fun onFailed(t: Throwable) {
+                t.printStackTrace()
+            }
+
+        }).getLoadData(URL.BASE_URL_SDK, URL.URL_CHECK_VERSION+"?"+"app=0"+"&os=android","")
     }
 }

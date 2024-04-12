@@ -10,7 +10,9 @@ object URL {
 //    const val URL_TOPUP = https://starvision.in.th/apptopup/topup/
 //    const val URL_FORGOTPASS = https://app.starvision.in.th/login/api/forgetpass.php
 //    const val URL_DELETE_AND_RECOVERY = https://app.starvision.in.th/login/api/suspend.php
+//    const val URL_CHECK_VERSION = https://app.starvision.in.th/api/checkversion   ?app=0  &os=android
 
+    const val URL_CHECK_VERSION = "/api/checkversion"
     const val URL_TOPUP = "/apptopup/topup/"
     const val URL_LOGIN = "/login/api/login_star.php"
     const val URL_REGISTER = "/login/api/register.php"
