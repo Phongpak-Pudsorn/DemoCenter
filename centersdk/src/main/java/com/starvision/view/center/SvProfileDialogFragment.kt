@@ -103,7 +103,7 @@ class SvProfileDialogFragment : DialogFragment() {
             intent.putExtra("link",SvURL.BASE_URL+SvURL.URL_TOPUP+"?token="+jwtToken)
             startActivity(intent)
         }
-        if (SvConst.isSdkSDK){
+        if (!SvConst.isSdkSDK){
             binding.lnCoin.visibility = View.GONE
         }
     }

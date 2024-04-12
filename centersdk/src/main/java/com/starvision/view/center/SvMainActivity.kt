@@ -88,7 +88,7 @@ class SvMainActivity: AppCompatActivity(),SvAdapterImageSlide.OnDataPass {
                 val list = Gson().fromJson(body,SvCenterModels::class.java)
                 if (list.code=="101") {
                     for (i in list!!.data.PageCenter.indices) {
-                        if (SvConst.isSdkSDK){
+                        if (!SvConst.isSdkSDK){
                             binding.lnCoin.visibility = View.INVISIBLE
                             if(list.data.PageCenter[i].MenuType == "NewsCenter"){
                                 tablist.add(SvTabModels(list.data.PageCenter[i].MenuTitle))

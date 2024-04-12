@@ -80,14 +80,14 @@ class SvStarvisionFragment:Fragment() {
                     newsList.add(SvCenterModels.CenterData.PageData.NewsData(0,"header","","","","","",""))
                     for (i in list.data.PageCenter[0].BannerApp.indices){
                         if (list.data.PageCenter[0].BannerApp[i].bannerappLinkstoregoogle!=SvConst.appPackage) {
-                            if(SvConst.checkStatusApp(list.data.PageCenter[0].IconApp[i].iconappId)){
+                            if(!SvConst.checkStatusApp(list.data.PageCenter[0].IconApp[i].iconappId)){
                                 bannerList.add(list.data.PageCenter[0].BannerApp[i])
                             }
                         }
                     }
                     for (i in list.data.PageCenter[0].IconApp.indices){
                         if (list.data.PageCenter[0].IconApp[i].iconappLinkstoregoogle!=SvConst.appPackage) {
-                            if(SvConst.checkStatusApp(list.data.PageCenter[0].IconApp[i].iconappId)){
+                            if(!SvConst.checkStatusApp(list.data.PageCenter[0].IconApp[i].iconappId)){
                                 appList.add(list.data.PageCenter[0].IconApp[i])
                             }
                         }
