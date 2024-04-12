@@ -51,11 +51,14 @@ class SvMainActivity: AppCompatActivity(),SvAdapterImageSlide.OnDataPass {
         if (extra!=null){
             SvConst.appPackage = extra
         }
-
+        SvConst.checkStatus()
+        binding.lnCoin.visibility = View.VISIBLE
         if(!SvLogin.isLogin){
             val intent = Intent(this, SvLoginActivity::class.java)
             startActivity(intent)
             finish()
+        }else{
+            executeData()
         }
 
         callback = object : OnBackPressedCallback(true) {
@@ -73,7 +76,6 @@ class SvMainActivity: AppCompatActivity(),SvAdapterImageSlide.OnDataPass {
         binding.imgGoBack.setOnClickListener {
             finish()
         }
-        executeData()
 
         val message = this.intent.getStringExtra("fragment")
         if(message != null){
@@ -87,7 +89,15 @@ class SvMainActivity: AppCompatActivity(),SvAdapterImageSlide.OnDataPass {
                 val list = Gson().fromJson(body,SvCenterModels::class.java)
                 if (list.code=="101") {
                     for (i in list!!.data.PageCenter.indices) {
-                        tablist.add(SvTabModels(list.data.PageCenter[i].MenuTitle))
+                        if (!SvConst.isSdkSDK){
+                            binding.lnCoin.visibility = View.INVISIBLE
+                            if(list.data.PageCenter[i].MenuType == "NewsCenter"){
+                                tablist.add(SvTabModels(list.data.PageCenter[i].MenuTitle))
+                            }
+                        }else{
+                            tablist.add(SvTabModels(list.data.PageCenter[i].MenuTitle))
+                        }
+
 //                    packageName = list.data.PageCenter[i].IconApp
                     }
                     binding.menuTab.apply {
