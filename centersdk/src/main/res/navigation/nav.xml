@@ -5,26 +5,26 @@
 
     <fragment
         android:id="@+id/subExchangeFragment"
-        android:name="com.starvision.view.center.sub.SubExchangeFragment"
+        android:name="com.starvision.view.center.sub.SvSubExchangeFragment"
         android:label="SubExchangeFragment" />
     <fragment
         android:id="@+id/subGoldToDayPage"
-        android:name="com.starvision.view.center.sub.SubGoldToDayPage"
+        android:name="com.starvision.view.center.sub.SvSubGoldToDayFragment"
         android:label="SubGoldToDayPage" />
     <fragment
         android:id="@+id/subLottothaiPage"
-        android:name="com.starvision.view.center.sub.SubLottothaiPage"
+        android:name="com.starvision.view.center.sub.SvSubLottothaiFragment"
         android:label="SubLottothaiPage" />
     <fragment
         android:id="@+id/subOilFragment"
-        android:name="com.starvision.view.center.sub.SubOilFragment"
+        android:name="com.starvision.view.center.sub.SvSubOilFragment"
         android:label="SubOilFragment" />
     <fragment
         android:id="@+id/subSmileLottoPage"
-        android:name="com.starvision.view.center.sub.SubSmileLottoPage"
+        android:name="com.starvision.view.center.sub.SvSubSmileLottoFragment"
         android:label="SubSmileLottoPage" />
     <fragment
         android:id="@+id/subZodiacFragment"
-        android:name="com.starvision.view.center.sub.SubZodiacFragment"
+        android:name="com.starvision.view.center.sub.SvSubZodiacFragment"
         android:label="SubZodiacFragment" />
 </navigation>

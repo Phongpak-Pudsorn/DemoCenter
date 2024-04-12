@@ -13,22 +13,22 @@
 <!--    <application android:usesCleartextTraffic="true"-->
 <!--        tools:ignore="UnusedAttribute" />-->
 
-    <application android:name="com.starvision.config.MyApplication">
-        <activity android:name="com.starvision.view.login.LoginActivity"
+    <application android:name="com.starvision.config.SvMyApplication">
+        <activity android:name="com.starvision.view.login.SvLoginActivity"
             android:usesCleartextTraffic="true"
             android:screenOrientation="portrait"
             android:label="Login_Page">
         </activity>
 
-        <activity android:name="com.starvision.view.center.MainActivity"
+        <activity android:name="com.starvision.view.center.SvMainActivity"
             android:screenOrientation="portrait">
         </activity>
 
-        <activity android:name="com.starvision.view.WebViewActivity"
+        <activity android:name="com.starvision.view.SvWebViewActivity"
             android:screenOrientation="portrait">
         </activity>
 
-        <activity android:name="com.starvision.view.WebViewLuckyActivity"
+        <activity android:name="com.starvision.view.SvWebViewLuckyActivity"
             android:screenOrientation="landscape">
         </activity>
     </application>

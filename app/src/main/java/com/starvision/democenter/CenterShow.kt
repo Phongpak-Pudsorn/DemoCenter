@@ -1,19 +1,15 @@
 package com.starvision.democenter
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import androidx.fragment.app.FragmentActivity
-import com.starvision.config.Login
-import com.starvision.data.Const
-import com.starvision.view.center.MainActivity
-import com.starvision.view.center.models.CenterModels
+import com.starvision.config.SvLogin
+import com.starvision.view.center.SvMainActivity
 import com.starvision.view.center.sub.*
-import com.starvision.view.login.LoginActivity
+import com.starvision.view.login.SvLoginActivity
 
 class CenterShow (private val mContext : FragmentActivity) {
     fun getMainCenter(packageName:String){
-        val intent = Intent(mContext, MainActivity::class.java)
+        val intent = Intent(mContext, SvMainActivity::class.java)
         intent.putExtra("package",packageName)
         mContext.startActivity(intent)
     }
@@ -49,13 +45,13 @@ class CenterShow (private val mContext : FragmentActivity) {
 
     val setShowFragmentGold : String
     get(){
-        if(!Login.isLogin){
-            val intent = Intent(mContext, LoginActivity::class.java)
+        if(!SvLogin.isLogin){
+            val intent = Intent(mContext, SvLoginActivity::class.java)
             intent.putExtra("fragment","com.smileapp.goldprice")
             mContext.startActivity(intent)
         } else {
 //            if(Const.KEY_PREFS_FRAGMENT == "com.smileapp.goldprice") {
-                val subGoldToDayPage = SubGoldToDayPage()
+                val subGoldToDayPage = SvSubGoldToDayFragment()
                 subGoldToDayPage.show(mContext.supportFragmentManager, "")
 //            }
         }
@@ -64,13 +60,13 @@ class CenterShow (private val mContext : FragmentActivity) {
 
     val setShowFragmentLotto : String
     get(){
-        if(!Login.isLogin){
-            val intent = Intent(mContext, LoginActivity::class.java)
+        if(!SvLogin.isLogin){
+            val intent = Intent(mContext, SvLoginActivity::class.java)
             intent.putExtra("fragment","com.starvision.lottothai")
             mContext.startActivity(intent)
         } else {
 //            if(Const.KEY_PREFS_FRAGMENT == "com.starvision.lottothai") {
-                val subLottothaiPage = SubLottothaiPage()
+                val subLottothaiPage = SvSubLottothaiFragment()
                 subLottothaiPage.show(mContext.supportFragmentManager, "")
 //            }
         }
@@ -79,13 +75,13 @@ class CenterShow (private val mContext : FragmentActivity) {
 
     val setShowFragmentCheckLotto : String
     get(){
-        if(!Login.isLogin){
-            val intent = Intent(mContext, LoginActivity::class.java)
+        if(!SvLogin.isLogin){
+            val intent = Intent(mContext, SvLoginActivity::class.java)
             intent.putExtra("fragment","com.smileapp.lottery")
             mContext.startActivity(intent)
         } else {
 //            if(Const.KEY_PREFS_FRAGMENT == "com.smileapp.lottery") {
-                val subSmileLottoPage = SubSmileLottoPage()
+                val subSmileLottoPage = SvSubSmileLottoFragment()
                 subSmileLottoPage.show(mContext.supportFragmentManager, "")
 //            }
         }
@@ -94,13 +90,13 @@ class CenterShow (private val mContext : FragmentActivity) {
 
     val setShowFragmentZodiac : String
     get() {
-        if(!Login.isLogin){
-            val intent = Intent(mContext, LoginActivity::class.java)
+        if(!SvLogin.isLogin){
+            val intent = Intent(mContext, SvLoginActivity::class.java)
             intent.putExtra("fragment","com.smileapp.zodiac")
             mContext.startActivity(intent)
         } else {
 //            if(Const.KEY_PREFS_FRAGMENT == "com.smileapp.zodiac") {
-                val subZodiacFragment = SubZodiacFragment()
+                val subZodiacFragment = SvSubZodiacFragment()
                 subZodiacFragment.show(mContext.supportFragmentManager, "")
 //            }
         }
@@ -109,13 +105,13 @@ class CenterShow (private val mContext : FragmentActivity) {
 
     val setShowFragmentExchange : String
     get() {
-        if(!Login.isLogin){
-            val intent = Intent(mContext, LoginActivity::class.java)
+        if(!SvLogin.isLogin){
+            val intent = Intent(mContext, SvLoginActivity::class.java)
             intent.putExtra("fragment","com.starvision.exchangerate")
             mContext.startActivity(intent)
         } else {
 //            if(Const.KEY_PREFS_FRAGMENT == "com.starvision.exchangerate") {
-                val subExchangeFragment = SubExchangeFragment()
+                val subExchangeFragment = SvSubExchangeFragment()
                 subExchangeFragment.show(mContext.supportFragmentManager, "")
 //            }
         }
@@ -124,13 +120,13 @@ class CenterShow (private val mContext : FragmentActivity) {
 
     val setShowFragmentOil : String
     get (){
-        if(!Login.isLogin){
-            val intent = Intent(mContext, LoginActivity::class.java)
+        if(!SvLogin.isLogin){
+            val intent = Intent(mContext, SvLoginActivity::class.java)
             intent.putExtra("fragment","com.smileapp.oil")
             mContext.startActivity(intent)
         } else {
 //            if(Const.KEY_PREFS_FRAGMENT == "com.smileapp.oil") {
-                val subOilFragment = SubOilFragment()
+                val subOilFragment = SvSubOilFragment()
                 subOilFragment.show(mContext.supportFragmentManager, "")
 //            }
         }
