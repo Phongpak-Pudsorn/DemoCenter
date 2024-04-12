@@ -57,6 +57,8 @@ class SvMainActivity: AppCompatActivity(),SvAdapterImageSlide.OnDataPass {
             val intent = Intent(this, SvLoginActivity::class.java)
             startActivity(intent)
             finish()
+        }else{
+            executeData()
         }
 
         callback = object : OnBackPressedCallback(true) {
@@ -74,7 +76,6 @@ class SvMainActivity: AppCompatActivity(),SvAdapterImageSlide.OnDataPass {
         binding.imgGoBack.setOnClickListener {
             finish()
         }
-        executeData()
 
         val message = this.intent.getStringExtra("fragment")
         if(message != null){

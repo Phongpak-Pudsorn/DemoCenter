@@ -82,16 +82,10 @@ object SvConst {
 
     fun checkStatusApp(app : String) : Boolean{
         var isReviewApp = false
-        var isSdkApp = false
-        var priorityApp = ""
-        var chkVersionApp = ""
         SvParamsData(object : SvParamsData.PostLoadListener{
             override fun onSuccess(body: String) {
                 val jsonData = Gson().fromJson(body,SvCheckVersionModels::class.java)
                 isReviewApp = jsonData.data.StatusServer.is_review
-                isSdkApp = jsonData.data.StatusServer.is_sdk
-                priorityApp = jsonData.data.Version.priority
-                chkVersionApp = jsonData.data.Version.current_version
             }
 
             override fun onFailed(t: Throwable) {
