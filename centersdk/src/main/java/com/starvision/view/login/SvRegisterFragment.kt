@@ -148,12 +148,12 @@ class SvRegisterFragment(private val bm: Bitmap) : Fragment() {
             }
         }
 
-        binding.seePasswordCon.setOnClickListener {
-            if(binding.seePasswordCon.drawable.constantState!! == requireActivity().getDrawable(R.drawable.baseline_eye_visibility_off_24)!!.constantState){
-                binding.seePasswordCon.setImageDrawable(requireActivity().getDrawable(R.drawable.baseline_eye_24_grey))
+        binding.seeConfirmPassword.setOnClickListener {
+            if(binding.seeConfirmPassword.drawable.constantState!! == requireActivity().getDrawable(R.drawable.baseline_eye_visibility_off_24)!!.constantState){
+                binding.seeConfirmPassword.setImageDrawable(requireActivity().getDrawable(R.drawable.baseline_eye_24_grey))
                 binding.editConfirmPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
             }else{
-                binding.seePasswordCon.setImageDrawable(requireActivity().getDrawable(R.drawable.baseline_eye_visibility_off_24))
+                binding.seeConfirmPassword.setImageDrawable(requireActivity().getDrawable(R.drawable.baseline_eye_visibility_off_24))
                 binding.editConfirmPassword.transformationMethod = PasswordTransformationMethod.getInstance()
             }
         }

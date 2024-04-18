@@ -61,22 +61,24 @@ class SvProfileDialogFragment : DialogFragment() {
         binding.tvCoin.text = SvLogin.Coin
         binding.tvIdx.text = "idx : "+SvLogin.IDX
         Glide.with(requireContext()).load(SvLogin.Avatar).into(binding.imgProfile)
-        binding.tvLogout.setOnClickListener {
-            mClickListener.onLogout()
-            SvLogin.isLogin = false
-            SvLogin.Name = ""
-            SvLogin.Avatar = ""
-            SvLogin.Coin = ""
-            val intent = Intent(requireContext(),SvLoginActivity::class.java)
-            startActivity(intent)
+        binding.imgSetting.setOnClickListener {
+            val settingFragment = SvSettingDialogFragment()
+            settingFragment.setClickListener(object : SvSettingDialogFragment.ClickSettingListener{
+                override fun onLogout() {
+                    mClickListener.onLogout()
+                }
+
+                override fun onCancel() {
+                    mClickListener.onCancel()
+                }
+
+                override fun onDelete() {
+                    mClickListener.onDelete()
+                }
+            })
+            settingFragment.show(childFragmentManager,"")
         }
-        binding.tvAccountManagement.setOnClickListener {
-            mClickListener.onDelete()
-        }
-        binding.tvPolicy.setOnClickListener {
-            SvWebViewPolicyDialogFragment().show(childFragmentManager,"policy")
-        }
-        binding.lnTopup.setOnClickListener {
+        binding.tvTopup.setOnClickListener {
             val params = SvParamUtil.ParamsUid
             val account_type = SvCryptoHandler()
                 .encrypt("s1",SvConst.AES_KEY,"0000000000000000")
@@ -103,7 +105,7 @@ class SvProfileDialogFragment : DialogFragment() {
             intent.putExtra("link",SvURL.BASE_URL+SvURL.URL_TOPUP+"?token="+jwtToken)
             startActivity(intent)
         }
-        if (!SvConst.isSdkSDK){
+        if (SvConst.isSdkSDK){
             binding.lnCoin.visibility = View.GONE
         }
     }

@@ -13,7 +13,6 @@ class SvAdapterMoreApp(
     private val context: FragmentActivity,
     private val appList: ArrayList<SvCenterModels.CenterData.PageData.IconData>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val binding = ItemMoreappBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
@@ -24,14 +23,19 @@ class SvAdapterMoreApp(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if(holder is ViewHolder){
-            Glide.with(context).load(appList[position].iconappImgicon).into(holder.binding.imgApp)
-            holder.binding.tvDesApp.text = appList[position].iconappTitle
-            holder.binding.tvNameApp.text = appList[position].iconappTitle
-            holder.binding.root.setOnClickListener {
-                if (SvConst.clickAble) {
-                    SvConst.clickAble = false
-                    SvConst.openAnotherApp(context, appList[position].iconappLinkstoregoogle)
+        if (holder is ViewHolder) {
+            for (i in appList[position].iconappdatarow.indices) {
+                Glide.with(context).load(appList[position].iconappdatarow[i].iconappImgicon).into(holder.binding.imgApp)
+                holder.binding.tvDesApp.text = appList[position].iconappdatarow[i].iconappTitle
+                holder.binding.tvNameApp.text = appList[position].iconappdatarow[i].iconappTitle
+                holder.binding.root.setOnClickListener {
+                    if (SvConst.clickAble) {
+                        SvConst.clickAble = false
+                        SvConst.openAnotherApp(
+                            context,
+                            appList[position].iconappdatarow[i].iconappLinkstoregoogle
+                        )
+                    }
                 }
             }
         }

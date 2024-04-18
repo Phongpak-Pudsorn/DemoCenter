@@ -10,7 +10,7 @@
         <LinearLayout
             android:id="@+id/container"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="90dp"
             android:orientation="horizontal">
 
                 <ImageView
@@ -31,10 +31,12 @@
                     android:id="@+id/tvTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
+                    android:padding="5dp"
                     android:maxLines="4"
                     android:textColor="@color/black"
                     android:ellipsize="end"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/psl156"
                     android:layout_weight="1"
                     android:text="TextView" />
 

@@ -10,9 +10,9 @@ data class SvCenterModels(val code:String,
                             val LoadPageDefault:String,
                             val BannerApp:ArrayList<BannerData>,
                             val IconApp:ArrayList<IconData>,
-                            val NewsApp:ArrayList<NewsData>,
-                            val LuckgameData:ArrayList<LuckyData>,
-                            val PlayPlusData:ArrayList<PlayData>){
+                            val NewsApp:NewsData,
+                            val LuckgameData:ArrayList<LuckyData>?,
+                            val PlayPlusData:ArrayList<PlayData>?){
             data class BannerData(val bannerappId:String,
                                   val bannerappTitle:String,
                                   val bannerappImgicon:String,
@@ -22,13 +22,19 @@ data class SvCenterModels(val code:String,
                                   val bannerappLinkstoregoogle:String,
                                   val bannerappLinkkeyopenapp:String,
                                   var boo:Boolean = false)
-            data class IconData(val iconappId:String,
-                                val iconappTitle:String,
-                                val iconappImgicon:String,
-                                val iconappLinkstoreapp:String,
-                                val iconappLinkstoregoogle:String,
-                                val iconappLinkkeyopenapp:String)
-            data class NewsData(val newsId:Int,
+            data class IconData(val iconappgroupId:String,
+                                val iconappgroupname:String,
+                                val iconappdatarow:ArrayList<IconDatarow>){
+                data class IconDatarow(val iconappId:String,
+                                       val iconappTitle:String,
+                                       val iconappImgicon:String,
+                                       val iconappLinkstoreapp:String,
+                                       val iconappLinkstoregoogle:String,
+                                       val iconappLinkkeyopenapp:String)
+            }
+            data class NewsData(val news:ArrayList<News>,
+                                val pin:ArrayList<Pin>){
+                data class News(val newsId:Int,
                                 val newsappId:String,
                                 val newsappTitle:String,
                                 val newsappImgNews:String,
@@ -36,6 +42,15 @@ data class SvCenterModels(val code:String,
                                 val newsappLinkstoreapp:String,
                                 val newsappLinkstoregoogle:String,
                                 val newsappLinkkeyopenapp:String)
+                data class Pin(val newsId:Int,
+                               val newsappId:String,
+                               val newsappTitle:String,
+                               val newsappImgNews:String,
+                               val newsappUrlNews:String,
+                               val newsappLinkstoreapp:String,
+                               val newsappLinkstoregoogle:String,
+                               val newsappLinkkeyopenapp:String)
+            }
             data class LuckyData(val luckgameId:String,
                                  val luckgameTitle:String,
                                  val luckgameUrl:String)

@@ -17,7 +17,12 @@ import com.starvision.view.SvWebViewActivity
 import com.starvision.view.center.models.SvCenterModels
 import com.starvision.view.center.sub.SvSubMoreApp
 
-class SvAdapterStarvision(val context:FragmentActivity, val listNews:ArrayList<SvCenterModels.CenterData.PageData.NewsData>, val bannerList:ArrayList<SvCenterModels.CenterData.PageData.BannerData>, val appList:ArrayList<SvCenterModels.CenterData.PageData.IconData>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class SvAdapterStarvision(val context:FragmentActivity,
+                          val listNews:ArrayList<SvCenterModels.CenterData.PageData.NewsData.News>,
+                          val listPin:ArrayList<SvCenterModels.CenterData.PageData.NewsData.Pin>,
+                          val bannerList:ArrayList<SvCenterModels.CenterData.PageData.BannerData>,
+                          val appList:ArrayList<SvCenterModels.CenterData.PageData.IconData>):
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val VIEW_TYPE_NEWS = 1
     val VIEW_TYPE_BANNER = 2
     val VIEW_TYPE_NEWS_HEADER = 3
@@ -59,7 +64,7 @@ class SvAdapterStarvision(val context:FragmentActivity, val listNews:ArrayList<S
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is HeaderHolder){
-            holder.headerBinding.root.setOnClickListener {
+            holder.headerBinding.tvMore.setOnClickListener {
                 SvSubMoreApp(context,appList).show(context.supportFragmentManager,"")
             }
         }else if (holder is BannerHolder){
@@ -130,11 +135,11 @@ class SvAdapterStarvision(val context:FragmentActivity, val listNews:ArrayList<S
 //                    }
                 }
                 })
-            if (SvConst.isReviewSDK) {
+//            if (SvConst.isReviewSDK) {
                 holder.bannerBinding.appList.apply {
                     adapter = appAdapter
                     layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-                }
+//                }
             }
         }else if (holder is NewsHolder){
             holder.newsBinding.tvTitle.text = listNews[position].newsappTitle

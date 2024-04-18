@@ -2,8 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="5dp"
-    android:background="@color/blue"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -12,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/white"
+        android:background="@mipmap/bg_login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +20,7 @@
             android:id="@+id/ln_top_bar"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -31,6 +29,7 @@
                 android:layout_height="40dp"
                 android:layout_weight="0"
                 android:paddingStart="10dp"
+                android:layout_marginStart="15dp"
                 app:srcCompat="@drawable/btn_back_sdk_black" />
 
             <TextView
@@ -38,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_marginEnd="40dp"
+                android:layout_marginEnd="55dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/login"
@@ -62,23 +61,37 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="50dp"
             android:layout_marginEnd="20dp"
-            app:cardCornerRadius="25dp">
+            app:cardCornerRadius="15dp">
 
-            <EditText
-                android:id="@+id/edit_username"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/grey"
-                android:drawableStart="@drawable/baseline_person_24_grey"
-                android:drawablePadding="15dp"
-                android:hint="@string/username"
-                android:inputType="textPersonName"
-                android:paddingStart="18dp"
-                android:paddingTop="13dp"
-                android:paddingEnd="13dp"
-                android:paddingBottom="13dp"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@color/grey">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="8dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="5"
+                    android:src="@mipmap/account"/>
+
+                <EditText
+                    android:id="@+id/edit_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/username"
+                    android:fontFamily="@font/psl156"
+                    android:inputType="textPersonName"
+                    android:background="@color/transparent"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="19sp" />
+            </LinearLayout>
+
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -88,32 +101,46 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="20dp"
-            app:cardCornerRadius="25dp">
+            app:cardCornerRadius="15dp">
 
-            <EditText
-                android:id="@+id/edit_Password"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@color/grey"
-                android:drawableStart="@drawable/baseline_lock_24_grey"
-                android:drawablePadding="15dp"
-                android:hint="@string/password"
-                android:inputType="textPassword"
-                android:paddingStart="18dp"
-                android:paddingTop="13dp"
-                android:paddingEnd="13dp"
-                android:paddingBottom="13dp"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|center"
-                android:layout_marginEnd="10dp"
-                android:visibility="gone"
-                android:src="@drawable/baseline_eye_visibility_off_24"
-                android:id="@+id/see_password" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="5"
+                    android:src="@mipmap/password"/>
+
+                <EditText
+                    android:id="@+id/edit_Password"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:hint="@string/password"
+                    android:fontFamily="@font/psl156"
+                    android:inputType="textPassword"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="19sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center"
+                    android:layout_marginEnd="10dp"
+                    android:visibility="gone"
+                    android:src="@drawable/baseline_eye_visibility_off_24"
+                    android:id="@+id/see_password" />
+
+            </LinearLayout>
+
         </androidx.cardview.widget.CardView>
 
         <LinearLayout
@@ -121,7 +148,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-
             android:layout_marginEnd="20dp"
             android:orientation="horizontal">
 
@@ -130,8 +156,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/psl156"
                 android:buttonTint="@color/grey_text"
                 android:text="@string/remember"
+                android:textSize="19sp"
                 android:textColor="@color/grey_text" />
 
             <TextView
@@ -140,10 +168,11 @@
                 android:layout_height="match_parent"
                 android:gravity="center|end"
                 android:text="@string/forgot_password"
+                android:fontFamily="@font/psl156"
                 android:visibility="visible"
                 android:textColor="@color/blue_text_selector"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+                android:textSize="18sp"
+                />
 
         </LinearLayout>
 
@@ -154,7 +183,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="20dp"
-            app:cardCornerRadius="25dp">
+            app:cardCornerRadius="15dp">
 
             <TextView
                 android:id="@+id/edit_login"
@@ -163,13 +192,13 @@
                 android:background="@drawable/btn_login"
                 android:gravity="center"
                 android:paddingStart="18dp"
-                android:paddingTop="13dp"
+                android:paddingTop="10dp"
                 android:paddingEnd="13dp"
-                android:paddingBottom="13dp"
+                android:paddingBottom="10dp"
                 android:text="@string/login"
+                android:fontFamily="@font/psl156"
                 android:textColor="@color/white"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="26sp" />
         </androidx.cardview.widget.CardView>
 
         <LinearLayout
@@ -188,9 +217,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="@string/you_already_have_an_account"
-                android:textColor="@color/black"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+                android:textColor="@color/grey_text"
+                android:fontFamily="@font/psl156"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_register"
@@ -200,9 +229,9 @@
                 android:paddingStart="5dp"
                 android:paddingEnd="15dp"
                 android:text="@string/register"
+                android:fontFamily="@font/psl156"
                 android:textColor="@color/blue_text_selector"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 
@@ -224,19 +253,19 @@
                 android:paddingStart="10dp"
                 android:paddingEnd="2dp"
                 android:text="@string/privacy_policy"
+                android:fontFamily="@font/psl156"
                 android:textColor="@color/blue_text_selector"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_by"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:fontFamily="@font/psl156"
                 android:text="@string/by_starvision_team"
                 android:textColor="@color/grey_text"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 

@@ -20,9 +20,11 @@ import com.starvision.view.stavisions.adapter.SvAdapterStarvision
 class SvStarvisionFragment:Fragment() {
     val TAG = javaClass.simpleName
     val binding : PageStarvisionBinding by lazy { PageStarvisionBinding.inflate(layoutInflater) }
-    var newsList = ArrayList<SvCenterModels.CenterData.PageData.NewsData>()
+    var newsList = ArrayList<SvCenterModels.CenterData.PageData.NewsData.News>()
+    var pinList = ArrayList<SvCenterModels.CenterData.PageData.NewsData.Pin>()
     var bannerList = ArrayList<SvCenterModels.CenterData.PageData.BannerData>()
     var appList = ArrayList<SvCenterModels.CenterData.PageData.IconData>()
+    var totalNew = ArrayList<SvCenterModels.CenterData.PageData.NewsData>()
     var stvAdapter : SvAdapterStarvision?=null
     var moreNews = ""
     var isLoading = false
@@ -76,31 +78,38 @@ class SvStarvisionFragment:Fragment() {
                 val list = Gson().fromJson(body, SvCenterModels::class.java)
                 if (list.code=="101") {
                     moreNews = list.data.PageCenter[0].LoadAPI
-                    newsList.add(SvCenterModels.CenterData.PageData.NewsData(0,"banner","","","","","",""))
-                    newsList.add(SvCenterModels.CenterData.PageData.NewsData(0,"header","","","","","",""))
+                    newsList.add(SvCenterModels.CenterData.PageData.NewsData.News(0,"banner","","","","","",""))
+                    newsList.add(SvCenterModels.CenterData.PageData.NewsData.News(0,"header","","","","","",""))
                     for (i in list.data.PageCenter[0].BannerApp.indices){
                         if (list.data.PageCenter[0].BannerApp[i].bannerappLinkstoregoogle!=SvConst.appPackage) {
-                            if(!SvConst.checkStatusApp(list.data.PageCenter[0].IconApp[i].iconappId)){
-                                bannerList.add(list.data.PageCenter[0].BannerApp[i])
+//                            for (j in list.data.PageCenter[0].IconApp[i].iconappdatarow.indices) {
+//                                if (!SvConst.checkStatusApp(list.data.PageCenter[0].IconApp[i].iconappdatarow[j].iconappId)) {
+                                    bannerList.add(list.data.PageCenter[0].BannerApp[i])
+//                                }
+//                            }
+                        }
+                    }
+                    for (i in list.data.PageCenter[0].IconApp.indices) {
+                        for (j in list.data.PageCenter[0].IconApp[i].iconappdatarow.indices){
+                            if (list.data.PageCenter[0].IconApp[i].iconappdatarow[j].iconappLinkstoregoogle != SvConst.appPackage) {
+//                                if (!SvConst.checkStatusApp(list.data.PageCenter[0].IconApp[i].iconappdatarow[j].iconappId)) {
+                                    appList.add(list.data.PageCenter[0].IconApp[i])
+//                                }
                             }
                         }
                     }
-                    for (i in list.data.PageCenter[0].IconApp.indices){
-                        if (list.data.PageCenter[0].IconApp[i].iconappLinkstoregoogle!=SvConst.appPackage) {
-                            if(!SvConst.checkStatusApp(list.data.PageCenter[0].IconApp[i].iconappId)){
-                                appList.add(list.data.PageCenter[0].IconApp[i])
-                            }
+                        for (j in list.data.PageCenter[0].NewsApp.news.indices) {
+                            newsList.add(list.data.PageCenter[0].NewsApp.news[j])
                         }
-                    }
-                    for (i in list.data.PageCenter[0].NewsApp.indices){
-                        newsList.add(list.data.PageCenter[0].NewsApp[i])
-                    }
-
+                        for (j in list.data.PageCenter[0].NewsApp.pin.indices) {
+                            pinList.add(list.data.PageCenter[0].NewsApp.pin[j])
+                        }
+//                    totalNew.add(SvCenterModels.CenterData.PageData.NewsData(newsList,pinList))
                     if (bannerList.size>=2) {
                         bannerList.add(0, bannerList[bannerList.size - 1])
                         bannerList.add(bannerList[1])
                     }
-                    stvAdapter = SvAdapterStarvision(requireActivity(),newsList, bannerList,appList)
+                    stvAdapter = SvAdapterStarvision(requireActivity(),newsList,pinList, bannerList,appList)
                     binding.rvMain.apply {
                         adapter = stvAdapter
                         layoutManager = LinearLayoutManager(requireActivity(),RecyclerView.VERTICAL,false)
@@ -131,11 +140,13 @@ class SvStarvisionFragment:Fragment() {
             override fun onSuccess(body: String) {
                 val news = Gson().fromJson(body, SvNewsModels::class.java)
                 if (news.code=="101"){
-                    for (i in news.data.indices) {
-                        newsList.add(SvCenterModels.CenterData.PageData.NewsData(news.data[i].newsId,news.data[i].newsappId,news.data[i].newsappTitle,news.data[i].newsappImgNews,news.data[i].newsappUrlNews,news.data[i].newsappLinkstoreapp,news.data[i].newsappLinkstoregoogle,news.data[i].newsappLinkkeyopenapp))
-                    }
-                    loadCount+=1
-                    countDownTimer.start()
+//                    for (i in news.data.indices) {
+//                        newsList.add(SvCenterModels.CenterData.PageData.NewsData(news.data[i].newsId,news.data[i].newsappId,
+//                            news.data[i].newsappTitle,news.data[i].newsappImgNews,news.data[i].newsappUrlNews,
+//                            news.data[i].newsappLinkstoreapp,news.data[i].newsappLinkstoregoogle,news.data[i].newsappLinkkeyopenapp))
+//                    }
+//                    loadCount+=1
+//                    countDownTimer.start()
                 }else{
                     binding.footerLayout.visibility = View.GONE
                     isLoading = true

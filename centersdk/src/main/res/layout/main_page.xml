@@ -25,7 +25,7 @@
         <LinearLayout
             android:id="@+id/upperBar"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="bottom"
             android:background="@mipmap/bg_top_bar"
@@ -42,7 +42,8 @@
                 <ImageView
                     android:id="@+id/imgGoBack"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:padding="10dp"
                     app:srcCompat="@drawable/btn_back_sdk" />
 
@@ -51,7 +52,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="bottom|end"
-                    android:paddingTop="15dp"
+                    android:paddingTop="5dp"
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
@@ -60,7 +61,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="5dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -106,24 +106,18 @@
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:layout_gravity="bottom"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
                         android:layout_marginEnd="5dp"
-                        app:cardCornerRadius="60dp"
+                        app:cardCornerRadius="15dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-                        <TextView
+                        <ImageView
+                            android:id="@+id/img_profile"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@color/grey_bg" />
-
-                        <com.google.android.material.imageview.ShapeableImageView
-                            android:id="@+id/imgProfile"
-                            android:layout_width="43dp"
-                            android:layout_height="43dp"
                             android:layout_gravity="center"
-                            app:shapeAppearanceOverlay="@style/Circular"
                             android:src="@mipmap/ic_launcher" />
 
                     </androidx.cardview.widget.CardView>

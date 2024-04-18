@@ -63,22 +63,22 @@ object SvConst {
         }
     }
 
-    fun checkStatus(){
-        SvParamsData(object : SvParamsData.PostLoadListener{
-            override fun onSuccess(body: String) {
-                val jsonData = Gson().fromJson(body,SvCheckVersionModels::class.java)
-                isReviewSDK = jsonData.data.StatusServer.is_review
-                isSdkSDK = jsonData.data.StatusServer.is_sdk
-                prioritySDK = jsonData.data.Version.priority
-                chkVersionSDK = jsonData.data.Version.current_version
-            }
-
-            override fun onFailed(t: Throwable) {
-                t.printStackTrace()
-            }
-
-        }).getLoadData(SvURL.BASE_URL_SDK, SvURL.URL_CHECK_VERSION+"?"+"app=0"+"&os=android","")
-    }
+//    fun checkStatus(){
+//        SvParamsData(object : SvParamsData.PostLoadListener{
+//            override fun onSuccess(body: String) {
+//                val jsonData = Gson().fromJson(body,SvCheckVersionModels::class.java)
+//                isReviewSDK = jsonData.data.StatusServer.is_review
+//                isSdkSDK = jsonData.data.StatusServer.is_sdk
+//                prioritySDK = jsonData.data.Version.priority
+//                chkVersionSDK = jsonData.data.Version.current_version
+//            }
+//
+//            override fun onFailed(t: Throwable) {
+//                t.printStackTrace()
+//            }
+//
+//        }).getLoadData(SvURL.BASE_URL_SDK, SvURL.URL_CHECK_VERSION+"?"+"app=0"+"&os=android","")
+//    }
 
     fun checkStatusApp(app : String) : Boolean{
         var isReviewApp = false

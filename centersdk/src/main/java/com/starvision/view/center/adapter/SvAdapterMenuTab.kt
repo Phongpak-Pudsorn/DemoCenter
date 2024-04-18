@@ -2,6 +2,7 @@ package com.starvision.view.center.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -37,11 +38,13 @@ class SvAdapterMenuTab(val context:Context, private val listTab:ArrayList<SvTabM
             }
             holder.binding.textType.isChecked = listTab[position].boo
             if (listTab[position].boo) {
-                holder.binding.textType.setTextColor(ContextCompat.getColor(context,R.color.bg_name_lucky))
-                holder.binding.textType.setBackgroundResource(R.drawable.btn_underline_blue)
-            } else {
                 holder.binding.textType.setTextColor(ContextCompat.getColor(context,R.color.white))
-                holder.binding.textType.setBackgroundResource(R.color.transparent)
+                holder.binding.underline.visibility = View.VISIBLE
+//                holder.binding.textType.setBackgroundResource(R.drawable.btn_underline_white)
+            } else {
+                holder.binding.textType.setTextColor(ContextCompat.getColor(context,R.color.grey_text))
+                holder.binding.underline.visibility = View.INVISIBLE
+//                holder.binding.textType.setBackgroundResource(R.color.transparent)
             }
 
         }

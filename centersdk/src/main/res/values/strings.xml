@@ -3,6 +3,7 @@
     <string name="nameGame">LuckyGame</string>
     <string name="text_nocon">Please Connect Internet</string>
     <string name="text_moreapp">แอพเพิ่มเติม</string>
+    <string name="text_morenew">เพิ่มเติม</string>
     <!-- WebView -->
 
     <!-- Login,Regis,Forgot -->

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="5dp"
-    android:background="@color/blue"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,14 +8,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/white"
+        android:background="@mipmap/bg_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:id="@+id/ln_top_bar"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:orientation="horizontal">
@@ -28,11 +26,12 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_weight="0"
+                android:layout_marginStart="15dp"
                 app:srcCompat="@drawable/btn_back_sdk_black" />
 
             <TextView
                 android:id="@+id/name_page"
-                android:layout_marginEnd="40dp"
+                android:layout_marginEnd="55dp"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_width="match_parent"
@@ -59,23 +58,37 @@
             android:layout_marginEnd="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="25dp">
+            app:cardCornerRadius="15dp">
 
-            <EditText
-                android:drawableStart="@drawable/baseline_person_24_grey"
-                android:id="@+id/edit_username"
-                android:paddingTop="13dp"
-                android:paddingStart="18dp"
-                android:paddingEnd="13dp"
-                android:paddingBottom="13dp"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:drawablePadding="15dp"
-                android:background="@color/grey"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:hint="@string/username"/>
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@color/grey">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="8dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="5"
+                    android:src="@mipmap/account"/>
+
+                <EditText
+                    android:id="@+id/edit_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:layout_weight="1"
+                    android:hint="@string/username"
+                    android:fontFamily="@font/psl156"
+                    android:inputType="textPersonName"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="19sp" />
+
+            </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -85,32 +98,45 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="20dp"
-            app:cardCornerRadius="25dp">
+            app:cardCornerRadius="15dp">
 
-            <EditText
-                android:id="@+id/edit_Password"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@color/grey"
-                android:drawableStart="@drawable/baseline_lock_24_grey"
-                android:hint="@string/password"
-                android:drawablePadding="15dp"
-                android:inputType="textPassword"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:paddingTop="13dp"
-                android:paddingStart="18dp"
-                android:paddingEnd="13dp"
-                android:paddingBottom="13dp"/>
+                android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|center"
-                android:layout_marginEnd="10dp"
-                android:visibility="gone"
-                android:src="@drawable/baseline_eye_visibility_off_24"
-                android:id="@+id/see_password" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="5"
+                    android:src="@mipmap/password"/>
+
+                <EditText
+                    android:id="@+id/edit_Password"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:hint="@string/password"
+                    android:fontFamily="@font/psl156"
+                    android:inputType="textPassword"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="19sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center"
+                    android:layout_marginEnd="10dp"
+                    android:visibility="gone"
+                    android:src="@drawable/baseline_eye_visibility_off_24"
+                    android:id="@+id/see_password" />
+
+            </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
@@ -123,30 +149,43 @@
             android:layout_marginEnd="20dp"
             app:cardCornerRadius="25dp">
 
-            <EditText
-                android:id="@+id/edit_confirm_password"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@color/grey"
-                android:drawableStart="@drawable/baseline_lock_24_grey"
-                android:hint="@string/confirm_password"
-                android:drawablePadding="15dp"
-                android:inputType="textPassword"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:paddingTop="13dp"
-                android:paddingStart="18dp"
-                android:paddingEnd="13dp"
-                android:paddingBottom="13dp"/>
+                android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|center"
-                android:layout_marginEnd="10dp"
-                android:visibility="gone"
-                android:src="@drawable/baseline_eye_visibility_off_24"
-                android:id="@+id/see_password_con" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="5"
+                    android:src="@mipmap/password"/>
+
+                <EditText
+                    android:id="@+id/edit_Confirm_Password"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:hint="@string/confirm_password"
+                    android:fontFamily="@font/psl156"
+                    android:inputType="textPassword"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="19sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center"
+                    android:layout_marginEnd="10dp"
+                    android:visibility="gone"
+                    android:src="@drawable/baseline_eye_visibility_off_24"
+                    android:id="@+id/see_confirm_password" />
+
+            </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -156,23 +195,37 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="20dp"
-            app:cardCornerRadius="25dp">
+            app:cardCornerRadius="15dp">
 
-            <EditText
-                android:id="@+id/edit_email"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/grey"
-                android:drawableStart="@drawable/baseline_email_24"
-                android:hint="@string/e_mail"
-                android:drawablePadding="15dp"
-                android:inputType="textEmailAddress"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:paddingTop="13dp"
-                android:paddingStart="18dp"
-                android:paddingEnd="13dp"
-                android:paddingBottom="13dp"/>
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@color/grey">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="5"
+                    android:layout_marginStart="20dp"
+                    android:padding="2dp"
+                    android:src="@mipmap/email"/>
+
+                <EditText
+                    android:id="@+id/edit_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:hint="@string/e_mail"
+                    android:fontFamily="@font/psl156"
+                    android:inputType="textEmailAddress"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="19sp" />
+
+            </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <LinearLayout
@@ -192,6 +245,8 @@
                 android:layout_height="50dp"
                 android:buttonTint="@color/grey_text"
                 android:text="@string/please_click_to_accept"
+                android:textSize="19sp"
+                android:fontFamily="@font/psl156"
                 android:textColor="@color/grey_text" />
 
             <TextView
@@ -201,9 +256,9 @@
                 android:layout_marginStart="5dp"
                 android:gravity="center|start"
                 android:text="@string/privacy_policy"
+                android:fontFamily="@font/psl156"
                 android:textColor="@color/blue_text_selector"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+                android:textSize="19sp" />
 
         </LinearLayout>
 
@@ -214,22 +269,20 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="20dp"
-            app:cardCornerRadius="25dp">
+            app:cardCornerRadius="15dp">
 
             <TextView
                 android:id="@+id/edit_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_login"
-                android:textSize="18sp"
+                android:textSize="26sp"
                 android:textColor="@color/white"
-                android:textStyle="bold"
+                android:fontFamily="@font/psl156"
                 android:text="@string/register"
                 android:gravity="center"
-                android:paddingStart="18dp"
-                android:paddingTop="13dp"
-                android:paddingEnd="13dp"
-                android:paddingBottom="13dp" />
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp" />
         </androidx.cardview.widget.CardView>
 
         <LinearLayout

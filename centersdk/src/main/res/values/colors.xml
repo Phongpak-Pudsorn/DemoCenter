@@ -8,7 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="black_light">#151515</color>
     <color name="black_jang">#66151515</color>
-    <color name="black_trin">#00000000</color>
+    <color name="black_trin">#1A000000</color>
 
     <color name="grey_bg">#EBEBEB</color>
     <color name="grey_1">#A8A8A8</color>
@@ -24,6 +24,9 @@
     <color name="blue_link">#1436DD</color>
     <color name="blue_link_tran">#6A1436DD</color>
     <color name="clam">#0A8CE9</color>
+    <color name="sky_blue">#0071f0</color>
+    <color name="sky_blue_light">#3B8EEC</color>
+    <color name="light_sky_blue">#90bcff</color>
     <color name="clam_light">#74cafc</color>
     <color name="greeny">#99FF99</color>
     <color name="gray_w1">#FDF5E6</color>
