@@ -162,7 +162,7 @@
                     android:layout_marginEnd="35dp"
                     android:fontFamily="@font/psl156"
                     android:gravity="center"
-                    android:background="@mipmap/new_bar_topup"
+                    android:background="@drawable/btn_topup_bar"
                     android:text="@string/topup"
                     android:textColor="@color/white"
                     android:textSize="25sp"/>
