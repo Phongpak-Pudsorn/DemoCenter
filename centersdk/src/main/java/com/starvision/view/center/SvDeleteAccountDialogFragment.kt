@@ -44,7 +44,6 @@ class SvDeleteAccountDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         dialog!!.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         dialog!!.window!!.setBackgroundDrawableResource(R.color.transparent)
-        dialog!!.setCancelable(false)
         dialog!!.show()
         binding.tvText.text = getString(R.string.text_alert_delete_account)+"\n"+"\n"+
                 getString(R.string.text_alert_delete_account1)+"\n"+

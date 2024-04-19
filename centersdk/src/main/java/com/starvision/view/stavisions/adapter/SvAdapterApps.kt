@@ -36,16 +36,16 @@ class SvAdapterApps(val context: Context, val list:ArrayList<SvCenterModels.Cent
     }
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is AppsHolder) {
-            for (i in list[position].iconappdatarow.indices) {
-                holder.appsBinding.tvName.text = list[position].iconappdatarow[i].iconappTitle
-                Glide.with(holder.appsBinding.imgApp).load(list[position].iconappdatarow[i].iconappImgicon).into(holder.appsBinding.imgApp)
-                holder.appsBinding.root.setOnClickListener {
-                    if (SvConst.clickAble) {
-                        SvConst.clickAble = false
-                        SvConst.openAnotherApp(context, list[position].iconappdatarow[i].iconappLinkstoregoogle)
-                    }
-                }
-            }
+//            for (i in list[position].iconappdatarow.indices) {
+//                holder.appsBinding.tvName.text = list[position].iconappdatarow[i].iconappTitle
+//                Glide.with(holder.appsBinding.imgApp).load(list[position].iconappdatarow[i].iconappImgicon).into(holder.appsBinding.imgApp)
+//                holder.appsBinding.root.setOnClickListener {
+//                    if (SvConst.clickAble) {
+//                        SvConst.clickAble = false
+//                        SvConst.openAnotherApp(context, list[position].iconappdatarow[i].iconappLinkstoregoogle)
+//                    }
+//                }
+//            }
         }else if (holder is HeaderHolder){
             holder.headerBinding.tvHeader.text = list[position].iconappgroupId
         }

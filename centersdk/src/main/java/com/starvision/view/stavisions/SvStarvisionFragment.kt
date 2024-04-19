@@ -140,13 +140,13 @@ class SvStarvisionFragment:Fragment() {
             override fun onSuccess(body: String) {
                 val news = Gson().fromJson(body, SvNewsModels::class.java)
                 if (news.code=="101"){
-//                    for (i in news.data.indices) {
-//                        newsList.add(SvCenterModels.CenterData.PageData.NewsData(news.data[i].newsId,news.data[i].newsappId,
-//                            news.data[i].newsappTitle,news.data[i].newsappImgNews,news.data[i].newsappUrlNews,
-//                            news.data[i].newsappLinkstoreapp,news.data[i].newsappLinkstoregoogle,news.data[i].newsappLinkkeyopenapp))
-//                    }
-//                    loadCount+=1
-//                    countDownTimer.start()
+                    for (i in news.data.news.indices) {
+                        newsList.add(SvCenterModels.CenterData.PageData.NewsData.News(news.data.news[i].newsId,news.data.news[i].newsappId,
+                            news.data.news[i].newsappTitle,news.data.news[i].newsappImgNews,news.data.news[i].newsappUrlNews,
+                            news.data.news[i].newsappLinkstoreapp,news.data.news[i].newsappLinkstoregoogle,news.data.news[i].newsappLinkkeyopenapp))
+                    }
+                    loadCount+=1
+                    countDownTimer.start()
                 }else{
                     binding.footerLayout.visibility = View.GONE
                     isLoading = true

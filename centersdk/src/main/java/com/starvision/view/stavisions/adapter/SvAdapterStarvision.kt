@@ -64,9 +64,9 @@ class SvAdapterStarvision(val context:FragmentActivity,
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is HeaderHolder){
-            holder.headerBinding.tvMore.setOnClickListener {
-                SvSubMoreApp(context,appList).show(context.supportFragmentManager,"")
-            }
+//            holder.headerBinding.tvMore.setOnClickListener {
+//                SvSubMoreApp(context,appList).show(context.supportFragmentManager,"")
+//            }
         }else if (holder is BannerHolder){
             holder.bannerBinding.imageSlider.adapter = imageAdapter
 //            TabLayoutMediator(holder.bannerBinding.tabLayout,holder.bannerBinding.imageSlider){ tab, position ->
