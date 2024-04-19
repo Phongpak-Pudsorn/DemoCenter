@@ -1,6 +1,7 @@
 package com.starvision.view.stavisions.adapter
 
 import android.content.Context
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -27,7 +28,7 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
     override fun getItemCount(): Int = bannerList.size
 
     override fun onBindViewHolder(holder: ImageHolder, position: Int) {
-        holder.imgBinding.tvContent.text = bannerList[position].bannerappImgintroduce
+        holder.imgBinding.tvContent.text = Html.fromHtml(bannerList[position].bannerappImgintroduce,0)
         holder.imgBinding.root.setOnClickListener {
             if (SvConst.clickAble) {
                 SvConst.clickAble = false

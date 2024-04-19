@@ -14,6 +14,7 @@ import com.starvision.api.SvURL
 import com.starvision.config.SvParamsData
 import com.starvision.data.SvConst
 import com.starvision.luckygamesdk.databinding.PageStarvisionBinding
+import com.starvision.models.SvCheckVersionModels
 import com.starvision.view.center.models.SvCenterModels
 import com.starvision.view.center.models.SvNewsModels
 import com.starvision.view.stavisions.adapter.SvAdapterStarvision
@@ -83,12 +84,22 @@ class SvStarvisionFragment:Fragment() {
                     newsList.add(SvCenterModels.CenterData.PageData.NewsData.News(0,"banner","","","","","",""))
                     newsList.add(SvCenterModels.CenterData.PageData.NewsData.News(0,"header","","","","","",""))
                     for (i in list.data.PageCenter[0].BannerApp.indices){
-                        if (list.data.PageCenter[0].BannerApp[i].bannerappLinkstoregoogle!=SvConst.appPackage) {
-//                            for (j in list.data.PageCenter[0].IconApp[i].iconappdatarow.indices) {
-//                                if (!SvConst.checkStatusApp(list.data.PageCenter[0].IconApp[i].iconappdatarow[j].iconappId)) {
-                                    bannerList.add(list.data.PageCenter[0].BannerApp[i])
+                        if (list.data.PageCenter[0].BannerApp[i].bannerappLinkstoregoogle != SvConst.appPackage) {
+//                            SvParamsData(object : SvParamsData.PostLoadListener{
+//                                override fun onSuccess(body: String) {
+//                                    val jsonData = Gson().fromJson(body, SvCheckVersionModels::class.java)
+//                                    val isReviewApp = jsonData.data.StatusServer.is_review
+//                                    if (isReviewApp) {
+                                        bannerList.add(list.data.PageCenter[0].BannerApp[i])
+//                                    }
+//                                    SvConst.loge(TAG," isReviewApp : "+isReviewApp)
 //                                }
-//                            }
+//
+//                                override fun onFailed(t: Throwable) {
+//                                    t.printStackTrace()
+//                                }
+//
+//                            }).getLoadData(SvURL.BASE_URL_SDK, SvURL.URL_CHECK_VERSION+"?"+"app=${list.data.PageCenter[0].BannerApp[i].bannerappId}"+"&os=android","")
                         }
                     }
                     for (i in list.data.PageCenter[0].IconApp.indices) {
@@ -100,7 +111,6 @@ class SvStarvisionFragment:Fragment() {
                         for (j in list.data.PageCenter[0].NewsApp.pin.indices) {
                             pinList.add(list.data.PageCenter[0].NewsApp.pin[j])
                         }
-//                    totalNew.add(SvCenterModels.CenterData.PageData.NewsData(newsList,pinList))
                     if (bannerList.size>=2) {
                         bannerList.add(0, bannerList[bannerList.size - 1])
                         bannerList.add(bannerList[1])
