@@ -2,6 +2,7 @@ package com.starvision.view.stavisions
 
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +25,7 @@ class SvStarvisionFragment:Fragment() {
     var pinList = ArrayList<SvCenterModels.CenterData.PageData.NewsData.Pin>()
     var bannerList = ArrayList<SvCenterModels.CenterData.PageData.BannerData>()
     var appList = ArrayList<SvCenterModels.CenterData.PageData.IconData>()
+    var apps = ArrayList<SvCenterModels.CenterData.PageData.IconData.IconDatarow>()
     var totalNew = ArrayList<SvCenterModels.CenterData.PageData.NewsData>()
     var stvAdapter : SvAdapterStarvision?=null
     var moreNews = ""
@@ -90,12 +92,7 @@ class SvStarvisionFragment:Fragment() {
                         }
                     }
                     for (i in list.data.PageCenter[0].IconApp.indices) {
-                            appList.add(list.data.PageCenter[0].IconApp[i])
-                            for (j in list.data.PageCenter[0].IconApp[i].iconappdatarow.indices){
-                                if (list.data.PageCenter[0].IconApp[i].iconappdatarow[j].iconappLinkstoregoogle == SvConst.appPackage) {
-                                    appList[i].iconappdatarow.removeAt(j)
-                                }
-                            }
+                        appList.add(list.data.PageCenter[0].IconApp[i])
                     }
                         for (j in list.data.PageCenter[0].NewsApp.news.indices) {
                             newsList.add(list.data.PageCenter[0].NewsApp.news[j])
@@ -107,6 +104,14 @@ class SvStarvisionFragment:Fragment() {
                     if (bannerList.size>=2) {
                         bannerList.add(0, bannerList[bannerList.size - 1])
                         bannerList.add(bannerList[1])
+                    }
+                    for (i in appList.indices) {
+                        for (k in appList[i].iconappdatarow.indices) {
+                            if (appList[i].iconappdatarow[k].iconappLinkstoregoogle == SvConst.appPackage) {
+                                appList[i].iconappdatarow.remove(appList[i].iconappdatarow[k])
+                                break
+                            }
+                        }
                     }
                     stvAdapter = SvAdapterStarvision(requireActivity(),newsList,pinList, bannerList,appList)
                     binding.rvMain.apply {
@@ -161,5 +166,14 @@ class SvStarvisionFragment:Fragment() {
                 SvConst.loge(TAG,"t $t")
             }
         }).getLoadData(SvURL.BASE_URL_SDK,moreNews+p,"")
+    }
+    fun checkIconList(list:ArrayList<SvCenterModels.CenterData.PageData.IconData>){
+        for (i in list.indices) {
+            for (j in list[i].iconappdatarow.indices){
+                if (list[i].iconappdatarow[j].iconappLinkstoregoogle==SvConst.appPackage){
+                    appList[i].iconappdatarow.removeAt(j)
+                }
+            }
+        }
     }
 }
