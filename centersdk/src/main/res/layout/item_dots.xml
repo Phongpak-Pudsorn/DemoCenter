@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/imgDot"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
         android:layout_margin="3dp"
         android:src="@drawable/tab_indicator_selected"
         app:layout_constraintBottom_toBottomOf="parent"
