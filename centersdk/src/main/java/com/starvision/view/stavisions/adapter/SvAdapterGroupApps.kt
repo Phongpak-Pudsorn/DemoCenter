@@ -25,7 +25,7 @@ class SvAdapterGroupApps(val context: Context, val list:ArrayList<SvCenterModels
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is GroupHolder){
             holder.groupBinding.tvAppType.text = list[position].iconappgroupname
-            holder.groupBinding.tvAppMore.text = context.getString(R.string.text_moreapp)
+//            holder.groupBinding.tvAppMore.text = context.getString(R.string.text_moreapp)
             holder.groupBinding.rvApp.apply {
                 adapter = SvAdapterApps(context,list[position].iconappdatarow)
                 layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL,false)

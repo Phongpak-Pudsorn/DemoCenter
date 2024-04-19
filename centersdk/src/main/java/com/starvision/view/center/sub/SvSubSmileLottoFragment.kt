@@ -110,12 +110,17 @@ class SvSubSmileLottoFragment : DialogFragment() {
             val mTvOneBy = view.findViewById<View>(R.id.mTvOneBy) as TextView
             val mTvTwoEnd = view.findViewById<View>(R.id.mTvTwoEnd) as TextView
             val mTvThreeEnd = view.findViewById<View>(R.id.mTvThreeEnd) as TextView
+            val second = listLotto.second.replace(" ","   ")
+            val third = listLotto.third.replace(" ","   ")
+            val forth = listLotto.forth.replace(" ","   ")
+            val fifth = listLotto.fifth.replace(" ","   ")
+            val nearOne = listLotto.near_one.replace(" ","   ")
             mTvOne.text = listLotto.first
-            mTvTwo.text = listLotto.second
-            mTvThree.text = listLotto.third
-            mTvfour.text = listLotto.forth
-            mTvfive.text = listLotto.fifth
-            mTvOneBy.text = listLotto.near_one
+            mTvTwo.text = second
+            mTvThree.text = third
+            mTvfour.text = forth
+            mTvfive.text = fifth
+            mTvOneBy.text = nearOne
             mTvTwoEnd.text = listLotto.last_two
             mTvThreeEnd.text = listLotto.last_three
             if (listLotto.form_new) {
@@ -128,10 +133,10 @@ class SvSubSmileLottoFragment : DialogFragment() {
             mTvTwoEnd.textSize = 35f
             mTvThreeEnd.textSize = 30f
             mTvOneBy.textSize = 25f
-            mTvTwo.textSize = 23f
-            mTvThree.textSize = 23f
-            mTvfour.textSize = 23f
-            mTvfive.textSize = 23f
+            mTvTwo.textSize = 18f
+            mTvThree.textSize = 18f
+            mTvfour.textSize = 18f
+            mTvfive.textSize = 18f
 
             val mTvGlo = view.findViewById<View>(R.id.mTvGlo) as TextView
             mTvGlo.setOnClickListener {
@@ -233,13 +238,7 @@ class SvSubSmileLottoFragment : DialogFragment() {
                                     cursor.moveToLast()
                                 }
 
-                                val aBuilder = AlertDialog.Builder(requireContext())
-                                aBuilder.setMessage(strData_Lot[0]+" "+strData_Lot[1])
-                                aBuilder.setPositiveButton("OK") { dialog, which ->
-                                    dialog.cancel()
-                                }
-//                            aBuilder.setCancelable(false)
-                                aBuilder.show()
+                                SvCheckLottoDialogFragment(strData_Lot[0],strData_Lot[1],strData_Lot[2],listDataDate!![0],true).show(childFragmentManager,"")
 
                                 object : CountDownTimer(3000, 1000) {
                                     override fun onTick(millisUntilFinished: Long) {}
@@ -251,13 +250,7 @@ class SvSubSmileLottoFragment : DialogFragment() {
                                 }.start()
                             }
                         }else{
-                            val aBuilder = AlertDialog.Builder(requireContext())
-                            aBuilder.setMessage(getString(R.string.text_check_incomplete))
-                            aBuilder.setPositiveButton("OK") { dialog, which ->
-                                dialog.cancel()
-                            }
-                            aBuilder.setCancelable(false)
-                            aBuilder.show()
+                            SvCheckLottoDialogFragment("","","",listDataDate!![0],false).show(childFragmentManager,"")
                         }
                     }
             }

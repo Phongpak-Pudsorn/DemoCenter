@@ -23,13 +23,13 @@ class SvSubOilFragment: DialogFragment() {
     private val TAG = javaClass.simpleName
     private val oilList = ArrayList<SvSubOilTodayModels>()
 
-    private lateinit var mClickListener : ClickListener
-    interface ClickListener {
-        fun onClickBack()
-    }
-    fun setClickListener(listener : ClickListener) {
-        mClickListener = listener
-    }
+//    private lateinit var mClickListener : ClickListener
+//    interface ClickListener {
+//        fun onClickBack()
+//    }
+//    fun setClickListener(listener : ClickListener) {
+//        mClickListener = listener
+//    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -46,19 +46,16 @@ class SvSubOilFragment: DialogFragment() {
         execeuteData()
         binding.tvNameApp.isSelected = true
         binding.tvDesApp.isSelected = true
-        binding.btnReload.setOnClickListener {
-            execeuteData()
-        }
         binding.cvMore.setOnClickListener {
 //            Const.openApp(requireActivity(),getString(R.string.oil_package),"SplashActivity")
             SvConst.openAnotherApp(requireActivity(),getString(R.string.oil_package))
         }
         binding.imgBack.setOnClickListener {
-            try {
-                mClickListener.onClickBack()
-            }catch (e : Exception){
-                e.printStackTrace()
-            }
+//            try {
+//                mClickListener.onClickBack()
+//            }catch (e : Exception){
+//                e.printStackTrace()
+//            }
             dialog!!.dismiss()
         }
         dialog!!.show()

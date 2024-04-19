@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <LinearLayout
         android:id="@+id/layoutPrice"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -30,6 +32,8 @@
                 android:layout_height="wrap_content"
                 android:maxLines="2"
                 android:text="New Text"
+                android:textSize="26sp"
+                android:fontFamily="@font/psl156"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/black" />
         </LinearLayout>
@@ -84,12 +88,20 @@
                     android:gravity="center"
                     android:maxLines="1"
                     android:text="222.00"
+                    android:fontFamily="@font/psl156"
+                    android:textSize="26sp"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/blue_text"
-                    android:textStyle="bold" />
+                    android:textColor="@color/blue_text" />
             </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/black_trin" />
 
 </LinearLayout>

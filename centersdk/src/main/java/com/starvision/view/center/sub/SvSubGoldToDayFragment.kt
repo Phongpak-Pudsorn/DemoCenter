@@ -42,7 +42,6 @@ class SvSubGoldToDayFragment : DialogFragment() {
         dialog!!.window!!.setBackgroundDrawableResource(R.color.transparent)
 //        dialog!!.setCancelable(false)
         executeData()
-        setTextTime()
         binding.tvNameApp.isSelected = true
         binding.tvDesApp.isSelected = true
         binding.cvMore.setOnClickListener {
@@ -119,6 +118,7 @@ class SvSubGoldToDayFragment : DialogFragment() {
                         binding.imgSell2.setImageDrawable(requireActivity().getDrawable(R.drawable.baseline_arrow_drop_down_24_green))
                         binding.imgSell2.rotationX = 180f
                     }
+                    setTextTime(listGold.Datarow[0].date_update)
                     binding.progressBar.visibility = View.GONE
                     binding.linearLayout4.visibility = View.VISIBLE
                     binding.linearLayout3.visibility = View.VISIBLE
@@ -131,18 +131,19 @@ class SvSubGoldToDayFragment : DialogFragment() {
         }).getLoadData(SvURL.BASE_URL_LOTTO,SvURL.gold_to_day,"")
 
     }
-    private fun setTextTime(){
-//        var dateNew = ""
-//        try {
-//            val sdfOld = SimpleDateFormat("yyyy-MM-dd").format(Date()).toString()
-//            val date2 = sdfOld.parse(string)
-//            val year = sdfOld.year + 543 + 1900
-//            val sdfNew = SimpleDateFormat(" dd MMMM $year", Locale("th", "THA"))
-//            dateNew = sdfNew.format(date2)
-//        } catch (e: ParseException) {
-//            e.printStackTrace()
-//        }
-//        binding.tvRound.text = "วันที่ "+dateNew
+    private fun setTextTime(dateUpdate: String) {
+        val date = dateUpdate.split("\\ ").toTypedArray()
+        var dateNew = ""
+        try {
+            val sdfOld = SimpleDateFormat("yyyy-MM-dd")
+            val date2 = sdfOld.parse(date[0])
+            val year = date2!!.year + 543 + 1900
+            val sdfNew = SimpleDateFormat(" dd MMMM $year", Locale("th", "THA"))
+            dateNew = sdfNew.format(date2)
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+        binding.tvRound.text = getString(R.string.text_date)+dateNew
     }
 
     override fun onDestroyView() {

@@ -1,6 +1,5 @@
 package com.starvision.view.center
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -9,16 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import com.google.gson.Gson
-import com.starvision.api.SvURL
-import com.starvision.config.SvLogin
-import com.starvision.config.SvMD5
-import com.starvision.config.SvParamsData
-import com.starvision.data.SvParamUtil
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageDeleteAccountBinding
-import com.starvision.view.center.models.SvDeleteAccountModels
-import com.starvision.view.login.SvLoginActivity
+import com.starvision.view.center.sub.SvAnotherDialogFragment
 
 class SvDeleteAccountDialogFragment : DialogFragment() {
     private val binding : PageDeleteAccountBinding by lazy { PageDeleteAccountBinding.inflate(layoutInflater) }
@@ -61,29 +53,36 @@ class SvDeleteAccountDialogFragment : DialogFragment() {
                 val handler = Handler(Looper.getMainLooper())
                 handler.postDelayed({ toast.cancel() }, 1000)
             }else{
-                val params = SvParamUtil.ParamsUid
-                params["acc_name"] = SvLogin.UserName
-                params["password"] = SvMD5.CMD5(SvLogin.Password)
-                params["type"] = "1"
-                SvParamsData(object : SvParamsData.PostLoadListener{
-                    override fun onSuccess(body: String) {
-                        val jSon = Gson().fromJson(body,SvDeleteAccountModels::class.java)
-                        val toast = Toast.makeText(requireContext(),jSon.message,Toast.LENGTH_SHORT)
-                        toast.show()
-                        handler.postDelayed({toast.cancel()},1000)
-                        SvLogin.isLogin = false
-                        val intent = Intent(requireContext(),SvLoginActivity::class.java)
-                        startActivity(intent)
+//                val params = SvParamUtil.ParamsUid
+//                params["acc_name"] = SvLogin.UserName
+//                params["password"] = SvMD5.CMD5(SvLogin.Password)
+//                params["type"] = "1"
+//                SvParamsData(object : SvParamsData.PostLoadListener{
+//                    override fun onSuccess(body: String) {
+//                        val jSon = Gson().fromJson(body,SvDeleteAccountModels::class.java)
+//                        val toast = Toast.makeText(requireContext(),jSon.message,Toast.LENGTH_SHORT)
+//                        toast.show()
+//                        handler.postDelayed({toast.cancel()},1000)
+//                        SvLogin.isLogin = false
+//                        val intent = Intent(requireContext(),SvLoginActivity::class.java)
+//                        startActivity(intent)
+//                        mClickListener.onClickBack()
+//                    }
+//
+//                    override fun onFailed(t: Throwable) {
+//                        val toast = Toast.makeText(requireContext(),t.message,Toast.LENGTH_SHORT)
+//                        toast.show()
+//                        handler.postDelayed({toast.cancel()},1000)
+//                    }
+//
+//                }).postLoadData(SvURL.BASE_URL_SDK,SvURL.URL_DELETE_AND_RECOVERY,"",params)
+                val dialog = SvAnotherDialogFragment()
+                dialog.setClickListener(object : SvAnotherDialogFragment.ClickListener{
+                    override fun onClickBack() {
                         mClickListener.onClickBack()
                     }
-
-                    override fun onFailed(t: Throwable) {
-                        val toast = Toast.makeText(requireContext(),t.message,Toast.LENGTH_SHORT)
-                        toast.show()
-                        handler.postDelayed({toast.cancel()},1000)
-                    }
-
-                }).postLoadData(SvURL.BASE_URL_SDK,SvURL.URL_DELETE_AND_RECOVERY,"",params)
+                })
+                dialog.show(childFragmentManager,"")
             }
         }
 

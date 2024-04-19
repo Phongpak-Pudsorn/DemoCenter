@@ -68,7 +68,7 @@
                     android:layout_marginLeft="5dp"
                     android:width="90dp"
                     android:fontFamily="@font/psl156"
-                    android:textColor="@color/clam_light"
+                    android:textColor="@color/black_light"
                     android:textSize="20sp"
                     android:text="@string/text_3_off" />
 
@@ -78,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:fontFamily="@font/psl156"
-                    android:textColor="@color/bg_name_lucky"
+                    android:textColor="@color/black_light"
                     android:textSize="20sp"
                     android:text="000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000" />
             </LinearLayout>
@@ -94,7 +94,7 @@
                     android:layout_marginLeft="5dp"
                     android:width="90dp"
                     android:fontFamily="@font/psl156"
-                    android:textColor="@color/clam_light"
+                    android:textColor="@color/black_light"
                     android:textSize="20sp"
                     android:text="@string/text_2_up_off" />
 
@@ -104,7 +104,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:fontFamily="@font/psl156"
-                    android:textColor="@color/bg_name_lucky"
+                    android:textColor="@color/black_light"
                     android:textSize="20sp"
                     android:text="00 00 00 00" />
             </LinearLayout>
@@ -120,7 +120,7 @@
                     android:layout_marginLeft="5dp"
                     android:width="90dp"
                     android:fontFamily="@font/psl156"
-                    android:textColor="@color/clam_light"
+                    android:textColor="@color/black_light"
                     android:textSize="20sp"
                     android:text="@string/text_2_down_off" />
 
@@ -130,7 +130,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:fontFamily="@font/psl156"
-                    android:textColor="@color/bg_name_lucky"
+                    android:textColor="@color/black_light"
                     android:textSize="20sp"
                     android:text="00 00 00 00 00" />
             </LinearLayout>

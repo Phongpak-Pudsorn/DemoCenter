@@ -35,13 +35,14 @@
                 android:id="@+id/tvAppMore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="end"
-                android:layout_weight="1"
                 android:layout_margin="10dp"
-                android:textColor="@color/bg_exchange"
+                android:layout_weight="1"
                 android:fontFamily="@font/psl156"
+                android:gravity="end"
+                android:text="TextView"
+                android:textColor="@color/bg_exchange"
                 android:textSize="20sp"
-                android:text="TextView" />
+                android:visibility="gone" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView

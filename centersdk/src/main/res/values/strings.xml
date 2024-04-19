@@ -4,6 +4,9 @@
     <string name="text_nocon">Please Connect Internet</string>
     <string name="text_moreapp">แอพเพิ่มเติม</string>
     <string name="text_morenew">เพิ่มเติม</string>
+    <string name="text_date">วันที่</string>
+    <string name="ok">ตกลง</string>
+    <string name="cancel">ยกเลิก</string>
     <!-- WebView -->
 
     <!-- Login,Regis,Forgot -->
@@ -16,12 +19,14 @@
     <string name="text_alert_password_worng">รหัสผิด กรุณากรอกใหม่อีกครั้ง</string>
     <string name="text_alert_recovery">ส่งคำขอรีเซ็ตพาสเวิร์ดแล้ว</string>
     <string name="text_alert_delete_uncheck">กรุณายืนยันการลบ</string>
-
+    <string name="text_ask_delete">คุณต้องการลบบัญชี?</string>
     <string name="privacy_policy">นโยบายความเป็นส่วนตัว</string>
     <string name="delete_account">ลบบัญชี</string>
     <string name="by_starvision_team">By StarVision Team</string>
     <string name="register">สมัครสมาชิก</string>
     <string name="recovery">กู้คืนบัญชี</string>
+    <string name="text_recovery1">คุณสามารถกู้คืน ID ได้ถึง</string>
+    <string name="text_recovery2">คุณต้องการกู้คืน ID ของคุณหรือไม่</string>
     <string name="you_already_have_an_account">คุณเคยมีบัญชี?</string>
     <string name="login">ล็อกอิน</string>
     <string name="forgot_password">ลืมรหัสผ่าน?</string>

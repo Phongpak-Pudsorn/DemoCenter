@@ -15,15 +15,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imgApp"
+        <androidx.cardview.widget.CardView
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_margin="5dp"
-            android:layout_gravity="center"
-            app:srcCompat="@mipmap/ic_launcher">
+            app:cardCornerRadius="15dp">
 
-        </ImageView>
+            <ImageView
+                android:id="@+id/imgApp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                app:srcCompat="@mipmap/ic_launcher">
+
+            </ImageView>
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/tvName"
