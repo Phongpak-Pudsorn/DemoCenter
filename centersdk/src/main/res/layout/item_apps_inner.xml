@@ -28,7 +28,7 @@
                 android:layout_margin="10dp"
                 android:textColor="@color/black"
                 android:fontFamily="@font/psl156"
-                android:textSize="20sp"
+                android:textSize="32sp"
                 android:text="TextView" />
 
             <TextView

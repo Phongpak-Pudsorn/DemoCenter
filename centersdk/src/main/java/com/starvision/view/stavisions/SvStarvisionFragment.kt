@@ -177,13 +177,4 @@ class SvStarvisionFragment:Fragment() {
             }
         }).getLoadData(SvURL.BASE_URL_SDK,moreNews+p,"")
     }
-    fun checkIconList(list:ArrayList<SvCenterModels.CenterData.PageData.IconData>){
-        for (i in list.indices) {
-            for (j in list[i].iconappdatarow.indices){
-                if (list[i].iconappdatarow[j].iconappLinkstoregoogle==SvConst.appPackage){
-                    appList[i].iconappdatarow.removeAt(j)
-                }
-            }
-        }
-    }
 }

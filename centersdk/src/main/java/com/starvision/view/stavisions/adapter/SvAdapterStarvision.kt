@@ -63,6 +63,10 @@ class SvAdapterStarvision(val context:FragmentActivity,
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is HeaderHolder){
+            holder.headerBinding.rvPin.apply {
+                adapter = SvAdapterPinNews(context,listPin)
+                layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL,false)
+            }
 //            holder.headerBinding.tvMore.setOnClickListener {
 //                SvSubMoreApp(context,appList).show(context.supportFragmentManager,"")
 //            }
