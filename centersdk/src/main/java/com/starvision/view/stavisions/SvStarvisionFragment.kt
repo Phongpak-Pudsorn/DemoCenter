@@ -90,13 +90,12 @@ class SvStarvisionFragment:Fragment() {
                         }
                     }
                     for (i in list.data.PageCenter[0].IconApp.indices) {
-                        for (j in list.data.PageCenter[0].IconApp[i].iconappdatarow.indices){
-                            if (list.data.PageCenter[0].IconApp[i].iconappdatarow[j].iconappLinkstoregoogle != SvConst.appPackage) {
-//                                if (!SvConst.checkStatusApp(list.data.PageCenter[0].IconApp[i].iconappdatarow[j].iconappId)) {
-                                    appList.add(list.data.PageCenter[0].IconApp[i])
-//                                }
+                            appList.add(list.data.PageCenter[0].IconApp[i])
+                            for (j in list.data.PageCenter[0].IconApp[i].iconappdatarow.indices){
+                                if (list.data.PageCenter[0].IconApp[i].iconappdatarow[j].iconappLinkstoregoogle == SvConst.appPackage) {
+                                    appList[i].iconappdatarow.removeAt(j)
+                                }
                             }
-                        }
                     }
                         for (j in list.data.PageCenter[0].NewsApp.news.indices) {
                             newsList.add(list.data.PageCenter[0].NewsApp.news[j])

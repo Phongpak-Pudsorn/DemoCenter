@@ -15,7 +15,6 @@ import com.starvision.luckygamesdk.databinding.ItemNewsHeaderBinding
 import com.starvision.luckygamesdk.databinding.PageBannerAppsBinding
 import com.starvision.view.SvWebViewActivity
 import com.starvision.view.center.models.SvCenterModels
-import com.starvision.view.center.sub.SvSubMoreApp
 
 class SvAdapterStarvision(val context:FragmentActivity,
                           val listNews:ArrayList<SvCenterModels.CenterData.PageData.NewsData.News>,
@@ -27,12 +26,12 @@ class SvAdapterStarvision(val context:FragmentActivity,
     val VIEW_TYPE_BANNER = 2
     val VIEW_TYPE_NEWS_HEADER = 3
     var imageAdapter : SvAdapterImageSlide?=null
-    var appAdapter : SvAdapterApps?=null
+    var appAdapter : SvAdapterGroupApps?=null
     var dotAdapter : SvAdapterDots?=null
     val handler = android.os.Handler(Looper.getMainLooper())
     init {
         imageAdapter = SvAdapterImageSlide(context,bannerList)
-        appAdapter = SvAdapterApps(context,appList)
+        appAdapter = SvAdapterGroupApps(context,appList)
         dotAdapter = SvAdapterDots(1,bannerList)
     }
     class BannerHolder(val bannerBinding: PageBannerAppsBinding):RecyclerView.ViewHolder(bannerBinding.root)
@@ -138,7 +137,7 @@ class SvAdapterStarvision(val context:FragmentActivity,
 //            if (SvConst.isReviewSDK) {
                 holder.bannerBinding.appList.apply {
                     adapter = appAdapter
-                    layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+                    layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 //                }
             }
         }else if (holder is NewsHolder){
