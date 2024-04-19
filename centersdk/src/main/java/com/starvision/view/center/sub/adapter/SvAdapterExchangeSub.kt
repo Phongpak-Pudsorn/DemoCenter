@@ -29,8 +29,8 @@ class SvAdapterExchangeSub(val context:Context, val list:ArrayList<SvSubExchange
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if(holder is BankHolder){
             holder.bankBinding.TvNameBank.text = list[position].DatarowBank.Bank
-            holder.bankBinding.TvBuy.text = decimals(list[position].DatarowBank.Bank_ExchangeRate[2].buy)
-            holder.bankBinding.TvSell.text = decimals(list[position].DatarowBank.Bank_ExchangeRate[2].sell)
+            holder.bankBinding.TvBuy.text = decimals(list[position].DatarowBank.Bank_ExchangeRate[0].buy)
+            holder.bankBinding.TvSell.text = decimals(list[position].DatarowBank.Bank_ExchangeRate[0].sell)
             try {
                 val inputs = context.assets.open("bank/"+list[position].DatarowBank.Bank+".png")
                 val img = Drawable.createFromStream(inputs,null)
@@ -44,8 +44,12 @@ class SvAdapterExchangeSub(val context:Context, val list:ArrayList<SvSubExchange
     override fun getItemCount(): Int = list.size
 
     private fun decimals(num: String): String {
-        val dec = num.toDouble()
-        val result = (dec * 100.0).roundToInt() / 100.0
-        return "%.2f".format(result)
+        return try {
+            val dec = num.toDouble()
+            val result = (dec * 100.0).roundToInt() / 100.0
+            "%.2f".format(result)
+        }catch (e :java.lang.Exception){
+            "-"
+        }
     }
 }

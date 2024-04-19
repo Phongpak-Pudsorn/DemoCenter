@@ -8,7 +8,7 @@
     <TableRow
         android:id="@+id/tableRow1"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="50dp"
         android:background="@color/white"
         android:padding="5dp">
 
@@ -19,8 +19,8 @@
 
             <ImageView
                 android:id="@+id/IvFrag"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_centerInParent="true" />
 
         </RelativeLayout>
@@ -44,7 +44,7 @@
                     android:gravity="center|left"
                     android:text="BAAC"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="22sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -72,7 +72,7 @@
                 android:gravity="left"
                 android:text="340.54"
                 android:textColor="@color/colorBuy"
-                android:textSize="22sp" />
+                android:textSize="24sp" />
 
         </RelativeLayout>
 
@@ -89,7 +89,7 @@
                 android:gravity="left"
                 android:text="360.03"
                 android:textColor="@color/colorSell"
-                android:textSize="22sp" />
+                android:textSize="24sp" />
 
         </RelativeLayout>
 

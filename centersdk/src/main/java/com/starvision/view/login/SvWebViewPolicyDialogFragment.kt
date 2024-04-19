@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.*
+import android.widget.CompoundButton
 import androidx.fragment.app.DialogFragment
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageWebviewPolicyBinding
@@ -33,20 +34,33 @@ class SvWebViewPolicyDialogFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val width = ViewGroup.LayoutParams.MATCH_PARENT
-        val height = ViewGroup.LayoutParams.MATCH_PARENT
-        dialog!!.window!!.setLayout(width, height)
-
+        dialog!!.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        dialog!!.window!!.setBackgroundDrawableResource(R.color.transparent)
+        if (className != "Register"){
+            binding.lnAcceptPolicy.visibility = View.GONE
+        }
         binding.webview.settings.javaScriptEnabled = true
         binding.webview.webChromeClient = WebChromeClient()
         binding.webview.webViewClient = WebViewClient()
         binding.webview.loadUrl("https://www.starvision.in.th/term/privacy.html")
         binding.webview.webViewClient = CustomWebViewClient()
-        binding.imgClose.setOnClickListener {
-            if(className != ""){
-                mClickClose.onClickClose()
+        binding.imgBack.setOnClickListener {
+            dialog!!.dismiss()
+        }
+        binding.editAccept.setOnClickListener {
+            mClickClose.onClickClose()
+            dialog!!.dismiss()
+        }
+        binding.editAccept.isEnabled = false
+        binding.editAccept.setBackgroundColor(requireContext().getColor(R.color.grey_text))
+        binding.checkboxAcceptPolicy.setOnCheckedChangeListener { _, isChecked ->
+            if (!isChecked) {
+                binding.editAccept.isEnabled = false
+                binding.editAccept.setBackgroundColor(requireContext().getColor(R.color.grey_text))
+            } else {
+                binding.editAccept.isEnabled = true
+                binding.editAccept.setBackgroundResource(R.drawable.btn_login)
             }
-            dismiss()
         }
         dialog!!.show()
     }

@@ -24,6 +24,7 @@
     <string name="delete_account">ลบบัญชี</string>
     <string name="by_starvision_team">By StarVision Team</string>
     <string name="register">สมัครสมาชิก</string>
+    <string name="next">ถัดไป</string>
     <string name="recovery">กู้คืนบัญชี</string>
     <string name="text_recovery1">คุณสามารถกู้คืน ID ได้ถึง</string>
     <string name="text_recovery2">คุณต้องการกู้คืน ID ของคุณหรือไม่</string>
@@ -39,6 +40,7 @@
     <string name="sent">ส่ง</string>
     <string name="confirm_password">ยืนยันรหัสผ่าน</string>
     <string name="please_click_to_accept">กรุณายืนยัน</string>
+    <string name="please_click_to_accept_dialog">กรุณายืนยันเพื่อยอมรับ</string>
     <!-- Login,Regis,Forgot -->
 
     <!-- delete and recovery -->
@@ -166,8 +168,8 @@
     <string name="exchange_more">ดูเพิ่มเติมเต็มๆได้ที่ \"อัตราแลกเปลี่ยนวันนี้\"</string>
     <string name="exchange_name">อัตราแลกเปลี่ยน</string>
     <string name="bank">ธนาคาร</string>
-    <string name="buy">ซื้อ</string>
-    <string name="sell">ขาย</string>
+    <string name="buy">ซื้อ (THB)</string>
+    <string name="sell">ขาย (THB)</string>
     <!-- ดูดวง 12 ราศี-->
     <string name="zodiac_app">ดูดวงตามราศีเกิด การเงิน การงาน โชคลาภ ความรัก</string>
     <string name="zodiac_more">ดูเพิ่มเติมเต็มๆได้ที่ \"ดูดวง 12 ราศี\"</string>

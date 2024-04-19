@@ -38,8 +38,8 @@
     <color name="bg_gold_under">#F0E78C</color>
     <color name="red">#FF0000</color>
     <color name="green">#26A11D</color>
-    <color name="colorBuy">#24ff00</color>
-    <color name="colorSell">#ffc600</color>
+    <color name="colorBuy">#149100</color>
+    <color name="colorSell">#EF8400</color>
     <color name="bg_exchange">#1BA1E2</color>
     <color name="light_blue">#74cafb</color>
     <color name="bg_exchange_light">#85d3ff</color>
