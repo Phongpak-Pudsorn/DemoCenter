@@ -1,5 +1,6 @@
 package com.starvision.view.center.sub
 
+import android.net.ParseException
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,8 @@ import com.starvision.data.SvConst
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageGoldtodaySubBinding
 import com.starvision.view.center.sub.models.SvSubGoldToDayModels
+import java.text.SimpleDateFormat
+import java.util.*
 
 class SvSubGoldToDayFragment : DialogFragment() {
     private val binding : PageGoldtodaySubBinding by lazy { PageGoldtodaySubBinding.inflate(layoutInflater) }
@@ -39,6 +42,7 @@ class SvSubGoldToDayFragment : DialogFragment() {
         dialog!!.window!!.setBackgroundDrawableResource(R.color.transparent)
 //        dialog!!.setCancelable(false)
         executeData()
+        setTextTime()
         binding.tvNameApp.isSelected = true
         binding.tvDesApp.isSelected = true
         binding.cvMore.setOnClickListener {
@@ -126,6 +130,19 @@ class SvSubGoldToDayFragment : DialogFragment() {
             }
         }).getLoadData(SvURL.BASE_URL_LOTTO,SvURL.gold_to_day,"")
 
+    }
+    private fun setTextTime(){
+//        var dateNew = ""
+//        try {
+//            val sdfOld = SimpleDateFormat("yyyy-MM-dd").format(Date()).toString()
+//            val date2 = sdfOld.parse(string)
+//            val year = sdfOld.year + 543 + 1900
+//            val sdfNew = SimpleDateFormat(" dd MMMM $year", Locale("th", "THA"))
+//            dateNew = sdfNew.format(date2)
+//        } catch (e: ParseException) {
+//            e.printStackTrace()
+//        }
+//        binding.tvRound.text = "วันที่ "+dateNew
     }
 
     override fun onDestroyView() {

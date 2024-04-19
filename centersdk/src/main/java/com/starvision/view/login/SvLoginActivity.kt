@@ -204,6 +204,10 @@ class SvLoginActivity : AppCompatActivity() {
                                         toast.show()
                                         handler.postDelayed({toast.cancel()},1000)
                                     }catch (e : Exception){
+                                        if(checkError < 3){
+                                            checkError++
+                                            onLogin()
+                                        }
                                         Toast.makeText(this@SvLoginActivity,jSon.message,Toast.LENGTH_SHORT).show()
                                         e.printStackTrace()
                                     }

@@ -58,7 +58,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tv_round_lot"
+                android:id="@+id/tv_round"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

@@ -145,8 +145,13 @@ class SvStarvisionFragment:Fragment() {
                             news.data.news[i].newsappTitle,news.data.news[i].newsappImgNews,news.data.news[i].newsappUrlNews,
                             news.data.news[i].newsappLinkstoreapp,news.data.news[i].newsappLinkstoregoogle,news.data.news[i].newsappLinkkeyopenapp))
                     }
-                    loadCount+=1
-                    countDownTimer.start()
+                    if (news.data.news.isEmpty()){
+                        binding.footerLayout.visibility = View.GONE
+                        isLoading = true
+                    }else{
+                        loadCount+=1
+                        countDownTimer.start()
+                    }
                 }else{
                     binding.footerLayout.visibility = View.GONE
                     isLoading = true
