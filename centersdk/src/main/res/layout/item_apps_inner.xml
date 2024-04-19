@@ -29,6 +29,7 @@
                 android:textColor="@color/black"
                 android:fontFamily="@font/psl156"
                 android:textSize="32sp"
+                android:textStyle="bold"
                 android:text="TextView" />
 
             <TextView

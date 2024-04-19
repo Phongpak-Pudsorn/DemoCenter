@@ -36,7 +36,7 @@ class SvStarvisionFragment:Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         return binding.root
     }
 
@@ -85,21 +85,7 @@ class SvStarvisionFragment:Fragment() {
                     newsList.add(SvCenterModels.CenterData.PageData.NewsData.News(0,"header","","","","","",""))
                     for (i in list.data.PageCenter[0].BannerApp.indices){
                         if (list.data.PageCenter[0].BannerApp[i].bannerappLinkstoregoogle != SvConst.appPackage) {
-//                            SvParamsData(object : SvParamsData.PostLoadListener{
-//                                override fun onSuccess(body: String) {
-//                                    val jsonData = Gson().fromJson(body, SvCheckVersionModels::class.java)
-//                                    val isReviewApp = jsonData.data.StatusServer.is_review
-//                                    if (isReviewApp) {
-                                        bannerList.add(list.data.PageCenter[0].BannerApp[i])
-//                                    }
-//                                    SvConst.loge(TAG," isReviewApp : "+isReviewApp)
-//                                }
-//
-//                                override fun onFailed(t: Throwable) {
-//                                    t.printStackTrace()
-//                                }
-//
-//                            }).getLoadData(SvURL.BASE_URL_SDK, SvURL.URL_CHECK_VERSION+"?"+"app=${list.data.PageCenter[0].BannerApp[i].bannerappId}"+"&os=android","")
+                            bannerList.add(list.data.PageCenter[0].BannerApp[i])
                         }
                     }
                     for (i in list.data.PageCenter[0].IconApp.indices) {
@@ -176,5 +162,15 @@ class SvStarvisionFragment:Fragment() {
                 SvConst.loge(TAG,"t $t")
             }
         }).getLoadData(SvURL.BASE_URL_SDK,moreNews+p,"")
+    }
+
+    fun checkIconList(list:ArrayList<SvCenterModels.CenterData.PageData.IconData>){
+        for (i in list.indices) {
+            for (j in list[i].iconappdatarow.indices){
+                if (list[i].iconappdatarow[j].iconappLinkstoregoogle==SvConst.appPackage){
+                    appList[i].iconappdatarow.removeAt(j)
+                }
+            }
+        }
     }
 }

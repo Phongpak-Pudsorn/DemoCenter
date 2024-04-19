@@ -143,6 +143,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:layout_marginBottom="5dp"
                     android:fontFamily="@font/psl156"
                     android:text="@string/tv_gold_buy"
                     android:textColor="@color/clam_light"
@@ -170,6 +171,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:layout_marginBottom="5dp"
                     android:fontFamily="@font/psl156"
                     android:textColor="@color/black_light"
                     android:textSize="24sp" />
@@ -201,6 +203,7 @@
                         android:id="@+id/tv_progress_buy"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
                         android:fontFamily="@font/psl156"
                         android:textColor="@color/black_light"
                         android:textSize="24sp" />
@@ -250,7 +253,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:orientation="vertical"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
@@ -302,6 +305,7 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/psl156"
                     android:text="@string/tv_gold_buy"
+                    android:layout_marginBottom="5dp"
                     android:textColor="@color/clam_light"
                     android:textSize="24sp" />
 
@@ -327,6 +331,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:layout_marginBottom="5dp"
                     android:fontFamily="@font/psl156"
                     android:textColor="@color/black_light"
                     android:textSize="24sp" />
@@ -359,6 +364,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:fontFamily="@font/psl156"
+                        android:layout_marginBottom="5dp"
                         android:textColor="@color/black_light"
                         android:textSize="24sp" />
 
