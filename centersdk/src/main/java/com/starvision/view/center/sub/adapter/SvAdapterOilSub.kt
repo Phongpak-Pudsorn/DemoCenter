@@ -29,16 +29,16 @@ class SvAdapterOilSub(val context:Context, val list:ArrayList<SvSubOilTodayModel
         }catch (e:Exception){
             Glide.with(context).load("").into(holder.oilBinding.imgOil2)
         }
-        try {
-            Glide.with(context).load(imgArr[3]).into(holder.oilBinding.imgOil3)
-        }catch (e:Exception){
-            Glide.with(context).load("").into(holder.oilBinding.imgOil3)
-        }
-        try {
-            Glide.with(context).load(imgArr[4]).into(holder.oilBinding.imgOil4)
-        }catch (e:Exception){
-            Glide.with(context).load("").into(holder.oilBinding.imgOil4)
-        }
+//        try {
+//            Glide.with(context).load(imgArr[3]).into(holder.oilBinding.imgOil3)
+//        }catch (e:Exception){
+//            Glide.with(context).load("").into(holder.oilBinding.imgOil3)
+//        }
+//        try {
+//            Glide.with(context).load(imgArr[4]).into(holder.oilBinding.imgOil4)
+//        }catch (e:Exception){
+//            Glide.with(context).load("").into(holder.oilBinding.imgOil4)
+//        }
         try {
             val inputs = context.assets.open("oil/"+list[position].imgOil+".png")
             val img = Drawable.createFromStream(inputs,null)

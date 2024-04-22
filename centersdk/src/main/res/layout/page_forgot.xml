@@ -48,8 +48,8 @@
         <ImageView
             android:id="@+id/img_logo"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:layout_marginTop="60dp"
+            android:layout_height="110dp"
+            android:layout_marginTop="40dp"
             android:adjustViewBounds="true"
             android:src="@mipmap/ic_launcher" />
 
@@ -57,16 +57,16 @@
             android:id="@+id/cv_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="50dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="40dp"
             app:cardCornerRadius="15dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:background="@color/grey">
+                android:background="@color/white_edittext">
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -88,7 +88,7 @@
                     android:inputType="textEmailAddress"
                     android:padding="10dp"
                     android:textColor="@color/black"
-                    android:textSize="19sp" />
+                    android:textSize="22sp" />
 
             </LinearLayout>
 
@@ -98,16 +98,16 @@
             android:id="@+id/cv_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="15dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="40dp"
             app:cardCornerRadius="15dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:background="@color/grey">
+                android:background="@color/white_edittext">
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -129,7 +129,7 @@
                     android:inputType="textPersonName"
                     android:padding="10dp"
                     android:textColor="@color/black"
-                    android:textSize="19sp" />
+                    android:textSize="22sp" />
 
             </LinearLayout>
 
@@ -139,8 +139,8 @@
             android:id="@+id/ln_remember"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
             android:orientation="horizontal"
             android:visibility="gone">
 
@@ -170,9 +170,9 @@
             android:id="@+id/cv_sent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="15dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="40dp"
             app:cardCornerRadius="15dp">
 
             <TextView
@@ -196,9 +196,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="40dp"
             android:gravity="center"
             android:orientation="horizontal"
             android:visibility="gone">

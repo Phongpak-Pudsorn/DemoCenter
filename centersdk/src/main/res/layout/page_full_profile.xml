@@ -37,8 +37,8 @@
 
                 <ImageView
                     android:id="@+id/img_profile"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:layout_gravity="center"
                     android:src="@mipmap/ic_launcher" />
 
@@ -96,7 +96,7 @@
                         android:padding="5dp"
                         android:text="@string/id_profile"
                         android:textColor="@color/black_light"
-                        android:textSize="15sp"
+                        android:textSize="22sp"
                         android:visibility="gone" />
 
                     <TextView
@@ -111,7 +111,7 @@
                         android:fontFamily="@font/psl156"
                         android:text="XXXXXX"
                         android:textColor="@color/black_light"
-                        android:textSize="15sp" />
+                        android:textSize="22sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -122,6 +122,7 @@
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
                     android:gravity="center"
+                    android:visibility="invisible"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -165,6 +166,7 @@
                     android:background="@drawable/btn_topup_bar"
                     android:text="@string/topup"
                     android:textColor="@color/white"
+                    android:visibility="gone"
                     android:textSize="25sp"/>
 
             </LinearLayout>
@@ -186,6 +188,21 @@
             android:layout_height="32dp"
             android:src="@mipmap/setting"
             android:background="@drawable/btn_setting"
+            android:visibility="visible" />
+
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/cardView"
+        app:layout_constraintTop_toTopOf="@+id/cardView">
+
+        <ImageView
+            android:id="@+id/img_close"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/btn_close_cross"
             android:visibility="visible" />
 
     </androidx.cardview.widget.CardView>

@@ -21,7 +21,37 @@ data class SvCenterModels(val code:String,
                                   val bannerappLinkstoreapp:String,
                                   val bannerappLinkstoregoogle:String,
                                   val bannerappLinkkeyopenapp:String,
-                                  var boo:Boolean = false)
+                                  val bannerappdataintroduce:ArrayList<IntroduceData>,
+                                  var boo:Boolean = false){
+                data class IntroduceData(val DataBank:BankContData,
+                                         val DataGb:GoldContData,
+                                         val DataGo:GoldContData,
+                                         val DataPump:OilContData,
+                                         val DatarLottoStatic:LottoContData,
+                                         val DatarCheckLotto:CheckLottoContData,
+                                         val DatarZodice:ZodiacContData){
+                    data class BankContData(val Bank:String,
+                                            val Buy:String,
+                                            val Sell:String,
+                                            val Rate:String)
+                    data class GoldContData(val Date:String,
+                                            val Time:String,
+                                            val Buy:String,
+                                            val Sell:String)
+                    data class OilContData(val Date:String,
+                                           val priceOil:String,
+                                           val Oil:String)
+                    data class LottoContData(val suggest_date:String,
+                                             val suggest_name:String,
+                                             val top_second:String,
+                                             val bottom_second:String,
+                                             val top_third:String)
+                    data class CheckLottoContData(val result_date:String,
+                                                  val last_two:String,
+                                                  val first:String)
+                    data class ZodiacContData(val result_date:String)
+                }
+            }
             data class IconData(val iconappgroupId:String,
                                 val iconappgroupname:String,
                                 val iconappdatarow:ArrayList<IconDatarow>){

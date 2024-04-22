@@ -76,6 +76,7 @@
                             android:id="@+id/ln_coin"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:visibility="invisible"
                             android:gravity="end"
                             android:orientation="horizontal">
 
@@ -87,6 +88,7 @@
                                 android:text="@string/text_coin"
                                 android:textColor="@color/white"
                                 android:fontFamily="@font/psl156"
+                                android:visibility="invisible"
                                 android:textSize="18sp" />
 
                             <TextView
@@ -96,6 +98,7 @@
                                 android:gravity="center|end"
                                 android:textColor="@color/white"
                                 android:fontFamily="@font/psl156"
+                                android:visibility="invisible"
                                 android:textSize="18sp" />
                         </LinearLayout>
 

@@ -146,7 +146,7 @@
                     android:layout_marginBottom="5dp"
                     android:fontFamily="@font/psl156"
                     android:text="@string/tv_gold_buy"
-                    android:textColor="@color/clam_light"
+                    android:textColor="@color/black"
                     android:textSize="24sp" />
 
                 <TextView
@@ -156,7 +156,7 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/psl156"
                     android:text="@string/tv_gold_sell"
-                    android:textColor="@color/clam_light"
+                    android:textColor="@color/black"
                     android:textSize="24sp" />
             </LinearLayout>
 
@@ -306,7 +306,7 @@
                     android:fontFamily="@font/psl156"
                     android:text="@string/tv_gold_buy"
                     android:layout_marginBottom="5dp"
-                    android:textColor="@color/clam_light"
+                    android:textColor="@color/black"
                     android:textSize="24sp" />
 
                 <TextView
@@ -316,7 +316,7 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/psl156"
                     android:text="@string/tv_gold_sell"
-                    android:textColor="@color/clam_light"
+                    android:textColor="@color/black"
                     android:textSize="24sp" />
             </LinearLayout>
 

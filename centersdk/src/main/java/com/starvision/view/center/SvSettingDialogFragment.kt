@@ -58,7 +58,7 @@ class SvSettingDialogFragment : DialogFragment() {
     }
 
     private fun bindingObject(){
-        binding.tvLogout.setOnClickListener {
+        binding.lnLogout.setOnClickListener {
             mClickSettingListener.onLogout()
             SvLogin.isLogin = false
             SvLogin.Name = ""
@@ -70,7 +70,7 @@ class SvSettingDialogFragment : DialogFragment() {
         binding.lnDelete.setOnClickListener {
             mClickSettingListener.onDelete()
         }
-        binding.tvPolicy.setOnClickListener {
+        binding.lnPolicy.setOnClickListener {
             SvWebViewPolicyDialogFragment().show(childFragmentManager,"policy")
         }
         binding.imgClose.setOnClickListener {

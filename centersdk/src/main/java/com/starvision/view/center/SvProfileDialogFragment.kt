@@ -54,6 +54,9 @@ class SvProfileDialogFragment : DialogFragment() {
         dialog!!.setOnCancelListener {
             mClickListener.onCancel()
         }
+        binding.imgClose.setOnClickListener {
+            dialog!!.dismiss()
+        }
     }
 
     private fun bindingObject(){

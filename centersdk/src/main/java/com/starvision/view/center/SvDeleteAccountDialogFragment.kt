@@ -37,10 +37,11 @@ class SvDeleteAccountDialogFragment : DialogFragment() {
         dialog!!.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         dialog!!.window!!.setBackgroundDrawableResource(R.color.transparent)
         dialog!!.show()
-        binding.tvText.text = getString(R.string.text_alert_delete_account)+"\n"+"\n"+
-                getString(R.string.text_alert_delete_account1)+"\n"+
-        getString(R.string.text_alert_delete_account2)+"\n"+
-        getString(R.string.text_alert_delete_account3)+"\n"
+        binding.tvText.text = getString(R.string.text_alert_delete_account)+"\n"+"\n"
+//        +
+//                getString(R.string.text_alert_delete_account1)+"\n"+
+//        getString(R.string.text_alert_delete_account2)+"\n"+
+//        getString(R.string.text_alert_delete_account3)+"\n"
         binding.imgBack.setOnClickListener {
             dialog!!.dismiss()
         }
