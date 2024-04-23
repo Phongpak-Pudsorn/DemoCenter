@@ -47,6 +47,7 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 holder.imgBinding.tvTitle.visibility = View.VISIBLE
                 holder.imgBinding.tvContent2.visibility = View.GONE
                 holder.imgBinding.tvContent3.visibility = View.GONE
+                holder.imgBinding.tvContent.textSize = 20f
                 holder.imgBinding.tvContent.gravity = Gravity.NO_GRAVITY
                 holder.imgBinding.tvTitle.text = "สำนัก : ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.suggest_name}"
                 holder.imgBinding.tvContent.text = "3ตัวบน  = ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.top_third}\n2ตัวบน  = ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.top_second}\n2ตัวล่าง = ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.bottom_second}"
@@ -60,6 +61,7 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 val dateTime = dateFormat.parse(bannerList[position].bannerappdataintroduce[0].DatarCheckLotto.result_date)
                 val strDate = dateOnly.format(dateTime)
                 holder.imgBinding.tvTitle.text = "หวยงวด $strDate"
+                holder.imgBinding.tvContent.textSize = 20f
                 holder.imgBinding.tvContent.gravity = Gravity.CENTER
                 holder.imgBinding.tvContent.text = "รางวัลที่หนึ่ง = ${bannerList[position].bannerappdataintroduce[0].DatarCheckLotto.first}\n\nเลขท้าย 2 ตัว = ${bannerList[position].bannerappdataintroduce[0].DatarCheckLotto.last_two}"
             }
@@ -71,7 +73,9 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 holder.imgBinding.tvContent2.visibility = View.GONE
                 holder.imgBinding.tvContent3.visibility = View.GONE
                 holder.imgBinding.tvContent.gravity = Gravity.CENTER
-                holder.imgBinding.tvContent.text = bannerList[position].bannerappdataintroduce[0].DatarZodice.result_date
+                holder.imgBinding.tvContent.textSize = 30f
+                val arr = bannerList[position].bannerappdataintroduce[0].DatarZodice.result_date.split(":").toTypedArray()
+                holder.imgBinding.tvContent.text = arr[0]+"\n"+arr[1]
             }
             "5" ->{
                 holder.imgBinding.tvTitle.visibility = View.VISIBLE
@@ -84,6 +88,7 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 holder.imgBinding.tvContent.gravity = Gravity.NO_GRAVITY
                 holder.imgBinding.tvContent2.gravity = Gravity.CENTER
                 holder.imgBinding.tvContent3.gravity = Gravity.CENTER
+                holder.imgBinding.tvContent.textSize = 20f
                 holder.imgBinding.tvTitle.text = "ราคาทองวันที่ $strDate"
                 holder.imgBinding.tvContent.text = "\nทองคำแท่ง\nทองรูปพรรณ"
                 holder.imgBinding.tvContent2.text = "ซื้อ\n${bannerList[position].bannerappdataintroduce[0].DataGb.Buy}\n${bannerList[position].bannerappdataintroduce[1].DataGo.Buy}"
@@ -94,6 +99,7 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 holder.imgBinding.tvContent2.visibility = View.VISIBLE
                 holder.imgBinding.tvContent3.visibility = View.GONE
                 holder.imgBinding.tvContent.gravity = Gravity.NO_GRAVITY
+                holder.imgBinding.tvContent.textSize = 20f
                 holder.imgBinding.tvTitle.text = bannerList[position].bannerappTitle
                 var oil = ""
                 var price = ""
@@ -113,6 +119,7 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 holder.imgBinding.tvContent.gravity = Gravity.NO_GRAVITY
                 holder.imgBinding.tvContent2.gravity = Gravity.CENTER
                 holder.imgBinding.tvContent3.gravity = Gravity.CENTER
+                holder.imgBinding.tvContent.textSize = 20f
                 var bank = "ธนาคาร\n"
                 var buy = "ซื้อ\n"
                 var sell = "ขาย\n"
