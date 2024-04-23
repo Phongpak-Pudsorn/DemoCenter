@@ -23,7 +23,7 @@ class SvLogoutConfirmDialogFragment:DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,11 +34,13 @@ class SvLogoutConfirmDialogFragment:DialogFragment() {
         dialog!!.show()
         dialog!!.setOnCancelListener {
             mConfirmListener.onCancel()
-        }
-        binding.btnYes.setOnClickListener {
             dialog!!.dismiss()
         }
+        binding.btnYes.setOnClickListener {
+            mConfirmListener.onLogout()
+        }
         binding.btnNo.setOnClickListener {
+            mConfirmListener.onCancel()
             dialog!!.dismiss()
         }
     }
