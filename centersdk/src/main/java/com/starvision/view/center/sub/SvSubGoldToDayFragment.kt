@@ -167,7 +167,7 @@ class SvSubGoldToDayFragment : DialogFragment() {
         } catch (e: ParseException) {
             e.printStackTrace()
         }
-        binding.tvRound.text = getString(R.string.text_date)+dateNew
+        binding.tvRound.text = getString(R.string.tv_gold_newest)+dateNew
     }
 
     override fun onDestroyView() {

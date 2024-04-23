@@ -157,7 +157,7 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 holder.imgBinding.tvContent3.text = sell
             }
         }
-        Glide.with(holder.imgBinding.imageView).load(bannerList[position].bannerappImgbackground).into(holder.imgBinding.imageView)
+        Glide.with(holder.imgBinding.imageView).load(bannerList[position].bannerappImgbackground).centerCrop().into(holder.imgBinding.imageView)
     }
     private fun getText(position: Int, id:String): String {
         when(id){

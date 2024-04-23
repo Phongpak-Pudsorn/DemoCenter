@@ -30,7 +30,7 @@
                 android:layout_marginStart="5dp"
                 android:textColor="@color/black"
                 android:fontFamily="@font/psl_kandaextra_pro_regular"
-                android:textSize="32sp"
+                android:textSize="30sp"
                 android:text="TextView" />
 
             <TextView
