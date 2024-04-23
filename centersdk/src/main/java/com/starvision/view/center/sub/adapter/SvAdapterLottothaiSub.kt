@@ -22,7 +22,7 @@ class SvAdapterLottothaiSub(private val listData: ArrayList<SvSubLottothaiModels
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is ViewHolder) {
-            holder.item_off.text = listData[position].Datarow[position].suggest_name.replace(" ", string)
+            holder.item_off.text = " "+listData[position].Datarow[position].suggest_name.replace(" ", string)
             holder.item_three.text = listData[position].Datarow[position].top_third.replace(" ", string)
             holder.item_two_up.text = listData[position].Datarow[position].top_second.replace(" ", string)
             holder.item_two_down.text = listData[position].Datarow[position].bottom_second.replace(" ", string)
