@@ -50,7 +50,7 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 holder.imgBinding.tvContent.textSize = 20f
                 holder.imgBinding.tvContent.gravity = Gravity.NO_GRAVITY
                 holder.imgBinding.tvTitle.text = "สำนัก : ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.suggest_name}"
-                holder.imgBinding.tvContent.text = "3ตัวบน  = ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.top_third}\n2ตัวบน  = ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.top_second}\n2ตัวล่าง = ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.bottom_second}"
+                holder.imgBinding.tvContent.text = "3ตัวบน   =   ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.top_third}\n2ตัวบน   =   ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.top_second}\n2ตัวล่าง  =   ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.bottom_second}"
             }
             "2" ->{
                 holder.imgBinding.tvTitle.visibility = View.VISIBLE
@@ -105,8 +105,12 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 var price = ""
                 if (bannerList[position].bannerappdataintroduce.size>0) {
                     for (i in bannerList[position].bannerappdataintroduce.indices) {
-                        oil += bannerList[position].bannerappdataintroduce[i].DataPump.Oil+"\n"
-                        price += bannerList[position].bannerappdataintroduce[i].DataPump.priceOil+"\n"
+                        if (i != 0){
+                            oil +="\n"
+                            price +="\n"
+                        }
+                        oil += bannerList[position].bannerappdataintroduce[i].DataPump.Oil
+                        price += bannerList[position].bannerappdataintroduce[i].DataPump.priceOil
                     }
                 }
                 holder.imgBinding.tvContent.text = oil
@@ -127,9 +131,14 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 if (bannerList[position].bannerappdataintroduce.size>0){
                     for (i in bannerList[position].bannerappdataintroduce.indices){
                         if (bannerList[position].bannerappdataintroduce[i].DataBank.Rate=="USD 1-20") {
-                            bank += bannerList[position].bannerappdataintroduce[i].DataBank.Bank+"\n"
-                            buy += bannerList[position].bannerappdataintroduce[i].DataBank.Buy+"\n"
-                            sell += bannerList[position].bannerappdataintroduce[i].DataBank.Sell+"\n"
+                            if (i!=0){
+                                bank += "\n"
+                                buy += "\n"
+                                sell += "\n"
+                            }
+                            bank += bannerList[position].bannerappdataintroduce[i].DataBank.Bank
+                            buy += bannerList[position].bannerappdataintroduce[i].DataBank.Buy
+                            sell += bannerList[position].bannerappdataintroduce[i].DataBank.Sell
                         }
                     }
                 }
