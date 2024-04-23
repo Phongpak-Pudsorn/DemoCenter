@@ -20,7 +20,6 @@
             android:textSize="20sp"
             android:gravity="center"
             android:fontFamily="@font/psl_kandaextra_pro_regular"
-            android:textColor="@color/red_trin"
             android:text="@string/oil_footer" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
