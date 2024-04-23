@@ -44,13 +44,23 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
         }
         when(bannerList[position].bannerappId){
             "1" ->{
+                var luckynum = ""
                 holder.imgBinding.tvTitle.visibility = View.VISIBLE
                 holder.imgBinding.tvContent2.visibility = View.GONE
                 holder.imgBinding.tvContent3.visibility = View.GONE
                 holder.imgBinding.tvContent.textSize = 20f
                 holder.imgBinding.tvContent.gravity = Gravity.NO_GRAVITY
+                if (bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.top_third!=""){
+                    luckynum += "3ตัวบน   =   ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.top_third}\n"
+                }
+                if (bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.top_second!=""){
+                    luckynum += "2ตัวบน   =   ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.top_second}\n"
+                }
+                if (bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.bottom_second!=""){
+                    luckynum += "2ตัวล่าง  =   ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.bottom_second}"
+                }
                 holder.imgBinding.tvTitle.text = "สำนัก : ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.suggest_name}"
-                holder.imgBinding.tvContent.text = "3ตัวบน   =   ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.top_third}\n2ตัวบน   =   ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.top_second}\n2ตัวล่าง  =   ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.bottom_second}"
+                holder.imgBinding.tvContent.text = luckynum
             }
             "2" ->{
                 holder.imgBinding.tvTitle.visibility = View.VISIBLE
