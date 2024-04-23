@@ -71,6 +71,7 @@ class SvSubOilFragment: DialogFragment() {
         oilList.add(SvSubOilTodayModels("1","dieselpremium",setName("dieselpremium"),"0","",setOilIcon("dieselpremium")))
         oilList.add(SvSubOilTodayModels("1","diesel",setName("diesel"),"0","",setOilIcon("diesel")))
         oilList.add(SvSubOilTodayModels("1","ngv",setName("ngv"),"0","",setOilIcon("ngv")))
+        oilList.add(SvSubOilTodayModels("1","footer","","","",""))
         SvParamsData(object :SvParamsData.PostLoadListener{
             override fun onSuccess(body: String) {
                 try {

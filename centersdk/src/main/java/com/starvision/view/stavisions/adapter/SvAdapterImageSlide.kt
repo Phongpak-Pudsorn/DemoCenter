@@ -48,7 +48,7 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 holder.imgBinding.tvContent2.visibility = View.GONE
                 holder.imgBinding.tvContent3.visibility = View.GONE
                 holder.imgBinding.tvContent.gravity = Gravity.NO_GRAVITY
-                holder.imgBinding.tvTitle.text = "สำนัก: ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.suggest_name}"
+                holder.imgBinding.tvTitle.text = "สำนัก : ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.suggest_name}"
                 holder.imgBinding.tvContent.text = "3ตัวบน  = ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.top_third}\n2ตัวบน  = ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.top_second}\n2ตัวล่าง = ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.bottom_second}"
             }
             "2" ->{
@@ -136,7 +136,7 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
     private fun getText(position: Int, id:String): String {
         when(id){
             "1" ->{
-                return "<div style='text-align:center'><h4>สำนัก: ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.suggest_name}</h4><br>" +
+                return "<div style='text-align:center'><h4>สำนัก : ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.suggest_name}</h4><br>" +
                         "<p>เลขหน้า 3ตัว :&ensp;${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.top_third}</p><br>" +
                         "<p>เลขหน้า 2ตัว :&ensp;${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.top_second}</p><br>" +
                         "<p>เลขท้าย 2ตัว :&ensp;${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.bottom_second}</p></div>"
