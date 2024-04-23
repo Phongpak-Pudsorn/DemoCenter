@@ -59,13 +59,23 @@ class SvSettingDialogFragment : DialogFragment() {
 
     private fun bindingObject(){
         binding.lnLogout.setOnClickListener {
-            mClickSettingListener.onLogout()
-            SvLogin.isLogin = false
-            SvLogin.Name = ""
-            SvLogin.Avatar = ""
-            SvLogin.Coin = ""
-            val intent = Intent(requireContext(),SvLoginActivity::class.java)
-            startActivity(intent)
+            val logoutDialog = SvLogoutConfirmDialogFragment()
+            logoutDialog.setClickListener(object : SvLogoutConfirmDialogFragment.ConfirmListener{
+                override fun onLogout() {
+                    mClickSettingListener.onLogout()
+                    SvLogin.isLogin = false
+                    SvLogin.Name = ""
+                    SvLogin.Avatar = ""
+                    SvLogin.Coin = ""
+                    val intent = Intent(requireContext(),SvLoginActivity::class.java)
+                    startActivity(intent)
+                }
+
+                override fun onCancel() {
+
+                }
+            })
+            logoutDialog.show(childFragmentManager,"")
         }
         binding.lnDelete.setOnClickListener {
             mClickSettingListener.onDelete()
