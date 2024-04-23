@@ -15,6 +15,7 @@ import com.starvision.view.center.models.SvCenterModels
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.math.roundToInt
 
 class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterModels.CenterData.PageData.BannerData>):RecyclerView.Adapter<SvAdapterImageSlide.ImageHolder>(){
     interface OnDataPass{
@@ -95,6 +96,10 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 val dateOnly = SimpleDateFormat("dd MMMM yyyy  HH:mm ", Locale("th","TH"))
                 val dateTime = dateFormat.parse(bannerList[position].bannerappdataintroduce[0].DataGb.Date)
                 val strDate = dateOnly.format(dateTime)
+                val gbBuy = intString(bannerList[position].bannerappdataintroduce[0].DataGb.Buy)
+                val gbSell = intString(bannerList[position].bannerappdataintroduce[0].DataGb.Sell)
+                val goBuy = intString(bannerList[position].bannerappdataintroduce[0].DataGo.Buy)
+                val goSell = intString(bannerList[position].bannerappdataintroduce[0].DataGo.Sell)
                 holder.imgBinding.tvContent.gravity = Gravity.NO_GRAVITY
                 holder.imgBinding.tvContent2.gravity = Gravity.CENTER
                 holder.imgBinding.tvContent3.gravity = Gravity.CENTER
@@ -133,22 +138,21 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 holder.imgBinding.tvContent.gravity = Gravity.NO_GRAVITY
                 holder.imgBinding.tvContent2.gravity = Gravity.CENTER
                 holder.imgBinding.tvContent3.gravity = Gravity.CENTER
-                holder.imgBinding.tvContent.textSize = 20f
                 var bank = "ธนาคาร\n"
                 var buy = "ซื้อ\n"
                 var sell = "ขาย\n"
                 holder.imgBinding.tvTitle.text = bannerList[position].bannerappTitle
                 if (bannerList[position].bannerappdataintroduce.size>0){
                     for (i in bannerList[position].bannerappdataintroduce.indices){
-                        if (bannerList[position].bannerappdataintroduce[i].DataBank.Rate=="USD 1-20") {
+                        if (bannerList[position].bannerappdataintroduce[i].DataBank.Rate=="USD 1-2") {
                             if (i!=0){
                                 bank += "\n"
                                 buy += "\n"
                                 sell += "\n"
                             }
                             bank += bannerList[position].bannerappdataintroduce[i].DataBank.Bank
-                            buy += bannerList[position].bannerappdataintroduce[i].DataBank.Buy
-                            sell += bannerList[position].bannerappdataintroduce[i].DataBank.Sell
+                            buy += decimals(bannerList[position].bannerappdataintroduce[i].DataBank.Buy)
+                            sell += decimals(bannerList[position].bannerappdataintroduce[i].DataBank.Sell)
                         }
                     }
                 }
@@ -159,64 +163,18 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
         }
         Glide.with(holder.imgBinding.imageView).load(bannerList[position].bannerappImgbackground).centerCrop().into(holder.imgBinding.imageView)
     }
-    private fun getText(position: Int, id:String): String {
-        when(id){
-            "1" ->{
-                return "<div style='text-align:center'><h4>สำนัก : ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.suggest_name}</h4><br>" +
-                        "<p>เลขหน้า 3ตัว :&ensp;${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.top_third}</p><br>" +
-                        "<p>เลขหน้า 2ตัว :&ensp;${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.top_second}</p><br>" +
-                        "<p>เลขท้าย 2ตัว :&ensp;${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.bottom_second}</p></div>"
-            }
-            "2" ->{
-                val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale("th","TH"))
-                val dateOnly = SimpleDateFormat("dd MMMM yyyy", Locale("th","TH"))
-                val dateTime = dateFormat.parse(bannerList[position].bannerappdataintroduce[0].DatarCheckLotto.result_date)
-                val strDate = dateOnly.format(dateTime)
-                return "<div style='text-align:center'><h4>หวยงวด ${strDate}</h4></div><br>" +
-                        "<div style='text-align:center'><h5>รางวัลที่หนึ่ง = ${bannerList[position].bannerappdataintroduce[0].DatarCheckLotto.first}</h5></div><br>" +
-                        "<div style='text-align:center'><h6>เลขท้าย 2 ตัว = ${bannerList[position].bannerappdataintroduce[0].DatarCheckLotto.last_two}</h6></div>"
-            }
-            "3" ->{
-                return ""
-            }
-            "4" ->{
-                return "<div style='text-align:center'><p>${bannerList[position].bannerappdataintroduce[0].DatarZodice.result_date}</p></div>"
-            }
-            "5" ->{
-                val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale("th","TH"))
-                val dateOnly = SimpleDateFormat("dd MMMM yyyy  HH:mm ", Locale("th","TH"))
-                val dateTime = dateFormat.parse(bannerList[position].bannerappdataintroduce[0].DataGb.Date)
-                val strDate = dateOnly.format(dateTime)
-                return "<html><body><div style='text-align:center'><h5>ราคาทองวันที่ ${strDate}</h5></div><br>" +
-                        "<h6>ประเภทของทอง&emsp;&emsp;ซื้อ&emsp;&emsp;&emsp;ขาย</h6><br>"+
-                        "<h6>ทองคำแท่ง&ensp;&emsp;&emsp;${bannerList[position].bannerappdataintroduce[0].DataGb.Buy}&emsp; ${bannerList[position].bannerappdataintroduce[0].DataGb.Sell}</h6><br>" +
-                        "<h6>ทองรูปพรรณ&ensp;&emsp;${bannerList[position].bannerappdataintroduce[1].DataGo.Buy}&emsp; ${bannerList[position].bannerappdataintroduce[1].DataGo.Sell}</h6>"
-            }
-            "6" ->{
-                var oilHtml = "<div style='text-align:center'><h4>${bannerList[position].bannerappTitle}</h4></div><br>"
-                if (bannerList[position].bannerappdataintroduce.size>0){
-                    oilHtml += "<ui>"
-                    for (i in bannerList[position].bannerappdataintroduce.indices){
-                        oilHtml +="<li>${bannerList[position].bannerappdataintroduce[i].DataPump.Oil}&emsp;&emsp;${bannerList[position].bannerappdataintroduce[i].DataPump.priceOil}</li>"
-                    }
-                    oilHtml += "</ui>"
-                }
-                return oilHtml
-            }
-            "7" ->{
-                var exchange = "<div style='text-align:center'><h4>${bannerList[position].bannerappTitle}</h4></div><br>"
-                if (bannerList[position].bannerappdataintroduce.size>0){
-                    exchange += "<ui>"
-                    for (i in bannerList[position].bannerappdataintroduce.indices){
-                        if (bannerList[position].bannerappdataintroduce[i].DataBank.Rate=="USD 1-20") {
-                            exchange += "<li>${bannerList[position].bannerappdataintroduce[i].DataBank.Bank}</li>"
-                        }
-                    }
-                    exchange += "</ui>"
-                }
-                return exchange
-            }
+    private fun decimals(num: String): String {
+        return try {
+            val dec = num.toDouble()
+            val result = (dec * 100.0).roundToInt() / 100.0
+            "%.2f".format(result)
+        }catch (e :java.lang.Exception){
+            "-"
         }
-        return ""
+    }
+    private fun intString(num:String): String {
+        val dec = num.toDouble()
+        val result = dec.toInt()
+        return result.toString()
     }
 }
