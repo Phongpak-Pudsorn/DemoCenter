@@ -77,7 +77,7 @@
         - ร่วมด้วยช่วยกันแชร์ เลขดัง ของคุณใน Vote หวย
         - สแกนเลขดัง ของท่านเองบนบาร์โค้ดสลากสินค้าต่างๆ</string>
     <string name="lotto_more">ดูเพิ่มเติมเต็มๆได้ที่ \"เลขเด็ดหวยดัง - ตรวจหวย\"</string>
-    <string name="lotto_name">เลขเด็ดหวยดัง - ตรวจหวย</string>
+    <string name="lotto_name">เลขเด็ดหวยดัง</string>
     <string name="text_bureau_off">สำนัก : </string>
     <string name="text_3_off">3 ตัวบน :</string>
     <string name="text_2_up_off">2 ตัวบน :</string>
@@ -105,7 +105,7 @@
     <!--  ตรวจหวย  -->
     <string name="checklotto_app">ตรวจสลากกินแบ่ง (Lottery Thai) - ตรวจหวยย้อนหลัง รวดเร็วทันใจ พร้อมระบบฝากตรวจล่วงหน้า ช่วยให้คุณตรวจหวยได้อย่างสะดวกสบายยิ่งขึ้น</string>
     <string name="checklotto_more">ดูเพิ่มเติมเต็มๆได้ที่ \"ตรวจหวย ตรวจลอตเตอรี่ QRCode\"</string>
-    <string name="checklotto_name">ตรวจหวย ตรวจลอตเตอรี่ QRCode</string>
+    <string name="checklotto_name">ตรวจหวย</string>
     <string name="checklotto_package">com.smileapp.lottery</string>
     <string name="text_name_app_check_lotto">ตรวจหวย</string>
     <string name="check_one">รางวัลที่ 1</string>
@@ -164,12 +164,12 @@
     <string name="today_cheapest">ราคาน้ำมันถูกสุดวันนี้</string>
     <string name="oil_app">เกาะติดสถานการณ์ราคาน้ำมันรายวัน ได้แล้ววันนี้</string>
     <string name="oil_more">ดูเพิ่มเติมเต็มๆได้ที่ \"ราคาน้ำมันวันนี้\"</string>
-    <string name="oil_name">ราคาน้ำมัน</string>
+    <string name="oil_name">ราคาน้ำมันวันนี้</string>
     <string name="oil_footer">* ราคาปลีกในเขต กทม. และปริมณฑล ไม่รวมภาษีบำรุงท้องถิ่น\n(ถ้ามี)</string>
     <!-- อัตราแลกเปลี่ยน-->
     <string name="exchange_app">ศูนย์รวมข้อมูลอัตราการแลกเปลี่ยนจากที่ต่างๆในแอปเดียว</string>
     <string name="exchange_more">ดูเพิ่มเติมเต็มๆได้ที่ \"อัตราแลกเปลี่ยนวันนี้\"</string>
-    <string name="exchange_name">อัตราแลกเปลี่ยน</string>
+    <string name="exchange_name">อัตราแลกเปลี่ยนวันนี้</string>
     <string name="bank">ธนาคาร</string>
     <string name="buy">ซื้อ (THB)</string>
     <string name="sell">ขาย (THB)</string>

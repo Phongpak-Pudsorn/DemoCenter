@@ -38,7 +38,7 @@
                 android:fontFamily="@font/psl156"
                 android:text="@string/lotto_name"
                 android:textColor="@color/white"
-                android:textSize="22sp" />
+                android:textSize="30sp" />
         </RelativeLayout>
 
     </LinearLayout>
