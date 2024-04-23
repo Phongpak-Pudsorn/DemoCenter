@@ -36,7 +36,7 @@
                 android:layout_gravity="center_vertical"
                 android:gravity="center"
                 android:text="@string/checklotto_name"
-                android:fontFamily="@font/psl156"
+                android:fontFamily="@font/psl_kandaextra_pro_regular"
                 android:textColor="@color/white"
                 android:textSize="22sp" />
         </RelativeLayout>
@@ -75,7 +75,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@color/grey"
-                        android:fontFamily="@font/psl156"
+                        android:fontFamily="@font/psl_kandaextra_pro_regular"
                         android:paddingLeft="12dp"
                         android:paddingTop="8dp"
                         android:paddingRight="12dp"
@@ -131,7 +131,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="2.5"
                     android:background="@mipmap/btn_checklotto"
-                    android:fontFamily="@font/psl156"
+                    android:fontFamily="@font/psl_kandaextra_pro_regular"
                     android:gravity="center"
                     android:maxLines="1"
                     android:text="@string/text_check"
@@ -214,7 +214,7 @@
                     android:ellipsize="marquee"
                     android:freezesText="false"
                     android:marqueeRepeatLimit="marquee_forever"
-                    android:fontFamily="@font/psl156"
+                    android:fontFamily="@font/psl_kandaextra_pro_regular"
                     android:text="@string/checklotto_app" />
 
                 <TextView
@@ -228,7 +228,7 @@
                     android:ellipsize="marquee"
                     android:freezesText="false"
                     android:marqueeRepeatLimit="marquee_forever"
-                    android:fontFamily="@font/psl156"
+                    android:fontFamily="@font/psl_kandaextra_pro_regular"
                     android:text="@string/checklotto_more" />
             </LinearLayout>
 
@@ -251,7 +251,7 @@
                     android:background="@drawable/btn_login"
                     android:textColor="@color/white"
                     android:textSize="16sp"
-                    android:fontFamily="@font/psl156"
+                    android:fontFamily="@font/psl_kandaextra_pro_regular"
                     android:text="เพิ่มเติม >" />
             </androidx.cardview.widget.CardView>
         </LinearLayout>

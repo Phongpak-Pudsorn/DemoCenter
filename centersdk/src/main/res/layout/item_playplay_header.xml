@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:paddingStart="25dp"
-            android:fontFamily="@font/psl156"
+            android:fontFamily="@font/psl_kandaextra_pro_regular"
             android:text="Title"
             android:textSize="30dp"
             android:textStyle="bold" />
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:paddingStart="10dp"
-            android:fontFamily="@font/psl156"
+            android:fontFamily="@font/psl_kandaextra_pro_regular"
             android:text="Summary"
             android:textSize="20dp" />
     </LinearLayout>

@@ -67,7 +67,7 @@
                             android:id="@+id/tvUsername"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:fontFamily="@font/psl156"
+                            android:fontFamily="@font/psl_kandaextra_pro_regular"
                             android:gravity="end"
                             android:textColor="@color/white"
                             android:textSize="22sp" />
@@ -87,7 +87,7 @@
                                 android:gravity="center|end"
                                 android:text="@string/text_coin"
                                 android:textColor="@color/white"
-                                android:fontFamily="@font/psl156"
+                                android:fontFamily="@font/psl_kandaextra_pro_regular"
                                 android:visibility="invisible"
                                 android:textSize="18sp" />
 
@@ -97,7 +97,7 @@
                                 android:layout_height="match_parent"
                                 android:gravity="center|end"
                                 android:textColor="@color/white"
-                                android:fontFamily="@font/psl156"
+                                android:fontFamily="@font/psl_kandaextra_pro_regular"
                                 android:visibility="invisible"
                                 android:textSize="18sp" />
                         </LinearLayout>

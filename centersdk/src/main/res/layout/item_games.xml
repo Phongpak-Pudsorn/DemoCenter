@@ -36,7 +36,7 @@
             android:layout_height="match_parent"
             android:background="@color/bg_name_lucky"
             android:gravity="center"
-            android:fontFamily="@font/psl156"
+            android:fontFamily="@font/psl_kandaextra_pro_regular"
             android:textColor="@color/white_dark"
             android:textSize="19sp"
             android:text="@string/nameGame" />

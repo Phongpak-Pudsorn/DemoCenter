@@ -38,7 +38,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:textSize="28sp"
-                android:fontFamily="@font/psl156"
+                android:fontFamily="@font/psl_kandaextra_pro_regular"
                 android:textColor="@color/black"
                 android:text="@string/register" />
         </LinearLayout>
@@ -82,7 +82,7 @@
                     android:background="@color/transparent"
                     android:layout_weight="1"
                     android:hint="@string/username"
-                    android:fontFamily="@font/psl156"
+                    android:fontFamily="@font/psl_kandaextra_pro_regular"
                     android:inputType="textPersonName"
                     android:padding="10dp"
                     android:textColor="@color/black"
@@ -121,7 +121,7 @@
                     android:layout_height="wrap_content"
                     android:background="@color/transparent"
                     android:hint="@string/password"
-                    android:fontFamily="@font/psl156"
+                    android:fontFamily="@font/psl_kandaextra_pro_regular"
                     android:inputType="textPassword"
                     android:padding="10dp"
                     android:textColor="@color/black"
@@ -170,7 +170,7 @@
                     android:layout_height="wrap_content"
                     android:background="@color/transparent"
                     android:hint="@string/confirm_password"
-                    android:fontFamily="@font/psl156"
+                    android:fontFamily="@font/psl_kandaextra_pro_regular"
                     android:inputType="textPassword"
                     android:padding="10dp"
                     android:textColor="@color/black"
@@ -219,7 +219,7 @@
                     android:layout_weight="1"
                     android:background="@color/transparent"
                     android:hint="@string/e_mail"
-                    android:fontFamily="@font/psl156"
+                    android:fontFamily="@font/psl_kandaextra_pro_regular"
                     android:inputType="textEmailAddress"
                     android:padding="10dp"
                     android:textColor="@color/black"
@@ -246,7 +246,7 @@
                 android:buttonTint="@color/grey_text"
                 android:text="@string/please_click_to_accept"
                 android:textSize="19sp"
-                android:fontFamily="@font/psl156"
+                android:fontFamily="@font/psl_kandaextra_pro_regular"
                 android:textColor="@color/grey_text" />
 
             <TextView
@@ -256,7 +256,7 @@
                 android:layout_marginStart="5dp"
                 android:gravity="center|start"
                 android:text="@string/privacy_policy"
-                android:fontFamily="@font/psl156"
+                android:fontFamily="@font/psl_kandaextra_pro_regular"
                 android:textColor="@color/blue_text_selector"
                 android:textSize="19sp" />
 
@@ -278,7 +278,7 @@
                 android:background="@drawable/btn_login"
                 android:textSize="26sp"
                 android:textColor="@color/white"
-                android:fontFamily="@font/psl156"
+                android:fontFamily="@font/psl_kandaextra_pro_regular"
                 android:text="@string/register"
                 android:gravity="center"
                 android:paddingTop="8dp"

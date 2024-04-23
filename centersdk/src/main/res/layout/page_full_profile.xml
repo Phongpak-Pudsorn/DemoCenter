@@ -74,7 +74,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:fontFamily="@font/psl156"
+                        android:fontFamily="@font/psl_kandaextra_pro_regular"
                         android:text="User Test"
                         android:textColor="@color/black_light"
                         android:textSize="24sp"
@@ -108,7 +108,7 @@
                         android:paddingStart="5dp"
                         android:paddingEnd="5dp"
                         android:paddingBottom="5dp"
-                        android:fontFamily="@font/psl156"
+                        android:fontFamily="@font/psl_kandaextra_pro_regular"
                         android:text="XXXXXX"
                         android:textColor="@color/black_light"
                         android:textSize="22sp" />
@@ -145,7 +145,7 @@
                             android:padding="5dp"
                             android:layout_marginStart="5dp"
                             android:text="8,888,888"
-                            android:fontFamily="@font/psl156"
+                            android:fontFamily="@font/psl_kandaextra_pro_regular"
                             android:textColor="@color/black_light"
                             android:textSize="24sp" />
 
@@ -161,7 +161,7 @@
                     android:layout_marginBottom="20dp"
                     android:layout_marginStart="35dp"
                     android:layout_marginEnd="35dp"
-                    android:fontFamily="@font/psl156"
+                    android:fontFamily="@font/psl_kandaextra_pro_regular"
                     android:gravity="center"
                     android:background="@drawable/btn_topup_bar"
                     android:text="@string/topup"

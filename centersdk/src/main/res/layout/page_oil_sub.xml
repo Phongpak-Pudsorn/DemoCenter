@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@color/grey"
-                    android:fontFamily="@font/psl156"
+                    android:fontFamily="@font/psl_kandaextra_pro_regular"
                     android:paddingLeft="12dp"
                     android:paddingTop="8dp"
                     android:paddingRight="12dp"
@@ -151,7 +151,7 @@
                         android:ellipsize="marquee"
                         android:freezesText="false"
                         android:marqueeRepeatLimit="marquee_forever"
-                        android:fontFamily="@font/psl156"
+                        android:fontFamily="@font/psl_kandaextra_pro_regular"
                         android:text="@string/oil_app" />
 
                     <TextView
@@ -160,7 +160,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/black_light"
                         android:textSize="17sp"
-                        android:fontFamily="@font/psl156"
+                        android:fontFamily="@font/psl_kandaextra_pro_regular"
                         android:singleLine="true"
                         android:focusableInTouchMode="true"
                         android:ellipsize="marquee"
@@ -188,7 +188,7 @@
                         android:background="@drawable/btn_login"
                         android:textColor="@color/white"
                         android:textSize="16sp"
-                        android:fontFamily="@font/psl156"
+                        android:fontFamily="@font/psl_kandaextra_pro_regular"
                         android:text="เพิ่มเติม >" />
                 </androidx.cardview.widget.CardView>
             </LinearLayout>

@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center_vertical"
-                android:fontFamily="@font/psl156"
+                android:fontFamily="@font/psl_kandaextra_pro_regular"
                 android:gravity="center"
                 android:text="@string/goldToday_name"
                 android:textColor="@color/white"
@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/grey"
-                android:fontFamily="@font/psl156"
+                android:fontFamily="@font/psl_kandaextra_pro_regular"
                 android:paddingLeft="16dp"
                 android:paddingTop="8dp"
                 android:paddingRight="12dp"
@@ -110,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/grey"
-                android:fontFamily="@font/psl156"
+                android:fontFamily="@font/psl_kandaextra_pro_regular"
                 android:paddingStart="10dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="5dp"
@@ -144,7 +144,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/psl156"
+                    android:fontFamily="@font/psl_kandaextra_pro_regular"
                     android:text="@string/tv_gold_buy"
                     android:textColor="@color/black"
                     android:textSize="24sp" />
@@ -154,7 +154,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/psl156"
+                    android:fontFamily="@font/psl_kandaextra_pro_regular"
                     android:text="@string/tv_gold_sell"
                     android:textColor="@color/black"
                     android:textSize="24sp" />
@@ -172,7 +172,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/psl156"
+                    android:fontFamily="@font/psl_kandaextra_pro_regular"
                     android:textColor="@color/black_light"
                     android:textSize="24sp" />
 
@@ -181,7 +181,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/psl156"
+                    android:fontFamily="@font/psl_kandaextra_pro_regular"
                     android:textColor="@color/black_light"
                     android:textSize="24sp" />
             </LinearLayout>
@@ -204,7 +204,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="5dp"
-                        android:fontFamily="@font/psl156"
+                        android:fontFamily="@font/psl_kandaextra_pro_regular"
                         android:textColor="@color/black_light"
                         android:textSize="24sp" />
 
@@ -225,7 +225,7 @@
                         android:id="@+id/tv_progress_sell"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:fontFamily="@font/psl156"
+                        android:fontFamily="@font/psl_kandaextra_pro_regular"
                         android:textColor="@color/black_light"
                         android:textSize="24sp" />
 
@@ -270,7 +270,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/grey"
-                android:fontFamily="@font/psl156"
+                android:fontFamily="@font/psl_kandaextra_pro_regular"
                 android:paddingStart="10dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="5dp"
@@ -303,7 +303,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/psl156"
+                    android:fontFamily="@font/psl_kandaextra_pro_regular"
                     android:text="@string/tv_gold_buy"
                     android:layout_marginBottom="5dp"
                     android:textColor="@color/black"
@@ -314,7 +314,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/psl156"
+                    android:fontFamily="@font/psl_kandaextra_pro_regular"
                     android:text="@string/tv_gold_sell"
                     android:textColor="@color/black"
                     android:textSize="24sp" />
@@ -332,7 +332,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/psl156"
+                    android:fontFamily="@font/psl_kandaextra_pro_regular"
                     android:textColor="@color/black_light"
                     android:textSize="24sp" />
 
@@ -341,7 +341,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/psl156"
+                    android:fontFamily="@font/psl_kandaextra_pro_regular"
                     android:textColor="@color/black_light"
                     android:textSize="24sp" />
             </LinearLayout>
@@ -363,7 +363,7 @@
                         android:id="@+id/tv_progress_buy2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:fontFamily="@font/psl156"
+                        android:fontFamily="@font/psl_kandaextra_pro_regular"
                         android:layout_marginBottom="5dp"
                         android:textColor="@color/black_light"
                         android:textSize="24sp" />
@@ -385,7 +385,7 @@
                         android:id="@+id/tv_progress_sell2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:fontFamily="@font/psl156"
+                        android:fontFamily="@font/psl_kandaextra_pro_regular"
                         android:textColor="@color/black_light"
                         android:textSize="24sp" />
 
@@ -459,7 +459,7 @@
                     android:ellipsize="marquee"
                     android:freezesText="false"
                     android:marqueeRepeatLimit="marquee_forever"
-                    android:fontFamily="@font/psl156"
+                    android:fontFamily="@font/psl_kandaextra_pro_regular"
                     android:text="@string/goldToday_app" />
 
                 <TextView
@@ -473,7 +473,7 @@
                     android:ellipsize="marquee"
                     android:freezesText="false"
                     android:marqueeRepeatLimit="marquee_forever"
-                    android:fontFamily="@font/psl156"
+                    android:fontFamily="@font/psl_kandaextra_pro_regular"
                     android:text="@string/goldToday_more" />
             </LinearLayout>
 
@@ -496,7 +496,7 @@
                     android:background="@drawable/btn_login"
                     android:textColor="@color/white"
                     android:textSize="16sp"
-                    android:fontFamily="@font/psl156"
+                    android:fontFamily="@font/psl_kandaextra_pro_regular"
                     android:text="เพิ่มเติม >" />
             </androidx.cardview.widget.CardView>
         </LinearLayout>

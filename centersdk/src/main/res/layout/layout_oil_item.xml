@@ -33,7 +33,7 @@
                 android:maxLines="2"
                 android:text="New Text"
                 android:textSize="26sp"
-                android:fontFamily="@font/psl156"
+                android:fontFamily="@font/psl_kandaextra_pro_regular"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/black" />
         </LinearLayout>
@@ -88,7 +88,7 @@
                     android:gravity="center"
                     android:maxLines="1"
                     android:text="222.00"
-                    android:fontFamily="@font/psl156"
+                    android:fontFamily="@font/psl_kandaextra_pro_regular"
                     android:textSize="26sp"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/blue_text" />

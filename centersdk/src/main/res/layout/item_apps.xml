@@ -37,7 +37,7 @@
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:fontFamily="@font/psl156"
+            android:fontFamily="@font/psl_kandaextra_pro_regular"
             android:gravity="center"
             android:lineHeight="15dp"
             android:maxLines="2"
