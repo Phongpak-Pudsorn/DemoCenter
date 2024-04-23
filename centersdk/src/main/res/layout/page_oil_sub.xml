@@ -44,7 +44,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/oil_name"
-                    android:fontFamily="@font/psl156"
+                    android:fontFamily="@font/psl_kandaextra_pro_regular"
                     android:textColor="@color/white"
                     android:textSize="30sp" />
             </RelativeLayout>
