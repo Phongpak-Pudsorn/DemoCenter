@@ -64,10 +64,22 @@ class SvSubGoldToDayFragment : DialogFragment() {
                 val listGold = Gson().fromJson(body,SvSubGoldToDayModels::class.java)
                 if(listGold.Status == "True") {
                     //แท่ง
+                    var gbbChange = ""
+                    var gbsChange = ""
+                    gbbChange = if (listGold.Datarow[0].gbb_change>0) {
+                        "+" + listGold.Datarow[0].gbb_change.toString()
+                    }else{
+                        listGold.Datarow[0].gbb_change.toString()
+                    }
+                    gbsChange = if (listGold.Datarow[0].gbs_change>0){
+                        "+" + listGold.Datarow[0].gbs_change.toString()
+                    }else{
+                        listGold.Datarow[0].gbs_change.toString()
+                    }
                     binding.tvPriceBuy.text = listGold.Datarow[0].gbbuy
                     binding.tvPriceSell.text = listGold.Datarow[0].gbsell
-                    binding.tvProgressBuy.text = listGold.Datarow[0].gbb_change.toString()
-                    binding.tvProgressSell.text = listGold.Datarow[0].gbs_change.toString()
+                    binding.tvProgressBuy.text = gbbChange
+                    binding.tvProgressSell.text = gbsChange
                     if(listGold.Datarow[0].gbb_change < 0){
                         binding.tvProgressBuy.setTextColor(requireActivity().getColor(R.color.red))
                         binding.imgBuy.setImageDrawable(requireActivity().getDrawable(R.drawable.baseline_arrow_drop_down_24_red))
@@ -92,10 +104,22 @@ class SvSubGoldToDayFragment : DialogFragment() {
                     }
 
                     //พรรณ
+                    var gobChange = ""
+                    var gosChange = ""
+                    gobChange = if (listGold.Datarow[0].gob_change>0) {
+                        "+" + listGold.Datarow[0].gob_change.toString()
+                    }else{
+                        listGold.Datarow[0].gob_change.toString()
+                    }
+                    gosChange = if (listGold.Datarow[0].gos_change>0){
+                        "+" + listGold.Datarow[0].gos_change.toString()
+                    }else{
+                        listGold.Datarow[0].gos_change.toString()
+                    }
                     binding.tvPriceBuy2.text = listGold.Datarow[0].gobuy
                     binding.tvPriceSell2.text = listGold.Datarow[0].gosell
-                    binding.tvProgressBuy2.text = listGold.Datarow[0].gob_change.toString()
-                    binding.tvProgressSell2.text = listGold.Datarow[0].gos_change.toString()
+                    binding.tvProgressBuy2.text = gobChange
+                    binding.tvProgressSell2.text = gosChange
                     if(listGold.Datarow[0].gob_change < 0){
                         binding.tvProgressBuy2.setTextColor(requireActivity().getColor(R.color.red))
                         binding.imgBuy2.setImageDrawable(requireActivity().getDrawable(R.drawable.baseline_arrow_drop_down_24_red))

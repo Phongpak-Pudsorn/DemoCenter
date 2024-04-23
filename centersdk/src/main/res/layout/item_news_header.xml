@@ -36,8 +36,7 @@
             android:gravity="start"
             android:text="@string/news_today"
             android:textColor="@color/black"
-            android:textSize="32sp"
-            android:textStyle="bold" />
+            android:textSize="32sp"/>
 
         <View
             android:id="@+id/line2"
