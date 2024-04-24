@@ -77,7 +77,7 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 val dateTime = dateFormat.parse(bannerList[position].bannerappdataintroduce[0].DatarCheckLotto.result_date)
                 dateTime.year += 543
                 val strDate = dateOnly.format(dateTime)
-                holder.imgBinding.tvTitle.text = "ผลสลากกินแบ่ง  $strDate"
+                holder.imgBinding.tvTitle.text = "ผลสลากกินแบ่ง $strDate"
                 holder.imgBinding.tvContent.textSize = 20f
                 holder.imgBinding.tvContent.gravity = Gravity.CENTER
                 holder.imgBinding.tvContent.text = "รางวัลที่ 1 = ${bannerList[position].bannerappdataintroduce[0].DatarCheckLotto.first}\n\nเลขท้าย 2 ตัว = ${bannerList[position].bannerappdataintroduce[0].DatarCheckLotto.last_two}"
