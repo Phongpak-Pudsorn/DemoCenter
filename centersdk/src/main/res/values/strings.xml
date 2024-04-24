@@ -95,7 +95,7 @@
     <string name="e_mail_profile">E-mail :</string>
     <string name="account_management_profile">ตั้งค่าบัญชี</string>
     <string name="coupon">เติมเงิน</string>
-    <string name="logout_profile">ล็อกเอ้าท์</string>
+    <string name="logout_profile">ออกจากระบบ</string>
     <string name="account_bar_profile">บัญชี</string>
     <string name="facebook_profile">Facebook</string>
     <string name="line_profile">Line</string>

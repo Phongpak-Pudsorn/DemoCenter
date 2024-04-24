@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,6 +22,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingTop="5dp"
             android:orientation="vertical">
 
             <TextView
@@ -29,27 +30,35 @@
                 android:layout_height="wrap_content"
                 android:text="ตั้งค่า"
                 android:textColor="@color/bg_name_lucky"
-                android:textSize="36sp"
+                android:textSize="32sp"
                 android:fontFamily="@font/psl_kandaextra_pro_regular"
                 android:layout_marginTop="10dp"
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="20dp"
                 app:layout_constraintStart_toStartOf="@+id/cardView"
                 app:layout_constraintTop_toTopOf="@+id/cardView" />
+
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/black_trin"
+                android:layout_height="2dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:paddingTop="40dp"
+                android:paddingTop="5dp"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/ln_policy"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginEnd="40dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@drawable/btn_more"
                     android:orientation="horizontal"
                     android:visibility="visible">
@@ -57,7 +66,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
@@ -71,14 +80,14 @@
                             android:padding="5dp"
                             android:text="@string/privacy_policy"
                             android:textColor="@color/black_light"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
+                            android:textSize="24sp" />
 
                     </LinearLayout>
 
                     <ImageView
                         android:layout_width="35dp"
                         android:layout_height="35dp"
+                        android:padding="5dp"
                         android:src="@mipmap/new_privacy_policy" />
 
                 </LinearLayout>
@@ -95,9 +104,9 @@
                     android:id="@+id/ln_delete"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginEnd="40dp"
+                    android:layout_marginEnd="20dp"
                     android:orientation="horizontal"
                     android:background="@drawable/btn_more"
                     android:visibility="visible">
@@ -106,7 +115,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:orientation="horizontal">
 
                         <TextView
@@ -119,14 +128,14 @@
                             android:padding="5dp"
                             android:text="@string/delete_account"
                             android:textColor="@color/black_light"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
+                            android:textSize="24sp" />
 
                     </LinearLayout>
 
                     <ImageView
                         android:layout_width="35dp"
                         android:layout_height="35dp"
+                        android:padding="2dp"
                         android:src="@mipmap/accountmanagement2" />
 
                 </LinearLayout>
@@ -143,16 +152,16 @@
                     android:id="@+id/ln_logout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="40dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginEnd="40dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@drawable/btn_more"
                     android:orientation="horizontal">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
@@ -166,13 +175,13 @@
                             android:fontFamily="@font/psl_kandaextra_pro_regular"
                             android:text="@string/logout_profile"
                             android:textColor="@color/black_light"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
+                            android:textSize="24sp" />
                     </LinearLayout>
 
                     <ImageView
                         android:layout_width="35dp"
                         android:layout_height="35dp"
+                        android:padding="2dp"
                         android:src="@mipmap/logout" />
 
                 </LinearLayout>
@@ -367,7 +376,8 @@
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="@+id/cardView"
         app:layout_constraintTop_toTopOf="@+id/cardView">
 
