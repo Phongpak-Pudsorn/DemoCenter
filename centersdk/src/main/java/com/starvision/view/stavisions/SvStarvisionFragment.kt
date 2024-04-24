@@ -85,7 +85,9 @@ class SvStarvisionFragment:Fragment() {
                     newsList.add(SvCenterModels.CenterData.PageData.NewsData.News(0,"header","","","","","",""))
                     for (i in list.data.PageCenter[0].BannerApp.indices){
                         if (list.data.PageCenter[0].BannerApp[i].bannerappLinkstoregoogle != SvConst.appPackage) {
-                            bannerList.add(list.data.PageCenter[0].BannerApp[i])
+//                            if(SvConst.checkStatusApp(list.data.PageCenter[0].BannerApp[i].bannerappId)) {
+                                bannerList.add(list.data.PageCenter[0].BannerApp[i])
+//                            }
                         }
                     }
                     for (i in list.data.PageCenter[0].IconApp.indices) {

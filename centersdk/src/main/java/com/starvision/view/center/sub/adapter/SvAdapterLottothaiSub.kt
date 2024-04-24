@@ -11,7 +11,7 @@ import java.util.ArrayList
 
 class SvAdapterLottothaiSub(private val listData: ArrayList<SvSubLottothaiModels>)
     :RecyclerView.Adapter<RecyclerView.ViewHolder>(){
-    var string = "  "
+    var string = " "
     private val TAG = javaClass.simpleName
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

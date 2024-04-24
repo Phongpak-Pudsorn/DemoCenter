@@ -34,9 +34,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center_vertical"
+                android:fontFamily="@font/psl_kandaextra_pro_regular"
                 android:gravity="center"
                 android:text="@string/checklotto_name"
-                android:fontFamily="@font/psl_kandaextra_pro_regular"
                 android:textColor="@color/white"
                 android:textSize="30sp" />
         </RelativeLayout>
