@@ -46,7 +46,9 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
         when(bannerList[position].bannerappId){
             "1" ->{
                 var luckynum = ""
-                holder.imgBinding.tvTitle.visibility = View.VISIBLE
+                holder.imgBinding.tvClan.visibility = View.VISIBLE
+                holder.imgBinding.tvDate.visibility = View.VISIBLE
+                holder.imgBinding.tvTitle.visibility = View.GONE
                 holder.imgBinding.tvContent2.visibility = View.GONE
                 holder.imgBinding.tvContent3.visibility = View.GONE
                 holder.imgBinding.tvContent.textSize = 20f
@@ -65,10 +67,13 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 if (bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.bottom_second!=""){
                     luckynum += "2 ตัวล่าง  =   ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.bottom_second}"
                 }
-                holder.imgBinding.tvTitle.text = "${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.suggest_name} $strDate"
+                holder.imgBinding.tvClan.text = "${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.suggest_name}"
+                holder.imgBinding.tvDate.text = strDate
                 holder.imgBinding.tvContent.text = luckynum
             }
             "2" ->{
+                holder.imgBinding.tvClan.visibility = View.GONE
+                holder.imgBinding.tvDate.visibility = View.GONE
                 holder.imgBinding.tvTitle.visibility = View.VISIBLE
                 holder.imgBinding.tvContent2.visibility = View.GONE
                 holder.imgBinding.tvContent3.visibility = View.GONE
@@ -86,6 +91,8 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
 
             }
             "4" ->{
+                holder.imgBinding.tvClan.visibility = View.GONE
+                holder.imgBinding.tvDate.visibility = View.GONE
                 holder.imgBinding.tvTitle.visibility = View.GONE
                 holder.imgBinding.tvContent2.visibility = View.GONE
                 holder.imgBinding.tvContent3.visibility = View.GONE
@@ -95,6 +102,8 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 holder.imgBinding.tvContent.text = arr[0]+"\n"+arr[1]
             }
             "5" ->{
+                holder.imgBinding.tvClan.visibility = View.GONE
+                holder.imgBinding.tvDate.visibility = View.GONE
                 holder.imgBinding.tvTitle.visibility = View.VISIBLE
                 holder.imgBinding.tvContent2.visibility = View.VISIBLE
                 holder.imgBinding.tvContent3.visibility = View.VISIBLE
@@ -120,6 +129,8 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
 
             }
             "6" ->{
+                holder.imgBinding.tvClan.visibility = View.GONE
+                holder.imgBinding.tvDate.visibility = View.GONE
                 holder.imgBinding.tvTitle.visibility = View.VISIBLE
                 holder.imgBinding.tvContent2.visibility = View.VISIBLE
                 holder.imgBinding.tvContent3.visibility = View.GONE
@@ -146,6 +157,8 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 holder.imgBinding.tvContent2.text = price
             }
             "7" ->{
+                holder.imgBinding.tvClan.visibility = View.GONE
+                holder.imgBinding.tvDate.visibility = View.GONE
                 holder.imgBinding.tvTitle.visibility = View.VISIBLE
                 holder.imgBinding.tvContent2.visibility = View.VISIBLE
                 holder.imgBinding.tvContent3.visibility = View.VISIBLE
