@@ -96,14 +96,12 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 val dateOnly = SimpleDateFormat("dd MMMM yyyy  HH:mm ", Locale("th","TH"))
                 val dateTime = dateFormat.parse(bannerList[position].bannerappdataintroduce[0].DataGb.Date)
                 val strDate = dateOnly.format(dateTime)
-                val gbBuy = intString(bannerList[position].bannerappdataintroduce[0].DataGb.Buy)
-                val gbSell = intString(bannerList[position].bannerappdataintroduce[0].DataGb.Sell)
-                val goBuy = intString(bannerList[position].bannerappdataintroduce[0].DataGo.Buy)
-                val goSell = intString(bannerList[position].bannerappdataintroduce[0].DataGo.Sell)
                 holder.imgBinding.tvContent.gravity = Gravity.NO_GRAVITY
                 holder.imgBinding.tvContent2.gravity = Gravity.CENTER
                 holder.imgBinding.tvContent3.gravity = Gravity.CENTER
                 holder.imgBinding.tvContent.textSize = 20f
+                holder.imgBinding.tvContent2.textSize = 20f
+                holder.imgBinding.tvContent3.textSize = 20f
                 holder.imgBinding.tvTitle.text = "ราคาทองวันที่ $strDate"
                 holder.imgBinding.tvContent.text = "\nทองคำแท่ง\nทองรูปพรรณ"
                 holder.imgBinding.tvContent2.text = "ซื้อ\n${bannerList[position].bannerappdataintroduce[0].DataGb.Buy}\n${bannerList[position].bannerappdataintroduce[1].DataGo.Buy}"
@@ -111,10 +109,12 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
 
             }
             "6" ->{
+                holder.imgBinding.tvTitle.visibility = View.VISIBLE
                 holder.imgBinding.tvContent2.visibility = View.VISIBLE
                 holder.imgBinding.tvContent3.visibility = View.GONE
                 holder.imgBinding.tvContent.gravity = Gravity.NO_GRAVITY
                 holder.imgBinding.tvContent.textSize = 20f
+                holder.imgBinding.tvContent2.textSize = 20f
                 holder.imgBinding.tvTitle.text = bannerList[position].bannerappTitle
                 var oil = ""
                 var price = ""
@@ -138,6 +138,9 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 holder.imgBinding.tvContent.gravity = Gravity.NO_GRAVITY
                 holder.imgBinding.tvContent2.gravity = Gravity.CENTER
                 holder.imgBinding.tvContent3.gravity = Gravity.CENTER
+                holder.imgBinding.tvContent.textSize = 20f
+                holder.imgBinding.tvContent2.textSize = 20f
+                holder.imgBinding.tvContent3.textSize = 20f
                 var bank = "ธนาคาร\n"
                 var buy = "ซื้อ\n"
                 var sell = "ขาย\n"
@@ -145,14 +148,16 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 if (bannerList[position].bannerappdataintroduce.size>0){
                     for (i in bannerList[position].bannerappdataintroduce.indices){
                         if (bannerList[position].bannerappdataintroduce[i].DataBank.Rate=="USD 1-2") {
-                            if (i!=0){
-                                bank += "\n"
-                                buy += "\n"
-                                sell += "\n"
+                            if (bannerList[position].bannerappdataintroduce[i].DataBank.Buy!=""&&bannerList[position].bannerappdataintroduce[i].DataBank.Sell!="") {
+                                if (i != 0) {
+                                    bank += "\n"
+                                    buy += "\n"
+                                    sell += "\n"
+                                }
+                                bank += bannerList[position].bannerappdataintroduce[i].DataBank.Bank
+                                buy += decimals(bannerList[position].bannerappdataintroduce[i].DataBank.Buy)
+                                sell += decimals(bannerList[position].bannerappdataintroduce[i].DataBank.Sell)
                             }
-                            bank += bannerList[position].bannerappdataintroduce[i].DataBank.Bank
-                            buy += decimals(bannerList[position].bannerappdataintroduce[i].DataBank.Buy)
-                            sell += decimals(bannerList[position].bannerappdataintroduce[i].DataBank.Sell)
                         }
                     }
                 }
@@ -172,9 +177,5 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
             "-"
         }
     }
-    private fun intString(num:String): String {
-        val dec = num.toDouble()
-        val result = dec.toInt()
-        return result.toString()
-    }
+
 }
