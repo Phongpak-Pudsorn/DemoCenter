@@ -133,10 +133,10 @@ class SvSubSmileLottoFragment : DialogFragment() {
             mTvTwoEnd.textSize = 36f
             mTvThreeEnd.textSize = 34f
             mTvOneBy.textSize = 29f
-            mTvTwo.textSize = 22f
-            mTvThree.textSize = 22f
-            mTvfour.textSize = 22f
-            mTvfive.textSize = 22f
+            mTvTwo.textSize = 23f
+            mTvThree.textSize = 23f
+            mTvfour.textSize = 23f
+            mTvfive.textSize = 23f
 
             val mTvGlo = view.findViewById<View>(R.id.mTvGlo) as TextView
             mTvGlo.setOnClickListener {
