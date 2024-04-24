@@ -73,4 +73,12 @@ object SvLogin {
         return result
     } set(value) = appPref.setPreferences(mContext,SvAppPreferencesLogin.KEY_PREFS_REMEMBER_PASSWORD,value)
 
+    var isFirstTime : Boolean
+        get() {
+            var result : Boolean? = null
+            result = appPref.getPreferences(mContext,SvAppPreferencesLogin.KEY_PREFS_CHECK_OPEN_FIRST,false) as Boolean
+            return result
+        }set(value) {
+        appPref.setPreferences(mContext,SvAppPreferencesLogin.KEY_PREFS_CHECK_OPEN_FIRST, value)
+    }
 }
