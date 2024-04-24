@@ -105,7 +105,7 @@
 
     <!--  ตรวจหวย  -->
     <string name="checklotto_app">ตรวจสลากกินแบ่ง (Lottery Thai) - ตรวจหวยย้อนหลัง รวดเร็วทันใจ พร้อมระบบฝากตรวจล่วงหน้า ช่วยให้คุณตรวจหวยได้อย่างสะดวกสบายยิ่งขึ้น</string>
-    <string name="checklotto_more">ดูเพิ่มเติมเต็มๆได้ที่ \"ตรวจหวย ตรวจลอตเตอรี่ QRCode\"</string>
+    <string name="checklotto_more">ดูเพิ่มเติมเต็มๆได้ที่ \"ตรวจหวย ตรวจลอตเตอรี่\"</string>
     <string name="checklotto_name">ตรวจหวย</string>
     <string name="checklotto_package">com.smileapp.lottery</string>
     <string name="text_name_app_check_lotto">ตรวจหวย</string>

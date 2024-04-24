@@ -138,11 +138,11 @@ class SvAdapterStarvision(val context:FragmentActivity,
 //                    }
                 }
                 })
-//            if (SvConst.isReviewSDK) {
+            if (SvConst.isReviewSDK) {
                 holder.bannerBinding.appList.apply {
                     adapter = appAdapter
                     layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-//                }
+                }
             }
         }else if (holder is NewsHolder){
             holder.newsBinding.tvTitle.text = listNews[position].newsappTitle
