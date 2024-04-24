@@ -86,7 +86,7 @@ class SvAdapterStarvision(val context:FragmentActivity,
                 layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL,false)
             }
             holder.bannerBinding.imageSlider.setCurrentItem(1, false)
-            handler.postDelayed(runnable, 3000)
+            handler.postDelayed(runnable, 5000)
             holder.bannerBinding.imageSlider.registerOnPageChangeCallback(object :
                 ViewPager2.OnPageChangeCallback() {
                 override fun onPageScrollStateChanged(state: Int) {
@@ -128,7 +128,7 @@ class SvAdapterStarvision(val context:FragmentActivity,
 //                    if (position < (holder.bannerBinding.imageSlider.adapter?.itemCount ?: 0)) {
                     if (bannerList.size>=2) {
                         handler.removeCallbacks(runnable)
-                        handler.postDelayed(runnable, 3000)
+                        handler.postDelayed(runnable, 5000)
                     }
                     dotAdapter = SvAdapterDots(holder.bannerBinding.imageSlider.currentItem,bannerList)
                     holder.bannerBinding.dotTab.apply {
