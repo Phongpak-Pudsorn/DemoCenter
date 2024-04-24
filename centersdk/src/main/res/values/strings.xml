@@ -31,7 +31,7 @@
     <string name="text_recovery1">คุณสามารถกู้คืน ID ได้ถึง</string>
     <string name="text_recovery2">คุณต้องการกู้คืน ID ของคุณหรือไม่</string>
     <string name="you_already_have_an_account">คุณเคยมีบัญชี?</string>
-    <string name="login">ล็อกอิน</string>
+    <string name="login">เข้าสู่ระบบ</string>
     <string name="login_th">เข้าสู่ระบบ</string>
     <string name="forgot_password">ลืมรหัสผ่าน?</string>
     <string name="remember">จดจำรหัสผ่าน</string>

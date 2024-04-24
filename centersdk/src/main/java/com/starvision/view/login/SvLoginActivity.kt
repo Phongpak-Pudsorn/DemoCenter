@@ -57,16 +57,16 @@ class SvLoginActivity : AppCompatActivity() {
         val bm = getBitmapFromAsset("logo_starvision.png")
         binding.imgLogo.setImageBitmap(bm)
 
-//        if(!SvLogin.isFirstTime){
-//            SvLogin.isFirstTime = true
-//            val policy = SvWebViewPolicyDialogFragment()
-//            policy.setClickClose(object : SvWebViewPolicyDialogFragment.ClickClose{
-//                override fun onClickClose() {
-//
-//                }
-//            },2)
-//            policy.show(supportFragmentManager,"policy")
-//        }
+        if(!SvLogin.isFirstTime){
+            SvLogin.isFirstTime = true
+            val policy = SvWebViewPolicyDialogFragment()
+            policy.setClickClose(object : SvWebViewPolicyDialogFragment.ClickClose{
+                override fun onClickClose() {
+
+                }
+            },2)
+            policy.show(supportFragmentManager,"policy")
+        }
 
         if(SvLogin.isRememberCheck){
             val user = SvLogin.UserName

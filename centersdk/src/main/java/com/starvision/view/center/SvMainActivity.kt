@@ -45,8 +45,8 @@ class SvMainActivity: AppCompatActivity(),SvAdapterImageSlide.OnDataPass {
         if (extra!=null){
             SvConst.appPackage = extra
         }
-        SvConst.checkStatus()
-        binding.lnCoin.visibility = View.VISIBLE
+//        SvConst.checkStatus()
+//        binding.lnCoin.visibility = View.VISIBLE
         if(!SvLogin.isLogin){
             val intent = Intent(this, SvLoginActivity::class.java)
             startActivity(intent)
@@ -83,9 +83,9 @@ class SvMainActivity: AppCompatActivity(),SvAdapterImageSlide.OnDataPass {
                 val list = Gson().fromJson(body,SvCenterModels::class.java)
                 if (list.code=="101") {
                     for (i in list!!.data.PageCenter.indices) {
-                        if (SvConst.isSdkSDK) {
-                            binding.lnCoin.visibility = View.INVISIBLE
-                        }
+//                        if (SvConst.isSdkSDK) {
+//                            binding.lnCoin.visibility = View.INVISIBLE
+//                        }
                         tablist.add(SvTabModels(list.data.PageCenter[i].MenuTitle))
                     }
                     binding.menuTab.apply {

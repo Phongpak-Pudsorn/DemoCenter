@@ -42,6 +42,7 @@ class SvWebViewPolicyDialogFragment : DialogFragment() {
             binding.lnAcceptPolicy.visibility = View.VISIBLE
             binding.checkboxAcceptPolicy.visibility = View.GONE
             binding.cvRegister.visibility = View.GONE
+            binding.imgBack.visibility = View.GONE
             binding.cvAllow.visibility = View.VISIBLE
         }
         binding.cvAllow.setOnClickListener {
