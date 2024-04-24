@@ -110,11 +110,11 @@ class SvSubSmileLottoFragment : DialogFragment() {
             val mTvOneBy = view.findViewById<View>(R.id.mTvOneBy) as TextView
             val mTvTwoEnd = view.findViewById<View>(R.id.mTvTwoEnd) as TextView
             val mTvThreeEnd = view.findViewById<View>(R.id.mTvThreeEnd) as TextView
-            val second = listLotto.second.replace(" ","   ")
-            val third = listLotto.third.replace(" ","   ")
-            val forth = listLotto.forth.replace(" ","   ")
-            val fifth = listLotto.fifth.replace(" ","   ")
-            val nearOne = listLotto.near_one.replace(" ","   ")
+            val second = listLotto.second.replace(" ","  ")
+            val third = listLotto.third.replace(" ","  ")
+            val forth = listLotto.forth.replace(" ","  ")
+            val fifth = listLotto.fifth.replace(" ","  ")
+            val nearOne = listLotto.near_one.replace(" ","  ")
             mTvOne.text = listLotto.first
             mTvTwo.text = second
             mTvThree.text = third
@@ -126,17 +126,17 @@ class SvSubSmileLottoFragment : DialogFragment() {
             if (listLotto.form_new) {
                 val mTvThreeStr = view.findViewById<View>(R.id.mTvThreeStr) as TextView
                 mTvThreeStr.text = listLotto.first_three
-                mTvThreeStr.textSize = 30f
+                mTvThreeStr.textSize = 34f
             }
             layout_cut_lotto.visibility = View.VISIBLE
-            mTvOne.textSize = 35f
-            mTvTwoEnd.textSize = 35f
-            mTvThreeEnd.textSize = 30f
-            mTvOneBy.textSize = 25f
-            mTvTwo.textSize = 18f
-            mTvThree.textSize = 18f
-            mTvfour.textSize = 18f
-            mTvfive.textSize = 18f
+            mTvOne.textSize = 38f
+            mTvTwoEnd.textSize = 36f
+            mTvThreeEnd.textSize = 34f
+            mTvOneBy.textSize = 29f
+            mTvTwo.textSize = 22f
+            mTvThree.textSize = 22f
+            mTvfour.textSize = 22f
+            mTvfive.textSize = 22f
 
             val mTvGlo = view.findViewById<View>(R.id.mTvGlo) as TextView
             mTvGlo.setOnClickListener {
