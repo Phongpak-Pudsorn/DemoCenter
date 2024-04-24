@@ -29,6 +29,7 @@ object SvAppPreferencesLogin {
     const val KEY_PREFS_CENTER_MODELS = "KEY_PREFS_CENTER_MODELS"
 
     const val KEY_PREFS_FRAGMENT = "KEY_PREFS_FRAGMENT"
+    const val KEY_PREFS_CHECK_OPEN_FIRST = "KEY_PREFS_CHECK_OPEN_FIRST"
 
     fun setPreferences(mContext: Context,key: String, objects: Any){
         val preferences = mContext.getSharedPreferences(APP_SHARED_PREFS, Activity.MODE_PRIVATE)

@@ -14,13 +14,13 @@ import com.starvision.luckygamesdk.databinding.PageWebviewPolicyBinding
 
 class SvWebViewPolicyDialogFragment : DialogFragment() {
     private val binding : PageWebviewPolicyBinding by lazy { PageWebviewPolicyBinding.inflate(layoutInflater) }
-    private var className = ""
+    private var className = 0
 
     private lateinit var mClickClose : ClickClose
     interface ClickClose{
         fun onClickClose()
     }
-    fun setClickClose(listener : ClickClose,Class : String){
+    fun setClickClose(listener : ClickClose,Class : Int){
         mClickClose = listener
         className = Class
     }
@@ -36,8 +36,17 @@ class SvWebViewPolicyDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         dialog!!.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         dialog!!.window!!.setBackgroundDrawableResource(R.color.transparent)
-        if (className != "Register"){
-            binding.lnAcceptPolicy.visibility = View.GONE
+        if (className == 1){
+            binding.lnAcceptPolicy.visibility = View.VISIBLE
+        }else if (className == 2 ){
+            binding.lnAcceptPolicy.visibility = View.VISIBLE
+            binding.checkboxAcceptPolicy.visibility = View.GONE
+            binding.cvRegister.visibility = View.GONE
+            binding.imgBack.visibility = View.GONE
+            binding.cvAllow.visibility = View.VISIBLE
+        }
+        binding.cvAllow.setOnClickListener {
+            dialog!!.dismiss()
         }
         binding.webview.settings.javaScriptEnabled = true
         binding.webview.webChromeClient = WebChromeClient()
