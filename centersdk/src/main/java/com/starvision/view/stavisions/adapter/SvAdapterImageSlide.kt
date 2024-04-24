@@ -126,6 +126,9 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                         }
                         oil += bannerList[position].bannerappdataintroduce[i].DataPump.Oil
                         price += bannerList[position].bannerappdataintroduce[i].DataPump.priceOil
+                        if (i==2){
+                            break
+                        }
                     }
                 }
                 holder.imgBinding.tvContent.text = oil
@@ -144,20 +147,25 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 var bank = "ธนาคาร\n"
                 var buy = "ซื้อ\n"
                 var sell = "ขาย\n"
+                var j = 0
                 holder.imgBinding.tvTitle.text = bannerList[position].bannerappTitle
                 if (bannerList[position].bannerappdataintroduce.size>0){
                     for (i in bannerList[position].bannerappdataintroduce.indices){
                         if (bannerList[position].bannerappdataintroduce[i].DataBank.Rate=="USD 1-2") {
-                            if (bannerList[position].bannerappdataintroduce[i].DataBank.Buy!="-"&&bannerList[position].bannerappdataintroduce[i].DataBank.Sell!="-") {
-                                if (i != 0) {
-                                    bank += "\n"
-                                    buy += "\n"
-                                    sell += "\n"
-                                }
-                                bank += bannerList[position].bannerappdataintroduce[i].DataBank.Bank
-                                buy += decimals(bannerList[position].bannerappdataintroduce[i].DataBank.Buy)
-                                sell += decimals(bannerList[position].bannerappdataintroduce[i].DataBank.Sell)
+//                            if (bannerList[position].bannerappdataintroduce[i].DataBank.Buy!="-"&&bannerList[position].bannerappdataintroduce[i].DataBank.Sell!="-") {
+                            if (i != 0) {
+                                bank += "\n"
+                                buy += "\n"
+                                sell += "\n"
                             }
+                            bank += bannerList[position].bannerappdataintroduce[i].DataBank.Bank
+                            buy += decimals(bannerList[position].bannerappdataintroduce[i].DataBank.Buy)
+                            sell += decimals(bannerList[position].bannerappdataintroduce[i].DataBank.Sell)
+                            j += 1
+//                            }
+                        }
+                        if (j==3){
+                            break
                         }
                     }
                 }
