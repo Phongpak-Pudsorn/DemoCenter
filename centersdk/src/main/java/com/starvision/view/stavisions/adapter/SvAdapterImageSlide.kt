@@ -1,8 +1,6 @@
 package com.starvision.view.stavisions.adapter
 
 import android.content.Context
-import android.text.Html
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.starvision.data.SvConst
 import com.starvision.luckygamesdk.databinding.ItemAppsBannerBinding
 import com.starvision.view.center.models.SvCenterModels
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -52,13 +51,13 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 holder.imgBinding.tvContent.textSize = 20f
                 holder.imgBinding.tvContent.gravity = Gravity.NO_GRAVITY
                 if (bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.top_third!=""){
-                    luckynum += "3ตัวบน   =   ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.top_third}\n"
+                    luckynum += "3 ตัวบน   =   ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.top_third}\n"
                 }
                 if (bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.top_second!=""){
-                    luckynum += "2ตัวบน   =   ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.top_second}\n"
+                    luckynum += "2 ตัวบน   =   ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.top_second}\n"
                 }
                 if (bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.bottom_second!=""){
-                    luckynum += "2ตัวล่าง  =   ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.bottom_second}"
+                    luckynum += "2 ตัวล่าง  =   ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.bottom_second}"
                 }
                 holder.imgBinding.tvTitle.text = "สำนัก : ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.suggest_name}"
                 holder.imgBinding.tvContent.text = luckynum
@@ -74,7 +73,7 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 holder.imgBinding.tvTitle.text = "หวยงวด $strDate"
                 holder.imgBinding.tvContent.textSize = 20f
                 holder.imgBinding.tvContent.gravity = Gravity.CENTER
-                holder.imgBinding.tvContent.text = "รางวัลที่หนึ่ง = ${bannerList[position].bannerappdataintroduce[0].DatarCheckLotto.first}\n\nเลขท้าย 2 ตัว = ${bannerList[position].bannerappdataintroduce[0].DatarCheckLotto.last_two}"
+                holder.imgBinding.tvContent.text = "รางวัลที่ 1 = ${bannerList[position].bannerappdataintroduce[0].DatarCheckLotto.first}\n\nเลขท้าย 2 ตัว = ${bannerList[position].bannerappdataintroduce[0].DatarCheckLotto.last_two}"
             }
             "3" ->{
 
@@ -102,10 +101,14 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 holder.imgBinding.tvContent.textSize = 20f
                 holder.imgBinding.tvContent2.textSize = 20f
                 holder.imgBinding.tvContent3.textSize = 20f
+                val gbBuy = commas(bannerList[position].bannerappdataintroduce[0].DataGb.Buy)
+                val goBuy = commas(bannerList[position].bannerappdataintroduce[1].DataGo.Buy)
+                val gbSell = commas(bannerList[position].bannerappdataintroduce[0].DataGb.Sell)
+                val goSell = commas(bannerList[position].bannerappdataintroduce[1].DataGo.Sell)
                 holder.imgBinding.tvTitle.text = "ราคาทองวันที่ $strDate"
                 holder.imgBinding.tvContent.text = "\nทองคำแท่ง\nทองรูปพรรณ"
-                holder.imgBinding.tvContent2.text = "ซื้อ\n${bannerList[position].bannerappdataintroduce[0].DataGb.Buy}\n${bannerList[position].bannerappdataintroduce[1].DataGo.Buy}"
-                holder.imgBinding.tvContent3.text = "ขาย\n${bannerList[position].bannerappdataintroduce[0].DataGb.Sell}\n${bannerList[position].bannerappdataintroduce[1].DataGo.Sell}"
+                holder.imgBinding.tvContent2.text = "ซื้อ\n$gbBuy\n$goBuy"
+                holder.imgBinding.tvContent3.text = "ขาย\n$gbSell\n$goSell"
 
             }
             "6" ->{
@@ -148,7 +151,7 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 var buy = "ซื้อ\n"
                 var sell = "ขาย\n"
                 var j = 0
-                holder.imgBinding.tvTitle.text = bannerList[position].bannerappTitle
+                holder.imgBinding.tvTitle.text = "${bannerList[position].bannerappTitle}(USD)"
                 if (bannerList[position].bannerappdataintroduce.size>0){
                     for (i in bannerList[position].bannerappdataintroduce.indices){
                         if (bannerList[position].bannerappdataintroduce[i].DataBank.Rate=="USD 1-2") {
@@ -184,6 +187,11 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
         }catch (e :java.lang.Exception){
             "-"
         }
+    }
+    private fun commas(num: String): String {
+        val num = num.toInt()
+        val formatter = DecimalFormat("#,###,###")
+        return formatter.format(num)
     }
 
 }
