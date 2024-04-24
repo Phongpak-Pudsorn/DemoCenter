@@ -1,6 +1,7 @@
 package com.starvision.view.stavisions.adapter
 
 import android.content.Context
+import android.net.ParseException
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -59,7 +60,18 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 if (bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.bottom_second!=""){
                     luckynum += "2 ตัวล่าง  =   ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.bottom_second}"
                 }
-                holder.imgBinding.tvTitle.text = "สำนัก : ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.suggest_name}"
+                var dateNew = ""
+                try {
+                    val string = bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.suggest_date
+                    val sdfOld = SimpleDateFormat("yyyy-MM-dd")
+                    val date2 = sdfOld.parse(string)
+                    val year = date2!!.year + 543 + 1900
+                    val sdfNew = SimpleDateFormat(" dd MMMM $year", Locale("th", "THA"))
+                    dateNew = sdfNew.format(date2)
+                } catch (e: ParseException) {
+                    e.printStackTrace()
+                }
+                holder.imgBinding.tvTitle.text = "สำนัก : ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.suggest_name}"+dateNew
                 holder.imgBinding.tvContent.text = luckynum
             }
             "2" ->{
@@ -70,7 +82,7 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 val dateOnly = SimpleDateFormat("dd MMMM yyyy", Locale("th","TH"))
                 val dateTime = dateFormat.parse(bannerList[position].bannerappdataintroduce[0].DatarCheckLotto.result_date)
                 val strDate = dateOnly.format(dateTime)
-                holder.imgBinding.tvTitle.text = "หวยงวด $strDate"
+                holder.imgBinding.tvTitle.text = "ผลสลากกินแบ่งวันที่ $strDate"
                 holder.imgBinding.tvContent.textSize = 20f
                 holder.imgBinding.tvContent.gravity = Gravity.CENTER
                 holder.imgBinding.tvContent.text = "รางวัลที่ 1 = ${bannerList[position].bannerappdataintroduce[0].DatarCheckLotto.first}\n\nเลขท้าย 2 ตัว = ${bannerList[position].bannerappdataintroduce[0].DatarCheckLotto.last_two}"
