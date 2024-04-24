@@ -1,7 +1,6 @@
 package com.starvision.view.stavisions.adapter
 
 import android.content.Context
-import android.net.ParseException
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +12,7 @@ import com.starvision.luckygamesdk.databinding.ItemAppsBannerBinding
 import com.starvision.view.center.models.SvCenterModels
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
+import java.time.chrono.ThaiBuddhistDate
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
@@ -51,6 +51,11 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 holder.imgBinding.tvContent3.visibility = View.GONE
                 holder.imgBinding.tvContent.textSize = 20f
                 holder.imgBinding.tvContent.gravity = Gravity.NO_GRAVITY
+                val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale("th","TH"))
+                val dateOnly = SimpleDateFormat("dd MMMM yyyy", Locale("th","TH"))
+                val dateTime = dateFormat.parse(bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.suggest_date)
+                dateTime.year += 543
+                val strDate = dateOnly.format(dateTime)
                 if (bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.top_third!=""){
                     luckynum += "3 ตัวบน   =   ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.top_third}\n"
                 }
@@ -60,18 +65,7 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 if (bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.bottom_second!=""){
                     luckynum += "2 ตัวล่าง  =   ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.bottom_second}"
                 }
-                var dateNew = ""
-                try {
-                    val string = bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.suggest_date
-                    val sdfOld = SimpleDateFormat("yyyy-MM-dd")
-                    val date2 = sdfOld.parse(string)
-                    val year = date2!!.year + 543 + 1900
-                    val sdfNew = SimpleDateFormat(" dd MMMM $year", Locale("th", "THA"))
-                    dateNew = sdfNew.format(date2)
-                } catch (e: ParseException) {
-                    e.printStackTrace()
-                }
-                holder.imgBinding.tvTitle.text = "สำนัก : ${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.suggest_name}"+dateNew
+                holder.imgBinding.tvTitle.text = "${bannerList[position].bannerappdataintroduce[0].DatarLottoStatic.suggest_name} $strDate"
                 holder.imgBinding.tvContent.text = luckynum
             }
             "2" ->{
@@ -81,8 +75,9 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale("th","TH"))
                 val dateOnly = SimpleDateFormat("dd MMMM yyyy", Locale("th","TH"))
                 val dateTime = dateFormat.parse(bannerList[position].bannerappdataintroduce[0].DatarCheckLotto.result_date)
+                dateTime.year += 543
                 val strDate = dateOnly.format(dateTime)
-                holder.imgBinding.tvTitle.text = "ผลสลากกินแบ่งวันที่ $strDate"
+                holder.imgBinding.tvTitle.text = "หวยงวด $strDate"
                 holder.imgBinding.tvContent.textSize = 20f
                 holder.imgBinding.tvContent.gravity = Gravity.CENTER
                 holder.imgBinding.tvContent.text = "รางวัลที่ 1 = ${bannerList[position].bannerappdataintroduce[0].DatarCheckLotto.first}\n\nเลขท้าย 2 ตัว = ${bannerList[position].bannerappdataintroduce[0].DatarCheckLotto.last_two}"
@@ -106,6 +101,7 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale("th","TH"))
                 val dateOnly = SimpleDateFormat("dd MMMM yyyy  HH:mm ", Locale("th","TH"))
                 val dateTime = dateFormat.parse(bannerList[position].bannerappdataintroduce[0].DataGb.Date)
+                dateTime.year += 543
                 val strDate = dateOnly.format(dateTime)
                 holder.imgBinding.tvContent.gravity = Gravity.NO_GRAVITY
                 holder.imgBinding.tvContent2.gravity = Gravity.CENTER
