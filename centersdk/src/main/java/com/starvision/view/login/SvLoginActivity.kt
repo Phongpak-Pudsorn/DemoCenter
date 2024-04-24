@@ -239,7 +239,7 @@ class SvLoginActivity : AppCompatActivity() {
                             params["type"] = "2"
                             val aBuilder = AlertDialog.Builder(this@SvLoginActivity)
                             aBuilder.setTitle(getString(R.string.text_recovery2))
-                            aBuilder.setMessage(getString(R.string.text_recovery1)+"\n"+jSon.ndate)
+                            aBuilder.setMessage(getString(R.string.text_recovery1)+" "+jSon.ndate+" "+getString(R.string.text_day))
                             aBuilder.setPositiveButton("ตกลง") { dialog, which ->
                                 SvParamsData(object : SvParamsData.PostLoadListener{
                                     override fun onSuccess(body: String) {
