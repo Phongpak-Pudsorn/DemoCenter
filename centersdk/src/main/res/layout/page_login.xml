@@ -236,6 +236,27 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ln_news"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_news"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/glide_news"
+                android:textColor="@color/grey_text"
+                android:fontFamily="@font/psl_kandaextra_pro_regular"
+                android:textSize="19sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/ln_policy"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
