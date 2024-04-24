@@ -148,7 +148,7 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 if (bannerList[position].bannerappdataintroduce.size>0){
                     for (i in bannerList[position].bannerappdataintroduce.indices){
                         if (bannerList[position].bannerappdataintroduce[i].DataBank.Rate=="USD 1-2") {
-                            if (bannerList[position].bannerappdataintroduce[i].DataBank.Buy!=""&&bannerList[position].bannerappdataintroduce[i].DataBank.Sell!="") {
+                            if (bannerList[position].bannerappdataintroduce[i].DataBank.Buy!="-"&&bannerList[position].bannerappdataintroduce[i].DataBank.Sell!="-") {
                                 if (i != 0) {
                                     bank += "\n"
                                     buy += "\n"
