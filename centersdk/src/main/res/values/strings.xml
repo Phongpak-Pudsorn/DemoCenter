@@ -40,7 +40,7 @@
     <string name="forgot">ลืมรหัสผ่าน</string>
     <string name="e_mail">อีเมล</string>
     <string name="sent">ส่ง</string>
-    <string name="confirm_logout">ท่านต้องการล็อคเอ้าท์ใช่หรือไม่?</string>
+    <string name="confirm_logout">ท่านต้องการออกจากระบบใช่หรือไม่?</string>
     <string name="confirm_password">ยืนยันรหัสผ่าน</string>
     <string name="please_click_to_accept">กรุณายืนยัน</string>
     <string name="please_click_to_accept_dialog">กรุณายืนยันเพื่อยอมรับ</string>
