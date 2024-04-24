@@ -44,7 +44,7 @@ class SvSubGoldToDayFragment : DialogFragment() {
         executeData()
         binding.tvNameApp.isSelected = true
         binding.tvDesApp.isSelected = true
-        binding.cvMore.setOnClickListener {
+        binding.cvApp.setOnClickListener {
             SvConst.openAnotherApp(requireContext(),getString(R.string.goldToday_package))
         }
         binding.imgBack.setOnClickListener {

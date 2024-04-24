@@ -42,7 +42,7 @@ class SvSubExchangeFragment: DialogFragment() {
         executeData()
         binding.tvNameApp.isSelected = true
         binding.tvDesApp.isSelected = true
-        binding.cvMore.setOnClickListener {
+        binding.cvApp.setOnClickListener {
                 SvConst.openAnotherApp(requireActivity(), getString(R.string.exchange_package))
         }
         binding.imgBack.setOnClickListener {

@@ -56,7 +56,7 @@ class SvSubLottothaiFragment : DialogFragment() {
         dialog!!.window!!.setBackgroundDrawableResource(R.color.transparent)
 //        dialog!!.setCancelable(false)
         ExecuteDataDate()
-        binding.cvMore.setOnClickListener {
+        binding.cvApp.setOnClickListener {
             SvConst.openAnotherApp(requireContext(),getString(R.string.lotto_package))
         }
         binding.tvNameApp.isSelected = true

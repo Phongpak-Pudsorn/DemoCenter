@@ -46,7 +46,7 @@ class SvSubOilFragment: DialogFragment() {
         execeuteData()
         binding.tvNameApp.isSelected = true
         binding.tvDesApp.isSelected = true
-        binding.cvMore.setOnClickListener {
+        binding.cvApp.setOnClickListener {
 //            Const.openApp(requireActivity(),getString(R.string.oil_package),"SplashActivity")
             SvConst.openAnotherApp(requireActivity(),getString(R.string.oil_package))
         }

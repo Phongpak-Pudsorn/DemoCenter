@@ -6,6 +6,7 @@
     <string name="text_morenew"><u>เพิ่มเติม</u></string>
     <string name="text_readmore">อ่านต่อ</string>
     <string name="text_date">วันที่</string>
+    <string name="text_click_now"><u>คลิกเลย</u></string>
     <string name="ok">ตกลง</string>
     <string name="cancel">ยกเลิก</string>
     <!-- WebView -->

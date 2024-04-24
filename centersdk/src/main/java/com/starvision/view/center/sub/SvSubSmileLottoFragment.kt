@@ -65,7 +65,7 @@ class SvSubSmileLottoFragment : DialogFragment() {
         binding.tvNameApp.isSelected = true
         binding.tvDesApp.isSelected = true
         binding.mProgressBar.visibility = View.VISIBLE
-        binding.cvMore.setOnClickListener {
+        binding.cvApp.setOnClickListener {
             SvConst.openAnotherApp(requireContext(),getString(R.string.checklotto_package))
         }
         binding.imgBack.setOnClickListener {

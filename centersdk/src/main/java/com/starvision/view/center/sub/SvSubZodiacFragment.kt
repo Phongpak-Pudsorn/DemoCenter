@@ -43,7 +43,7 @@ class SvSubZodiacFragment: DialogFragment() {
         startWebView(SvURL.zodiac)
         binding.tvNameApp.isSelected = true
         binding.tvDesApp.isSelected = true
-        binding.cvMore.setOnClickListener {
+        binding.cvApp.setOnClickListener {
 //            Const.openApp(requireContext(),getString(R.string.zodiac_package),"view.activity.MainActivity")
             SvConst.openAnotherApp(requireActivity(),getString(R.string.zodiac_package))
         }
