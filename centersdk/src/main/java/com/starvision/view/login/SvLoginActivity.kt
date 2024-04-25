@@ -178,13 +178,9 @@ class SvLoginActivity : AppCompatActivity() {
                     try {
                         val jSon = Gson().fromJson(body,SvLoginModels::class.java)
                         if(jSon.message == "success"){
-                            if(binding.checkboxRememberPass.isChecked){
-                                SvLogin.isRememberCheck = true
-                                SvLogin.UserName = binding.editUsername.text.toString()
-                                SvLogin.Password = binding.editPassword.text.toString()
-                            }else{
-                                SvLogin.isRememberCheck = false
-                            }
+                            SvLogin.UserName = binding.editUsername.text.toString()
+                            SvLogin.Password = binding.editPassword.text.toString()
+                            SvLogin.isRememberCheck = binding.checkboxRememberPass.isChecked
 
                             val timeStamp : String = SimpleDateFormat("HHmmssddMMyyyy").format(Date())
                             val sign = SvMD5.CMD5("Starvision|${jSon.idx}|CheckProfile|$timeStamp")
