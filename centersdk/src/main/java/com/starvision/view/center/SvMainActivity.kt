@@ -45,7 +45,7 @@ class SvMainActivity: AppCompatActivity(),SvAdapterImageSlide.OnDataPass {
         if (extra!=null){
             SvConst.appPackage = extra
         }
-//        SvConst.checkStatus()
+
 //        binding.lnCoin.visibility = View.VISIBLE
         if(!SvLogin.isLogin){
             val intent = Intent(this, SvLoginActivity::class.java)

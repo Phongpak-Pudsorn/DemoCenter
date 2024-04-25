@@ -18,13 +18,17 @@ object SvConst {
     var appPackage = ""
     const val AES_KEY = "47cbed84d5ad52e955621904170d2e6e"
     val timeStamp : String = SimpleDateFormat("HHmmssddMMyyyy").format(Date())
-    var isReviewSDK = false
-    var isSdkSDK = false
-    var prioritySDK = ""
-    var chkVersionSDK = ""
-//    var KEY_PREFS_FRAGMENT = ""
     fun loge(str : String,str2 : String){
         Log.e(str,str2)
+    }
+
+    private lateinit var mCheckListener : CheckListener
+    interface CheckListener {
+        fun onCheckIsSDK(isSdkSDK: Boolean)
+        fun onCheckIsReview(isReviewSDK: Boolean)
+    }
+    fun setClickListener(listener : CheckListener) {
+        mCheckListener = listener
     }
 
     @SuppressLint("HardwareIds")
@@ -67,10 +71,12 @@ object SvConst {
         SvParamsData(object : SvParamsData.PostLoadListener{
             override fun onSuccess(body: String) {
                 val jsonData = Gson().fromJson(body,SvCheckVersionModels::class.java)
-                isReviewSDK = jsonData.data.StatusServer.is_review
-                isSdkSDK = jsonData.data.StatusServer.is_sdk
-                prioritySDK = jsonData.data.Version.priority
-                chkVersionSDK = jsonData.data.Version.current_version
+                val isReviewSDK = jsonData.data.StatusServer.is_review
+                val isSdkSDK = jsonData.data.StatusServer.is_sdk
+                val prioritySDK = jsonData.data.Version.priority
+                val chkVersionSDK = jsonData.data.Version.current_version
+                mCheckListener.onCheckIsSDK(isSdkSDK)
+                mCheckListener.onCheckIsReview(isReviewSDK)
             }
 
             override fun onFailed(t: Throwable) {

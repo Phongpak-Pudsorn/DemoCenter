@@ -2,8 +2,10 @@ package com.starvision.democenter
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.activity.OnBackPressedCallback
 import com.starvision.config.SvLogin
+import com.starvision.data.SvConst
 import com.starvision.democenter.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -17,7 +19,18 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         centerShow = CenterShow(this)
-
+//        SvConst.checkStatus()
+//        SvConst.setClickListener(object : SvConst.CheckListener{
+//            override fun onCheckIsSDK(isSdkSDK: Boolean) {
+////                if(!isSdkSDK){
+////                    binding.lnBtn.visibility = View.GONE
+////                }
+//            }
+//
+//            override fun onCheckIsReview(isReviewSDK: Boolean) {
+//
+//            }
+//        })
         binding.btnCenter.setOnClickListener {
             centerShow.getMainCenter(this.packageName)
         }
