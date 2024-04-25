@@ -13,7 +13,7 @@ import com.google.gson.Gson
 import com.starvision.api.SvURL
 import com.starvision.config.SvParamsData
 import com.starvision.data.SvConst
-import com.starvision.luckygamesdk.databinding.PageStarvisionBinding
+import com.starvision.centersdk.databinding.PageStarvisionBinding
 import com.starvision.models.SvCheckVersionModels
 import com.starvision.view.center.models.SvCenterModels
 import com.starvision.view.center.models.SvNewsModels

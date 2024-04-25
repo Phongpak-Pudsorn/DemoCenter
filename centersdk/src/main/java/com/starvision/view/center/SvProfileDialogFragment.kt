@@ -13,8 +13,8 @@ import com.starvision.config.SvLogin
 import com.starvision.config.SvMD5
 import com.starvision.data.SvConst
 import com.starvision.data.SvParamUtil
-import com.starvision.luckygamesdk.R
-import com.starvision.luckygamesdk.databinding.PageFullProfileBinding
+import com.starvision.centersdk.R
+import com.starvision.centersdk.databinding.PageFullProfileBinding
 import com.starvision.view.SvWebViewActivity
 import com.starvision.view.login.SvLoginActivity
 import com.starvision.view.login.SvWebViewPolicyDialogFragment

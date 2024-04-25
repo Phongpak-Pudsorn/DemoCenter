@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.starvision.data.SvConst
-import com.starvision.luckygamesdk.databinding.ItemMoreappBinding
+import com.starvision.centersdk.databinding.ItemMoreappBinding
 import com.starvision.view.center.models.SvCenterModels
 
 class SvAdapterMoreApp(

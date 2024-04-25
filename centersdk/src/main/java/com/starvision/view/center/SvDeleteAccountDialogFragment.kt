@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import com.starvision.luckygamesdk.R
-import com.starvision.luckygamesdk.databinding.PageDeleteAccountBinding
+import com.starvision.centersdk.R
+import com.starvision.centersdk.databinding.PageDeleteAccountBinding
 import com.starvision.view.center.sub.SvAnotherDialogFragment
 
 class SvDeleteAccountDialogFragment : DialogFragment() {

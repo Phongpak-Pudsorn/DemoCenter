@@ -3,8 +3,8 @@ package com.starvision.view.stavisions.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.starvision.luckygamesdk.R
-import com.starvision.luckygamesdk.databinding.ItemDotsBinding
+import com.starvision.centersdk.R
+import com.starvision.centersdk.databinding.ItemDotsBinding
 import com.starvision.view.center.models.SvCenterModels
 
 class SvAdapterDots(position: Int, var list:ArrayList<SvCenterModels.CenterData.PageData.BannerData>):RecyclerView.Adapter<SvAdapterDots.DotHolder>() {

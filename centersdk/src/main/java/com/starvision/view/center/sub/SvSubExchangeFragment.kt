@@ -11,8 +11,8 @@ import com.google.gson.Gson
 import com.starvision.api.SvURL
 import com.starvision.config.SvParamsData
 import com.starvision.data.SvConst
-import com.starvision.luckygamesdk.R
-import com.starvision.luckygamesdk.databinding.PageExhangeSubBinding
+import com.starvision.centersdk.R
+import com.starvision.centersdk.databinding.PageExhangeSubBinding
 import com.starvision.view.center.sub.adapter.SvAdapterExchangeSub
 import com.starvision.view.center.sub.models.SvSubExchangeModels
 

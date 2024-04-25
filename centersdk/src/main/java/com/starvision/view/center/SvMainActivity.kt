@@ -16,8 +16,8 @@ import com.starvision.api.SvURL
 import com.starvision.config.*
 import com.starvision.data.SvAppPreferencesLogin
 import com.starvision.data.SvConst
-import com.starvision.luckygamesdk.R
-import com.starvision.luckygamesdk.databinding.MainPageBinding
+import com.starvision.centersdk.R
+import com.starvision.centersdk.databinding.MainPageBinding
 import com.starvision.view.center.adapter.SvAdapterMenuTab
 import com.starvision.view.center.adapter.SvAdapterPager
 import com.starvision.view.center.models.SvTabModels
