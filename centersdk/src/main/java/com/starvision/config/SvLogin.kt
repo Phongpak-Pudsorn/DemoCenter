@@ -81,4 +81,12 @@ object SvLogin {
         }set(value) {
         appPref.setPreferences(mContext,SvAppPreferencesLogin.KEY_PREFS_CHECK_OPEN_FIRST, value)
     }
+    var guideFirstTime : Boolean
+        get() {
+            var result : Boolean? = null
+            result = appPref.getPreferences(mContext,SvAppPreferencesLogin.KEY_PREFS_GUIDE_ACCEPT,false) as Boolean
+            return result
+        }set(value) {
+        appPref.setPreferences(mContext,SvAppPreferencesLogin.KEY_PREFS_GUIDE_ACCEPT, value)
+    }
 }

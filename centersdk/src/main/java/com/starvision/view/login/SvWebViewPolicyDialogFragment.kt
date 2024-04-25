@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.webkit.*
 import android.widget.CompoundButton
 import androidx.fragment.app.DialogFragment
+import com.starvision.config.SvLogin
 import com.starvision.luckygamesdk.R
 import com.starvision.luckygamesdk.databinding.PageWebviewPolicyBinding
 
@@ -36,6 +37,8 @@ class SvWebViewPolicyDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         dialog!!.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         dialog!!.window!!.setBackgroundDrawableResource(R.color.transparent)
+        dialog!!.setCancelable(false)
+        binding.cvAllow.isClickable = true
         if (className == 1){
             binding.lnAcceptPolicy.visibility = View.VISIBLE
         }else if (className == 2 ){
@@ -46,6 +49,9 @@ class SvWebViewPolicyDialogFragment : DialogFragment() {
             binding.cvAllow.visibility = View.VISIBLE
         }
         binding.cvAllow.setOnClickListener {
+            binding.cvAllow.isClickable = false
+            SvLogin.isFirstTime = true
+            mClickClose.onClickClose()
             dialog!!.dismiss()
         }
         binding.webview.settings.javaScriptEnabled = true

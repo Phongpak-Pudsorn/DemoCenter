@@ -29,6 +29,8 @@
     <string name="next">ถัดไป</string>
     <string name="recovery">กู้คืนบัญชี</string>
     <string name="text_day">วัน</string>
+    <string name="text_guide_started">เริ่มต้นการใช้งาน</string>
+    <string name="text_guide_desc">เข้าสู่ระบบ หรือ สมัครสมาชิก เพื่อรับข่าวสาร</string>
     <string name="text_recovery1">คุณเหลือเวลาในการกู้คืนบัญชีอีก</string>
     <string name="text_recovery2">คุณต้องการกู้คืนบัญชีของคุณหรือไม่</string>
     <string name="you_already_have_an_account">คุณเคยมีบัญชี?</string>

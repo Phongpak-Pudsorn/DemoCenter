@@ -58,14 +58,19 @@ class SvLoginActivity : AppCompatActivity() {
         binding.imgLogo.setImageBitmap(bm)
 
         if(!SvLogin.isFirstTime){
-            SvLogin.isFirstTime = true
+//            SvLogin.isFirstTime = true
             val policy = SvWebViewPolicyDialogFragment()
             policy.setClickClose(object : SvWebViewPolicyDialogFragment.ClickClose{
                 override fun onClickClose() {
-
+                    val guide = SvGuideDialogFragment()
+                    guide.show(supportFragmentManager,"guide")
                 }
             },2)
             policy.show(supportFragmentManager,"policy")
+        }
+        if (SvLogin.isFirstTime && !SvLogin.guideFirstTime){
+            val guide = SvGuideDialogFragment()
+            guide.show(supportFragmentManager,"guide")
         }
 
         if(SvLogin.isRememberCheck){

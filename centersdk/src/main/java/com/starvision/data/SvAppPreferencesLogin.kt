@@ -30,6 +30,7 @@ object SvAppPreferencesLogin {
 
     const val KEY_PREFS_FRAGMENT = "KEY_PREFS_FRAGMENT"
     const val KEY_PREFS_CHECK_OPEN_FIRST = "KEY_PREFS_CHECK_OPEN_FIRST"
+    const val KEY_PREFS_GUIDE_ACCEPT = "KEY_PREFS_GUIDE_ACCEPT"
 
     fun setPreferences(mContext: Context,key: String, objects: Any){
         val preferences = mContext.getSharedPreferences(APP_SHARED_PREFS, Activity.MODE_PRIVATE)
