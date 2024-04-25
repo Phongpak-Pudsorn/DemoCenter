@@ -61,6 +61,11 @@ class SvProfileDialogFragment : DialogFragment() {
     }
 
     private fun bindingObject(){
+        //รอใช้งาน topup ได้ ค่อยเปิด
+//        if (!SvConst.isReview){
+//            binding.lnCoin.visibility = View.VISIBLE
+//            binding.tvTopup.visibility = View.VISIBLE
+//        }
         binding.tvName.text = SvLogin.Name
         binding.tvCoin.text = SvLogin.Coin
         binding.tvIdx.text = "idx : "+SvLogin.IDX

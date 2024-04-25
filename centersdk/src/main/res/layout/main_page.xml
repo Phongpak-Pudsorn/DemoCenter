@@ -98,7 +98,6 @@
                                 android:text="@string/text_coin"
                                 android:textColor="@color/white"
                                 android:fontFamily="@font/psl_kandaextra_pro_regular"
-                                android:visibility="invisible"
                                 android:textSize="18sp" />
 
                             <TextView
@@ -108,7 +107,6 @@
                                 android:gravity="center|end"
                                 android:textColor="@color/white"
                                 android:fontFamily="@font/psl_kandaextra_pro_regular"
-                                android:visibility="invisible"
                                 android:textSize="18sp" />
                         </LinearLayout>
 

@@ -45,6 +45,10 @@ class SvMainActivity: AppCompatActivity(),SvAdapterImageSlide.OnDataPass {
         if (extra!=null){
             SvConst.appPackage = extra
         }
+        //รอใช้งาน topup ได้ ค่อยเปิด
+//        if (!SvConst.isReview){
+//            binding.lnCoin.visibility = View.VISIBLE
+//        }
 
 //        binding.lnCoin.visibility = View.VISIBLE
         if(!SvLogin.isLogin){
