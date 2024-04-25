@@ -2,6 +2,8 @@ package com.starvision.view.center
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,6 +28,7 @@ import io.jsonwebtoken.security.Keys
 class SvSettingDialogFragment : DialogFragment() {
     private val binding : PageSettingBinding by lazy { PageSettingBinding.inflate(layoutInflater) }
     private val TAG = javaClass.simpleName
+    private val handler = Handler(Looper.getMainLooper())
 
     private lateinit var mClickSettingListener : ClickSettingListener
     interface ClickSettingListener {
@@ -59,6 +62,8 @@ class SvSettingDialogFragment : DialogFragment() {
 
     private fun bindingObject(){
         binding.lnLogout.setOnClickListener {
+            binding.lnLogout.isEnabled = false
+            handler.postDelayed({binding.lnLogout.isEnabled = true},1000)
             val logoutDialog = SvLogoutConfirmDialogFragment()
             logoutDialog.setClickListener(object : SvLogoutConfirmDialogFragment.ConfirmListener{
                 override fun onLogout() {
@@ -78,9 +83,13 @@ class SvSettingDialogFragment : DialogFragment() {
             logoutDialog.show(childFragmentManager,"")
         }
         binding.lnDelete.setOnClickListener {
+            binding.lnDelete.isEnabled = false
+            handler.postDelayed({binding.lnDelete.isEnabled = true},1000)
             mClickSettingListener.onDelete()
         }
         binding.lnPolicy.setOnClickListener {
+            binding.lnPolicy.isEnabled = false
+            handler.postDelayed({binding.lnPolicy.isEnabled = true},1000)
             SvWebViewPolicyDialogFragment().show(childFragmentManager,"policy")
         }
         binding.imgClose.setOnClickListener {
