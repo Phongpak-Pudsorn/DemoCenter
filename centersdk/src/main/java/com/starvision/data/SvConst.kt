@@ -16,6 +16,7 @@ import java.util.*
 object SvConst {
     var clickAble = true
     var appPackage = ""
+    var isReview = false
     const val AES_KEY = "47cbed84d5ad52e955621904170d2e6e"
     val timeStamp : String = SimpleDateFormat("HHmmssddMMyyyy").format(Date())
     fun loge(str : String,str2 : String){
@@ -87,11 +88,12 @@ object SvConst {
     }
 
     fun checkStatusApp(app : String) : Boolean{
-        var isReviewApp = false
+        var isSdk = false
         SvParamsData(object : SvParamsData.PostLoadListener{
             override fun onSuccess(body: String) {
                 val jsonData = Gson().fromJson(body,SvCheckVersionModels::class.java)
-                isReviewApp = jsonData.data.StatusServer.is_review
+                isReview = jsonData.data.StatusServer.is_review
+                isSdk = jsonData.data.StatusServer.is_sdk
             }
 
             override fun onFailed(t: Throwable) {
@@ -99,6 +101,6 @@ object SvConst {
             }
 
         }).getLoadData(SvURL.BASE_URL_SDK, SvURL.URL_CHECK_VERSION+"?"+"app=$app"+"&os=android","")
-        return isReviewApp
+        return isSdk
     }
 }

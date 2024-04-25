@@ -1,8 +1,10 @@
 package com.starvision.democenter
 
 import android.content.Intent
+import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import com.starvision.config.SvLogin
+import com.starvision.data.SvConst
 import com.starvision.view.center.SvMainActivity
 import com.starvision.view.center.sub.*
 import com.starvision.view.login.SvLoginActivity
@@ -12,6 +14,22 @@ class CenterShow (private val mContext : FragmentActivity) {
         val intent = Intent(mContext, SvMainActivity::class.java)
         intent.putExtra("package",packageName)
         mContext.startActivity(intent)
+    }
+    fun checkVer(packageName: String):Boolean{
+        var app = getApp(packageName)
+        Log.e("app",app)
+        return SvConst.checkStatusApp(app)
+    }
+    private fun getApp(packageName: String):String{
+        when(packageName){
+            "com.starvision.lottothai" -> return "1"
+            "com.smileapp.lottery" -> return "2"
+            "com.smileapp.zodiac" -> return "4"
+            "com.smileapp.goldprice" -> return "5"
+            "com.smileapp.oil" -> return "6"
+            "com.starvision.exchangerate" -> return "7"
+        }
+        return "0"
     }
 
 //    fun checkFragment (fragment: String){
