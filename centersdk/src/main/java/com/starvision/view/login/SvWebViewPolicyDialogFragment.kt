@@ -10,8 +10,8 @@ import android.webkit.*
 import android.widget.CompoundButton
 import androidx.fragment.app.DialogFragment
 import com.starvision.config.SvLogin
-import com.starvision.luckygamesdk.R
-import com.starvision.luckygamesdk.databinding.PageWebviewPolicyBinding
+import com.starvision.centersdk.R
+import com.starvision.centersdk.databinding.PageWebviewPolicyBinding
 
 class SvWebViewPolicyDialogFragment : DialogFragment() {
     private val binding : PageWebviewPolicyBinding by lazy { PageWebviewPolicyBinding.inflate(layoutInflater) }

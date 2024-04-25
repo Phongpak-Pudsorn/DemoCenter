@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.starvision.data.SvConst
-import com.starvision.luckygamesdk.R
-import com.starvision.luckygamesdk.databinding.ItemAppsBinding
-import com.starvision.luckygamesdk.databinding.ItemAppsInnerBinding
+import com.starvision.centersdk.R
+import com.starvision.centersdk.databinding.ItemAppsBinding
+import com.starvision.centersdk.databinding.ItemAppsInnerBinding
 import com.starvision.view.center.models.SvCenterModels
 
 class SvAdapterApps(val context:Context,val list: ArrayList<SvCenterModels.CenterData.PageData.IconData.IconDatarow>): RecyclerView.Adapter<SvAdapterApps.AppsHolder>() {

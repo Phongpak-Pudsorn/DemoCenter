@@ -5,8 +5,8 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.starvision.luckygamesdk.databinding.ItemPlayplayBinding
-import com.starvision.luckygamesdk.databinding.ItemPlayplayHeaderBinding
+import com.starvision.centersdk.databinding.ItemPlayplayBinding
+import com.starvision.centersdk.databinding.ItemPlayplayHeaderBinding
 import com.starvision.view.SvWebViewActivity
 
 class SvAdapterPlayplay(private val mActivity : Activity) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

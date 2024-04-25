@@ -7,8 +7,8 @@ import android.view.View
 import android.webkit.*
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
-import com.starvision.luckygamesdk.R
-import com.starvision.luckygamesdk.databinding.PageNewsBinding
+import com.starvision.centersdk.R
+import com.starvision.centersdk.databinding.PageNewsBinding
 
 class SvWebViewActivity : AppCompatActivity() {
     private val binding : PageNewsBinding by lazy { PageNewsBinding.inflate(layoutInflater) }

@@ -8,8 +8,8 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.starvision.luckygamesdk.R
-import com.starvision.luckygamesdk.databinding.PageMoreappSubBinding
+import com.starvision.centersdk.R
+import com.starvision.centersdk.databinding.PageMoreappSubBinding
 import com.starvision.view.center.models.SvCenterModels
 import com.starvision.view.center.sub.adapter.SvAdapterMoreApp
 

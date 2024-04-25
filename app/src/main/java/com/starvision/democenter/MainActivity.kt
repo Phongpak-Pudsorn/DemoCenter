@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         supportActionBar?.hide()
-
+        SvConst.appContext = applicationContext
         centerShow = CenterShow(this)
 //        SvConst.checkStatus()
 //        SvConst.setClickListener(object : SvConst.CheckListener{

@@ -30,8 +30,8 @@ import com.starvision.config.SvMD5
 import com.starvision.config.SvParamsData
 import com.starvision.data.SvConst
 import com.starvision.data.SvParamUtil
-import com.starvision.luckygamesdk.R
-import com.starvision.luckygamesdk.databinding.PageLoginBinding
+import com.starvision.centersdk.R
+import com.starvision.centersdk.databinding.PageLoginBinding
 import com.starvision.view.center.SvMainActivity
 import com.starvision.view.center.models.SvDeleteAccountModels
 import com.starvision.view.center.models.SvProfileModels

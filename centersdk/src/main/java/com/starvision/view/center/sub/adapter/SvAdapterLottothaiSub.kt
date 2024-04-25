@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.starvision.luckygamesdk.R
+import com.starvision.centersdk.R
 import com.starvision.view.center.sub.models.SvSubLottothaiModels
 import java.util.ArrayList
 

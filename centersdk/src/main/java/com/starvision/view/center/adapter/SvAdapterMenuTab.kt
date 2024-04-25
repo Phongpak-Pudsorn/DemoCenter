@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.starvision.luckygamesdk.R
-import com.starvision.luckygamesdk.databinding.ItemTabsBinding
+import com.starvision.centersdk.R
+import com.starvision.centersdk.databinding.ItemTabsBinding
 import com.starvision.view.center.models.SvTabModels
 
 class SvAdapterMenuTab(val context:Context, private val listTab:ArrayList<SvTabModels>, private val onClickListener:TabClickListener): RecyclerView.Adapter<RecyclerView.ViewHolder>()  {

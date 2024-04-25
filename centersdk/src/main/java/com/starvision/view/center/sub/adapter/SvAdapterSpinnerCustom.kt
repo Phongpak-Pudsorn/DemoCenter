@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
-import com.starvision.luckygamesdk.R
+import com.starvision.centersdk.R
 
 class SvAdapterSpinnerCustom(context: Context, private val listData : ArrayList<String>) : BaseAdapter() {
     private val mInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater

@@ -5,7 +5,7 @@ import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.starvision.luckygamesdk.databinding.LayoutExchangeItemBinding
+import com.starvision.centersdk.databinding.LayoutExchangeItemBinding
 import com.starvision.view.center.sub.models.SvSubExchangeModels
 import kotlin.math.roundToInt
 

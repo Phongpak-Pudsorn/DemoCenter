@@ -10,8 +10,8 @@ import com.google.gson.Gson
 import com.starvision.api.SvURL
 import com.starvision.config.SvParamsData
 import com.starvision.data.SvConst
-import com.starvision.luckygamesdk.R
-import com.starvision.luckygamesdk.databinding.PageGoldtodaySubBinding
+import com.starvision.centersdk.R
+import com.starvision.centersdk.databinding.PageGoldtodaySubBinding
 import com.starvision.view.center.sub.models.SvSubGoldToDayModels
 import java.text.SimpleDateFormat
 import java.util.*

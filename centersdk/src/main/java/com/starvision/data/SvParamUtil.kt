@@ -12,7 +12,7 @@ object SvParamUtil {
     val ParamsUid:HashMap<String?,String?>
         get() {
             val hashMaps = HashMap<String?,String?>()
-            hashMaps["imei"] = SvConst.getUUID(SvMyApplication.appContext)
+            hashMaps["imei"] = SvConst.getUUID(SvConst.appContext)
             hashMaps["model"] = Build.MODEL.replace(" ","_")
             hashMaps["platform"] = "Android "+Build.VERSION.SDK_INT
 //            hashMaps["version_center_sdk"] = Build.VERSION.SDK_INT.toString()

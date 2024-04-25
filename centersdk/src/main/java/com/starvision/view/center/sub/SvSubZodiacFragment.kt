@@ -14,8 +14,8 @@ import android.webkit.WebViewClient
 import androidx.fragment.app.DialogFragment
 import com.starvision.api.SvURL
 import com.starvision.data.SvConst
-import com.starvision.luckygamesdk.R
-import com.starvision.luckygamesdk.databinding.PageZodiacSubBinding
+import com.starvision.centersdk.R
+import com.starvision.centersdk.databinding.PageZodiacSubBinding
 
 class SvSubZodiacFragment: DialogFragment() {
     var loading = true

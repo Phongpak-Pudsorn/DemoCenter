@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.starvision.luckygamesdk.databinding.PageStarvisionBinding
+import com.starvision.centersdk.databinding.PageStarvisionBinding
 import com.starvision.view.playplay.adapter.SvAdapterPlayplay
 
 class SvPlayplayFragment:Fragment() {

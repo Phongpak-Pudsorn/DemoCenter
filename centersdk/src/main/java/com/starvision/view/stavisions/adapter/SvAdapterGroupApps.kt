@@ -6,9 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.starvision.data.SvConst
-import com.starvision.luckygamesdk.R
-import com.starvision.luckygamesdk.databinding.ItemAppsInnerBinding
+import com.starvision.centersdk.databinding.ItemAppsInnerBinding
 import com.starvision.view.center.models.SvCenterModels
 
 class SvAdapterGroupApps(val context: Context, val list:ArrayList<SvCenterModels.CenterData.PageData.IconData>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {

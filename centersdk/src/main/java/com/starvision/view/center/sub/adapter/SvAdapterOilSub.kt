@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.starvision.luckygamesdk.databinding.LayoutOilFooterBinding
-import com.starvision.luckygamesdk.databinding.LayoutOilItemBinding
+import com.starvision.centersdk.databinding.LayoutOilFooterBinding
+import com.starvision.centersdk.databinding.LayoutOilItemBinding
 import com.starvision.view.center.sub.models.SvSubOilTodayModels
 
 class SvAdapterOilSub(val context:Context, val list:ArrayList<SvSubOilTodayModels>):RecyclerView.Adapter<RecyclerView.ViewHolder>() {

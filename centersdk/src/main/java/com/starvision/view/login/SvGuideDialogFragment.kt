@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.starvision.config.SvLogin
-import com.starvision.luckygamesdk.R
-import com.starvision.luckygamesdk.databinding.PageGuideBinding
+import com.starvision.centersdk.R
+import com.starvision.centersdk.databinding.PageGuideBinding
 
 class SvGuideDialogFragment:DialogFragment() {
     val binding:PageGuideBinding by lazy { PageGuideBinding.inflate(layoutInflater) }

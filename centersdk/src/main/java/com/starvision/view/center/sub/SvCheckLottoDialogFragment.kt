@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import com.starvision.luckygamesdk.R
-import com.starvision.luckygamesdk.databinding.PageCheckLottoBinding
+import com.starvision.centersdk.R
+import com.starvision.centersdk.databinding.PageCheckLottoBinding
 
 
 class SvCheckLottoDialogFragment(private val number : String,private val token : String,

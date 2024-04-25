@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.starvision.luckygamesdk.databinding.PageNewsBinding
+import com.starvision.centersdk.databinding.PageNewsBinding
 
 class SvSubNewsFragment : Fragment() {
     private val binding : PageNewsBinding by lazy { PageNewsBinding.inflate(layoutInflater) }
