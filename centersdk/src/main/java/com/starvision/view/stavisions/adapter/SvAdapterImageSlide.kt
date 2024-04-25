@@ -172,7 +172,7 @@ class SvAdapterImageSlide(context: Context, val bannerList:ArrayList<SvCenterMod
                 var buy = "ซื้อ\n"
                 var sell = "ขาย\n"
                 var j = 0
-                holder.imgBinding.tvTitle.text = "${bannerList[position].bannerappTitle}(USD)"
+                holder.imgBinding.tvTitle.text = "${bannerList[position].bannerappTitle} (USD)"
                 if (bannerList[position].bannerappdataintroduce.size>0){
                     for (i in bannerList[position].bannerappdataintroduce.indices){
                         if (bannerList[position].bannerappdataintroduce[i].DataBank.Rate=="USD 1-2") {
