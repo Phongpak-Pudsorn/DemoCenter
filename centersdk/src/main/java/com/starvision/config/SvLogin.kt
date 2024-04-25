@@ -2,11 +2,12 @@ package com.starvision.config
 
 import android.annotation.SuppressLint
 import com.starvision.data.SvAppPreferencesLogin
+import com.starvision.data.SvConst
 
 @SuppressLint("StaticFieldLeak")
 object SvLogin {
     private val appPref = SvAppPreferencesLogin
-    private val mContext = SvMyApplication.appContext
+    private val mContext = SvConst.appContext
 
     var isLogin : Boolean
     get() {

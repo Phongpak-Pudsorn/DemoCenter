@@ -15,8 +15,8 @@ import com.starvision.config.SvMD5
 import com.starvision.config.SvParamsData
 import com.starvision.data.SvConst
 import com.starvision.data.SvParamUtil
-import com.starvision.luckygamesdk.R
-import com.starvision.luckygamesdk.databinding.PageForgotBinding
+import com.starvision.centersdk.R
+import com.starvision.centersdk.databinding.PageForgotBinding
 import com.starvision.view.login.models.SvForgotModels
 
 class SvForgotFragment(private val bm: Bitmap) : Fragment() {

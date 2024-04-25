@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import com.starvision.luckygamesdk.R
-import com.starvision.luckygamesdk.databinding.PageLogoutConfirmBinding
+import com.starvision.centersdk.R
+import com.starvision.centersdk.databinding.PageLogoutConfirmBinding
 
 class SvLogoutConfirmDialogFragment:DialogFragment() {
     val binding: PageLogoutConfirmBinding by lazy { PageLogoutConfirmBinding.inflate(layoutInflater) }

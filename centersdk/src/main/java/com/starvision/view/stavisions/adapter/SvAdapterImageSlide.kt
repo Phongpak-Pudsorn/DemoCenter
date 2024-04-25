@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.starvision.data.SvConst
-import com.starvision.luckygamesdk.databinding.ItemAppsBannerBinding
+import com.starvision.centersdk.databinding.ItemAppsBannerBinding
 import com.starvision.view.center.models.SvCenterModels
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat

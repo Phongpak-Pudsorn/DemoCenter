@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.starvision.data.SvConst
-import com.starvision.luckygamesdk.databinding.ItemNewsBinding
-import com.starvision.luckygamesdk.databinding.ItemNewsHeaderBinding
-import com.starvision.luckygamesdk.databinding.PageBannerAppsBinding
+import com.starvision.centersdk.databinding.ItemNewsBinding
+import com.starvision.centersdk.databinding.ItemNewsHeaderBinding
+import com.starvision.centersdk.databinding.PageBannerAppsBinding
 import com.starvision.view.SvWebViewActivity
 import com.starvision.view.center.models.SvCenterModels
 

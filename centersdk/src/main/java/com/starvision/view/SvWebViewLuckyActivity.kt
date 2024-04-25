@@ -11,8 +11,8 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.starvision.data.SvConst
-import com.starvision.luckygamesdk.R
-import com.starvision.luckygamesdk.databinding.PageWebviewBinding
+import com.starvision.centersdk.R
+import com.starvision.centersdk.databinding.PageWebviewBinding
 
 
 class SvWebViewLuckyActivity : AppCompatActivity() {

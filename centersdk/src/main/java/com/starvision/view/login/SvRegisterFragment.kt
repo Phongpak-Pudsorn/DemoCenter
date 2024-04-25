@@ -19,8 +19,8 @@ import com.starvision.config.SvMD5
 import com.starvision.config.SvParamsData
 import com.starvision.data.SvConst
 import com.starvision.data.SvParamUtil
-import com.starvision.luckygamesdk.R
-import com.starvision.luckygamesdk.databinding.PageRegisterBinding
+import com.starvision.centersdk.R
+import com.starvision.centersdk.databinding.PageRegisterBinding
 import com.starvision.view.login.models.SvLoginModels
 import java.util.*
 

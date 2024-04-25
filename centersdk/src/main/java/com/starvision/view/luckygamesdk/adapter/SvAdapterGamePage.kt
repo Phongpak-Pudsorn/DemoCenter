@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.starvision.luckygamesdk.R
+import com.starvision.centersdk.R
 import com.starvision.view.SvWebViewLuckyActivity
 
 class SvAdapterGamePage(private val mActivity: Activity) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

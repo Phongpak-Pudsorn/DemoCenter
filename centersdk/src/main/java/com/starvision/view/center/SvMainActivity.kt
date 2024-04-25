@@ -24,8 +24,8 @@ import com.starvision.view.center.models.SvTabModels
 import com.starvision.view.center.models.SvCenterModels
 import com.starvision.view.center.sub.*
 import com.starvision.view.login.SvLoginActivity
-import com.starvision.view.stavisions.SvStarvisionFragment
 import com.starvision.view.luckygamesdk.SvLuckyGameFragment
+import com.starvision.view.stavisions.SvStarvisionFragment
 import com.starvision.view.playplay.SvPlayplayFragment
 import com.starvision.view.stavisions.adapter.SvAdapterImageSlide
 import kotlin.collections.ArrayList
