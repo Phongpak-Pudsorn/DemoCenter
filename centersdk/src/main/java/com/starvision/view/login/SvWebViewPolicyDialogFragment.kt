@@ -37,11 +37,11 @@ class SvWebViewPolicyDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         dialog!!.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         dialog!!.window!!.setBackgroundDrawableResource(R.color.transparent)
-        dialog!!.setCancelable(false)
         binding.cvAllow.isClickable = true
         if (className == 1){
             binding.lnAcceptPolicy.visibility = View.VISIBLE
         }else if (className == 2 ){
+            dialog!!.setCancelable(false)
             binding.lnAcceptPolicy.visibility = View.VISIBLE
             binding.checkboxAcceptPolicy.visibility = View.GONE
             binding.cvRegister.visibility = View.GONE
