@@ -6,13 +6,14 @@ import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import com.starvision.config.SvLogin
+import com.starvision.data.SvCenterShow
 import com.starvision.data.SvConst
 import com.starvision.democenter.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private val binding : ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private var callback : OnBackPressedCallback? = null
-    private lateinit var centerShow : CenterShow
+    private lateinit var centerShow : SvCenterShow
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 //                Log.e("isReview",isReviewSDK.toString())
             }
         })
-        centerShow = CenterShow(this)
+        centerShow = SvCenterShow(this)
 //        SvConst.checkStatus()
 //        SvConst.setClickListener(object : SvConst.CheckListener{
 //            override fun onCheckIsSDK(isSdkSDK: Boolean) {
