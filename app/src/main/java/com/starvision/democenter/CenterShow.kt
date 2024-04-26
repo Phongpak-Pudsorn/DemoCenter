@@ -17,7 +17,6 @@ class CenterShow (private val mContext : FragmentActivity) {
     }
     fun checkVer(packageName: String):Boolean{
         var app = getApp(packageName)
-        Log.e("app",app)
         return SvConst.checkStatusApp(app)
     }
     private fun getApp(packageName: String):String{
