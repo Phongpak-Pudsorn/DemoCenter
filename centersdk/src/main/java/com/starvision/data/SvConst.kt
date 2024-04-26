@@ -23,7 +23,7 @@ object SvConst {
     const val AES_KEY = "47cbed84d5ad52e955621904170d2e6e"
     val timeStamp : String = SimpleDateFormat("HHmmssddMMyyyy").format(Date())
     fun loge(str : String,str2 : String){
-        Log.e(str,str2)
+//        Log.e(str,str2)
     }
 
     private lateinit var mCheckListener : CheckListener

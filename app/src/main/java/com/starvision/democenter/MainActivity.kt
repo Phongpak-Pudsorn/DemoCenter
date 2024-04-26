@@ -22,11 +22,11 @@ class MainActivity : AppCompatActivity() {
         SvConst.checkStatus(getString(com.starvision.centersdk.R.string.lotto_package))
         SvConst.setClickListener(object :SvConst.CheckListener{
             override fun onCheckIsSDK(isSdkSDK: Boolean) {
-                Log.e("isSdk",isSdkSDK.toString())
+//                Log.e("isSdk",isSdkSDK.toString())
             }
 
             override fun onCheckIsReview(isReviewSDK: Boolean) {
-                Log.e("isReview",isReviewSDK.toString())
+//                Log.e("isReview",isReviewSDK.toString())
             }
         })
         centerShow = CenterShow(this)
