@@ -20,9 +20,9 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
-#-keep class androidx.appcompat.widget.** { *; } //test1,2,3
+#-keep class androidx.appcompat.widget.** { *; } //test4
 -keep class com.starvision.data.**{ *; }
-#-keep class com.starvision.view.**{ *; }//test3
--keep class com.starvision.models.SvCheckVersionModels
--keep class com.starvision.api.**{ *; }
--keep class com.starvision.config.**{ *; }
+#-keep class com.starvision.view.**{ *; }//test4
+#-keep class com.starvision.models.SvCheckVersionModels//test4
+#-keep class com.starvision.api.**{ *; }//test4
+#-keep class com.starvision.config.**{ *; }//test4
