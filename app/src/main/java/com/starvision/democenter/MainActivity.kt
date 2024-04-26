@@ -2,6 +2,7 @@ package com.starvision.democenter
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import com.starvision.config.SvLogin
@@ -18,6 +19,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
         SvConst.appContext = applicationContext
+        SvConst.checkStatus(getString(com.starvision.centersdk.R.string.lotto_package))
+        SvConst.setClickListener(object :SvConst.CheckListener{
+            override fun onCheckIsSDK(isSdkSDK: Boolean) {
+                Log.e("isSdk",isSdkSDK.toString())
+            }
+
+            override fun onCheckIsReview(isReviewSDK: Boolean) {
+                Log.e("isReview",isReviewSDK.toString())
+            }
+        })
         centerShow = CenterShow(this)
 //        SvConst.checkStatus()
 //        SvConst.setClickListener(object : SvConst.CheckListener{

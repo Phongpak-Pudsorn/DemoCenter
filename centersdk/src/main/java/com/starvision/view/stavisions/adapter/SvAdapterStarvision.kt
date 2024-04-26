@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
+import com.starvision.centersdk.databinding.ItemNewBinding
 import com.starvision.data.SvConst
 import com.starvision.centersdk.databinding.ItemNewsBinding
 import com.starvision.centersdk.databinding.ItemNewsHeaderBinding
@@ -35,7 +36,7 @@ class SvAdapterStarvision(val context:FragmentActivity,
         dotAdapter = SvAdapterDots(1,bannerList)
     }
     class BannerHolder(val bannerBinding: PageBannerAppsBinding):RecyclerView.ViewHolder(bannerBinding.root)
-    class NewsHolder(val newsBinding: ItemNewsBinding):RecyclerView.ViewHolder(newsBinding.root)
+    class NewsHolder(val newsBinding: ItemNewBinding):RecyclerView.ViewHolder(newsBinding.root)
     class HeaderHolder(val headerBinding: ItemNewsHeaderBinding):RecyclerView.ViewHolder(headerBinding.root)
     override fun getItemViewType(position: Int): Int {
         if (listNews[position].newsappId=="banner"){
@@ -54,7 +55,7 @@ class SvAdapterStarvision(val context:FragmentActivity,
             val binding = PageBannerAppsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             return BannerHolder(binding)
         }else {
-            val binding = ItemNewsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            val binding = ItemNewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             return NewsHolder(binding)
         }
     }

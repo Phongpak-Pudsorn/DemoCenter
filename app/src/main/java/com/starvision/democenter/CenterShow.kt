@@ -15,21 +15,6 @@ class CenterShow (private val mContext : FragmentActivity) {
         intent.putExtra("package",packageName)
         mContext.startActivity(intent)
     }
-    fun checkVer(packageName: String):Boolean{
-        var app = getApp(packageName)
-        return SvConst.checkStatusApp(app)
-    }
-    private fun getApp(packageName: String):String{
-        when(packageName){
-            "com.starvision.lottothai" -> return "1"
-            "com.smileapp.lottery" -> return "2"
-            "com.smileapp.zodiac" -> return "4"
-            "com.smileapp.goldprice" -> return "5"
-            "com.smileapp.oil" -> return "6"
-            "com.starvision.exchangerate" -> return "7"
-        }
-        return "0"
-    }
 
 //    fun checkFragment (fragment: String){
 //        when (fragment) {

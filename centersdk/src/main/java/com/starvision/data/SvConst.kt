@@ -17,6 +17,8 @@ object SvConst {
     var clickAble = true
     var appPackage = ""
     var isReview = false
+    var isReviewSDK : Boolean? = null
+    var isSdkSDK : Boolean? = null
     lateinit var appContext : Context
     const val AES_KEY = "47cbed84d5ad52e955621904170d2e6e"
     val timeStamp : String = SimpleDateFormat("HHmmssddMMyyyy").format(Date())
@@ -69,23 +71,35 @@ object SvConst {
         }
     }
 
-    fun checkStatus(){
+    fun checkStatus(packageName : String){
+        val app = getApp(packageName)
         SvParamsData(object : SvParamsData.PostLoadListener{
             override fun onSuccess(body: String) {
                 val jsonData = Gson().fromJson(body,SvCheckVersionModels::class.java)
-                val isReviewSDK = jsonData.data.StatusServer.is_review
-                val isSdkSDK = jsonData.data.StatusServer.is_sdk
+                isReviewSDK = jsonData.data.StatusServer.is_review
+                isSdkSDK = jsonData.data.StatusServer.is_sdk
                 val prioritySDK = jsonData.data.Version.priority
                 val chkVersionSDK = jsonData.data.Version.current_version
-                mCheckListener.onCheckIsSDK(isSdkSDK)
-                mCheckListener.onCheckIsReview(isReviewSDK)
+                mCheckListener.onCheckIsSDK(isSdkSDK!!)
+                mCheckListener.onCheckIsReview(isReviewSDK!!)
             }
 
             override fun onFailed(t: Throwable) {
                 t.printStackTrace()
             }
 
-        }).getLoadData(SvURL.BASE_URL_SDK, SvURL.URL_CHECK_VERSION+"?"+"app=0"+"&os=android","")
+        }).getLoadData(SvURL.BASE_URL_SDK, SvURL.URL_CHECK_VERSION+"?"+"app=$app"+"&os=android","")
+    }
+    private fun getApp(packageName: String):String{
+        when(packageName){
+            "com.starvision.lottothai" -> return "1"
+            "com.smileapp.lottery" -> return "2"
+            "com.smileapp.zodiac" -> return "4"
+            "com.smileapp.goldprice" -> return "5"
+            "com.smileapp.oil" -> return "6"
+            "com.starvision.exchangerate" -> return "7"
+        }
+        return "0"
     }
 
     fun checkStatusApp(app : String) : Boolean{
