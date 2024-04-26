@@ -19,3 +19,10 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+#-keep class androidx.appcompat.widget.** { *; } //test1,2,3
+-keep class com.starvision.data.**{ *; }
+#-keep class com.starvision.view.**{ *; }//test3
+-keep class com.starvision.models.SvCheckVersionModels
+-keep class com.starvision.api.**{ *; }
+-keep class com.starvision.config.**{ *; }

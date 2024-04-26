@@ -23,7 +23,7 @@ class SvAdapterApps(val context:Context,val list: ArrayList<SvCenterModels.Cente
 
     override fun onBindViewHolder(holder: AppsHolder, position: Int) {
         holder.appsBinding.tvName.text = list[position].iconappTitle
-        Glide.with(holder.appsBinding.imgApp).load(list[position].iconappImgicon).placeholder(R.mipmap.ic_launcher_round).into(holder.appsBinding.imgApp)
+        Glide.with(holder.appsBinding.imgApp).load(list[position].iconappImgicon).placeholder(R.mipmap.sv_ic_luancher_round).into(holder.appsBinding.imgApp)
         holder.appsBinding.root.setOnClickListener {
             if (SvConst.clickAble) {
                 SvConst.clickAble = false
