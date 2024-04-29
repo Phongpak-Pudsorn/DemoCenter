@@ -3,12 +3,17 @@ package com.starvision.view.login
 import android.annotation.SuppressLint
 import android.net.http.SslError
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.*
 import android.widget.CompoundButton
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.DialogFragment
+import androidx.navigation.fragment.findNavController
 import com.starvision.config.SvLogin
 import com.starvision.centersdk.R
 import com.starvision.centersdk.databinding.PageWebviewPolicyBinding
@@ -39,21 +44,36 @@ class SvWebViewPolicyDialogFragment : DialogFragment() {
         dialog!!.window!!.setBackgroundDrawableResource(R.color.transparent)
         binding.cvAllow.isClickable = true
         if (className == 1){
+            Log.e(javaClass.simpleName,"class 1")
             binding.lnAcceptPolicy.visibility = View.VISIBLE
+
+            binding.cvAllow.setOnClickListener {
+                binding.cvAllow.isClickable = false
+                SvLogin.isFirstTime = true
+                mClickClose.onClickClose()
+                dialog!!.dismiss()
+            }
         }else if (className == 2 ){
-            dialog!!.setCancelable(false)
+            Log.e(javaClass.simpleName,"class 2")
             binding.lnAcceptPolicy.visibility = View.VISIBLE
             binding.checkboxAcceptPolicy.visibility = View.GONE
             binding.cvRegister.visibility = View.GONE
             binding.imgBack.visibility = View.GONE
             binding.cvAllow.visibility = View.VISIBLE
+
+            binding.cvAllow.setOnClickListener {
+                binding.cvAllow.isClickable = false
+                SvLogin.isFirstTime = true
+                val guide = SvGuideDialogFragment()
+                guide.setClickNext(object : SvGuideDialogFragment.ClickNext{
+                    override fun onClickNext() {
+                        dialog!!.dismiss()
+                    }
+                })
+                guide.show(childFragmentManager,"guide")
+            }
         }
-        binding.cvAllow.setOnClickListener {
-            binding.cvAllow.isClickable = false
-            SvLogin.isFirstTime = true
-            mClickClose.onClickClose()
-            dialog!!.dismiss()
-        }
+
         binding.webview.settings.javaScriptEnabled = true
         binding.webview.webChromeClient = WebChromeClient()
         binding.webview.webViewClient = WebViewClient()

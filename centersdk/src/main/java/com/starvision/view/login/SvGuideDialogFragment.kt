@@ -14,6 +14,14 @@ import com.starvision.centersdk.databinding.PageGuideBinding
 class SvGuideDialogFragment:DialogFragment() {
     val binding:PageGuideBinding by lazy { PageGuideBinding.inflate(layoutInflater) }
 
+    private lateinit var mClickNext : ClickNext
+    interface ClickNext{
+        fun onClickNext()
+    }
+    fun setClickNext(listener : ClickNext){
+        mClickNext = listener
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,6 +39,7 @@ class SvGuideDialogFragment:DialogFragment() {
         binding.imgLogo.setImageBitmap(bm)
         binding.buttonNext.setOnClickListener {
             SvLogin.guideFirstTime = true
+            mClickNext.onClickNext()
             dialog!!.dismiss()
         }
         dialog!!.show()

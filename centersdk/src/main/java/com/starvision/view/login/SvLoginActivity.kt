@@ -62,8 +62,7 @@ class SvLoginActivity : AppCompatActivity() {
             val policy = SvWebViewPolicyDialogFragment()
             policy.setClickClose(object : SvWebViewPolicyDialogFragment.ClickClose{
                 override fun onClickClose() {
-                    val guide = SvGuideDialogFragment()
-                    guide.show(supportFragmentManager,"guide")
+
                 }
             },2)
             policy.show(supportFragmentManager,"policy")
