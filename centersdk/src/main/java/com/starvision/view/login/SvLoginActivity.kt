@@ -64,6 +64,10 @@ class SvLoginActivity : AppCompatActivity() {
                 override fun onClickClose() {
 
                 }
+
+                override fun onNotAccept() {
+                    finish()
+                }
             },2)
             policy.show(supportFragmentManager,"policy")
         }

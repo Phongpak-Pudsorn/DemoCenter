@@ -21,8 +21,9 @@
 #-renamesourcefileattribute SourceFile
 
 #-keep class androidx.appcompat.widget.** { *; } //test4
--keep class com.starvision.data.**{ *; }
-#-keep class com.starvision.view.**{ *; }//test4
-#-keep class com.starvision.models.SvCheckVersionModels//test4
-#-keep class com.starvision.api.**{ *; }//test4
-#-keep class com.starvision.config.**{ *; }//test4
+-keep class com.starvision.data.SvConst
+-keep class com.starvision.data.SvCenterShow
+-keep class com.starvision.view.center.models.**{ *; }
+-keep class com.starvision.view.login.models.**{ *; }
+-keep class com.starvision.view.luckygamesdk.models.**{ *; }
+-keep class com.starvision.view.playplay.models.**{ *; }
