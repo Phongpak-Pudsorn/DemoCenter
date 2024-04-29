@@ -25,6 +25,7 @@ class SvWebViewPolicyDialogFragment : DialogFragment() {
     private lateinit var mClickClose : ClickClose
     interface ClickClose{
         fun onClickClose()
+        fun onNotAccept()
     }
     fun setClickClose(listener : ClickClose,Class : Int){
         mClickClose = listener
@@ -54,6 +55,9 @@ class SvWebViewPolicyDialogFragment : DialogFragment() {
                 dialog!!.dismiss()
             }
         }else if (className == 2 ){
+            dialog!!.setOnCancelListener {
+                mClickClose.onNotAccept()
+            }
             Log.e(javaClass.simpleName,"class 2")
             binding.lnAcceptPolicy.visibility = View.VISIBLE
             binding.checkboxAcceptPolicy.visibility = View.GONE
