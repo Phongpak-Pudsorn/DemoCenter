@@ -3,15 +3,15 @@ package com.starvision.view.login
 import android.annotation.SuppressLint
 import android.net.http.SslError
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.*
-import android.widget.CompoundButton
 import androidx.fragment.app.DialogFragment
-import com.starvision.config.SvLogin
 import com.starvision.centersdk.R
 import com.starvision.centersdk.databinding.PageWebviewPolicyBinding
+import com.starvision.config.SvLogin
 
 class SvWebViewPolicyDialogFragment : DialogFragment() {
     private val binding : PageWebviewPolicyBinding by lazy { PageWebviewPolicyBinding.inflate(layoutInflater) }
@@ -20,6 +20,7 @@ class SvWebViewPolicyDialogFragment : DialogFragment() {
     private lateinit var mClickClose : ClickClose
     interface ClickClose{
         fun onClickClose()
+        fun onNotAccept()
     }
     fun setClickClose(listener : ClickClose,Class : Int){
         mClickClose = listener
@@ -28,7 +29,7 @@ class SvWebViewPolicyDialogFragment : DialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         return binding.root
     }
@@ -41,7 +42,9 @@ class SvWebViewPolicyDialogFragment : DialogFragment() {
         if (className == 1){
             binding.lnAcceptPolicy.visibility = View.VISIBLE
         }else if (className == 2 ){
-            dialog!!.setCancelable(false)
+            dialog!!.setOnCancelListener {
+                mClickClose.onNotAccept()
+            }
             binding.lnAcceptPolicy.visibility = View.VISIBLE
             binding.checkboxAcceptPolicy.visibility = View.GONE
             binding.cvRegister.visibility = View.GONE

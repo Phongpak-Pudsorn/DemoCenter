@@ -65,6 +65,10 @@ class SvLoginActivity : AppCompatActivity() {
                     val guide = SvGuideDialogFragment()
                     guide.show(supportFragmentManager,"guide")
                 }
+
+                override fun onNotAccept() {
+                    finish()
+                }
             },2)
             policy.show(supportFragmentManager,"policy")
         }
