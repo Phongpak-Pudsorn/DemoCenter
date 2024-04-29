@@ -134,6 +134,9 @@ class SvRegisterFragment(private val bm: Bitmap) : Fragment() {
                 override fun onClickClose() {
                     binding.checkboxAcceptPolicy.isChecked = true
                 }
+
+                override fun onNotAccept() {
+                }
             },1)
             webview.show(childFragmentManager,"policy")
         }

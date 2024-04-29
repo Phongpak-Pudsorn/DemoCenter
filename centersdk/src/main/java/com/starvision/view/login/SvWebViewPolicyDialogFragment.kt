@@ -1,13 +1,16 @@
 package com.starvision.view.login
 
 import android.annotation.SuppressLint
+import android.content.DialogInterface
 import android.net.http.SslError
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnKeyListener
 import android.view.ViewGroup
 import android.webkit.*
 import android.widget.CompoundButton
@@ -55,8 +58,13 @@ class SvWebViewPolicyDialogFragment : DialogFragment() {
                 dialog!!.dismiss()
             }
         }else if (className == 2 ){
-            dialog!!.setOnCancelListener {
-                mClickClose.onNotAccept()
+            dialog!!.setOnKeyListener { dialogInterface, i, keyEvent ->
+                if (i==KeyEvent.KEYCODE_BACK){
+                    mClickClose.onNotAccept()
+                    true
+                }else {
+                    false
+                }
             }
             Log.e(javaClass.simpleName,"class 2")
             binding.lnAcceptPolicy.visibility = View.VISIBLE
@@ -103,7 +111,6 @@ class SvWebViewPolicyDialogFragment : DialogFragment() {
         }
         dialog!!.show()
     }
-
     inner class CustomWebViewClient : WebViewClient() {
 
         @SuppressLint("WebViewClientOnReceivedSslError")
