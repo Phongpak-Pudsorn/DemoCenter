@@ -47,7 +47,7 @@
             android:id="@+id/img_logo"
             android:adjustViewBounds="true"
             android:layout_marginTop="40dp"
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/sv_ic_luancher"
             android:layout_width="match_parent"
             android:layout_height="110dp" />
 
