@@ -3,6 +3,7 @@ package com.starvision.view.login
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ class SvGuideDialogFragment:DialogFragment() {
     private lateinit var mClickNext : ClickNext
     interface ClickNext{
         fun onClickNext()
+        fun notAccept()
     }
     fun setClickNext(listener : ClickNext){
         mClickNext = listener
@@ -34,8 +36,15 @@ class SvGuideDialogFragment:DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         dialog!!.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         dialog!!.window!!.setBackgroundDrawableResource(R.color.transparent)
-        dialog!!.setCancelable(false)
         val bm = getBitmapFromAsset("logo_starvision.png")
+        dialog!!.setOnKeyListener { dialogInterface, i, keyEvent ->
+            if (i== KeyEvent.KEYCODE_BACK){
+                mClickNext.notAccept()
+                true
+            }else {
+                false
+            }
+        }
         binding.imgLogo.setImageBitmap(bm)
         binding.buttonNext.setOnClickListener {
             SvLogin.guideFirstTime = true

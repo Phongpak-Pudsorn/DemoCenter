@@ -125,7 +125,7 @@
                 android:textSize="26sp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/psl_kandaextra_pro_regular"
-                android:text="@string/ok"
+                android:text="@string/accept"
                 android:gravity="center"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp" />

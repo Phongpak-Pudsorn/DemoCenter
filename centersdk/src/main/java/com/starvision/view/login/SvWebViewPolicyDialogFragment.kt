@@ -81,6 +81,10 @@ class SvWebViewPolicyDialogFragment : DialogFragment() {
                     override fun onClickNext() {
                         dialog!!.dismiss()
                     }
+
+                    override fun notAccept() {
+                        mClickClose.onNotAccept()
+                    }
                 })
                 guide.show(childFragmentManager,"guide")
             }

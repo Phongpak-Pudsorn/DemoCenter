@@ -19,8 +19,7 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
--keep class com.starvision.data.SvConst
--keep class com.starvision.data.SvCenterShow
+-keep class com.starvision.data.**{ *; }
 -keep class com.starvision.view.center.models.**{ *; }
 -keep class com.starvision.view.login.models.**{ *; }
 -keep class com.starvision.view.luckygamesdk.models.**{ *; }

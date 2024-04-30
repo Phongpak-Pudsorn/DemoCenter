@@ -73,6 +73,14 @@ class SvLoginActivity : AppCompatActivity() {
         }
         if (SvLogin.isFirstTime && !SvLogin.guideFirstTime){
             val guide = SvGuideDialogFragment()
+            guide.setClickNext(object: SvGuideDialogFragment.ClickNext{
+                override fun onClickNext() {
+                }
+
+                override fun notAccept() {
+                    finish()
+                }
+            })
             guide.show(supportFragmentManager,"guide")
         }
 
