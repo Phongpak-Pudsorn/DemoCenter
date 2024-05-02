@@ -20,7 +20,9 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 -keep class com.starvision.data.**{ *; }
+-keep class com.starvision.models.**{ *; }
 -keep class com.starvision.view.center.models.**{ *; }
+-keep class com.starvision.view.center.sub.models.**{ *; }
 -keep class com.starvision.view.login.models.**{ *; }
 -keep class com.starvision.view.luckygamesdk.models.**{ *; }
 -keep class com.starvision.view.playplay.models.**{ *; }
