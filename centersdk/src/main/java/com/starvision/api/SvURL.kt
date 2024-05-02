@@ -11,6 +11,7 @@ object SvURL {
 //    const val URL_FORGOTPASS = https://app.starvision.in.th/login/api/forgetpass.php
 //    const val URL_DELETE_AND_RECOVERY = https://app.starvision.in.th/login/api/suspend.php
 //    const val URL_CHECK_VERSION = https://app.starvision.in.th/api/checkversion   ?app=0  &os=android
+//    const val URL_LUCKYGAME = https://app.starvision.in.th/api/gettoken
 
     const val URL_CHECK_VERSION = "/api/checkversion"
     const val URL_TOPUP = "/apptopup/topup/"
@@ -20,6 +21,7 @@ object SvURL {
     const val URL_CENTER = "/api/apicenter"
     const val URL_FORGOTPASS = "/login/api/forgetpass.php"
     const val URL_DELETE_AND_RECOVERY = "/login/api/suspend.php"
+    const val URL_LUCKYGAME = "/api/gettoken"
 
     const val BASE_URL = "https://starvision.in.th"
     const val BASE_URL_LOTTO= "https://lottery.starvision.in.th"

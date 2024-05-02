@@ -25,7 +25,7 @@ class SvLuckyGameFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         gameAdapter = SvAdapterGamePage(requireActivity())
-        binding.recycleView.layoutManager = GridLayoutManager(requireContext(),3)
+        binding.recycleView.layoutManager = GridLayoutManager(requireContext(),2)
         binding.recycleView.adapter = gameAdapter
 
     }

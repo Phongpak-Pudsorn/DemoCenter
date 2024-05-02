@@ -17,6 +17,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="white_dark">#EDEDED</color>
     <color name="white_trin">#CCFFFFFF</color>
+    <color name="white_triner">#97FFFFFF</color>
     <color name="almost_white">#c6c6c6</color>
     <color name="gray_light">#DFE6EF</color>
     <color name="bg_name_lucky">#1f44bb</color>

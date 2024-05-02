@@ -87,11 +87,9 @@ class SvMainActivity: AppCompatActivity(),SvAdapterImageSlide.OnDataPass {
                 val list = Gson().fromJson(body,SvCenterModels::class.java)
                 if (list.code=="101") {
                     for (i in list!!.data.PageCenter.indices) {
-//                        if (SvConst.isSdkSDK) {
-//                            binding.lnCoin.visibility = View.INVISIBLE
-//                        }
                         tablist.add(SvTabModels(list.data.PageCenter[i].MenuTitle))
                     }
+                    tablist.add(SvTabModels("LuckyGame",false))
                     binding.menuTab.apply {
                         adapter = SvAdapterMenuTab(
                             this@SvMainActivity,

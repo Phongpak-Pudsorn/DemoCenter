@@ -2,11 +2,10 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:cardCornerRadius="7dp"
-    android:layout_marginStart="5dp"
-    android:layout_marginTop="5dp"
-    android:layout_marginEnd="5dp"
-    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="15dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="5dp"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
@@ -23,9 +22,9 @@
 
             <ImageView
                 android:id="@+id/image_game"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:scaleType="fitCenter"
+                android:layout_width="155dp"
+                android:layout_height="140dp"
+                android:scaleType="fitXY"
                 android:src="@mipmap/sv_ic_luancher"/>
 
         </androidx.cardview.widget.CardView>
@@ -35,6 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/bg_name_lucky"
+            android:visibility="gone"
             android:gravity="center"
             android:fontFamily="@font/psl_kandaextra_pro_regular"
             android:textColor="@color/white_dark"
