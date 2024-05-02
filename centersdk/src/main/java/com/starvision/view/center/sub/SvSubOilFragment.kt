@@ -1,6 +1,7 @@
 package com.starvision.view.center.sub
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -102,8 +103,12 @@ class SvSubOilFragment: DialogFragment() {
                                                     break
                                                 }
                                             }
-                                            if (listOil[i].data[j].today.toDouble() < oilList[k].priceToday.toDouble()) {
-                                                img1 = ""
+                                            try {
+                                                if (listOil[i].data[j].today.toDouble() < oilList[k].priceToday.toDouble()) {
+                                                    img1 = ""
+                                                }
+                                            }catch (e:java.lang.NumberFormatException){
+                                                0.0
                                             }
                                             oilList[k] = SvSubOilTodayModels("1",listOil[i].data[j].type,setName(listOil[i].data[j].type),listOil[i].data[j].today,img1+","+img2,setOilIcon(listOil[i].data[j].type))
                                         }

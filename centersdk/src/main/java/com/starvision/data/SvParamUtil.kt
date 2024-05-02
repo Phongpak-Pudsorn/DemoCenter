@@ -15,7 +15,7 @@ object SvParamUtil {
             hashMaps["imei"] = SvConst.getUUID(SvConst.appContext)
             hashMaps["model"] = Build.MODEL.replace(" ","_")
             hashMaps["platform"] = "Android "+Build.VERSION.SDK_INT
-//            hashMaps["version_center_sdk"] = Build.VERSION.SDK_INT.toString()
+            hashMaps["version_center_sdk"] = "1.0.0"
 //            if(Login.isLogin){
                 hashMaps["idx"] = SvCryptoHandler()
                     .encrypt(SvLogin.IDX,SvConst.AES_KEY,"0000000000000000")
