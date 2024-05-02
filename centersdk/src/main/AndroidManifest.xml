@@ -2,14 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.starvision.centersdk">
-    <queries>
-        <package android:name="com.smileapp.oil" />
-        <package android:name="com.starvision.exchangerate" />
-        <package android:name="com.smileapp.zodiac" />
-        <package android:name="com.smileapp.goldprice" />
-        <package android:name="com.starvision.lottothai" />
-        <package android:name="com.smileapp.lottery" />
-    </queries>
+<!--    <queries>-->
+<!--        <package android:name="com.smileapp.oil" />-->
+<!--        <package android:name="com.starvision.exchangerate" />-->
+<!--        <package android:name="com.smileapp.zodiac" />-->
+<!--        <package android:name="com.smileapp.goldprice" />-->
+<!--        <package android:name="com.starvision.lottothai" />-->
+<!--        <package android:name="com.smileapp.lottery" />-->
+<!--    </queries>-->
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
