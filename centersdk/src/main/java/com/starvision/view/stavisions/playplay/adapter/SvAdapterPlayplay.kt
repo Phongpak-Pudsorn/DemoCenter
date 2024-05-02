@@ -1,4 +1,4 @@
-package com.starvision.view.playplay.adapter
+package com.starvision.view.stavisions.playplay.adapter
 
 import android.app.Activity
 import android.content.Intent

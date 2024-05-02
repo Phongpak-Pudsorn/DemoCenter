@@ -1,4 +1,4 @@
-package com.starvision.view.playplay
+package com.starvision.view.stavisions.playplay
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.starvision.centersdk.databinding.PageStarvisionBinding
-import com.starvision.view.playplay.adapter.SvAdapterPlayplay
+import com.starvision.view.stavisions.playplay.adapter.SvAdapterPlayplay
 
 class SvPlayplayFragment:Fragment() {
     val binding:PageStarvisionBinding by lazy { PageStarvisionBinding.inflate(layoutInflater) }

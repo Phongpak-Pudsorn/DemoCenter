@@ -26,7 +26,7 @@ import com.starvision.view.center.sub.*
 import com.starvision.view.login.SvLoginActivity
 import com.starvision.view.luckygamesdk.SvLuckyGameFragment
 import com.starvision.view.stavisions.SvStarvisionFragment
-import com.starvision.view.playplay.SvPlayplayFragment
+import com.starvision.view.stavisions.playplay.SvPlayplayFragment
 import com.starvision.view.stavisions.adapter.SvAdapterImageSlide
 import kotlin.collections.ArrayList
 
@@ -86,11 +86,13 @@ class SvMainActivity: AppCompatActivity(),SvAdapterImageSlide.OnDataPass {
             override fun onSuccess(body: String) {
                 val list = Gson().fromJson(body,SvCenterModels::class.java)
                 if (list.code=="101") {
-                    for (i in list!!.data.PageCenter.indices) {
+                    for (i in list.data.PageCenter.indices) {
 //                        if (SvConst.isSdkSDK) {
 //                            binding.lnCoin.visibility = View.INVISIBLE
 //                        }
-                        tablist.add(SvTabModels(list.data.PageCenter[i].MenuTitle))
+                        if (i==0) {
+                            tablist.add(SvTabModels(list.data.PageCenter[i].MenuTitle))
+                        }
                     }
                     binding.menuTab.apply {
                         adapter = SvAdapterMenuTab(
