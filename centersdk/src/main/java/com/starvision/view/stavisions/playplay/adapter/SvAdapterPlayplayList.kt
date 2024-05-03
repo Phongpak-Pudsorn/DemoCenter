@@ -12,10 +12,6 @@ class SvAdapterPlayplayList: RecyclerView.Adapter<SvAdapterPlayplayList.ListHold
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListHolder {
         val binding = ItemPppBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        parent.layoutParams.apply {
-            width = LayoutParams.MATCH_PARENT/3
-            height = LayoutParams.MATCH_PARENT
-        }
         return ListHolder(binding)
     }
 
