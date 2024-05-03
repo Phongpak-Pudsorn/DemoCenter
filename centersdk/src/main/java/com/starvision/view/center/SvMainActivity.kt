@@ -2,6 +2,7 @@ package com.starvision.view.center
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 
@@ -90,9 +91,9 @@ class SvMainActivity: AppCompatActivity(),SvAdapterImageSlide.OnDataPass {
 //                        if (SvConst.isSdkSDK) {
 //                            binding.lnCoin.visibility = View.INVISIBLE
 //                        }
-                        if (i==0) {
+//                        if (i==0) {
                             tablist.add(SvTabModels(list.data.PageCenter[i].MenuTitle))
-                        }
+//                        }
                     }
                     binding.menuTab.apply {
                         adapter = SvAdapterMenuTab(
