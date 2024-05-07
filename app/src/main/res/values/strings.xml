@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">DemoCenter</string>
+    <string name="appID">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="AppOpen">ca-app-pub-3940256099942544/9257395921</string>
+    <string name="FixedBanner">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="Interstitial">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="NativeAdvanced">ca-app-pub-3940256099942544/2247696110</string>
 </resources>

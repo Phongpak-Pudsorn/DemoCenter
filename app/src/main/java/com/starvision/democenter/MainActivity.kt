@@ -1,24 +1,29 @@
 package com.starvision.democenter
 
-import androidx.appcompat.app.AppCompatActivity
+import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.ads.*
 import com.starvision.config.SvLogin
 import com.starvision.data.SvCenterShow
 import com.starvision.data.SvConst
+import com.starvision.data.SvGetViews
 import com.starvision.democenter.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private val binding : ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private var callback : OnBackPressedCallback? = null
+    private val TAG = javaClass.simpleName
     private lateinit var centerShow : SvCenterShow
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         supportActionBar?.hide()
+        MobileAds.initialize(this) {}
         SvConst.appContext = applicationContext
         SvConst.checkStatus(getString(com.starvision.centersdk.R.string.lotto_package))
         SvConst.setClickListener(object :SvConst.CheckListener{
@@ -31,6 +36,9 @@ class MainActivity : AppCompatActivity() {
             }
         })
         centerShow = SvCenterShow(this)
+        CenterBannerShow().getShowBannerAdMob(this)
+        SvGetViews.bannerSmall = R.layout.item_banner_admob
+
 //        SvConst.checkStatus()
 //        SvConst.setClickListener(object : SvConst.CheckListener{
 //            override fun onCheckIsSDK(isSdkSDK: Boolean) {
@@ -85,8 +93,5 @@ class MainActivity : AppCompatActivity() {
         }else{
             binding.imgPerson.setImageDrawable(getDrawable(R.drawable.baseline_person_24_black))
         }
-//        if(Const.KEY_PREFS_FRAGMENT != "" ){
-//            centerShow.checkFragment(centerShow.selectorFragment(Const.KEY_PREFS_FRAGMENT))
-//        }
     }
 }

@@ -4,7 +4,6 @@ import android.os.Build
 import com.starvision.centersdk.BuildConfig
 import com.starvision.config.SvCryptoHandler
 import com.starvision.config.SvLogin
-import com.starvision.config.SvMyApplication
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.HashMap

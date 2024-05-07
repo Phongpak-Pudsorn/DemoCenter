@@ -2,7 +2,6 @@ package com.starvision.view.center
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 
@@ -12,14 +11,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
+import com.fasterxml.jackson.annotation.JsonInclude.Include
 import com.google.gson.Gson
 import com.starvision.api.SvURL
-import com.starvision.centersdk.BuildConfig
 import com.starvision.config.*
 import com.starvision.data.SvAppPreferencesLogin
 import com.starvision.data.SvConst
 import com.starvision.centersdk.R
 import com.starvision.centersdk.databinding.MainPageBinding
+import com.starvision.data.SvGetViews
 import com.starvision.view.center.adapter.SvAdapterMenuTab
 import com.starvision.view.center.adapter.SvAdapterPager
 import com.starvision.view.center.models.SvTabModels
@@ -47,12 +47,13 @@ class SvMainActivity: AppCompatActivity(),SvAdapterImageSlide.OnDataPass {
         if (extra!=null){
             SvConst.appPackage = extra
         }
+
         //รอใช้งาน topup ได้ ค่อยเปิด
 //        if (!SvConst.isReview){
 //            binding.lnCoin.visibility = View.VISIBLE
 //        }
-
 //        binding.lnCoin.visibility = View.VISIBLE
+
         if(!SvLogin.isLogin){
             val intent = Intent(this, SvLoginActivity::class.java)
             startActivity(intent)
@@ -82,6 +83,11 @@ class SvMainActivity: AppCompatActivity(),SvAdapterImageSlide.OnDataPass {
             setSubPage(message)
         }
 
+        val admobView = layoutInflater.inflate(SvGetViews.bannerSmall,null)
+        SvConst.loge(TAG, "admobView : $admobView")
+
+        binding.ViewBannerSmall.addView(admobView)
+
     }
     private fun executeData(){
         SvParamsData(object :SvParamsData.PostLoadListener{
@@ -92,9 +98,9 @@ class SvMainActivity: AppCompatActivity(),SvAdapterImageSlide.OnDataPass {
 //                        if (SvConst.isSdkSDK) {
 //                            binding.lnCoin.visibility = View.INVISIBLE
 //                        }
-//                        if (i==0) {
+                        if (i==0) {
                             tablist.add(SvTabModels(list.data.PageCenter[i].MenuTitle))
-//                        }
+                        }
                     }
                     binding.menuTab.apply {
                         adapter = SvAdapterMenuTab(
@@ -119,7 +125,7 @@ class SvMainActivity: AppCompatActivity(),SvAdapterImageSlide.OnDataPass {
             override fun onFailed(t: Throwable) {
                 SvConst.loge(TAG,"t $t")
             }
-        }).getLoadData(SvURL.BASE_URL_SDK,SvURL.URL_CENTER+"?ver="+BuildConfig.VERSION_NAME,"")
+        }).getLoadData(SvURL.BASE_URL_SDK,SvURL.URL_CENTER,"")
         binding.pager2.adapter = SvAdapterPager(this,fragments)
         binding.pager2.isUserInputEnabled = false
         binding.pager2.registerOnPageChangeCallback(object :ViewPager2.OnPageChangeCallback(){})
