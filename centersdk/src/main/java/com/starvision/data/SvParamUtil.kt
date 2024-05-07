@@ -1,6 +1,7 @@
 package com.starvision.data
 
 import android.os.Build
+import com.starvision.centersdk.BuildConfig
 import com.starvision.config.SvCryptoHandler
 import com.starvision.config.SvLogin
 import com.starvision.config.SvMyApplication
@@ -15,7 +16,7 @@ object SvParamUtil {
             hashMaps["imei"] = SvConst.getUUID(SvConst.appContext)
             hashMaps["model"] = Build.MODEL.replace(" ","_")
             hashMaps["platform"] = "Android "+Build.VERSION.SDK_INT
-            hashMaps["version_center_sdk"] = "1.1.0"
+            hashMaps["version_center_sdk"] = BuildConfig.VERSION_NAME
 //            if(Login.isLogin){
                 hashMaps["idx"] = SvCryptoHandler()
                     .encrypt(SvLogin.IDX,SvConst.AES_KEY,"0000000000000000")

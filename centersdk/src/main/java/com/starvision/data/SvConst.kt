@@ -1,6 +1,7 @@
 package com.starvision.data
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -51,13 +52,6 @@ object SvConst {
             e.printStackTrace()
             ""
         }
-    }
-    fun getVersion(context: Context){
-        val manager = context.packageManager
-        val info = manager.getPackageInfo(context.packageName, PackageManager.GET_ACTIVITIES)
-        loge("version","PackageName = " + info.packageName + "\nVersionCode = "
-                + info.versionCode + "\nVersionName = "
-                + info.versionName + "\nPermissions = " + info.permissions)
     }
 
     fun openAnotherApp(context: Context, packageName: String) {

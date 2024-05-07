@@ -18,7 +18,7 @@ object SvURL {
     const val URL_LOGIN = "/login/api/login_star.php"
     const val URL_REGISTER = "/login/api/register.php"
     const val URL_PROFILE = "/api/myprofile"
-    const val URL_CENTER = "/api/apicenter?ver=1.1.0"
+    const val URL_CENTER = "/api/apicenter"
     const val URL_FORGOTPASS = "/login/api/forgetpass.php"
     const val URL_DELETE_AND_RECOVERY = "/login/api/suspend.php"
     const val URL_LUCKYGAME = "/api/gettoken"

@@ -14,6 +14,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.starvision.api.SvURL
+import com.starvision.centersdk.BuildConfig
 import com.starvision.config.*
 import com.starvision.data.SvAppPreferencesLogin
 import com.starvision.data.SvConst
@@ -118,7 +119,7 @@ class SvMainActivity: AppCompatActivity(),SvAdapterImageSlide.OnDataPass {
             override fun onFailed(t: Throwable) {
                 SvConst.loge(TAG,"t $t")
             }
-        }).getLoadData(SvURL.BASE_URL_SDK,SvURL.URL_CENTER,"")
+        }).getLoadData(SvURL.BASE_URL_SDK,SvURL.URL_CENTER+"?ver="+BuildConfig.VERSION_NAME,"")
         binding.pager2.adapter = SvAdapterPager(this,fragments)
         binding.pager2.isUserInputEnabled = false
         binding.pager2.registerOnPageChangeCallback(object :ViewPager2.OnPageChangeCallback(){})
