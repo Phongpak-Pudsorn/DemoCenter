@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.fasterxml.jackson.annotation.JsonInclude.Include
 import com.google.gson.Gson
 import com.starvision.api.SvURL
+import com.starvision.centersdk.BuildConfig
 import com.starvision.config.*
 import com.starvision.data.SvAppPreferencesLogin
 import com.starvision.data.SvConst
@@ -90,6 +91,7 @@ class SvMainActivity: AppCompatActivity(),SvAdapterImageSlide.OnDataPass {
 
     }
     private fun executeData(){
+        val version = "?ver=${BuildConfig.VERSION_NAME}"
         SvParamsData(object :SvParamsData.PostLoadListener{
             override fun onSuccess(body: String) {
                 val list = Gson().fromJson(body,SvCenterModels::class.java)
@@ -98,9 +100,9 @@ class SvMainActivity: AppCompatActivity(),SvAdapterImageSlide.OnDataPass {
 //                        if (SvConst.isSdkSDK) {
 //                            binding.lnCoin.visibility = View.INVISIBLE
 //                        }
-                        if (i==0) {
+//                        if (i==0) {
                             tablist.add(SvTabModels(list.data.PageCenter[i].MenuTitle))
-                        }
+//                        }
                     }
                     binding.menuTab.apply {
                         adapter = SvAdapterMenuTab(
@@ -125,7 +127,7 @@ class SvMainActivity: AppCompatActivity(),SvAdapterImageSlide.OnDataPass {
             override fun onFailed(t: Throwable) {
                 SvConst.loge(TAG,"t $t")
             }
-        }).getLoadData(SvURL.BASE_URL_SDK,SvURL.URL_CENTER,"")
+        }).getLoadData(SvURL.BASE_URL_SDK,SvURL.URL_CENTER+version,"")
         binding.pager2.adapter = SvAdapterPager(this,fragments)
         binding.pager2.isUserInputEnabled = false
         binding.pager2.registerOnPageChangeCallback(object :ViewPager2.OnPageChangeCallback(){})

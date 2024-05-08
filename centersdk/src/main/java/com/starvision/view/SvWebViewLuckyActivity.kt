@@ -1,11 +1,13 @@
 package com.starvision.view
 
 import android.annotation.SuppressLint
+import android.content.DialogInterface
 import android.net.http.SslError
 import android.os.Bundle
 import android.view.View
 import android.webkit.*
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
@@ -55,12 +57,24 @@ class SvWebViewLuckyActivity : AppCompatActivity() {
         binding.mWebView.loadUrl(link.toString())
         binding.mWebView.webViewClient = CustomWebViewClient()
         binding.mBtGoHome.setOnClickListener { binding.mWebView.loadUrl(link.toString()) }
+        //เพิ่มเติม
+        binding.mWebView.settings.allowFileAccess = false
+        binding.mWebView.settings.builtInZoomControls = false
+        binding.mWebView.settings.displayZoomControls = false
+        binding.mWebView.settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+        binding.mWebView.settings.displayZoomControls = false
+        binding.mWebView.settings.useWideViewPort = true
+        binding.mWebView.settings.loadWithOverviewMode = true
+        binding.mWebView.settings.useWideViewPort = true
+        binding.mWebView.settings.domStorageEnabled = true
+        binding.mWebView.settings.setSupportMultipleWindows(true)
 
     }
     private fun hideStatusBar() {
         WindowCompat.getInsetsController(window,window.decorView).apply {
             systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
             hide(WindowInsetsCompat.Type.statusBars())
+            hide(WindowInsetsCompat.Type.systemBars())
         }
     }
     inner class CustomWebViewClient : WebViewClient() {
@@ -73,6 +87,20 @@ class SvWebViewLuckyActivity : AppCompatActivity() {
         @SuppressLint("WebViewClientOnReceivedSslError")
         override fun onReceivedSslError(view: WebView, handler: SslErrorHandler, error: SslError) {
             binding.mWebView.loadData(getString(R.string.text_nocon)+" "+getSslErrorMessage(error), "text/html", "UTF-8")
+            val builder = AlertDialog.Builder(this@SvWebViewLuckyActivity)
+            val alertDialog = builder.create()
+            val message = getSslErrorMessage(error)+"\n Do you want to continue anyway?"
+            alertDialog.setMessage(message)
+            alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "OK") { dialog, which ->
+                //  Log.d("CHECK", "Button ok pressed")
+                // Ignore SSL certificate errors
+                handler.proceed()
+            }
+            alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel") { dialog, which ->
+                //  Log.d("CHECK", "Button cancel pressed")
+                handler.cancel()
+            }
+            alertDialog.show()
         }
 
         private fun getSslErrorMessage(error: SslError): String = when (error.primaryError) {
