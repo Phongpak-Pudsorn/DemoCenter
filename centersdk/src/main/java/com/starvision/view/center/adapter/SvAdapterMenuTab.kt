@@ -42,11 +42,13 @@ class SvAdapterMenuTab(val context:Context, private val listTab:ArrayList<SvTabM
                 holder.binding.underline.visibility = View.VISIBLE
                 holder.binding.textType.textSize = 34f
 //                holder.binding.textType.setBackgroundResource(R.drawable.btn_underline_white)
+                holder.binding.undertext.visibility = View.VISIBLE
             } else {
                 holder.binding.textType.setTextColor(ContextCompat.getColor(context,R.color.white_triner))
                 holder.binding.underline.visibility = View.INVISIBLE
                 holder.binding.textType.textSize = 30f
 //                holder.binding.textType.setBackgroundResource(R.color.transparent)
+                holder.binding.undertext.visibility = View.INVISIBLE
             }
 
         }

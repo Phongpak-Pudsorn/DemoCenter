@@ -39,6 +39,7 @@
                 android:textSize="30sp" />
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/undertext"
                 android:layout_width="35dp"
                 android:layout_height="3dp"
                 android:layout_gravity="center_horizontal"
@@ -53,7 +54,7 @@
                     android:layout_width="30dp"
                     android:layout_height="3dp"
                     android:background="@color/white"
-                    android:visibility="invisible" />
+                    android:visibility="visible" />
 
             </androidx.cardview.widget.CardView>
 
